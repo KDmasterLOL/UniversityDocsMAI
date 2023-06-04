@@ -8,9 +8,6 @@
     "pug-cli": "^1.0.0-alpha6"
   },
   "scripts": {
-    "watch:scss": "node-sass --watch ./src -o ./dest",
-    "watch:pug": "pug -w ./src/pug -o ./dest",
-    "watch": "concurrently \"npm run watch:scss\" \"npm run watch:pug\"",
     "build": "pug ./src/pug -o ./dist & node-sass ./src -o dest"
   },
   "devDependencies": {
