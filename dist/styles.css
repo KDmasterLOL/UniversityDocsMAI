@@ -21,10 +21,10 @@ html {
 abbr[title] {
   position: relative;
 }
-abbr[title]:hover {
+abbr[title]:hover, abbr[title]:active {
   cursor: none;
 }
-abbr[title]:hover::after {
+abbr[title]:hover::after, abbr[title]:active::after {
   content: "(" attr(title) ")";
 }
 

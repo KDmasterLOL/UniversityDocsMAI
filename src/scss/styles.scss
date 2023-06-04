@@ -19,7 +19,8 @@ html {
 }
 abbr[title] {
   position: relative;
-  &:hover {
+  &:hover,
+  &:active {
     cursor: none;
     &::after {
       content: "(" attr(title) ")";
