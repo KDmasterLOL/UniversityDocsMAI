@@ -1,31 +1,37 @@
 const sass = require("gulp-sass")(require("sass"));
-const { series, src, dest } = require("gulp");
+const { series, src, dest, watch } = require("gulp");
 const del = require("del");
 const gpug = require("gulp-pug");
-let src_path = "./src/";
-let dist = "./dist/";
-let PATHS = {
-  pug: `${src_path}/pug/*.pug`,
-  scss: `${src_path}/scss/*.scss`,
-  img: `${src_path}/img/*.*`,
-  clean: `${dist}`,
+// const pwd =
+//   "/Users/ivantolmacev/Library/Mobile Documents/com~apple~CloudDocs/Documents/University/";
+const PATHS = {
+  src: "src",
+  dist: "dist",
+  clean: "dist",
+};
+const FILES = {
+  pug: `${PATHS["src"]}/pug/*.pug`,
+  scss: `${PATHS["src"]}/scss/*.scss`,
+  img: `${PATHS["src"]}/img/*.*`,
 };
 function clear() {
-  return del(dist);
+  return del(PATHS["dist"]);
 }
 function buildStyles() {
-  return src(PATHS["scss"])
+  return src(FILES["scss"])
     .pipe(sass().on("error", sass.logError))
-    .pipe(dest(dist));
+    .pipe(dest(PATHS["dist"]));
 }
 function image() {
-  return src(PATHS["img"]).pipe(dest(dist));
+  return src(FILES["img"]).pipe(dest(PATHS["dist"]));
 }
 function compilePug() {
-  return src(PATHS["pug"]).pipe(gpug()).pipe(dest(dist));
+  return src(FILES["pug"]).pipe(gpug()).pipe(dest(PATHS["dist"]));
 }
-function defaultTask() {
-  return series(compilePug);
-}
-exports.default = series(clear,buildStyles, image, compilePug);
+exports.default = series(clear, buildStyles, image, compilePug);
 exports.clear = clear;
+exports.watch = function () {
+  watch(FILES["scss"], buildStyles);
+  watch(FILES["pug"], compilePug);
+  // watch(PATHS.pug,compilePug)
+};

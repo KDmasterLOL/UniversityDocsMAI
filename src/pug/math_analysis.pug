@@ -16,10 +16,10 @@ block content
           span.meaning нахождение параметрической функции кривой заданной функцией нескольких переменных
   h1 Обозначения
   .definition
-    span.name ($A$) - фигура с именем $A$
+    span.name $(A)$ - фигура с именем $A$
     ul.relation
       li
-        span.name $A$ - площадь фигуры ($A$)
+        span.name $A$ - площадь фигуры $(A)$
   h1 FAQ
   section 
     h1 Интегральные исчисления
@@ -73,9 +73,13 @@ block content
       div
         ol
           li.equtaion.
-            $$(D):\begin{aligned} 0 < x < 1 \\ -\sqrt{x} < y < x^3 \end{aligned},f(x,y)=\frac 45xy+\frac {9}{11} x^2y^2: 
-            \iint_{(D)} f(x,y)dxdy=\int_0^1dx\int^{x^3}_{-\sqrt x}f(x,y)dy=\int_0^1 \left(\frac 25 xy^2+\frac {3}{11} x^2 y^3 \right) \Big\vert^{x^3}_{-\sqrt x} dx =
-            \int_0^1 \frac 25 x^7+\frac {3}{11} x^11 - \frac 25 x^2+\frac {3}{11} x^{7/2} dx = \frac{x^8}{20}+\frac{x^{12}}{44}-\frac{2x^3}{15}+\frac{2x^{9/2}}{33} \Big\vert^1_0=\frac{33+15-88+40}{3\cdot 4 \cdot 5 \cdot 11}=0 $$
+            $$ (D):
+            \begin{aligned} 
+            0 < x < 1 \\ 
+            -\sqrt{x} < y < x^3 
+            \end{aligned}
+            ,f(x,y) = \frac 45xy+\frac {9}{11} x^2y^2: 
+            \iint_{(D)} f(x,y)dxdy=\int_0^1dx\int^{x^3}_{-\sqrt x}f(x,y)dy=\int_0^1 \left(\frac 25 xy^2+\frac {3}{11} x^2 y^3 \right) \Big\vert^{x^3}_{-\sqrt x} dx = \int_0^1 \frac 25 x^7+\frac {3}{11} x^11 - \frac 25 x^2+\frac {3}{11} x^{7/2} dx = \frac{x^8}{20}+\frac{x^{12}}{44}-\frac{2x^3}{15}+\frac{2x^{9/2}}{33} \Big\vert^1_0=\frac{33+15-88+40}{3\cdot 4 \cdot 5 \cdot 11}=0 $$
     ol.algorithm(title='Изменение порядка интегрирования')
       li Нарисовать графики пределов интегрирования
       li Выразить функции через другую переменную
@@ -92,7 +96,6 @@ block content
     .condition Достаточное условие существование экстремума функции $f(x,y)$ в точке $M(x,y)$
       ul
         li $f_{xx}''$
-        li ываофыплофывждла
     .definition
       span.name Дивергенция 
-        .equation $ \vec F = P(x,y,z)\vec i + Q(x,y,z)\vec j + R(x,y,z)\vec k:\nabla \cdot \vec F = \frac {\partial P}{\partial x}+\frac {\partial Q}{\partial y}+\frac {\partial R}{\partial z}$
+        .equation $\vec F = P(x,y,z)\vec i + Q(x,y,z)\vec j + R(x,y,z)\vec k:\nabla \cdot \vec F = \frac {\partial P}{\partial x}+\frac {\partial Q}{\partial y}+\frac {\partial R}{\partial z}$

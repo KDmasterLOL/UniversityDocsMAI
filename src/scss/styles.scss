@@ -1,19 +1,34 @@
-// @import url("https://fonts.googleapis.com/css2?family=Forum&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Forum&family=Oswald:wght@200;300;400;500;600;700&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap");
-:root {
-  --font_size: max(1vw, 14px);
-}
-$default_font-size: var(--font_size);
-$document-color: black;
+
 html {
-  font-size: $default_font-size;
   font-family: "Source Sans Pro";
-  color: white;
   word-break: break-all;
+  font-size: 16px;
+  color: white;
+}
+@media screen and (0px <= width <= 500px) {
+  h1 {
+    font-size: 3rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  h3 {
+    font-size: 1rem;
+  }
+}
+abbr[title] {
+  position: relative;
+  &:hover {
+    cursor: none;
+    &::after {
+      content: "(" attr(title) ")";
+    }
+  }
 }
 body {
   padding-right: 0.2rem;
-  background-color: $document-color;
+  background-color: black;
 }
 section > h1:first-of-type {
   font-size: 5rem;

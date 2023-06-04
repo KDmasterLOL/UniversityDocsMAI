@@ -1,0 +1,10 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="./styles.css"><script type="text/x-mathjax-config">MathJax.Hub.Config({
+extensions: ["tex2jax.js"],
+jax: ["input/TeX", "output/HTML-CSS"],
+tex2jax: {
+inlineMath: [ ['$','$'], ["\\\(","\\)"] ],
+displayMath: [ ['$$','$$'], ["\\\[","\\]"] ],
+processEscapes: true
+},
+"HTML-CSS": { fonts: ["TeX"] }
+});</script><script type="text/javascript" async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script><title>University document</title></head><body> <header> <nav><a href="./engineering_graphics.html">Инженерная графика</a><a href="./math_analysis.html">Математический анализ</a><a href="./physics.html">Физика </a><a href="./linear_programing.html">Линейное программирование</a></nav></header><h1>Особые случаи применения симплекс метода</h1><div class="definition"><span class="name"><abbr title="Условие допустимости">УД</abbr></span><span class="meaning">в задаче максимизации отсутствие отрицательных коэффициентов в ЦФ, а в задаче минимизации отсутствие положительных</span></div><div class="definition"><span class="name"><abbr title="Вырожденное решение">ВР</abbr></span><span class="meaning">БР содержащее базисную переменную равную нулю</span></div><li> <div class="definition"><span class="name">Вырожденность</span><span class="meaning">случай в котором оптимальное решение - вырожденое. В ходе выполнения симплекс-метода проверка УД может привести к неоднозначному выбору исключаемой переменной, то есть $\theta$ нескольких ограничений будут одинаковы. И на следующей итерации одна или несколько базисных переменных примут нулевое значение. Тогда новое решение будет вырожденным. зам В вырожденном решении нет никакой опасности, за исключением небольших теоретических неудобств. С практической точки зрения вырожденность объясняется тем, что в исходной задаче присутствует по крайней мере одно избыточное ограничение.</span></div></li></body></html>
