@@ -1,11 +1,15 @@
 // @import url("https://fonts.googleapis.com/css2?family=Forum&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Forum&family=Oswald:wght@200;300;400;500;600;700&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap");
-$default_font-size: 18px;
+:root {
+  --font_size: max(1vw, 14px);
+}
+$default_font-size: var(--font_size);
 $document-color: black;
 html {
   font-size: $default_font-size;
   font-family: "Source Sans Pro";
   color: white;
+  word-break: break-all;
 }
 body {
   padding-right: 0.2rem;
@@ -22,6 +26,13 @@ section > h1:first-of-type {
     font-size: 1.5em;
     font-family: Forum;
   }
+}
+.equation {
+  display: inline-block;
+  max-width: 100%;
+  width: fit-content;
+  overflow: scroll;
+  vertical-align: middle;
 }
 h1,
 h2,

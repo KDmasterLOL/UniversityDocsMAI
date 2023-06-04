@@ -1,12 +1,20 @@
 {
   "dependencies": {
     "concurrently": "^8.1.0",
+    "del": "^6.0.0",
+    "gulp": "^4.0.2",
+    "gulp-pug": "^5.0.0",
     "pug": "^3.0.2",
     "pug-cli": "^1.0.0-alpha6"
   },
   "scripts": {
-    "watch:scss": "node-sass --watch src -o dest",
-    "watch:pug": "pug -w src -o dest",
-    "watch": "concurrently \"npm run watch:scss\" \"npm run watch:pug\""
+    "watch:scss": "node-sass --watch ./src -o ./dest",
+    "watch:pug": "pug -w ./src/pug -o ./dest",
+    "watch": "concurrently \"npm run watch:scss\" \"npm run watch:pug\"",
+    "build": "pug ./src/pug -o ./dist & node-sass ./src -o dest"
+  },
+  "devDependencies": {
+    "gulp-sass": "^5.1.0",
+    "sass": "^1.62.1"
   }
 }

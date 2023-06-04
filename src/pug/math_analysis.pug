@@ -23,12 +23,19 @@ block content
   h1 FAQ
   section 
     h1 Интегральные исчисления
-
+    span asdfasdfasdfasdfasdfasdfa 
+      .equation.
+        $x_2
+        \begin{pmatrix}
+          1 & 1 & 1 & 0 \\
+          1 & 1 & 1 & 0 \\
+          1 & 1 & 1 & 0 \\
+        \end{pmatrix}$
     .definition
       span.name Обычный прием в интегральном исчислении
       span.meaning разложение искомой величины на элементарные части, элементарному подсчету каждой части их суммированию и последующему предельному переходу.
     h2 Криволинейный интеграл
-    p $\int_{t_1}^{t_2}f(x,y(x))\cdot \sqrt{(x'(t))^2+(y'(t))^2} dt = $
+    .equation $\int_{t_1}^{t_2}f(x,y(x))\cdot \sqrt{(x'(t))^2+(y'(t))^2} dt =$
     details
       summary.example
       .content
@@ -48,7 +55,7 @@ block content
       summary.info Задача приводящая к двойному интеграллу
       div
         figure.float
-          img.invert(src='../../img/Тело цилиндрического бруса.png' alt='' srcset='')
+          img.invert(src='./Тело цилиндрического бруса.png' alt='' srcset='')
           figcaption Тело цилиндрического бруса
         | Найти объем тела $V$ ограниченного: сверху - поверхностью $z=f(x,y)$; с боков - цилиндрической поверхностью с образующими, параллельными оси $z$; снизу - плоской фигурой $(P)$ на плоскости $xy$.
         ol(title="Для этого")
@@ -73,7 +80,7 @@ block content
       li Нарисовать графики пределов интегрирования
       li Выразить функции через другую переменную
       li Найти на графике новые пределы интегрирования 
-    span.
+    .equation.
       $\Delta = \begin{pmatrix} z_{xx}’’ & z_{xy}’’ \\ z_{yx}’’ & z_{yy}’’ \\ \end{pmatrix}$ 
       $ z_{xx}’’ \begin{aligned} 
       &>0, \text{Экстремум есть} \\ 
@@ -87,4 +94,5 @@ block content
         li $f_{xx}''$
         li ываофыплофывждла
     .definition
-      span.name Дивергенция $\vec F = P(x,y,z)\vec i + Q(x,y,z)\vec j + R(x,y,z)\vec k:\nabla \cdot \vec F= \frac {\partial P}{\partial x}+\frac {\partial Q}{\partial y}+\frac {\partial R}{\partial z}$
+      span.name Дивергенция 
+        .equation $ \vec F = P(x,y,z)\vec i + Q(x,y,z)\vec j + R(x,y,z)\vec k:\nabla \cdot \vec F = \frac {\partial P}{\partial x}+\frac {\partial Q}{\partial y}+\frac {\partial R}{\partial z}$
