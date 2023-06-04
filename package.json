@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "concurrently": "^8.1.0",
+    "pug": "^3.0.2",
+    "pug-cli": "^1.0.0-alpha6"
+  },
+  "scripts": {
+    "watch:scss": "node-sass --watch src -o dest",
+    "watch:pug": "pug -w src -o dest",
+    "watch": "concurrently \"npm run watch:scss\" \"npm run watch:pug\""
+  }
+}
