@@ -6,25 +6,21 @@ html {
   font-size: 16px;
   color: white;
 }
-@media screen and (0px <= width <= 500px) {
-  h1 {
-    font-size: 3rem;
+
+abbr[term] {
+  text-decoration: underline dotted;
+  &::after {
+    content: "(" attr(term) ")";
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+    display: none;
   }
-  h2 {
-    font-size: 2rem;
-  }
-  h3 {
-    font-size: 1rem;
-  }
-}
-abbr[title] {
-  position: relative;
   &:hover,
   &:active {
-    cursor: none;
     &::after {
-      content: "(" attr(title) ")";
+      display: inline;
     }
+    cursor: help;
   }
 }
 body {
@@ -112,8 +108,13 @@ a {
 }
 nav {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   padding: 1rem;
+  a {
+    padding: 0.5rem;
+    display: inline-block;
+  }
 }
 .definition {
   display: block;
@@ -159,15 +160,19 @@ nav {
     }
   }
 }
+img {
+  margin: auto;
+  max-width: 100%;
+  display: block;
+  filter: invert(1);
+  .no-invert {
+    filter: invert(0);
+  }
+}
 figure {
   margin: auto;
   &.float {
     float: right;
-  }
-  img {
-    margin: auto;
-    max-width: 100%;
-    display: block;
   }
   figcaption {
     text-align: center;
@@ -175,9 +180,6 @@ figure {
     font-weight: 600;
     font-size: 2rem;
   }
-}
-.invert {
-  filter: invert(1);
 }
 
 span {
@@ -266,27 +268,16 @@ td {
   border: 0.5px solid black;
   border-radius: 2px;
 }
-.algorithm {
+ul {
   .name {
     font-family: "Times new Roman";
-    &::before {
-      content: "❖";
-    }
   }
-}
-ul[title],
-ol[title] {
   &.algorithm {
-    &::before {
-      content: "❖ " attr(title);
-      font-family: "Times New Roman", Times, serif;
+    .name {
+      &::before {
+        content: "❖";
+      }
     }
-  }
-  &::before {
-    content: attr(title);
-    display: block;
-    font-weight: bold;
-    padding: 4px;
   }
 }
 
@@ -330,5 +321,26 @@ $highlight-color: rgba(255, 255, 0, 0.3);
   td:hover::after,
   th:hover::after {
     background-color: $highlight-color;
+  }
+}
+
+@media screen and (0px <= width <= 500px) {
+  h1 {
+    font-size: 3rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  h3 {
+    font-size: 1rem;
+  }
+}
+@media (pointer: none), (pointer: coarse) {
+  .definition {
+    abbr[term] {
+      &::after {
+        display: inline;
+      }
+    }
   }
 }

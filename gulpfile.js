@@ -1,3 +1,12 @@
+// npm i concurrently
+// npm i del
+// npm i gulp
+// npm i gulp-pug
+// npm i pug
+// npm i pug-cli
+// npm i gulp-sass
+// npm i sass
+
 const sass = require("gulp-sass")(require("sass"));
 const { series, src, dest, watch } = require("gulp");
 const del = require("del");

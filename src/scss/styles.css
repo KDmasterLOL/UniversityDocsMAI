@@ -8,19 +8,14 @@ html {
 }
 
 abbr[term] {
-  text-decoration: underline dotted;
-}
-abbr[term]::after {
-  content: "(" attr(term) ")";
-  padding-left: 0.3rem;
-  padding-right: 0.3rem;
-  display: none;
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
 }
 abbr[term]:hover, abbr[term]:active {
-  cursor: help;
+  cursor: none;
 }
 abbr[term]:hover::after, abbr[term]:active::after {
-  display: inline;
+  content: "(" attr(term) ")";
 }
 
 body {
@@ -44,6 +39,7 @@ section > h1:first-of-type:first-letter {
 .equation {
   display: inline-block;
   max-width: 100%;
+  width: -moz-fit-content;
   width: fit-content;
   overflow: scroll;
   vertical-align: middle;
@@ -112,13 +108,8 @@ a[lang]::after {
 
 nav {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-around;
   padding: 1rem;
-}
-nav a {
-  padding: 0.5rem;
-  display: inline-block;
 }
 
 .definition {
@@ -160,27 +151,26 @@ nav a {
   content: "└";
 }
 
-img {
-  margin: auto;
-  max-width: 100%;
-  display: block;
-  filter: invert(1);
-}
-img .no-invert {
-  filter: invert(0);
-}
-
 figure {
   margin: auto;
 }
 figure.float {
   float: right;
 }
+figure img {
+  margin: auto;
+  max-width: 100%;
+  display: block;
+}
 figure figcaption {
   text-align: center;
   text-transform: capitalize;
   font-weight: 600;
   font-size: 2rem;
+}
+
+.invert {
+  filter: invert(1);
 }
 
 span .follow::before {
@@ -313,9 +303,4 @@ ul.algorithm .name::before {
   h3 {
     font-size: 1rem;
   }
-}
-@media (pointer: none), (pointer: coarse) {
-  .definition abbr[term]::after {
-    display: inline;
-  }
-}
+}/*# sourceMappingURL=styles.css.map */
