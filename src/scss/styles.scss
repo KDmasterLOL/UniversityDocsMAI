@@ -2,11 +2,16 @@
 
 html {
   font-family: "Source Sans Pro";
-  word-break: break-all;
+  word-break: keep-all;
   font-size: 16px;
   color: white;
 }
 
+p {
+  &::first-letter {
+    text-transform: capitalize;
+  }
+}
 abbr[term] {
   text-decoration: underline dotted;
   &::after {
@@ -72,6 +77,22 @@ h3 {
 a {
   color: #6ee4ff;
   text-transform: capitalize;
+  &:empty::before {
+    content: "#";
+  }
+  &[book] {
+    &::before {
+      content: "§";
+    }
+    &:hover {
+      // &:empty::before {
+      //   display: none;
+      // }
+      &::after {
+        content: attr(book);
+      }
+    }
+  }
   &[lang] {
     &::after {
       content: "(" attr(lang) ")";
@@ -122,9 +143,6 @@ nav {
     float: right;
     padding: 0;
     margin: 0;
-    &:empty::before {
-      content: "#";
-    }
   }
   .name {
     font-weight: bold;
@@ -175,10 +193,16 @@ figure {
     float: right;
   }
   figcaption {
+    &.title {
+      text-align: center;
+      text-transform: capitalize;
+      font-weight: 600;
+      font-size: 2rem;
+    }
+    &::first-letter {
+      text-transform: capitalize;
+    }
     text-align: center;
-    text-transform: capitalize;
-    font-weight: 600;
-    font-size: 2rem;
   }
 }
 
@@ -189,31 +213,46 @@ span {
     }
   }
 }
-details[open] {
+details {
+  // }
+  // details[open] {
   div {
+    display: block;
     overflow: scroll;
     border-left: 0.1rem solid white;
     border-bottom: 0.1rem solid white;
     padding: 0.5rem;
   }
+  summary {
+    padding-left: 1rem;
+    &:hover {
+      background-color: rgba(gray, 0.5);
+      border-radius: 1rem;
+    }
+    &.example {
+      &::before {
+        content: "Примеры";
+        padding: 0.5rem;
+      }
+    }
+    &.info {
+      &::before {
+        content: "ℹ️";
+        margin-right: 1em;
+      }
+    }
+  }
 }
-summary {
-  padding-left: 1rem;
-  &:hover {
-    background-color: rgba(gray, 0.5);
-    border-radius: 1rem;
-  }
-  &.example {
+span {
+  &.note {
     &::before {
-      content: "Примеры";
-      padding: 0.5rem;
+      content: "!";
+      padding-right: 0.6rem;
+      padding-left: 0.6rem;
+      font-weight: bold;
     }
-  }
-  &.info {
-    &::before {
-      content: "ℹ️";
-      margin-right: 1em;
-    }
+    background-color: rgba(#c99e00, 0.5);
+    border-radius: 0.2rem;
   }
 }
 .important {
@@ -246,15 +285,15 @@ summary {
   }
   span {
     font-family: Menlo;
-  }
-  span:first-child {
-    padding-right: 0.45em;
-    background: black;
-  }
-  span + span {
-    float: right;
-    padding-left: 0.44em;
-    background: black;
+    &:first-child {
+      padding-right: 0.45em;
+      background: black;
+    }
+    & + & {
+      float: right;
+      padding-left: 0.44em;
+      background: black;
+    }
   }
 }
 li {
@@ -333,6 +372,11 @@ $highlight-color: rgba(255, 255, 0, 0.3);
   }
   h3 {
     font-size: 1rem;
+  }
+}
+@media screen and (0px <= width <= 1000px) {
+  html {
+    word-break: break-all;
   }
 }
 @media (pointer: none), (pointer: coarse) {

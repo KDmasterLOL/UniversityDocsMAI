@@ -1,9 +1,13 @@
 {
+  "type": "module",
   "dependencies": {
     "concurrently": "^8.1.0",
     "del": "^6.0.0",
     "gulp": "^4.0.2",
+    "gulp-imagemin": "^8.0.0",
     "gulp-pug": "^5.0.0",
+    "gulp-webp": "^4.0.1",
+    "imagemin-webp": "^6.1.0",
     "pug": "^3.0.2",
     "pug-cli": "^1.0.0-alpha6"
   },
@@ -11,9 +15,8 @@
     "build": "pug ./src/pug -o ./dist & node-sass ./src -o dest"
   },
   "devDependencies": {
+    "gulp-ext-replace": "^0.3.0",
     "gulp-sass": "^5.1.0",
     "sass": "^1.62.1"
   }
-
 }
-

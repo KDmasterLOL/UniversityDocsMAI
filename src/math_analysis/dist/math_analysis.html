@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles.css">
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      extensions: ["tex2jax.js"],
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+      inlineMath: [ ['$','$'], ["\\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\\[","\\]"] ],
+      processEscapes: true
+      },
+      "HTML-CSS": { fonts: ["TeX"] }
+      });
+    </script>
+    <script type="text/javascript" async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script>document.addEventListener("touchstart", function() {}, true);</script>
+    <title>University document</title>
+  </head>
+  <body> 
+    <header> 
+      <nav><a href="../engineering_graphics/engineering_graphics.html">Инженерная графика</a><a href="../math_analysis/math_analysis.html">Математический анализ</a><a href="../physics/physics.html">Физика </a><a href="../linear_programing/linear_programing.html">Линейное программирование</a></nav>
+    </header>
+    <h1>Что-то</h1>
+    <div class="definition"> <a href="https://www.khanacademy.org/math/multivariable-calculus/thinking-about-multivariable-function/ways-to-represent-multivariable-functions/a/parametric-functions" lang="En"></a><span class="name">Параметрическая функция </span><span class="meaning">функция с одним одноразмерным входным значение и мультиразмерных выходом</span>
+      <ul class="relation">
+        <li> 
+          <div class="definition"> <span class="name">Параметр </span><span class="meaning">входное значение параметрической функции</span></div>
+        </li>
+        <li>
+          <div class="definition"> <span class="name">Параметризация кривой</span><span class="meaning">нахождение параметрической функции кривой заданной функцией нескольких переменных</span></div>
+        </li>
+      </ul>
+    </div>
+    <h1>Обозначения</h1>
+    <div class="definition"><span class="name">$(A)$ - фигура с именем $A$</span>
+      <ul class="relation">
+        <li><span class="name">$A$ - площадь фигуры $(A)$</span></li>
+      </ul>
+    </div>
+    <h1>FAQ</h1>
+    <section> 
+      <h1>Интегральные исчисления</h1><span>asdfasdfasdfasdfasdfasdfa 
+        <div class="equation">
+          $x_2
+          \begin{pmatrix}
+              1 & 1 & 1 & 0 \\
+              1 & 1 & 1 & 0 \\
+              1 & 1 & 1 & 0 \\
+          \end{pmatrix}$
+        </div></span>
+      <div class="definition"><span class="name">Обычный прием в интегральном исчислении</span><span class="meaning">разложение искомой величины на элементарные части, элементарному подсчету каждой части их суммированию и последующему предельному переходу.</span></div>
+      <h2>Криволинейный интеграл</h2>
+      <div class="equation">$\int_{t_1}^{t_2}f(x,y(x))\cdot \sqrt{(x'(t))^2+(y'(t))^2} dt =$</div>
+      <details>
+        <summary class="example"></summary>
+        <div class="content">
+          <ol> 
+            <li>
+              $$(L):\begin{cases}x(t)=\cos t \\ y(t)=\sin t \end{cases},\frac {pi} {2} \le t \le \pi:\int_Lxydl=
+              \int_{\pi/2}^{\pi}\sin t \cos t \sqrt{(-\sin t)^2+(\cos t)^2} dt = \int_{\pi/2}^{\pi}\sin t \cos t dt =
+              \begin{aligned}
+              &\int_{\pi/2}^{\pi}\sin t d\sin t=\frac 12 \sin^2 t \vert_{\pi/2}^{\pi} = \frac 12 \underbrace{(\sin^2 \pi - \sin^2 \frac \pi 2)}_{-1} \\
+              &\frac 12 \int_{\pi/2}^{\pi}\sin 2t dt = -\frac 14 \cos 2t \vert_{\pi/2}^{\pi} = -\frac 14 \underbrace{(\cos2\pi - \cos\pi)}_2
+              \end{aligned}
+              = -\frac {1}{2}
+              $$
+              
+            </li>
+          </ol>
+        </div>
+      </details>
+      <h2>Двойные интегралы</h2>
+      <details> 
+        <summary class="info">Задача приводящая к двойному интеграллу</summary>
+        <div>
+          <figure class="float"><img class="invert" src="./Тело цилиндрического бруса.webp" alt="" srcset="">
+            <figcaption>Тело цилиндрического бруса</figcaption>
+          </figure>Найти объем тела $V$ ограниченного: сверху - поверхностью $z=f(x,y)$; с боков - цилиндрической поверхностью с образующими, параллельными оси $z$; снизу - плоской фигурой $(P)$ на плоскости $xy$.
+          <ol title="Для этого">
+            <li>разложим область $(P)$ сетью кривых на части $(P_1),(P_2),…,(P_n)$ и получим ряд цилиндрических столбиков, которые имеют своими основаниями эти частичные области и в совокупности составляют данное тело</li>
+            <li>Для подсчета отдельных столбиков возьмем произвольно в каждой фигуре $(P_i)$ по точке: $(\xi_i, \tau_i)$. Если приближенно принять каждый столбик за настоящий цилиндр с высотой, равной апликате $f(\xi_i, \tau_i)$, то объем отдельного столбика $\approx f(\xi_i, \tau_i)P_i$</li>
+            <li>Найдем объем всего тела как сумму объемов всех столбиков $V=\sum_{i=1}^n f(\xi_i, \tau_i)P_i$.</li>
+            <li>Для повышения точности уменьшим размеры площадок $(P_i)$, увеличивая их число. В пределе, при стремлении к нулю наибольшего их диаметров всех областей $(P_i)$, равенство делается точным ⇒ $V=\lim \sum_{I=1}^n f(\xi_i, \tau_i)P_i$</li>
+          </ol>
+          <p>Такая форма предела и является двойным интегралом $V=\lim \sum_{I=1}^n f(\xi_i,\tau_i)P_i = \iint_{(P)}f(x,y)dP$</p>
+        </div>
+      </details>
+      <div class="definition"><span class="name">двойной интеграл $\iint_{(P)}f(x,y)dP$ от функции $f(x,y)$ по области $(P)$</span><span class="meaning">обобщение определенного интеграла на случай функции двух переменных</span></div>
+      <details> 
+        <summary class="example"></summary>
+        <div>
+          <ol>
+            <li class="equtaion">
+              $$ (D):
+              \begin{aligned} 
+              0 < x < 1 \\ 
+              -\sqrt{x} < y < x^3 
+              \end{aligned}
+              ,f(x,y) = \frac 45xy+\frac {9}{11} x^2y^2: 
+              \iint_{(D)} f(x,y)dxdy=\int_0^1dx\int^{x^3}_{-\sqrt x}f(x,y)dy=\int_0^1 \left(\frac 25 xy^2+\frac {3}{11} x^2 y^3 \right) \Big\vert^{x^3}_{-\sqrt x} dx = \int_0^1 \frac 25 x^7+\frac {3}{11} x^11 - \frac 25 x^2+\frac {3}{11} x^{7/2} dx = \frac{x^8}{20}+\frac{x^{12}}{44}-\frac{2x^3}{15}+\frac{2x^{9/2}}{33} \Big\vert^1_0=\frac{33+15-88+40}{3\cdot 4 \cdot 5 \cdot 11}=0 $$
+            </li>
+          </ol>
+        </div>
+      </details>
+      <ol class="algorithm" title="Изменение порядка интегрирования">
+        <li>Нарисовать графики пределов интегрирования</li>
+        <li>Выразить функции через другую переменную</li>
+        <li>Найти на графике новые пределы интегрирования </li>
+      </ol>
+      <div class="equation">
+        $\Delta = \begin{pmatrix} z_{xx}’’ & z_{xy}’’ \\ z_{yx}’’ & z_{yy}’’ \\ \end{pmatrix}$ 
+        $ z_{xx}’’ \begin{aligned} 
+        &>0, \text{Экстремум есть} \\ 
+        &<0, \text{Экстремума нету} \\ 
+        &=0, \text{Продолжить исследование} \\ 
+        \end{aligned}$
+        
+      </div><br>
+      <div class="condition">Достаточное условие существование экстремума функции $f(x,y)$ в точке $M(x,y)$
+        <ul>
+          <li>$f_{xx}''$</li>
+        </ul>
+      </div>
+      <div class="definition"><span class="name">Дивергенция 
+          <div class="equation">$\vec F = P(x,y,z)\vec i + Q(x,y,z)\vec j + R(x,y,z)\vec k:\nabla \cdot \vec F = \frac {\partial P}{\partial x}+\frac {\partial Q}{\partial y}+\frac {\partial R}{\partial z}$</div></span></div>
+    </section>
+  </body>
+</html>
