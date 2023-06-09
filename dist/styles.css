@@ -1,13 +1,138 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Forum&family=Oswald:wght@200;300;400;500;600;700&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap");
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Baskerville;
+}
+
+h1 {
+  font-size: 4rem;
+  border-top: 2rem solid white;
+  font-family: Oswald;
+}
+
+h2,
+h3 {
+  text-shadow: 0 1rem 0.5rem rgba(255, 255, 0, 0.3);
+}
+
+h2 {
+  font-size: 3rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+  padding-left: 1rem;
+  border-left: 0.3rem solid white;
+}
+
+@media screen and (0px <= width <= 500px) {
+  h1 {
+    font-size: 3rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  h3 {
+    font-size: 1rem;
+  }
+}
+#GOST-font {
+  margin: auto;
+  border-collapse: collapse;
+  overflow: hidden;
+}
+#GOST-font td {
+  text-align: center;
+  padding: 0.3rem;
+}
+#GOST-font th {
+  border-top: 0.1rem solid white;
+  padding: 0.3rem;
+}
+#GOST-font tr:not(:nth-child(4)) td:nth-last-child(-n+8) {
+  border: 0.1rem solid white;
+}
+#GOST-font td,
+#GOST-font th {
+  position: relative;
+}
+#GOST-font tr:hover {
+  background-color: rgba(255, 255, 0, 0.3);
+}
+#GOST-font td:hover::after {
+  content: "";
+  height: 10000px;
+  left: 0;
+  position: absolute;
+  top: -5000px;
+  width: 100%;
+  z-index: -1;
+}
+#GOST-font td:hover::after,
+#GOST-font th:hover::after {
+  background-color: rgba(255, 255, 0, 0.3);
+}
+
+#table-of-content {
+  max-width: 1000px;
+  padding: 0;
+  overflow-x: hidden;
+  list-style: none;
+  margin: auto;
+}
+#table-of-content li:before {
+  float: left;
+  width: 0;
+  white-space: nowrap;
+  content: ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . ";
+}
+#table-of-content span {
+  font-family: Menlo;
+}
+#table-of-content span:first-child {
+  padding-right: 0.45em;
+  background: black;
+}
+#table-of-content span + #table-of-content span {
+  float: right;
+  padding-left: 0.44em;
+  background: black;
+}
+
 html {
   font-family: "Source Sans Pro";
   word-break: keep-all;
-  font-size: 16px;
+  font-size: 18px;
   color: white;
 }
 
-p::first-letter {
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 1rem;
+}
+nav a {
+  padding: 0.5rem;
+  display: inline-block;
+}
+
+body {
+  padding-right: 0.2rem;
+  background-color: black;
+}
+
+p::first-letter,
+li::first-letter {
   text-transform: capitalize;
 }
 
@@ -25,11 +150,6 @@ abbr[term]:hover, abbr[term]:active {
 }
 abbr[term]:hover::after, abbr[term]:active::after {
   display: inline;
-}
-
-body {
-  padding-right: 0.2rem;
-  background-color: black;
 }
 
 section > h1:first-of-type {
@@ -53,32 +173,25 @@ section > h1:first-of-type:first-letter {
   vertical-align: middle;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: Baskerville;
-}
-
-h1 {
+div::before {
+  display: block;
   font-size: 5rem;
-  border-top: 2rem solid white;
-  font-family: Oswald;
+  border-width: 1rem;
+  margin-top: 3rem;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  border-top: 0.5rem solid white;
 }
-
-h2,
-h3 {
-  text-shadow: 0 1rem 0.5rem rgba(255, 255, 0, 0.3);
+div.laws::before {
+  content: "Законы";
 }
-
-h2 {
-  font-size: 4rem;
+div.laws .name::before {
+  content: "Закон";
 }
-
-h3 {
-  font-size: 3rem;
+div.teorems::before {
+  content: "Теоремы";
+}
+div.teorems .name::before {
+  content: "Теорема";
 }
 
 a {
@@ -123,17 +236,6 @@ a[lang]::after {
   padding-right: 1rem;
 }
 
-nav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 1rem;
-}
-nav a {
-  padding: 0.5rem;
-  display: inline-block;
-}
-
 .definition {
   display: block;
 }
@@ -147,8 +249,7 @@ nav a {
   font-size: larger;
   padding: 0;
 }
-.definition .law::before {
-  content: "Закон";
+.definition .name::before {
   padding-right: 1rem;
   font-weight: bolder;
   color: #c99e00;
@@ -199,8 +300,29 @@ figure figcaption::first-letter {
   text-transform: capitalize;
 }
 
-span .follow::before {
+span.follow::before {
   content: "⇒";
+}
+span.note {
+  background-color: rgba(201, 158, 0, 0.5);
+  border-radius: 0.2rem;
+}
+span.note::before {
+  content: "!";
+  padding-right: 0.6rem;
+  padding-left: 0.6rem;
+  font-weight: bold;
+}
+span.important {
+  padding: 8px;
+  background-color: #400202;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: larger;
+}
+span.important::before {
+  content: "❗️";
+  font-size: larger;
 }
 
 details div {
@@ -221,62 +343,13 @@ details summary.example::before {
   content: "Примеры";
   padding: 0.5rem;
 }
+details summary.proof::before {
+  content: "Доказательство";
+  padding: 0.5rem;
+}
 details summary.info::before {
   content: "ℹ️";
   margin-right: 1em;
-}
-
-span.note {
-  background-color: rgba(201, 158, 0, 0.5);
-  border-radius: 0.2rem;
-}
-span.note::before {
-  content: "!";
-  padding-right: 0.6rem;
-  padding-left: 0.6rem;
-  font-weight: bold;
-}
-
-.important {
-  padding: 8px;
-  background-color: #400202;
-  border-radius: 10px;
-  font-weight: 600;
-  font-size: larger;
-}
-.important::before {
-  content: "❗️";
-  font-size: larger;
-}
-
-#table-of-content {
-  max-width: 1000px;
-  padding: 0;
-  overflow-x: hidden;
-  list-style: none;
-  margin: auto;
-}
-#table-of-content li:before {
-  float: left;
-  width: 0;
-  white-space: nowrap;
-  content: ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . ";
-}
-#table-of-content span {
-  font-family: Menlo;
-}
-#table-of-content span:first-child {
-  padding-right: 0.45em;
-  background: black;
-}
-#table-of-content span + #table-of-content span {
-  float: right;
-  padding-left: 0.44em;
-  background: black;
-}
-
-li::first-letter {
-  text-transform: uppercase;
 }
 
 table,
@@ -293,54 +366,23 @@ ul.algorithm .name::before {
   content: "❖";
 }
 
-#GOST-font {
-  margin: auto;
-  border-collapse: collapse;
-  overflow: hidden;
+ol.inline {
+  display: inline-block;
+  counter-reset: inline-list;
 }
-#GOST-font td {
-  text-align: center;
-  padding: 0.3rem;
+ol.inline li {
+  display: inline;
+  counter-increment: inline-list;
 }
-#GOST-font th {
-  border-top: 0.1rem solid white;
-  padding: 0.3rem;
+ol.inline li::before {
+  content: counter(inline-list) " -";
+  padding-right: 0.5rem;
 }
-#GOST-font tr:not(:nth-child(4)) td:nth-last-child(-n+8) {
-  border: 0.1rem solid white;
-}
-#GOST-font td,
-#GOST-font th {
-  position: relative;
-}
-#GOST-font tr:hover {
-  background-color: rgba(255, 255, 0, 0.3);
-}
-#GOST-font td:hover::after {
-  content: "";
-  height: 10000px;
-  left: 0;
-  position: absolute;
-  top: -5000px;
-  width: 100%;
-  z-index: -1;
-}
-#GOST-font td:hover::after,
-#GOST-font th:hover::after {
-  background-color: rgba(255, 255, 0, 0.3);
+ol.inline li::after {
+  content: ";";
+  padding-right: 2rem;
 }
 
-@media screen and (0px <= width <= 500px) {
-  h1 {
-    font-size: 3rem;
-  }
-  h2 {
-    font-size: 2rem;
-  }
-  h3 {
-    font-size: 1rem;
-  }
-}
 @media screen and (0px <= width <= 1000px) {
   html {
     word-break: break-all;
