@@ -1,0 +1,422 @@
+@use "fonts";
+@use "headers";
+@use "animations";
+@use "docs_specific";
+@use "html_structure";
+$font-Forum: Forum;
+$font-SSP: "Source Sans Pro";
+$font-PD: "Playfair Display";
+$color-dark-gray: rgb(50, 50, 50);
+
+p,
+li {
+  &::first-letter {
+    text-transform: capitalize;
+  }
+}
+
+abbr[term] {
+  text-decoration: underline dotted;
+  &:hover,
+  &:active {
+    &::after {
+      content: "(" attr(term) ")";
+      padding-left: 0.3rem;
+      padding-right: 0.3rem;
+    }
+    cursor: help;
+  }
+}
+
+section > h1:first-of-type {
+  font-size: 5rem;
+  border-top: 5rem solid white;
+  display: block;
+  margin-top: 10rem;
+  text-align: right;
+  font-weight: bold;
+  &:first-letter {
+    font-size: 1.5em;
+    font-family: Forum;
+  }
+}
+.expression {
+  display: inline-block;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+  position: relative;
+  span.meaning {
+    display: none;
+  }
+  &:hover span.meaning {
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    width: max-content;
+    max-width: 100vw;
+    padding: 0.5rem;
+    font-weight: 200;
+    font-size: small;
+    background-color: rgb(57, 57, 57);
+    border: 0.05rem solid white;
+    transform: translateY(-50%) translateX(25%);
+    display: block;
+    &::first-letter {
+      text-transform: capitalize;
+    }
+  }
+}
+.equation {
+  display: inline-block;
+  max-width: 100%;
+  width: fit-content;
+  overflow: scroll;
+  vertical-align: middle;
+  position: relative;
+}
+div {
+  &::before {
+    display: block;
+    font-size: 5rem;
+    border-width: 1rem;
+    margin-top: 3rem;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    border-top: 0.5rem solid white;
+  }
+  &.laws {
+    &::before {
+      content: "Законы";
+    }
+    .definition .name {
+      &::before {
+        content: "Закон";
+      }
+    }
+  }
+  &.teorems {
+    &::before {
+      content: "Теоремы";
+    }
+    .definition .name {
+      &::before {
+        content: "Теорема";
+      }
+    }
+  }
+}
+
+a {
+  color: #6ee4ff;
+  text-transform: capitalize;
+  &:empty::before {
+    content: "#";
+  }
+  &[book] {
+    &::before {
+      content: "§";
+    }
+    &:hover {
+      // &:empty::before {
+      //   display: none;
+      // }
+      &::after {
+        content: attr(book);
+      }
+    }
+  }
+  &[lang] {
+    &::after {
+      content: "(" attr(lang) ")";
+    }
+  }
+}
+.condition {
+  ul {
+    padding: 0;
+    margin: 0;
+    display: inline;
+    &::before {
+      content: ":";
+    }
+    li {
+      display: inline;
+      padding-left: 0.2em;
+      &::before {
+        content: "Если";
+        font-style: italic;
+        padding-right: 0.5rem;
+      }
+      &::after {
+        content: ";";
+        font-size: larger;
+        font-weight: bold;
+        padding: {
+          left: 0.1rem;
+          right: 1rem;
+        }
+      }
+    }
+  }
+}
+
+.definition {
+  display: block;
+  a {
+    float: right;
+    padding: 0;
+    margin: 0;
+  }
+  .name {
+    font-weight: bold;
+    font-size: larger;
+    padding: 0;
+
+    &::before {
+      padding-right: 1rem;
+      font-weight: bolder;
+      color: #c99e00;
+      font-size: 1.5rem;
+    }
+  }
+  &::first-letter {
+    text-transform: uppercase;
+  }
+  > .meaning {
+    &::before {
+      content: " － ";
+    }
+  }
+  > ul {
+    > li {
+      padding-left: 5px;
+      &::marker {
+        content: "└";
+      }
+    }
+  }
+}
+
+@media (pointer: none), (pointer: coarse) {
+  .definition {
+    abbr[term] {
+      &::after {
+        display: inline;
+      }
+    }
+  }
+}
+
+img {
+  margin: auto;
+  max-width: 100%;
+  display: block;
+  filter: invert(1);
+  .no-invert {
+    filter: invert(0);
+  }
+}
+figure {
+  margin: auto;
+  &.float {
+    float: right;
+  }
+  figcaption {
+    &.title {
+      text-align: center;
+      text-transform: capitalize;
+      font-weight: 600;
+      font-size: 2rem;
+    }
+    &::first-letter {
+      text-transform: capitalize;
+    }
+    text-align: center;
+  }
+}
+.intro {
+  font-family: $font-PD;
+  font-size: larger;
+  font-style: italic;
+}
+span {
+  &.tip {
+    position: relative;
+    text-decoration: underline;
+    text-decoration-style: dashed;
+    > span {
+      display: none;
+    }
+    &:hover > span {
+      position: absolute;
+      top: -100%;
+      left: -100%;
+      width: max-content;
+      max-width: 100vw;
+      padding: 0.5rem;
+      font-weight: 200;
+      font-size: small;
+      background-color: rgb(57, 57, 57);
+      border: 0.05rem solid white;
+      transform: translateY(-50%) translateX(25%);
+      display: block;
+      &::first-letter {
+        text-transform: capitalize;
+      }
+    }
+  }
+  &.collapse {
+    &:hover {
+      &:not([open]) {
+        span.summary {
+          &::after {
+            content: "…";
+            background-color: $color-dark-gray;
+            border-radius: 1rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+          }
+        }
+      }
+      &[open] {
+        background-color: $color-dark-gray;
+        border-radius: 0.2rem;
+      }
+    }
+    &[open] {
+      span {
+        display: inline;
+      }
+      span.summary {
+        &::after {
+          content: "";
+        }
+      }
+    }
+    span.summary {
+      display: inline;
+      &::after {
+        content: "…";
+        transition: background-color 0.2s linear 0s;
+        transition: padding 0.2s linear 0s;
+      }
+
+      padding-right: 0.2rem;
+    }
+    span {
+      display: none;
+    }
+  }
+  &.follow {
+    &::before {
+      content: "⇒";
+    }
+  }
+  &.note {
+    &::before {
+      content: "!";
+      padding-right: 0.6rem;
+      padding-left: 0.6rem;
+      font-weight: bold;
+    }
+    background-color: rgba(#c99e00, 0.5);
+    border-radius: 0.2rem;
+  }
+  &.important {
+    background-color: rgba(red, 0.5);
+    border-radius: 0.2rem;
+    font-weight: 600;
+    &::after {
+      content: "‼️";
+      font-size: larger;
+    }
+  }
+  &.unit {
+    font-family: "LMRoman10";
+    &::before {
+      content: "[";
+    }
+    &::after {
+      content: "]";
+    }
+  }
+}
+details {
+  div {
+    display: block;
+    overflow: scroll;
+    border-left: 0.1rem solid white;
+    border-bottom: 0.1rem solid white;
+    padding: 0.5rem;
+  }
+  summary {
+    padding-left: 1rem;
+    &:hover {
+      background-color: rgba(gray, 0.5);
+      border-radius: 1rem;
+    }
+    &.example {
+      &::before {
+        content: "Примеры";
+        padding: 0.5rem;
+      }
+    }
+    &.proof {
+      &::before {
+        content: "Доказательство";
+        padding: 0.5rem;
+      }
+    }
+    &.info {
+      &::before {
+        content: "ℹ️";
+        margin-right: 1em;
+      }
+    }
+  }
+}
+table,
+th,
+td {
+  border: 0.5px solid black;
+  border-radius: 2px;
+}
+ul {
+  .name {
+    font-family: "Times new Roman";
+  }
+  &.algorithm {
+    .name {
+      &::before {
+        content: "❖";
+      }
+    }
+  }
+}
+ol.inline {
+  display: inline-block;
+  counter-reset: inline-list;
+  li {
+    display: inline;
+    counter-increment: inline-list;
+    &::before {
+      content: counter(inline-list) " -";
+      padding-right: 0.5rem;
+    }
+    &::after {
+      content: ";";
+      padding-right: 2rem;
+    }
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 100%;
+  }
+  50% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}

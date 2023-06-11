@@ -1,0 +1,39 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Baskerville;
+}
+h1 {
+  font-size: 4rem;
+  border-top: 2rem solid white;
+  font-family: Oswald;
+}
+h2,
+h3 {
+  text-shadow: 0 1rem 0.5rem rgba(yellow, 0.3);
+}
+h2 {
+  font-size: 3rem;
+}
+h3 {
+  font-size: 2rem;
+}
+h4 {
+  font-size: 1.5rem;
+  padding-left: 1rem;
+  border-left: 0.3rem solid white;
+}
+@media screen and (0px <= width <= 500px) {
+    h1 {
+      font-size: 3rem;
+    }
+    h2 {
+      font-size: 2rem;
+    }
+    h3 {
+      font-size: 1rem;
+    }
+  }

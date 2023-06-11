@@ -1,0 +1,26 @@
+html {
+  font-family: "Source Sans Pro";
+  word-break: keep-all;
+  font-size: 18px;
+  color: white;
+}
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 1rem;
+  a {
+    padding: 0.5rem;
+    display: inline-block;
+  }
+}
+body {
+  padding-right: 0.2rem;
+  background-color: black;
+}
+
+@media screen and (0px <= width <= 1000px) {
+  html {
+    word-break: break-all;
+  }
+}

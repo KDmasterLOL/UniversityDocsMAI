@@ -1,0 +1,25 @@
+.wavy-text {
+  position: relative;
+  letter-spacing: 0.2rem;
+  span {
+    position: relative;
+    display: inline-block;
+    animation: wavy-text 1s ease-in-out infinite;
+  }
+}
+$radius: 0.5rem;
+
+span.collapse[open]:not(:hover) span:not(.summary) {
+  animation: blink 1s linear 0s infinite;
+}
+@keyframes wavy-text {
+  0% {
+    transform: translateY($radius);
+  }
+  50% {
+    transform: translateY(-$radius);
+  }
+  100% {
+    transform: translateY($radius);
+  }
+}
