@@ -1,5 +1,11 @@
 extends ../_layout.pug
 block content
+    ul.useful_res 
+        li #[a(href="https://youtu.be/3zRubo5fHUo") великая теорема ферма] 
+        li #[a(href="https://youtu.be/0GorifJmJVM") кватернионы] 
+        li #[a(href="https://youtu.be/FdHB5SXddvY") Суть алгебры]
+        li #[a(href="https://youtu.be/wdMeIC95uBo") Задача Мишустина]
+
     h1 Что-то
     .definition 
         a(href="https://www.khanacademy.org/math/multivariable-calculus/thinking-about-multivariable-function/ways-to-represent-multivariable-functions/a/parametric-functions" lang="En")
@@ -75,8 +81,8 @@ block content
                     li.equtaion.
                         $$ (D):
                         \begin{aligned} 
-                        0 < x < 1 \\ 
-                        -\sqrt{x} < y < x^3 
+                        0 &lt; x &lt; 1 \\ 
+                        -\sqrt{x} &lt; y &lt; x^3 
                         \end{aligned}
                         ,f(x,y) = \frac 45xy+\frac {9}{11} x^2y^2: 
                         \iint_{(D)} f(x,y)dxdy=\int_0^1dx\int^{x^3}_{-\sqrt x}f(x,y)dy=\int_0^1 \left(\frac 25 xy^2+\frac {3}{11} x^2 y^3 \right) \Big\vert^{x^3}_{-\sqrt x} dx = \int_0^1 \frac 25 x^7+\frac {3}{11} x^11 - \frac 25 x^2+\frac {3}{11} x^{7/2} dx = \frac{x^8}{20}+\frac{x^{12}}{44}-\frac{2x^3}{15}+\frac{2x^{9/2}}{33} \Big\vert^1_0=\frac{33+15-88+40}{3\cdot 4 \cdot 5 \cdot 11}=0 $$
@@ -88,7 +94,7 @@ block content
             $\Delta = \begin{pmatrix} z_{xx}’’ & z_{xy}’’ \\ z_{yx}’’ & z_{yy}’’ \\ \end{pmatrix}$ 
             $ z_{xx}’’ \begin{aligned} 
             &>0, \text{Экстремум есть} \\ 
-            &<0, \text{Экстремума нету} \\ 
+            &&lt;0, \text{Экстремума нету} \\ 
             &=0, \text{Продолжить исследование} \\ 
             \end{aligned}$
 

@@ -1,0 +1,131 @@
+@import "variables";
+p,
+span {
+
+  &.intro {
+    font-family: $font-PD;
+    font-size: larger;
+    font-style: italic;
+  }
+  &.note {
+    &::before {
+      content: "!";
+      padding-right: 0.6rem;
+      padding-left: 0.6rem;
+      font-weight: bold;
+    }
+    background-color: rgba(#c99e00, 0.5);
+    border-radius: 0.2rem;
+  }
+  &.important {
+    background-color: darkred;
+    border-radius: 0.2rem;
+    font-weight: 600;
+    padding-left: $space;
+    &::after {
+      content: "‼️";
+      font-size: larger;
+    }
+  }
+  &.remark {
+    font-weight: normal;
+    border-radius: $space;
+    padding-left: $space;
+    padding-right: $space;
+    background-color: darkslategrey;
+  }
+}
+span {
+  &.where{
+    padding-left: $space * 2;
+    &::before {
+      content: "где";
+      background-color: #c99e00;
+      padding-left: $space;
+      padding-right: $space;
+      margin-right: $space;
+      border-radius: 0.2rem;
+    }
+  }
+  &.tip {
+    // position: relative;
+    text-decoration: underline;
+    text-decoration-style: dashed;
+    > span {
+      display: none;
+    }
+    &:hover > span {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      word-break: keep-all;
+      transform: translateX(-50%) translateY(-50%);
+      padding: 0.5rem;
+      font-weight: 400;
+      font-size: larger;
+      background-color: $color-dark-gray;
+      border: 0.05rem solid white;
+      z-index: 1;
+      display: block;
+      &::first-letter {
+        text-transform: capitalize;
+      }
+    }
+  }
+  &.collapse {
+    &:hover {
+      &:not([open]) {
+        span.summary {
+          &::after {
+            content: "…";
+            background-color: $color-dark-gray;
+            border-radius: 1rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+          }
+        }
+      }
+      &[open] {
+        background-color: $color-dark-gray;
+        border-radius: 0.2rem;
+      }
+    }
+    &[open] {
+      span {
+        display: inline;
+      }
+      span.summary {
+        &::after {
+          content: "";
+        }
+      }
+    }
+    span.summary {
+      display: inline;
+      &::after {
+        content: "…";
+        transition: background-color 0.2s linear 0s;
+        transition: padding 0.2s linear 0s;
+      }
+
+      padding-right: 0.2rem;
+    }
+    span {
+      display: none;
+    }
+  }
+  &.follow {
+    &::before {
+      content: "⇒";
+    }
+  }
+  &.unit {
+    font-family: "LMRoman10";
+    &::before {
+      content: "[";
+    }
+    &::after {
+      content: "]";
+    }
+  }
+}

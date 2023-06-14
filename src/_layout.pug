@@ -5,19 +5,24 @@ html(lang="en")
         meta(http-equiv="X-UA-Compatible" content="IE=edge")
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
         link(rel='stylesheet' href='../styles.css')
-        script(type='text/x-mathjax-config').
-            MathJax.Hub.Config({
-            extensions: ["tex2jax.js"],
-            jax: ["input/TeX", "output/HTML-CSS"],
-            tex2jax: {
-            inlineMath: [ ['$','$'], ["\\\(","\\)"] ],
-            displayMath: [ ['$$','$$'], ["\\\[","\\]"] ],
-            processEscapes: true
-            },
-            "HTML-CSS": { fonts: ["TeX"] }
-            });
         script(src="../script.js") 
-        script(type='text/javascript' async='' src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML')
+        script.
+            MathJax = {
+            loader: {load: ['[tex]/physics']},
+            tex: {
+                packages: {'[+]': ['physics']},
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                macros : {
+                    //- dvp: ["{ \\dfrac{\\partial{#1}}{\\partial{#2}} }",2],
+                    dbd: ["{ \\frac{\\Delta{#1}}{\\Delta{#2}}}",2],
+                    const: ["{\\operatorname{const}}"],
+                    oiint: ["{\\unicode{x222F}}"],
+                    oiiint: ["{\\unicode{x2230}}"],
+                    EMF: ["{\\mathscr{E}}"],
+                }
+            },
+            };
+        script(type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js")
         script document.addEventListener("touchstart", function() {}, true);
         title University document
         block scripts

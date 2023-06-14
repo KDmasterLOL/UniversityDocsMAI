@@ -1,3 +1,4 @@
+@import "variables";
 h1,
 h2,
 h3,
@@ -5,6 +6,18 @@ h4,
 h5,
 h6 {
   font-family: Baskerville;
+}
+section > h1:first-of-type {
+  font-size: 5rem;
+  border-top: 5rem solid white;
+  display: block;
+  margin-top: 10rem;
+  text-align: right;
+  font-weight: bold;
+  &:first-letter {
+    font-size: 1.5em;
+    font-family: Forum;
+  }
 }
 h1 {
   font-size: 4rem;
@@ -27,13 +40,71 @@ h4 {
   border-left: 0.3rem solid white;
 }
 @media screen and (0px <= width <= 500px) {
-    h1 {
-      font-size: 3rem;
-    }
+  h1 {
+    font-size: 3rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  h3 {
+    font-size: 1rem;
+  }
+}
+
+ul {
+  &.useful_res,
+  &.laws,
+  &.teorems {
     h2 {
-      font-size: 2rem;
+      text-align: right;
+      a {
+        float: left;
+      }
     }
-    h3 {
-      font-size: 1rem;
+    padding-left: 0;
+    &::before {
+      font-size: 5rem;
+      border-top: 5rem solid white;
+      display: block;
+      margin-top: 10rem;
+      text-align: right;
+      font-weight: bold;
+      display: block;
+      border-width: 1rem;
+      margin-top: 3rem;
+      font-family: Georgia, "Times New Roman", Times, serif;
+      border-top: 0.5rem solid white;
+    }
+    &::first-letter {
+      font-size: 1.5em;
+      font-family: Forum;
     }
   }
+
+  &.laws {
+    &::before {
+      content: "Законы";
+    }
+    > .definition > .name {
+      &::before {
+        content: "Закон";
+      }
+    }
+  }
+  &.useful_res {
+    padding-left: 1rem;
+    &::before {
+      content: "Полезные ресурсы";
+    }
+  }
+  &.teorems {
+    &::before {
+      content: "Теоремы";
+    }
+    .definition .name {
+      &::before {
+        content: "Теорема";
+      }
+    }
+  }
+}

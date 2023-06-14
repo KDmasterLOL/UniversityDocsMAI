@@ -22,7 +22,45 @@ def is_marker_of_list(str):
     return any([type_list in groups for type_list in types_list])
 
 
+def hung_flags(string, idx=None):
+    global flags
+    global definition_index
+    if idx == None:
+        reset_flag(DEFINITION | SEVERAL_DOTS | HEADER)
+        if len(string.split(" ")) <= MAX_LEN_HEADER and string[-1] != ".":
+            add_flag(HEADER)
+    elif len(string)!=0:
+        if string[-1] == ".":
+            add_flag(SEVERAL_DOTS)
+        if string in ["-", "—", "—", "–"] and not get_flag(SEVERAL_DOTS):
+            add_flag(DEFINITION)
+            definition_index = idx
+
+
+def add_flag(flag):
+    global flags
+
+    flags = flags | flag
+
+
+def get_flag(flag):
+    global flags
+
+    return (flags & flag) != 0
+
+
+def reset_flag(flag):
+    global flags
+
+    flags = flags & (~flag)
+
+
 MAX_LEN_HEADER = 6
+NONE = 0
+(DEFINITION, HEADER, SEVERAL_DOTS) = [1 << i for i in range(3)]
+definition_index = 0
+regexes = {}
+flags = NONE
 result = []
 text = pyperclip.paste()
 paragraphs = text.split("\n")
@@ -30,23 +68,20 @@ paragraphs = text.split("\n")
 for paragraph in paragraphs:
     words = paragraph.split(" ")
     res = []
-    is_definition = -1
-    if is_marker_of_list(words[0]):
-        del words[0]
-        res.append("li")
-    if len(words) < MAX_LEN_HEADER and words[-1][-1] != ".":
+    hung_flags(paragraph)
+    # if is_marker_of_list(words[0]):
+    #     del words[0]
+    #     res.append("li")
+    if get_flag(HEADER):
         res = "h1 " + paragraph
     else:
         for idx, word in enumerate(words):
-            if word in ["-", "—", "—","–"]:
-                is_definition = idx
-                break
-        if is_definition != -1:
-            res.append(make_definition(words.copy(), is_definition))
+            hung_flags(word, idx)
+        if get_flag(DEFINITION):
+            res.append(make_definition(words.copy(), definition_index))
         else:
+            res.insert(0, "p")
             res.append(" ".join(words))
-        if is_definition == -1:
-            res.insert(0,'p')
     if isinstance(res, list):
         res = " ".join(res)
     result.append(res)

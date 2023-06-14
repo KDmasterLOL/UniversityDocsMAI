@@ -12,6 +12,7 @@
 // npm i gulp-imagemin
 // npm i gulp-rename
 // npm i gulp-svgmin
+// npm i gulp-htmlmin
 
 import dartSass from "sass";
 import gulpSass from "gulp-sass";
@@ -23,6 +24,7 @@ import gimagemin from "gulp-imagemin";
 import gwebp from "imagemin-webp";
 import rename from "gulp-rename";
 import svgmin from "gulp-svgmin";
+import htmlmin from "gulp-htmlmin";
 
 // const pwd =
 //   "/Users/ivantolmacev/Library/Mobile Documents/com~apple~CloudDocs/Documents/University/";
@@ -50,7 +52,7 @@ function buildStyles() {
 function image() {
   return gulp
     .src(FILES["img"])
-    .pipe(gimagemin([gwebp({ quality: 10 })]))
+    .pipe(gimagemin([gwebp({ quality: 40 })]))
     .pipe(rename({ extname: ".webp" }))
     .pipe(gulp.dest(PATHS["dist"]));
 }
@@ -61,7 +63,18 @@ function svg() {
     .pipe(gulp.dest(PATHS["dist"]));
 }
 function compilePug() {
-  return gulp.src(FILES["pug"]).pipe(gpug()).pipe(gulp.dest(PATHS["dist"]));
+  return (
+    gulp
+      .src(FILES["pug"])
+      .pipe(gpug())
+      // // .pipe(
+      // //   htmlmin({
+      // //     collapseWhitespace: true,
+      // //     removeComments: true,
+      // //   })
+      // )
+      .pipe(gulp.dest(PATHS["dist"]))
+  );
 }
 function scripts() {
   return gulp.src(FILES["js"]).pipe(gulp.dest(PATHS["dist"]));
@@ -77,11 +90,13 @@ gulp.task("svg", svg);
 gulp.task("graphics", () => {
   return gulp.parallel(image, svg);
 });
-gulp.task("build", gulp.series(
-  clear,
-  gulp.parallel(buildStyles, image, svg, compilePug, scripts),
-  watch
-)
+gulp.task(
+  "build",
+  gulp.series(
+    clear,
+    gulp.parallel(buildStyles, image, svg, compilePug, scripts),
+    watch
+  )
 );
 export default gulp.series(clear, buildStyles, image, svg, compilePug, scripts);
 export { clear };
