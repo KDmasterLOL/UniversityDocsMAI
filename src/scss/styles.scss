@@ -52,11 +52,11 @@ abbr[term] {
     }
   }
 }
-.equation {
+span.equation {
   display: inline-block;
   max-width: 100%;
   width: fit-content;
-  overflow: scroll;
+  overflow-x: scroll;
   vertical-align: middle;
   position: relative;
 }
@@ -114,24 +114,10 @@ a {
     }
   }
 }
-ul.where {
-  display: inline; 
-  padding-left: $space * 2;
-  &::before {
-    content: "где";
-    background-color: #c99e00;
-    padding-left: $space;
-    padding-right: $space;
-    margin-right: $space;
-    border-radius: 0.2rem;
-  }
-  li {
-    display: inline;
-    &::after {
-      content: ";";
-    }
-    padding-right: $space * 2;
-  }
+iframe {
+  filter: invert(1);
+  margin-left: 50%;
+  transform: translateX(-50%);
 }
 .definition {
   display: block;
@@ -223,7 +209,6 @@ figure {
   figcaption {
     &.title {
       text-align: center;
-      text-transform: capitalize;
       font-weight: 600;
       font-size: 2rem;
     }
@@ -237,14 +222,17 @@ figure {
 details {
   &[open] {
     display: block;
-    overflow: scroll;
+    // overflow: scroll;
     border-left: 0.1rem solid white;
     border-bottom: 0.1rem solid white;
     padding: 0.5rem;
     padding-left: $space;
     padding-top: 0;
   }
-
+  ol,
+  ul {
+    overflow-x: scroll;
+  }
   summary {
     padding-left: 1rem;
     &:hover {

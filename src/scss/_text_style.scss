@@ -1,7 +1,6 @@
 @import "variables";
 p,
 span {
-
   &.intro {
     font-family: $font-PD;
     font-size: larger;
@@ -36,8 +35,13 @@ span {
   }
 }
 span {
-  &.where{
+  &.where {
     padding-left: $space * 2;
+    font-weight: normal;
+    font-size: small;
+    li {
+      display: inline;
+    }
     &::before {
       content: "где";
       background-color: #c99e00;

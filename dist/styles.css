@@ -42,6 +42,11 @@ span.remark {
 
 span.where {
   padding-left: 0.8rem;
+  font-weight: normal;
+  font-size: small;
+}
+span.where li {
+  display: inline;
 }
 span.where::before {
   content: "где";
@@ -175,16 +180,16 @@ h4 {
     font-size: 1rem;
   }
 }
-ul.useful_res, ul.laws, ul.teorems {
+ul.useful_res, ul.laws, ul.teorems, ol.useful_res, ol.laws, ol.teorems {
   padding-left: 0;
 }
-ul.useful_res h2, ul.laws h2, ul.teorems h2 {
+ul.useful_res h2, ul.laws h2, ul.teorems h2, ol.useful_res h2, ol.laws h2, ol.teorems h2 {
   text-align: right;
 }
-ul.useful_res h2 a, ul.laws h2 a, ul.teorems h2 a {
+ul.useful_res h2 a, ul.laws h2 a, ul.teorems h2 a, ol.useful_res h2 a, ol.laws h2 a, ol.teorems h2 a {
   float: left;
 }
-ul.useful_res::before, ul.laws::before, ul.teorems::before {
+ul.useful_res::before, ul.laws::before, ul.teorems::before, ol.useful_res::before, ol.laws::before, ol.teorems::before {
   font-size: 5rem;
   border-top: 5rem solid white;
   display: block;
@@ -197,26 +202,26 @@ ul.useful_res::before, ul.laws::before, ul.teorems::before {
   font-family: Georgia, "Times New Roman", Times, serif;
   border-top: 0.5rem solid white;
 }
-ul.useful_res::first-letter, ul.laws::first-letter, ul.teorems::first-letter {
+ul.useful_res::first-letter, ul.laws::first-letter, ul.teorems::first-letter, ol.useful_res::first-letter, ol.laws::first-letter, ol.teorems::first-letter {
   font-size: 1.5em;
   font-family: Forum;
 }
-ul.laws::before {
+ul.laws::before, ol.laws::before {
   content: "Законы";
 }
-ul.laws > .definition > .name::before {
+ul.laws > .definition > .name::before, ol.laws > .definition > .name::before {
   content: "Закон";
 }
-ul.useful_res {
+ul.useful_res, ol.useful_res {
   padding-left: 1rem;
 }
-ul.useful_res::before {
+ul.useful_res::before, ol.useful_res::before {
   content: "Полезные ресурсы";
 }
-ul.teorems::before {
+ul.teorems::before, ol.teorems::before {
   content: "Теоремы";
 }
-ul.teorems .definition .name::before {
+ul.teorems .definition .name::before, ol.teorems .definition .name::before {
   content: "Теорема";
 }
 
@@ -380,11 +385,11 @@ abbr[term]:hover::after, abbr[term]:active::after {
   text-transform: capitalize;
 }
 
-.equation {
+span.equation {
   display: inline-block;
   max-width: 100%;
   width: fit-content;
-  overflow: scroll;
+  overflow-x: scroll;
   vertical-align: middle;
   position: relative;
 }
@@ -431,24 +436,10 @@ a[lang]::after {
   padding-right: 1rem;
 }
 
-ul.where {
-  display: inline;
-  padding-left: 0.8rem;
-}
-ul.where::before {
-  content: "где";
-  background-color: #c99e00;
-  padding-left: 0.4rem;
-  padding-right: 0.4rem;
-  margin-right: 0.4rem;
-  border-radius: 0.2rem;
-}
-ul.where li {
-  display: inline;
-  padding-right: 0.8rem;
-}
-ul.where li::after {
-  content: ";";
+iframe {
+  filter: invert(1);
+  margin-left: 50%;
+  transform: translateX(-50%);
 }
 
 .definition {
@@ -531,7 +522,6 @@ figure figcaption {
 }
 figure figcaption.title {
   text-align: center;
-  text-transform: capitalize;
   font-weight: 600;
   font-size: 2rem;
 }
@@ -541,12 +531,15 @@ figure figcaption::first-letter {
 
 details[open] {
   display: block;
-  overflow: scroll;
   border-left: 0.1rem solid white;
   border-bottom: 0.1rem solid white;
   padding: 0.5rem;
   padding-left: 0.4rem;
   padding-top: 0;
+}
+details ol,
+details ul {
+  overflow-x: scroll;
 }
 details summary {
   padding-left: 1rem;

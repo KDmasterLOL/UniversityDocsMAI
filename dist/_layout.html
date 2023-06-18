@@ -1,7 +1,7 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="../styles.css"><script src="../script.js"></script><script>MathJax = {
-loader: {load: ['[tex]/physics']},
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="../styles.css"><script>MathJax = {
+loader: {load: ['[tex]/physics','[tex]/cancel']},
 tex: {
-    packages: {'[+]': ['physics']},
+    packages: {'[+]': ['physics','cancel']},
     inlineMath: [['$', '$'], ['\\(', '\\)']],
     macros : {
         //- dvp: ["{ \\dfrac{\\partial{#1}}{\\partial{#2}} }",2],
@@ -10,6 +10,10 @@ tex: {
         oiint: ["{\\unicode{x222F}}"],
         oiiint: ["{\\unicode{x2230}}"],
         EMF: ["{\\mathscr{E}}"],
+        def: ["{\\operatorname{def}}"],
+        series: ['{\\sum_{n=#1}^{+\\infty}}', 1, '1'],
+        def_by: ["{\\overset {\\operatorname{def}}} {#1}",1],
+        euint: ["{\\int #2 \\dd #1} = #3 + C", 3, 'x'],
     }
 },
-};</script><script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script>document.addEventListener("touchstart", function() {}, true);</script><title>University document</title></head><body><header><nav><a href="../engineering_graphics/engineering_graphics.html">Инженерная графика</a><a href="../math_analysis/math_analysis.html">Математический анализ</a><a href="../physics/physics.html">Физика </a><a href="../linear_programing/linear_programing.html">Линейное программирование</a></nav></header></body></html>
+};</script><script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script src="https://cdn.jsdelivr.net/npm/chart.js"></script><script type="module" src="../script.js"></script><title>University document</title></head><body> <header> <nav><a href="../engineering_graphics/engineering_graphics.html">Инженерная графика</a><a href="../math_analysis/math_analysis.html">Математический анализ</a><a href="../physics/physics.html">Физика </a><a href="../linear_programing/linear_programing.html">Линейное программирование</a></nav></header></body></html>
