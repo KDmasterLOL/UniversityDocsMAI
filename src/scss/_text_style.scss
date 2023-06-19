@@ -1,4 +1,5 @@
 @import "variables";
+$note-color: #9e893d;
 p,
 span {
   &.intro {
@@ -13,7 +14,10 @@ span {
       padding-left: 0.6rem;
       font-weight: bold;
     }
-    background-color: rgba(#c99e00, 0.5);
+    .equation {
+      background-color: $note-color;
+    }
+    background-color: $note-color;
     border-radius: 0.2rem;
   }
   &.important {
@@ -52,7 +56,6 @@ span {
     }
   }
   &.tip {
-    // position: relative;
     text-decoration: underline;
     text-decoration-style: dashed;
     > span {

@@ -44,32 +44,52 @@ none = 0
 ) = [1 << i for i in range(5)]
 
 re_clear_text = re.compile("[\xa0￼ ]")
-PATTERN_ENTITY = r"[-+]?([a-zA-Z]|\\[a-zA-Z]+)([_^]([0-9a-zA-Z]|{[a-zA-Z0-9]+})){,2}"
-PATTERN_ENTITY_WITH_DIGIT = (
-    r"[-+]?([a-zA-Z]|\\[a-zA-Z]+|\d+)([_^]([0-9a-zA-Z]|{[a-zA-Z0-9]+})){,2}"
+VAR = "[a-zA-Z]"
+OPERATOR = r"\\[a-zA-Z]+"
+OPERATOR = r"\\[a-zA-Z]+"
+CONSTANT = r"\d+"
+VAR_CONST = "[0-9a-zA-Z]"
+
+
+def get_entity_pattern(*args):
+    return (
+        rf"[-+]?(%s)([_^]({VAR_CONST}|{{{VAR_CONST}+}})){{,2}}(\({VAR_CONST}+(,\s?{VAR_CONST})*\))?"
+        % "|".join(args)
+    )
+
+
+PATTERN_VAR = r"[-+]?([a-zA-Z]|\\[a-zA-Z]+)([_^]([0-9a-zA-Z]|{[a-zA-Z0-9]+})){,2}"
+PATTERN_VAR_AND_CONSTANT = (
+    r"[-+]?([a-zA-Z]|\\[a-zA-Z]+|[0-9]+)([_^]([0-9a-zA-Z]|{[a-zA-Z0-9]+})){,2}"
 )
-PATTERN_ASSIGN = r"%s(\s?=\s?((%s|\d+))?" % (PATTERN_ENTITY, PATTERN_ENTITY)
+PATTERN_POINTS = r"[A-Z]{2,}"
+PATTERN_ENTITY = (
+    r"[-+]?([a-zA-Z]|\\[a-zA-Z]+)([_^]([0-9a-zA-Z]|{[a-zA-Z0-9]+})){,2}[^a-zA-Z]"
+)
+PATTERN_ASSIGN = r"%s\s?=\s?%s" % (
+    get_entity_pattern(VAR, OPERATOR),
+    get_entity_pattern(VAR, CONSTANT, OPERATOR),
+)
 PATTERN_PARRENTHESIS = r"\(%s(,\s?%s)*\)" % (
-    PATTERN_ENTITY_WITH_DIGIT,
-    PATTERN_ENTITY_WITH_DIGIT,
+    get_entity_pattern(VAR, CONSTANT, OPERATOR),
+    get_entity_pattern(VAR, CONSTANT, OPERATOR),
 )
-print(PATTERN_ASSIGN)
-print(PATTERN_PARRENTHESIS)
-PATTERNS = {
-    "variable": r"[\-+]?([a-zA-Z]([_^]([a-zA-Z0-9]|{[a-zA-Z0-9]+}))?([_^]([a-zA-Z0-9]|{[a-zA-Z0-9]+}))?)",
-}
+
 REGEXES = {
-    "expression": re.compile(
-        r"[\-+]?([a-zA-Z]([_^]([a-zA-Z0-9]|{[a-zA-Z0-9]+}))?([_^]([a-zA-Z0-9]|{[a-zA-Z0-9]+}))?)"
-    ),
     "start_equation": re.compile("$[\\a-zA-Z]"),
-    "end_equation": re.compile("[\\a-zA-Z}]$"),
+    "end_equation": re.compile(r"[\a-zA-Z})]$"),
     "simple_equation": re.compile(
-        r"\s[,.;]?([+\-]?[a-zA-Z]([_^]([0-9a-zA-Z]|{[a-zA-Z0-9]+})){,2})[,.;]?\s"
+        r"(?P<start>[\s,;:.]?)(%s|%s)(?P<end>[\s,;:.]?)"
+        % (PATTERN_POINTS, get_entity_pattern(VAR, OPERATOR))
     ),
     "breaked_word": re.compile("[а-яА-Я]*-$"),
     "has_letter": re.compile("[a-zA-Z]"),
 }
+
+# pyperclip.copy(
+#     r"[\s,;:.]?(%s|%s)[\s,;:.]?"
+#     % (PATTERN_POINTS, get_entity_pattern(VAR, CONSTANT, OPERATOR))
+# )
 
 
 class WordProccesor:
@@ -80,10 +100,7 @@ class WordProccesor:
         self.result = []
         self.flags = none
         text = pyperclip.paste()
-        #         text = """охватываемых контуром +L-. Каждый ток учитывается столько раз, сколько он охватывается контуром. Ток считается положительным, если его направление связано с направлением обхода правилом правого винта. Ток противоположного направления считается отрицательным.
-        # ￼
-        # $\sum_{I=1}^N I_i = I_1 + I_2 + I_3 - 0I_4 = I_2$
-        # Выражение (29.5) справедливо только для поля в вакууме. Формула (29.3) – постулат, подтвержденный экспериментально."""
+        # text = r""""""
         for source, replacement in REPLACEMENTS.items():
             text = text.replace(source, replacement)
         self.text = []
@@ -111,11 +128,11 @@ class WordProccesor:
     def hang_flags(self, idx, word):
         if self.get_flag(EQUATION_ENDED):
             self.reset_flag(EQUATION | EQUATION_ENDED)
-        if "$" in word:
-            if not self.get_flag(EQUATION):
-                self.add_flag(EQUATION)
-            else:
-                self.reset_flag(EQUATION_ENDED)
+        match word.count("$"):
+            case 2:
+                self.add_flag(EQUATION | EQUATION_ENDED)
+            case 1:
+                self.add_flag(EQUATION_ENDED if self.get_flag(EQUATION) else EQUATION)
 
     def procces(self):
         for paragraph in self.text:
@@ -126,24 +143,11 @@ class WordProccesor:
                 self.result[-1].append(
                     word
                     if self.get_flag(EQUATION)
-                    else REGEXES["simple_equation"].sub(r"$\1$", word)
+                    else REGEXES["simple_equation"].sub(r"\g<start>$\2$\g<end>", word)
                 )
 
     def get_text(self) -> str:
         return "\n".join([" ".join(paragraph) for paragraph in self.result])
-
-    # def expression_check(paragraph):
-    #     is_letter = re.compile("[a-zA-Z]")
-    #     is_equation_character = re.compile("[a-zA-Z{}=()_^\\+-]")
-    #     equation = 0
-    #     for idx,l in enumerate(paragraph):
-    #         if l.isspace():
-    #             continue
-    #         if l == "$" and equation != 1:
-    #             equation = 1
-    #         else:
-    #             equation = 0
-    #         if equation == 1:
 
 
 p = WordProccesor()

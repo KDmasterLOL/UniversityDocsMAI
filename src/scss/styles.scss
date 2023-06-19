@@ -57,8 +57,16 @@ span.equation {
   max-width: 100%;
   width: fit-content;
   overflow-x: scroll;
+  overflow-y: visible;
   vertical-align: middle;
   position: relative;
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 a {
@@ -272,9 +280,6 @@ td {
   border-radius: 2px;
 }
 ul {
-  .name {
-    font-family: "Times new Roman";
-  }
   &.algorithm {
     .name {
       &::before {

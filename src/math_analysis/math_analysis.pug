@@ -1,6 +1,7 @@
 extends ../_layout.pug
 block content
-    ol.useful_res 
+    h1 Полезные ресурсы
+    ol.columns
         li #[a(href="https://youtu.be/3zRubo5fHUo") великая теорема ферма] 
         li #[a(href="https://youtu.be/0GorifJmJVM") кватернионы] 
         li #[a(href="https://youtu.be/FdHB5SXddvY") Суть алгебры]
@@ -9,7 +10,7 @@ block content
         li #[a(href="https://youtu.be/7kR1e5BaNB0") Как мировая элита использует теорию игр (Д. Перетолчин, А. Савватеев) ]
         li #[a(href="https://youtube.com/playlist?list=PLZjXXN70PH5ilxFCrbVJyNofV0_yC2IgH") Суть матанализа]
     h1 Таблицы
-    ol Интегралов
+    ol.columns Интегралов:
         li $\euint{}{x}$
         li $\euint{x^n}{\frac{x^{n+1}}{n+1}}$
         li $\euint{\frac 1x}{\ln x}$
@@ -19,7 +20,7 @@ block content
     ul
         li.definition 
             a(href="https://www.khanacademy.org/math/multivariable-calculus/thinking-about-multivariable-function/ways-to-represent-multivariable-functions/a/parametric-functions" lang="En")
-            span.name Параметрическая функция 
+            span.name Параметрическая функция f(t)
             span.meaning функция с одним одноразмерным входным значение и мультиразмерных выходом
             ul.relation
                 li.definition 
@@ -52,4 +53,5 @@ block content
         include _series
     section 
         include _integrals
-        
+    section 
+        include _differentials

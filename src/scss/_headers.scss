@@ -51,8 +51,14 @@ h4 {
   }
 }
 
-ul,ol {
-  &.useful_res,
+ul,
+ol {
+  &.columns {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    column-gap: 3rem;
+  }
   &.laws,
   &.teorems {
     h2 {
@@ -89,12 +95,6 @@ ul,ol {
       &::before {
         content: "Закон";
       }
-    }
-  }
-  &.useful_res {
-    padding-left: 1rem;
-    &::before {
-      content: "Полезные ресурсы";
     }
   }
   &.teorems {
