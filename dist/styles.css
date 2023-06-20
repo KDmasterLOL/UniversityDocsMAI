@@ -1,6 +1,139 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Forum&family=Oswald:wght@200;300;400;500;600;700&family=Source+Sans+Pro:wght@200;300;400;600;700;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.cdnfonts.com/css/latin-modern-roman");
+html[data-theme=light] {
+  --background-color: #fff;
+  --text-color: black;
+  --link-color: #543fd7;
+  --note-color: yellow;
+}
+
+html[data-theme=dark] {
+  --background-color: black;
+  --text-color: white;
+  --link-color: #6ee4ff;
+  --note-color: #9e893d;
+}
+
+html {
+  font-family: "Source Sans Pro";
+  word-break: keep-all;
+  font-size: 21px;
+  color: var(--text-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Baskerville;
+}
+
+section > h1:first-of-type {
+  border-top: 5rem solid var(--text-color);
+  display: block;
+  margin-top: 10rem;
+  text-align: right;
+  font-weight: bold;
+}
+section > h1:first-of-type:first-letter {
+  font-size: 1.5em;
+  font-family: Forum;
+}
+
+h1 {
+  font-size: 4rem;
+  border-top: 2rem solid var(--text-color);
+  font-family: Oswald;
+}
+
+h2,
+h3 {
+  text-shadow: 0 1rem 0.5rem rgba(255, 255, 0, 0.3);
+}
+
+h2 {
+  font-size: 3rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+  padding-left: 1rem;
+  border-left: 0.3rem solid var(--text-color);
+}
+
+ul h1,
+ol h1 {
+  border: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+ul.columns,
+ol.columns {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  column-gap: 3rem;
+}
+ul.laws, ul.teorems,
+ol.laws,
+ol.teorems {
+  padding-left: 0;
+}
+ul.laws h2, ul.teorems h2,
+ol.laws h2,
+ol.teorems h2 {
+  text-align: right;
+}
+ul.laws h2 a, ul.teorems h2 a,
+ol.laws h2 a,
+ol.teorems h2 a {
+  float: left;
+}
+ul.laws::before, ul.teorems::before,
+ol.laws::before,
+ol.teorems::before {
+  font-size: 5rem;
+  border-top: 5rem solid var(--text-color);
+  display: block;
+  margin-top: 10rem;
+  text-align: right;
+  font-weight: bold;
+  display: block;
+  border-width: 1rem;
+  margin-top: 3rem;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  border-top: 0.5rem solid var(--text-color);
+}
+ul.laws::first-letter, ul.teorems::first-letter,
+ol.laws::first-letter,
+ol.teorems::first-letter {
+  font-size: 1.5em;
+  font-family: Forum;
+}
+ul.laws::before,
+ol.laws::before {
+  content: "Законы";
+}
+ul.laws > .definition > .name::before,
+ol.laws > .definition > .name::before {
+  content: "Закон";
+}
+ul.teorems::before,
+ol.teorems::before {
+  content: "Теоремы";
+}
+ul.teorems .definition .name::before,
+ol.teorems .definition .name::before {
+  content: "Теорема";
+}
+
 p.intro,
 span.intro {
   font-family: "Playfair Display";
@@ -9,7 +142,7 @@ span.intro {
 }
 p.note,
 span.note {
-  background-color: #9e893d;
+  background-color: var(--note-color);
   border-radius: 0.2rem;
 }
 p.note::before,
@@ -21,7 +154,7 @@ span.note::before {
 }
 p.note .equation,
 span.note .equation {
-  background-color: #9e893d;
+  background-color: var(--note-color);
 }
 p.important,
 span.important {
@@ -77,7 +210,7 @@ span.tip:hover > span {
   font-weight: 400;
   font-size: larger;
   background-color: rgb(50, 50, 50);
-  border: 0.05rem solid white;
+  border: 0.05rem solid var(--text-color);
   z-index: 1;
   display: block;
 }
@@ -126,124 +259,68 @@ span.unit::after {
   content: "]";
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: Baskerville;
-}
-
-section > h1:first-of-type {
-  font-size: 5rem;
-  border-top: 5rem solid white;
+.definition {
   display: block;
-  margin-top: 10rem;
-  text-align: right;
+}
+.definition a {
+  float: right;
+  padding: 0;
+  margin: 0;
+}
+.definition .name {
   font-weight: bold;
+  font-size: 1.3rem;
+  padding: 0;
 }
-section > h1:first-of-type:first-letter {
-  font-size: 1.5em;
-  font-family: Forum;
-}
-
-h1 {
-  font-size: 4rem;
-  border-top: 2rem solid white;
-  font-family: Oswald;
-}
-
-h2,
-h3 {
-  text-shadow: 0 1rem 0.5rem rgba(255, 255, 0, 0.3);
-}
-
-h2 {
-  font-size: 3rem;
-}
-
-h3 {
-  font-size: 2rem;
-}
-
-h4 {
+.definition .name::before {
+  padding-right: 1rem;
+  font-weight: bolder;
+  color: #c99e00;
   font-size: 1.5rem;
-  padding-left: 1rem;
-  border-left: 0.3rem solid white;
+}
+.definition::first-letter {
+  text-transform: uppercase;
+}
+.definition > .meaning::before {
+  content: " － ";
+}
+.definition > ul > li {
+  padding-left: 5px;
+}
+.definition > ul > li::marker {
+  content: "└";
+}
+.definition > ul.for > li::before {
+  content: "Для";
+  padding-right: 0.8rem;
+  font-style: italic;
 }
 
+@media (pointer: none), (pointer: coarse) {
+  .definition abbr[term]::after {
+    display: inline;
+  }
+}
 @media screen and (0px <= width <= 500px) {
+  html {
+    font-size: 18px;
+  }
+  .definition .name {
+    font-size: 1.1rem;
+  }
   h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
   h2 {
     font-size: 2rem;
   }
   h3 {
+    font-size: 1.5rem;
+  }
+  h4 {
     font-size: 1rem;
   }
 }
-ul.columns,
-ol.columns {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  column-gap: 3rem;
-}
-ul.laws, ul.teorems,
-ol.laws,
-ol.teorems {
-  padding-left: 0;
-}
-ul.laws h2, ul.teorems h2,
-ol.laws h2,
-ol.teorems h2 {
-  text-align: right;
-}
-ul.laws h2 a, ul.teorems h2 a,
-ol.laws h2 a,
-ol.teorems h2 a {
-  float: left;
-}
-ul.laws::before, ul.teorems::before,
-ol.laws::before,
-ol.teorems::before {
-  font-size: 5rem;
-  border-top: 5rem solid white;
-  display: block;
-  margin-top: 10rem;
-  text-align: right;
-  font-weight: bold;
-  display: block;
-  border-width: 1rem;
-  margin-top: 3rem;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  border-top: 0.5rem solid white;
-}
-ul.laws::first-letter, ul.teorems::first-letter,
-ol.laws::first-letter,
-ol.teorems::first-letter {
-  font-size: 1.5em;
-  font-family: Forum;
-}
-ul.laws::before,
-ol.laws::before {
-  content: "Законы";
-}
-ul.laws > .definition > .name::before,
-ol.laws > .definition > .name::before {
-  content: "Закон";
-}
-ul.teorems::before,
-ol.teorems::before {
-  content: "Теоремы";
-}
-ul.teorems .definition .name::before,
-ol.teorems .definition .name::before {
-  content: "Теорема";
-}
-
 .wavy-text {
   position: relative;
   letter-spacing: 0.2rem;
@@ -279,11 +356,11 @@ span.collapse[open]:not(:hover) span:not(.summary) {
   padding: 0.3rem;
 }
 #GOST-font th {
-  border-top: 0.1rem solid white;
+  border-top: 0.1rem solid var(--text-color);
   padding: 0.3rem;
 }
 #GOST-font tr:not(:nth-child(4)) td:nth-last-child(-n+8) {
-  border: 0.1rem solid white;
+  border: 0.1rem solid var(--text-color);
 }
 #GOST-font td,
 #GOST-font th {
@@ -332,11 +409,74 @@ span.collapse[open]:not(:hover) span:not(.summary) {
   background: black;
 }
 
-html {
-  font-family: "Source Sans Pro";
-  word-break: keep-all;
-  font-size: 18px;
-  color: white;
+html[data-theme=light] {
+  --background-color: #fff;
+  --text-color: black;
+  --link-color: #543fd7;
+  --note-color: yellow;
+}
+
+html[data-theme=dark] {
+  --background-color: black;
+  --text-color: white;
+  --link-color: #6ee4ff;
+  --note-color: #9e893d;
+}
+
+button#switch-theme {
+  z-index: 999;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: 0.12rem dashed var(--background-color);
+  background-color: var(--text-color);
+  transition: border-color ease-in-out 2s, background-color ease-in-out 2s, transform ease-in-out 1.5s;
+}
+button#switch-theme:hover {
+  border-color: var(--text-color);
+  background-color: var(--background-color);
+  transform: rotate(180deg);
+}
+
+#settings {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background-color: transparent;
+  border: none;
+  transition: transform 0.5s ease;
+  width: 3rem;
+  height: 3rem;
+  background-image: url("./settings.svg");
+  background-size: contain;
+  filter: invert(1);
+  transition: transform ease-in-out 1s;
+}
+#settings:hover {
+  transform: rotate(50deg);
+}
+#settings[open] ~ .content {
+  display: block;
+  position: fixed;
+  right: 3rem;
+  top: 3rem;
+  transform: translateY(-50%);
+}
+#settings ~ .content {
+  display: none;
+}
+
+button#white-theme {
+  width: 4rem;
+  height: 4rem;
+}
+
+button#dark-theme {
+  width: 4rem;
+  height: 4rem;
 }
 
 nav {
@@ -352,7 +492,7 @@ nav a {
 
 body {
   padding-right: 0.2rem;
-  background-color: black;
+  background-color: var(--background-color);
 }
 
 @media screen and (0px <= width <= 1000px) {
@@ -360,6 +500,20 @@ body {
     word-break: break-all;
   }
 }
+html[data-theme=light] {
+  --background-color: #fff;
+  --text-color: black;
+  --link-color: #543fd7;
+  --note-color: yellow;
+}
+
+html[data-theme=dark] {
+  --background-color: black;
+  --text-color: white;
+  --link-color: #6ee4ff;
+  --note-color: #9e893d;
+}
+
 p::first-letter,
 li::first-letter {
   text-transform: capitalize;
@@ -396,7 +550,7 @@ abbr[term]:hover::after, abbr[term]:active::after {
   font-weight: 200;
   font-size: small;
   background-color: rgb(57, 57, 57);
-  border: 0.05rem solid white;
+  border: 0.05rem solid var(--text-color);
   transform: translateY(-50%) translateX(25%);
   display: block;
 }
@@ -421,7 +575,7 @@ span.equation::-webkit-scrollbar {
 }
 
 a {
-  color: #6ee4ff;
+  color: var(--link-color);
   text-transform: capitalize;
 }
 a:empty::before {
@@ -468,48 +622,10 @@ iframe {
   transform: translateX(-50%);
 }
 
-.definition {
-  display: block;
-}
-.definition a {
-  float: right;
-  padding: 0;
-  margin: 0;
-}
-.definition .name {
-  font-weight: bold;
-  font-size: larger;
-  padding: 0;
-}
-.definition .name::before {
-  padding-right: 1rem;
-  font-weight: bolder;
-  color: #c99e00;
-  font-size: 1.5rem;
-}
-.definition::first-letter {
-  text-transform: uppercase;
-}
-.definition > .meaning::before {
-  content: " － ";
-}
-.definition > ul > li {
-  padding-left: 5px;
-}
-.definition > ul > li::marker {
-  content: "└";
-}
-.definition > ul.for > li::before {
-  content: "Для";
-  padding-right: 0.8rem;
-  font-style: italic;
+[data-theme=light] img {
+  filter: invert(0);
 }
 
-@media (pointer: none), (pointer: coarse) {
-  .definition abbr[term]::after {
-    display: inline;
-  }
-}
 img {
   margin: auto;
   max-width: 100%;
@@ -557,8 +673,9 @@ figure figcaption::first-letter {
 
 details[open] {
   display: block;
-  border-left: 0.1rem solid white;
-  border-bottom: 0.1rem solid white;
+  overflow-x: scroll;
+  border-left: 0.1rem solid var(--text-color);
+  border-bottom: 0.1rem solid var(--text-color);
   padding: 0.5rem;
   padding-left: 0.4rem;
   padding-top: 0;
@@ -594,7 +711,7 @@ details summary.info::before {
 table,
 th,
 td {
-  border: 0.5px solid black;
+  border: 0.5px solid var(--text-color);
   border-radius: 2px;
 }
 

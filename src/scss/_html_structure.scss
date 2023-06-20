@@ -1,8 +1,65 @@
-html {
-  font-family: "Source Sans Pro";
-  word-break: keep-all;
-  font-size: 18px;
-  color: white;
+@use "sass:math";
+@import "variables";
+
+$size-switcher: 3rem;
+$padding-switcher: 10px;
+button#switch-theme {
+  z-index: $index-toolbar;
+  position: fixed;
+  top: $padding-switcher;
+  right: $padding-switcher;
+  width: $size-switcher;
+  height: $size-switcher;
+  border-radius: 50%;
+  border: math.div($size-switcher, 25) dashed var(--background-color);
+  background-color: var(--text-color);
+  transition: border-color ease-in-out 2s, background-color ease-in-out 2s,
+    transform ease-in-out 1.5s;
+  &:hover {
+    border-color: var(--text-color);
+    background-color: var(--background-color);
+    transform: rotate(180deg);
+  }
+}
+
+$size-settings: 3rem;
+#settings {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background-color: transparent;
+  border: none;
+  transition: transform 0.5s ease;
+  width: $size-settings;
+  height: $size-settings;
+  background-image: url("./settings.svg");
+  background-size: contain;
+  filter: invert(1);
+  transition: transform ease-in-out 1s;
+  &:hover {
+    transform: rotate(50deg);
+  }
+  &[open] {
+    & ~ .content {
+      display: block;
+      position: fixed;
+      right: $size-settings;
+      top: $size-settings;
+      transform: translateY(-50%);
+    }
+  }
+  & ~ .content {
+    display: none;
+  }
+}
+$size-button: 4rem;
+button#white-theme {
+  width: $size-button;
+  height: $size-button;
+}
+button#dark-theme {
+  width: $size-button;
+  height: $size-button;
 }
 nav {
   display: flex;
@@ -16,7 +73,7 @@ nav {
 }
 body {
   padding-right: 0.2rem;
-  background-color: black;
+  background-color: var(--background-color);
 }
 
 @media screen and (0px <= width <= 1000px) {

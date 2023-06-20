@@ -3,3 +3,18 @@ $font-SSP: "Source Sans Pro";
 $font-PD: "Playfair Display";
 $color-dark-gray: rgb(50, 50, 50);
 $space: 0.4rem;
+$index-toolbar: 999;
+$buety-black: #121416d8;
+html[data-theme="light"] {
+  --background-color: #fff;
+  --text-color: black;
+  --link-color: #543fd7;
+  --note-color: yellow;
+}
+
+html[data-theme="dark"] {
+  --background-color: black;
+  --text-color: white;
+  --link-color: #6ee4ff;
+  --note-color: #9e893d;
+}

@@ -7,12 +7,12 @@ $highlight-color: rgba(255, 255, 0, 0.3);
     padding: 0.3rem;
   }
   th {
-    border-top: 0.1rem solid white;
+    border-top: 0.1rem solid var(--text-color);
     padding: 0.3rem;
   }
   tr:not(:nth-child(4)) {
     td:nth-last-child(-n + 8) {
-      border: 0.1rem solid white;
+      border: 0.1rem solid var(--text-color);
     }
   }
 

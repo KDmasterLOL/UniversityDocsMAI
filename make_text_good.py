@@ -32,6 +32,9 @@ REPLACEMENTS = {
     r"\varphi": "φ",
     r">": "&gt;",
     r"<": "&lt;",
+    r"\forall": "∀",
+    r"\le": "≤",
+    r"\ge": "≥",
 }
 
 none = 0

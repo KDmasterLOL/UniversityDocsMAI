@@ -1,6 +1,5 @@
 @use "text_style";
 @use "fonts";
-@use "headers";
 @use "animations";
 @use "docs_specific";
 @use "html_structure";
@@ -44,7 +43,7 @@ abbr[term] {
     font-weight: 200;
     font-size: small;
     background-color: rgb(57, 57, 57);
-    border: 0.05rem solid white;
+    border: 0.05rem solid var(--text-color);
     transform: translateY(-50%) translateX(25%);
     display: block;
     &::first-letter {
@@ -70,7 +69,7 @@ span.equation {
 }
 
 a {
-  color: #6ee4ff;
+  color: var(--link-color);
   text-transform: capitalize;
   &:empty::before {
     content: "#";
@@ -127,62 +126,12 @@ iframe {
   margin-left: 50%;
   transform: translateX(-50%);
 }
-.definition {
-  display: block;
-  a {
-    float: right;
-    padding: 0;
-    margin: 0;
-  }
-  .name {
-    font-weight: bold;
-    font-size: larger;
-    padding: 0;
 
-    &::before {
-      padding-right: 1rem;
-      font-weight: bolder;
-      color: #c99e00;
-      font-size: 1.5rem;
-    }
-  }
-  &::first-letter {
-    text-transform: uppercase;
-  }
-  > .meaning {
-    &::before {
-      content: " － ";
-    }
-  }
-  > ul {
-    > li {
-      padding-left: 5px;
-      &::marker {
-        content: "└";
-      }
-    }
-  }
-  > ul.for {
-    > li {
-      &::before {
-        content: "Для";
-        padding-right: $space * 2;
-        font-style: italic;
-      }
-    }
+[data-theme="light"] {
+  img {
+    filter: invert(0);
   }
 }
-
-@media (pointer: none), (pointer: coarse) {
-  .definition {
-    abbr[term] {
-      &::after {
-        display: inline;
-      }
-    }
-  }
-}
-
 img {
   margin: auto;
   max-width: 100%;
@@ -230,9 +179,9 @@ figure {
 details {
   &[open] {
     display: block;
-    // overflow: scroll;
-    border-left: 0.1rem solid white;
-    border-bottom: 0.1rem solid white;
+    overflow-x: scroll;
+    border-left: 0.1rem solid var(--text-color);
+    border-bottom: 0.1rem solid var(--text-color);
     padding: 0.5rem;
     padding-left: $space;
     padding-top: 0;
@@ -276,7 +225,7 @@ details {
 table,
 th,
 td {
-  border: 0.5px solid black;
+  border: 0.5px solid var(--text-color);
   border-radius: 2px;
 }
 ul {
@@ -330,3 +279,4 @@ ol.inline {
     opacity: 100%;
   }
 }
+
