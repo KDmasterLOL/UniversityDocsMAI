@@ -93,30 +93,29 @@ a {
     }
   }
 }
-.condition {
-  ul {
-    padding: 0;
-    margin: 0;
+
+ul.condition {
+  padding: 0;
+  margin: 0;
+  display: inline;
+  &::before {
+    content: ":";
+  }
+  li {
     display: inline;
+    padding-left: 0.2em;
     &::before {
-      content: ":";
+      content: "Если";
+      font-style: italic;
+      padding-right: 0.5rem;
     }
-    li {
-      display: inline;
-      padding-left: 0.2em;
-      &::before {
-        content: "Если";
-        font-style: italic;
-        padding-right: 0.5rem;
-      }
-      &::after {
-        content: ";";
-        font-size: larger;
-        font-weight: bold;
-        padding: {
-          left: 0.1rem;
-          right: 1rem;
-        }
+    &::after {
+      content: ";";
+      font-size: larger;
+      font-weight: bold;
+      padding: {
+        left: 0.1rem;
+        right: 1rem;
       }
     }
   }
@@ -279,4 +278,3 @@ ol.inline {
     opacity: 100%;
   }
 }
-

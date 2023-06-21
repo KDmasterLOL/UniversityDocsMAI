@@ -10,9 +10,9 @@ html[data-theme=light] {
 
 html[data-theme=dark] {
   --background-color: black;
-  --text-color: white;
+  --text-color: #b8b8b8;
   --link-color: #6ee4ff;
-  --note-color: #9e893d;
+  --note-color: #746429;
 }
 
 html {
@@ -134,6 +134,12 @@ ol.teorems .definition .name::before {
   content: "Теорема";
 }
 
+p.designation::before {
+  content: "Обозначение";
+  font-style: italic;
+  padding-right: 0.8rem;
+}
+
 p.intro,
 span.intro {
   font-family: "Playfair Display";
@@ -177,6 +183,40 @@ span.remark {
   background-color: darkslategrey;
 }
 
+span.if {
+  padding-left: 0.2em;
+}
+span.if span.if {
+  padding-right: 0;
+  padding-left: 1.2rem;
+}
+span.if span.if::before {
+  content: "при";
+  font-style: italic;
+  padding-right: 0.4rem;
+}
+span.if span.if::after {
+  content: "";
+  padding-right: 0;
+}
+span.if span.vice_versa::before {
+  content: "Наоборот";
+  font-style: italic;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+span.if::before {
+  content: "Если";
+  font-style: italic;
+  padding-right: 0.5rem;
+}
+span.if::after {
+  content: ";";
+  font-size: larger;
+  font-weight: bold;
+  padding-left: 0.1rem;
+  padding-right: 1rem;
+}
 span.where {
   padding-left: 0.8rem;
   font-weight: normal;
@@ -282,7 +322,10 @@ span.unit::after {
   text-transform: uppercase;
 }
 .definition > .meaning::before {
-  content: " － ";
+  content: "－";
+  font-weight: 900;
+  padding-left: 0.4rem;
+  padding-right: 1.2rem;
 }
 .definition > ul > li {
   padding-left: 5px;
@@ -418,9 +461,9 @@ html[data-theme=light] {
 
 html[data-theme=dark] {
   --background-color: black;
-  --text-color: white;
+  --text-color: #b8b8b8;
   --link-color: #6ee4ff;
-  --note-color: #9e893d;
+  --note-color: #746429;
 }
 
 button#switch-theme {
@@ -433,7 +476,7 @@ button#switch-theme {
   border-radius: 50%;
   border: 0.12rem dashed var(--background-color);
   background-color: var(--text-color);
-  transition: border-color ease-in-out 2s, background-color ease-in-out 2s, transform ease-in-out 1.5s;
+  transition: border-color ease-in-out 1s, background-color ease-in-out 1.5s, transform ease-out 1.5s;
 }
 button#switch-theme:hover {
   border-color: var(--text-color);
@@ -509,9 +552,9 @@ html[data-theme=light] {
 
 html[data-theme=dark] {
   --background-color: black;
-  --text-color: white;
+  --text-color: #b8b8b8;
   --link-color: #6ee4ff;
-  --note-color: #9e893d;
+  --note-color: #746429;
 }
 
 p::first-letter,
@@ -591,24 +634,24 @@ a[lang]::after {
   content: "(" attr(lang) ")";
 }
 
-.condition ul {
+ul.condition {
   padding: 0;
   margin: 0;
   display: inline;
 }
-.condition ul::before {
+ul.condition::before {
   content: ":";
 }
-.condition ul li {
+ul.condition li {
   display: inline;
   padding-left: 0.2em;
 }
-.condition ul li::before {
+ul.condition li::before {
   content: "Если";
   font-style: italic;
   padding-right: 0.5rem;
 }
-.condition ul li::after {
+ul.condition li::after {
   content: ";";
   font-size: larger;
   font-weight: bold;

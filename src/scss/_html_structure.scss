@@ -13,8 +13,8 @@ button#switch-theme {
   border-radius: 50%;
   border: math.div($size-switcher, 25) dashed var(--background-color);
   background-color: var(--text-color);
-  transition: border-color ease-in-out 2s, background-color ease-in-out 2s,
-    transform ease-in-out 1.5s;
+  transition: border-color ease-in-out 1s, background-color ease-in-out 1.5s,
+    transform ease-out 1.5s;
   &:hover {
     border-color: var(--text-color);
     background-color: var(--background-color);
