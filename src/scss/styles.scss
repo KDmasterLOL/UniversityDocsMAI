@@ -51,22 +51,6 @@ abbr[term] {
     }
   }
 }
-span.equation {
-  display: inline-block;
-  max-width: 100%;
-  width: fit-content;
-  overflow-x: scroll;
-  overflow-y: visible;
-  vertical-align: middle;
-  position: relative;
-
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
 
 a {
   color: var(--link-color);

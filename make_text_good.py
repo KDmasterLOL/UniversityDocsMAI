@@ -25,6 +25,7 @@ REPLACEMENTS = {
     r"\Delta": "Δ",
     r"\Phi": "Ф",
     r"\sum": "∑",
+    r"\int": "∫",
     r"\cdot": "·",
     r"\pi": "π",
     r"\tau": "τ",
@@ -35,6 +36,10 @@ REPLACEMENTS = {
     r"\forall": "∀",
     r"\le": "≤",
     r"\ge": "≥",
+    r"\xi": "ξ",
+    r"\exists": "∃",
+    r"\infty": "∞",
+    r"\in": "∈",
 }
 
 none = 0
