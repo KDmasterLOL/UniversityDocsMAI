@@ -105,21 +105,16 @@ ul.condition {
   }
 }
 iframe {
-  filter: invert(1);
+  filter: invert(var(--invert));
   margin-left: 50%;
   transform: translateX(-50%);
 }
 
-[data-theme="light"] {
-  img {
-    filter: invert(0);
-  }
-}
 img {
   margin: auto;
   max-width: 100%;
   display: block;
-  filter: invert(1);
+  filter: invert(var(--invert));
   &.no-invert {
     filter: invert(0);
   }
@@ -168,10 +163,6 @@ details {
     padding: 0.5rem;
     padding-left: $space;
     padding-top: 0;
-  }
-  ol,
-  ul {
-    overflow-x: scroll;
   }
   summary {
     padding-left: 1rem;

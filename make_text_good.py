@@ -18,7 +18,7 @@ import re
 
 
 # -e 's/\s//g' -e 's/#\(.\)->\(\\[a-zA-Z]\+\)/r"\2": "\1",/g'
-REPLACEMENTS = {
+LATEX_REPLACEMENTS = {
     r"\alpha": "α",
     r"\rho": "ρ",
     r"\omega": "ω",
@@ -31,8 +31,6 @@ REPLACEMENTS = {
     r"\tau": "τ",
     r"\mu": "μ",
     r"\varphi": "φ",
-    r">": "&gt;",
-    r"<": "&lt;",
     r"\forall": "∀",
     r"\le": "≤",
     r"\ge": "≥",
@@ -40,7 +38,14 @@ REPLACEMENTS = {
     r"\exists": "∃",
     r"\infty": "∞",
     r"\in": "∈",
+    r"\pm": "±",
+    r"\to": "→",
 }
+REPLACEMENTS = {
+    r">": "&gt;",
+    r"<": "&lt;",
+}
+
 
 none = 0
 (
@@ -108,9 +113,11 @@ class WordProccesor:
         self.result = []
         self.flags = none
         text = pyperclip.paste()
-        # text = r""""""
+        # text = r"""sd$\inf$"""
         for source, replacement in REPLACEMENTS.items():
             text = text.replace(source, replacement)
+        for source, replacement in LATEX_REPLACEMENTS.items():
+            text = re.sub("\\" + f"{source}([^A-Za-z])", rf"{replacement}\1", text)
         self.text = []
         for paragraph in text.split("\n"):
             paragraph = re_clear_text.sub(" ", paragraph)

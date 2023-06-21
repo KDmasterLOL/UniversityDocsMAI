@@ -10,6 +10,7 @@ html[data-theme="light"] {
   --text-color: black;
   --link-color: #543fd7;
   --note-color: yellow;
+  --invert: 0;
 }
 
 html[data-theme="dark"] {
@@ -17,4 +18,5 @@ html[data-theme="dark"] {
   --text-color: #b8b8b8;
   --link-color: #6ee4ff;
   --note-color: #746429;
+  --invert: 1;
 }

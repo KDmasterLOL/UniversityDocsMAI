@@ -6,6 +6,7 @@ html[data-theme=light] {
   --text-color: black;
   --link-color: #543fd7;
   --note-color: yellow;
+  --invert: 0;
 }
 
 html[data-theme=dark] {
@@ -13,6 +14,7 @@ html[data-theme=dark] {
   --text-color: #b8b8b8;
   --link-color: #6ee4ff;
   --note-color: #746429;
+  --invert: 1;
 }
 
 html {
@@ -472,6 +474,7 @@ html[data-theme=light] {
   --text-color: black;
   --link-color: #543fd7;
   --note-color: yellow;
+  --invert: 0;
 }
 
 html[data-theme=dark] {
@@ -479,6 +482,7 @@ html[data-theme=dark] {
   --text-color: #b8b8b8;
   --link-color: #6ee4ff;
   --note-color: #746429;
+  --invert: 1;
 }
 
 button#switch-theme {
@@ -563,6 +567,7 @@ html[data-theme=light] {
   --text-color: black;
   --link-color: #543fd7;
   --note-color: yellow;
+  --invert: 0;
 }
 
 html[data-theme=dark] {
@@ -570,6 +575,7 @@ html[data-theme=dark] {
   --text-color: #b8b8b8;
   --link-color: #6ee4ff;
   --note-color: #746429;
+  --invert: 1;
 }
 
 p::first-letter,
@@ -659,20 +665,16 @@ ul.condition li::after {
 }
 
 iframe {
-  filter: invert(1);
+  filter: invert(var(--invert));
   margin-left: 50%;
   transform: translateX(-50%);
-}
-
-[data-theme=light] img {
-  filter: invert(0);
 }
 
 img {
   margin: auto;
   max-width: 100%;
   display: block;
-  filter: invert(1);
+  filter: invert(var(--invert));
 }
 img.no-invert {
   filter: invert(0);
@@ -721,10 +723,6 @@ details[open] {
   padding: 0.5rem;
   padding-left: 0.4rem;
   padding-top: 0;
-}
-details ol,
-details ul {
-  overflow-x: scroll;
 }
 details summary {
   padding-left: 1rem;
