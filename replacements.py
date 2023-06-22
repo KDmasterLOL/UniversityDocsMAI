@@ -1,7 +1,9 @@
 import re
 import pyperclip
+
 LATEX_REPLACEMENTS = {
     r"\alpha": "α",
+    r"\delta": "𝛅",
     r"\rho": "ρ",
     r"\omega": "ω",
     r"\Delta": "Δ",
@@ -23,15 +25,14 @@ LATEX_REPLACEMENTS = {
     r"\pm": "±",
     r"\to": "→",
 }
-REPLACEMENTS = {
-    r">": "&gt;",
-    r"<": "&lt;",
-}
+# REPLACEMENTS = {
+#     r">": "&gt;",
+#     r"<": "&lt;",
+# }
 
 text = pyperclip.paste()
-for source, replacement in REPLACEMENTS.items():
-    text = text.replace(source, replacement)
+# for source, replacement in REPLACEMENTS.items():
+#     text = text.replace(source, replacement)
 for source, replacement in LATEX_REPLACEMENTS.items():
     text = re.sub("\\" + f"{source}([^A-Za-z])", rf"{replacement}\1", text)
 pyperclip.copy(text)
-

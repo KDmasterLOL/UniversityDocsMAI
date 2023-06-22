@@ -26,12 +26,14 @@ section > h1:first-of-type {
 }
 h1 {
   font-size: 4rem;
+  padding-top: 3rem;
   border-top: 2rem solid var(--text-color);
   font-family: Oswald;
+  text-shadow: 1rem -2rem 0.3rem gray;
 }
 h2,
 h3 {
-  text-shadow: 1rem 1rem 0.4rem gray;
+  text-shadow: 2rem 1.5rem 0.4rem gray;
 }
 h2 {
   font-size: 3rem;
@@ -234,6 +236,8 @@ span {
       top: 50%;
       left: 50%;
       word-break: keep-all;
+      width: 75vw;
+      max-width: 750px;
       transform: translateX(-50%) translateY(-50%);
       padding: 0.5rem;
       font-weight: 400;
@@ -304,7 +308,20 @@ span {
     }
   }
 }
+summary.example + ol {
+  // max-width: 100%;
+  // width: fit-content;
+  overflow-x: scroll;
+  // vertical-align: middle;
+  // position: relative;
 
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
 .definition {
   display: block;
   a {

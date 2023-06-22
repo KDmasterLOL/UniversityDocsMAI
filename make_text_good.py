@@ -20,6 +20,7 @@ import re
 # -e 's/\s//g' -e 's/#\(.\)->\(\\[a-zA-Z]\+\)/r"\2": "\1",/g'
 LATEX_REPLACEMENTS = {
     r"\alpha": "α",
+    r"\delta": "𝛅",
     r"\rho": "ρ",
     r"\omega": "ω",
     r"\Delta": "Δ",
