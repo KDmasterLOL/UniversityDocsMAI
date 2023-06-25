@@ -36,14 +36,18 @@ html(lang="en" data-theme="dark")
         block scripts
     body 
         header 
+            button(type="button")#switch-theme
+                svg(id="svg-1" viewBox = "0 0 150 150" height=100)
+                    circle(id="animated-circle" cx="75" cy="75" r="50")
             nav
                 a(href="../engineering_graphics/engineering_graphics.html") Инженерная графика
                 a(href="../math_analysis/math_analysis.html") Математический анализ
                 a(href="../physics/physics.html") Физика 
                 a(href="../linear_programing/linear_programing.html") Линейное программирование
+                a(href="../info_university/info_university.html") Инфо Университет
 
-            button(type="button")#switch-theme
 
+            //- include ./graphics/circle.svg
             //- #settings.collapse
             //- .content
             //-     button(type="button")#dark-theme

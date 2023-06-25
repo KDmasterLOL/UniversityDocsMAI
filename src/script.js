@@ -5,7 +5,7 @@ function process_wavy_text() {
       /\S/g,
       "<span>$&</span>"
     );
-    spans = element.querySelectorAll("span");
+    let spans = element.querySelectorAll("span");
     for (let i = 0; i < spans.length; i++) {
       spans[i].style.animationDelay = i * 0.05 + "s";
     }

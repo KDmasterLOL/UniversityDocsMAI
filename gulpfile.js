@@ -26,15 +26,13 @@ import rename from "gulp-rename";
 import svgmin from "gulp-svgmin";
 import htmlmin from "gulp-htmlmin";
 
-// const pwd =
-//   "/Users/ivantolmacev/Library/Mobile Documents/com~apple~CloudDocs/Documents/University/";
 const PATHS = {
   src: "src",
   dist: "dist",
   clean: "dist",
 };
 const FILES = {
-  pug: `${PATHS["src"]}/**/*.pug`,
+  pug: [`${PATHS["src"]}/**/*.pug`, `!${PATHS["src"]}/**/_*.pug`],
   scss: `${PATHS["src"]}/scss/*.scss`,
   img: `${PATHS["src"]}/**/*.{png,jpg}`,
   js: `${PATHS["src"]}/**/*.js`,
@@ -57,10 +55,22 @@ function image() {
     .pipe(gulp.dest(PATHS["dist"]));
 }
 function svg() {
-  return gulp
-    .src(FILES["svg"])
-    .pipe(svgmin({ multipass: true }))
-    .pipe(gulp.dest(PATHS["dist"]));
+  return (
+    gulp
+      .src(FILES["svg"])
+      // .pipe(
+      //   svgmin({
+      //     multipass: true,
+      //     plugins: [
+      //       {
+      //         name: "cleanupIDs",
+      //         active: false,
+      //       },
+      //     ],
+      //   })
+      // )
+      .pipe(gulp.dest(PATHS["dist"]))
+  );
 }
 function compilePug() {
   return (
@@ -81,7 +91,7 @@ function scripts() {
 }
 function watch() {
   gulp.watch(FILES["scss"], buildStyles);
-  gulp.watch(FILES["pug"], compilePug);
+  gulp.watch(FILES["pug"][0], compilePug);
   gulp.watch(FILES["js"], scripts);
   // watch(PATHS.pug,compilePug)
 }

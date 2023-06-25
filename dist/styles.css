@@ -499,60 +499,27 @@ html[data-theme=dark] {
   --invert: 1;
 }
 
-button#switch-theme {
-  z-index: 999;
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  border: 0.12rem dashed var(--background-color);
-  background-color: var(--text-color);
-  transition: border-color ease-in-out 1s, background-color ease-in-out 1.5s, transform ease-out 1.5s;
-}
-button#switch-theme:hover {
-  border-color: var(--text-color);
-  background-color: var(--background-color);
-  transform: rotate(180deg);
-}
-
-#settings {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  background-color: transparent;
+#switch-theme {
   border: none;
-  transition: transform 0.5s ease;
-  width: 3rem;
-  height: 3rem;
-  background-image: url("./settings.svg");
-  background-size: contain;
-  filter: invert(1);
-  transition: transform ease-in-out 1s;
-}
-#settings:hover {
-  transform: rotate(50deg);
-}
-#settings[open] ~ .content {
-  display: block;
   position: fixed;
-  right: 3rem;
-  top: 3rem;
-  transform: translateY(-50%);
-}
-#settings ~ .content {
-  display: none;
+  right: 25px;
+  bottom: 25px;
+  background: none;
+  overflow: visible;
 }
 
-button#white-theme {
-  width: 4rem;
-  height: 4rem;
+#svg-1 #animated-circle {
+  transition: all linear 0.5s;
+  stroke-dasharray: 10 30;
+  fill: var(--text-color);
+  stroke: var(--background-color);
+  stroke-width: 0.3rem;
 }
-
-button#dark-theme {
-  width: 4rem;
-  height: 4rem;
+#svg-1:hover #animated-circle {
+  stroke-width: 1rem;
+  stroke-dasharray: 10 0;
+  fill: var(--background-color);
+  stroke: var(--text-color);
 }
 
 nav {
