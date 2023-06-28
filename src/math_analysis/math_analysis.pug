@@ -1,9 +1,11 @@
 extends ../_layout.pug
 include ../_mixins
 block content
-    ol #[h1 Используемая литература]
+    h1 О чем то
+    h2 Используемая литература
+    ol
         li Ильин В.А., Позняк Э.Г. Основы математического анализа В 2-х частях. часть 1 и 2
-    h1 Полезные ресурсы
+    h2 Полезные ресурсы
     ol.columns
         li #[a(href="https://youtu.be/3zRubo5fHUo") великая теорема ферма] 
         li #[a(href="https://youtu.be/0GorifJmJVM") кватернионы] 
@@ -12,18 +14,19 @@ block content
         li #[a(href="https://youtu.be/EYsr0DZWMCg") 10 глупых вопросов МАТЕМАТИКУ | Алексей Савватеев ]
         li #[a(href="https://youtu.be/7kR1e5BaNB0") Как мировая элита использует теорию игр (Д. Перетолчин, А. Савватеев) ]
         li #[a(href="https://youtube.com/playlist?list=PLZjXXN70PH5ilxFCrbVJyNofV0_yC2IgH") Суть матанализа]
-    h1 Таблицы
-    ol.columns Интегралов:
+    h2 Таблицы
+    h3 Интегралов
+    ol.columns
         li $\euint{}{x}$
         li $\euint{x^n}{\frac{x^{n+1}}{n+1}}$
         li $\euint{\frac 1x}{\ln x}$
         li $\euint{\cos x}{\sin x}$
         li $\euint{\sin x}{-\cos x}$
-    h1 Что-то
+    h1 Об о всем и ни о чем
     ul
         li.definition 
             a(href="https://www.khanacademy.org/math/multivariable-calculus/thinking-about-multivariable-function/ways-to-represent-multivariable-functions/a/parametric-functions" lang="En")
-            span.name Параметрическая функция f(t)
+            span.name Параметрическая функция $f(t)$
             span.meaning функция с одним одноразмерным входным значение и мультиразмерных выходом
             ul.relation
                 li.definition 
@@ -52,8 +55,6 @@ block content
     h1 FAQ
     h3 Как запомнить что производная от $\cos x$ это $-\sin x$, а от $\sin x$ просто $\cos x$
     p Производная имеет физический смысл скорости изменения в какую либо из сторон - положительную или отрицательную - и $\cos 0 = 1,\cos \pi = 0:\cos 0 \gt \cos \pi$ из этого следует что $x\in [0;\pi]:\dd{\qty(\cos x)}\le 0$, то есть можно сказать как только косинус появляется на свет в точке 0 он сразу начинает падать в низ. И так как синус и косинус описывают скорости изменения друг друга, а $x\in [0;\pi]:\sin x \ge 0$, то нужно брать синус со знаком минус
-
-    p sdfasdf #[+collapse.where asdfasfas]
     section
         include _series
     section 
