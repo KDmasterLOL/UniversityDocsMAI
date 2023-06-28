@@ -5,15 +5,23 @@ $color-dark-gray: rgb(50, 50, 50);
 $space: 0.4rem;
 $index-toolbar: 999;
 $buety-black: #121416d8;
+
+@mixin space_around($left: $space, $right: $space) {
+  padding-left: $left;
+  padding-right: $right;
+}
+
 html[data-theme="light"] {
   --background-color: #fff;
   --text-color: black;
   --link-color: #543fd7;
   --note-color: yellow;
+  --shadow-color: gray;
   --invert: 0;
 }
 
 html[data-theme="dark"] {
+  --shadow-color: #558ABB;
   --background-color: black;
   --text-color: #b8b8b8;
   --link-color: #6ee4ff;

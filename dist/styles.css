@@ -1,15 +1,205 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Forum&family=Oswald:wght@200;300;400;500;600;700&family=Source+Sans+Pro:wght@200;300;400;600;700;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.cdnfonts.com/css/latin-modern-roman");
+#svg-1 #animated-circle {
+  transition: all linear 1s, stroke ease-in 3s, fill ease-out 1.5s;
+  stroke-dasharray: 10 30;
+  fill: var(--text-color);
+  stroke: var(--background-color);
+  stroke-width: 0.3rem;
+}
+#svg-1:hover #animated-circle {
+  stroke-width: 1rem;
+  stroke-dasharray: 10 0;
+  fill: var(--background-color);
+  stroke: var(--text-color);
+}
+
+.wavy-text span {
+  display: inline-block;
+  animation: wavy-text 0.7s ease-in-out forwards;
+}
+
+@keyframes wavy-text-wait {
+  0%, 50% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-0.5rem);
+  }
+}
+@keyframes wavy-text {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.5rem);
+  }
+}
+.dots {
+  letter-spacing: 0.1rem;
+  font-weight: 900;
+}
+
+span.collapse[open]:not(:hover) span:not(.summary) {
+  animation: blink 1s linear 2s infinite;
+}
+
+#GOST-font {
+  margin: auto;
+  border-collapse: collapse;
+  overflow: hidden;
+}
+#GOST-font td {
+  text-align: center;
+  padding: 0.3rem;
+}
+#GOST-font th {
+  border-top: 0.1rem solid var(--text-color);
+  padding: 0.3rem;
+}
+#GOST-font tr:not(:nth-child(4)) td:nth-last-child(-n+8) {
+  border: 0.1rem solid var(--text-color);
+}
+#GOST-font td,
+#GOST-font th {
+  position: relative;
+}
+#GOST-font tr:hover {
+  background-color: rgba(255, 255, 0, 0.3);
+}
+#GOST-font td:hover::after {
+  content: "";
+  height: 10000px;
+  left: 0;
+  position: absolute;
+  top: -5000px;
+  width: 100%;
+  z-index: -1;
+}
+#GOST-font td:hover::after,
+#GOST-font th:hover::after {
+  background-color: rgba(255, 255, 0, 0.3);
+}
+
+#table-of-content {
+  max-width: 1000px;
+  padding: 0;
+  overflow-x: hidden;
+  list-style: none;
+  margin: auto;
+}
+#table-of-content li:before {
+  float: left;
+  width: 0;
+  white-space: nowrap;
+  content: ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . ";
+}
+#table-of-content span {
+  font-family: Menlo;
+}
+#table-of-content span:first-child {
+  padding-right: 0.45em;
+  background: black;
+}
+#table-of-content span + #table-of-content span {
+  float: right;
+  padding-left: 0.44em;
+  background: black;
+}
+
 html[data-theme=light] {
   --background-color: #fff;
   --text-color: black;
   --link-color: #543fd7;
   --note-color: yellow;
+  --shadow-color: gray;
   --invert: 0;
 }
 
 html[data-theme=dark] {
+  --shadow-color: #558ABB;
+  --background-color: black;
+  --text-color: #b8b8b8;
+  --link-color: #6ee4ff;
+  --note-color: #746429;
+  --invert: 1;
+}
+
+#switch-theme {
+  border: none;
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  background: none;
+  overflow: visible;
+  z-index: 999;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 1rem;
+}
+nav a {
+  padding: 0.5rem;
+  display: inline-block;
+}
+
+body {
+  padding-right: 0.2rem;
+  background-color: var(--background-color);
+}
+
+@media screen and (0px <= width <= 1000px) {
+  html {
+    word-break: break-all;
+  }
+}
+html[data-theme=light] {
+  --background-color: #fff;
+  --text-color: black;
+  --link-color: #543fd7;
+  --note-color: yellow;
+  --shadow-color: gray;
+  --invert: 0;
+}
+
+html[data-theme=dark] {
+  --shadow-color: #558ABB;
+  --background-color: black;
+  --text-color: #b8b8b8;
+  --link-color: #6ee4ff;
+  --note-color: #746429;
+  --invert: 1;
+}
+
+span.tip::before, span.tip::after {
+  content: "-";
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
+}
+span.tip_for::after {
+  content: "(👆)";
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
+}
+span.collapsible_toggle {
+  cursor: pointer;
+}
+
+html[data-theme=light] {
+  --background-color: #fff;
+  --text-color: black;
+  --link-color: #543fd7;
+  --note-color: yellow;
+  --shadow-color: gray;
+  --invert: 0;
+}
+
+html[data-theme=dark] {
+  --shadow-color: #558ABB;
   --background-color: black;
   --text-color: #b8b8b8;
   --link-color: #6ee4ff;
@@ -22,6 +212,7 @@ html {
   word-break: keep-all;
   font-size: 21px;
   color: var(--text-color);
+  border-color: var(--text-color);
 }
 
 h1,
@@ -31,31 +222,31 @@ h4,
 h5,
 h6 {
   font-family: Baskerville;
+  word-break: break-all;
 }
 
 section > h1:first-of-type {
-  border-top: 5rem solid var(--text-color);
-  display: block;
+  border-top: 5rem solid inherit;
   margin-top: 10rem;
+  margin-right: 3rem;
+  display: block;
   text-align: right;
   font-weight: bold;
 }
 section > h1:first-of-type:first-letter {
-  font-size: 1.5em;
+  font-size: 2em;
   font-family: Forum;
+  font-weight: bold;
+  text-shadow: 0.3rem -0.1rem 0rem var(--shadow-color);
+  color: rgb(143, 0, 0);
 }
 
 h1 {
   font-size: 4rem;
-  padding-top: 3rem;
-  border-top: 2rem solid var(--text-color);
+  margin-top: 3rem;
+  border-top: 2rem solid;
   font-family: Oswald;
-  text-shadow: 1rem -2rem 0.3rem gray;
-}
-
-h2,
-h3 {
-  text-shadow: 2rem 1.5rem 0.4rem gray;
+  text-shadow: 0.3rem -0.3rem 0.1rem var(--shadow-color);
 }
 
 h2 {
@@ -68,16 +259,10 @@ h3 {
 
 h4 {
   font-size: 1.5rem;
-  padding-left: 1rem;
-  border-left: 0.3rem solid var(--text-color);
+  margin-left: 1rem;
+  border-left: 0.3rem solid;
 }
 
-ul h1,
-ol h1 {
-  border: none;
-  padding-bottom: 0;
-  margin-bottom: 0;
-}
 ul.columns,
 ol.columns {
   display: flex;
@@ -104,16 +289,13 @@ ul.laws::before, ul.teorems::before,
 ol.laws::before,
 ol.teorems::before {
   font-size: 5rem;
-  border-top: 5rem solid var(--text-color);
+  border-top: 0.5rem solid;
   display: block;
-  margin-top: 10rem;
   text-align: right;
   font-weight: bold;
   display: block;
-  border-width: 1rem;
   margin-top: 3rem;
   font-family: Georgia, "Times New Roman", Times, serif;
-  border-top: 0.5rem solid var(--text-color);
 }
 ul.laws::first-letter, ul.teorems::first-letter,
 ol.laws::first-letter,
@@ -187,7 +369,7 @@ span.remark {
   background-color: darkslategrey;
 }
 
-span.equation {
+.equation {
   display: inline-block;
   max-width: 100%;
   width: fit-content;
@@ -196,12 +378,15 @@ span.equation {
   vertical-align: middle;
   position: relative;
   /* Hide scrollbar for Chrome, Safari and Opera */
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
-span.equation::-webkit-scrollbar {
+.equation::-webkit-scrollbar {
   display: none;
 }
+
 span.if {
   padding-left: 0.2em;
 }
@@ -246,66 +431,16 @@ span.where li {
 }
 span.where::before {
   content: "где";
-  background-color: #c99e00;
+  font-style: italic;
+  background-color: var(--note-color);
   padding-left: 0.4rem;
   padding-right: 0.4rem;
   margin-right: 0.4rem;
   border-radius: 0.2rem;
 }
-span.tip {
-  text-decoration: underline;
-  text-decoration-style: dashed;
-}
-span.tip > span {
-  display: none;
-}
-span.tip:hover > span {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  word-break: keep-all;
-  width: 75vw;
-  max-width: 750px;
-  transform: translateX(-50%) translateY(-50%);
-  padding: 0.5rem;
-  font-weight: 400;
-  font-size: larger;
-  background-color: rgb(50, 50, 50);
-  border: 0.05rem solid var(--text-color);
-  z-index: 1;
-  display: block;
-}
-span.tip:hover > span::first-letter {
-  text-transform: capitalize;
-}
-span.collapse:hover:not([open]) span.summary::after {
-  content: "…";
-  background-color: rgb(50, 50, 50);
-  border-radius: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-span.collapse:hover[open] {
-  background-color: rgb(50, 50, 50);
-  border-radius: 0.2rem;
-}
-span.collapse[open] span {
-  display: inline;
-}
-span.collapse[open] span.summary::after {
-  content: "";
-}
-span.collapse span.summary {
-  display: inline;
-  padding-right: 0.2rem;
-}
-span.collapse span.summary::after {
-  content: "…";
-  transition: background-color 0.2s linear 0s;
-  transition: padding 0.2s linear 0s;
-}
-span.collapse span {
-  display: none;
+span.where + span.collapsible {
+  font-size: 0.9rem;
+  font-weight: normal;
 }
 span.follow::before {
   content: "⇒";
@@ -323,8 +458,10 @@ span.unit::after {
 summary.example + ol {
   overflow-x: scroll;
   /* Hide scrollbar for Chrome, Safari and Opera */
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 summary.example + ol::-webkit-scrollbar {
   display: none;
@@ -395,163 +532,17 @@ summary.example + ol::-webkit-scrollbar {
     font-size: 1rem;
   }
 }
-.wavy-text {
-  position: relative;
-  letter-spacing: 0.2rem;
-}
-.wavy-text span {
-  position: relative;
-  display: inline-block;
-  animation: wavy-text 1s ease-in-out infinite;
-}
-
-span.collapse[open]:not(:hover) span:not(.summary) {
-  animation: blink 1s linear 0s infinite;
-}
-
-@keyframes wavy-text {
-  0% {
-    transform: translateY(0.5rem);
-  }
-  50% {
-    transform: translateY(-0.5rem);
-  }
-  100% {
-    transform: translateY(0.5rem);
-  }
-}
-#GOST-font {
-  margin: auto;
-  border-collapse: collapse;
-  overflow: hidden;
-}
-#GOST-font td {
-  text-align: center;
-  padding: 0.3rem;
-}
-#GOST-font th {
-  border-top: 0.1rem solid var(--text-color);
-  padding: 0.3rem;
-}
-#GOST-font tr:not(:nth-child(4)) td:nth-last-child(-n+8) {
-  border: 0.1rem solid var(--text-color);
-}
-#GOST-font td,
-#GOST-font th {
-  position: relative;
-}
-#GOST-font tr:hover {
-  background-color: rgba(255, 255, 0, 0.3);
-}
-#GOST-font td:hover::after {
-  content: "";
-  height: 10000px;
-  left: 0;
-  position: absolute;
-  top: -5000px;
-  width: 100%;
-  z-index: -1;
-}
-#GOST-font td:hover::after,
-#GOST-font th:hover::after {
-  background-color: rgba(255, 255, 0, 0.3);
-}
-
-#table-of-content {
-  max-width: 1000px;
-  padding: 0;
-  overflow-x: hidden;
-  list-style: none;
-  margin: auto;
-}
-#table-of-content li:before {
-  float: left;
-  width: 0;
-  white-space: nowrap;
-  content: ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . ";
-}
-#table-of-content span {
-  font-family: Menlo;
-}
-#table-of-content span:first-child {
-  padding-right: 0.45em;
-  background: black;
-}
-#table-of-content span + #table-of-content span {
-  float: right;
-  padding-left: 0.44em;
-  background: black;
-}
-
 html[data-theme=light] {
   --background-color: #fff;
   --text-color: black;
   --link-color: #543fd7;
   --note-color: yellow;
+  --shadow-color: gray;
   --invert: 0;
 }
 
 html[data-theme=dark] {
-  --background-color: black;
-  --text-color: #b8b8b8;
-  --link-color: #6ee4ff;
-  --note-color: #746429;
-  --invert: 1;
-}
-
-#switch-theme {
-  border: none;
-  position: fixed;
-  right: 25px;
-  bottom: 25px;
-  background: none;
-  overflow: visible;
-}
-
-#svg-1 #animated-circle {
-  transition: all linear 0.5s;
-  stroke-dasharray: 10 30;
-  fill: var(--text-color);
-  stroke: var(--background-color);
-  stroke-width: 0.3rem;
-}
-#svg-1:hover #animated-circle {
-  stroke-width: 1rem;
-  stroke-dasharray: 10 0;
-  fill: var(--background-color);
-  stroke: var(--text-color);
-}
-
-nav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 1rem;
-}
-nav a {
-  padding: 0.5rem;
-  display: inline-block;
-}
-
-body {
-  padding-right: 0.2rem;
-  background-color: var(--background-color);
-}
-
-@media screen and (0px <= width <= 1000px) {
-  html {
-    word-break: break-all;
-  }
-}
-html[data-theme=light] {
-  --background-color: #fff;
-  --text-color: black;
-  --link-color: #543fd7;
-  --note-color: yellow;
-  --invert: 0;
-}
-
-html[data-theme=dark] {
+  --shadow-color: #558ABB;
   --background-color: black;
   --text-color: #b8b8b8;
   --link-color: #6ee4ff;

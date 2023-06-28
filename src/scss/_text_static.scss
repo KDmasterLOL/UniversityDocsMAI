@@ -1,10 +1,13 @@
-@import "variables";
+@import "variables_and_mixins";
+
 html {
   font-family: "Source Sans Pro";
   word-break: keep-all;
   font-size: 21px;
   color: var(--text-color);
+  border-color: var(--text-color);
 }
+
 h1,
 h2,
 h3,
@@ -12,76 +15,81 @@ h4,
 h5,
 h6 {
   font-family: Baskerville;
+  word-break: break-all;
 }
-section > h1:first-of-type {
-  border-top: 5rem solid var(--text-color);
-  display: block;
+
+section>h1:first-of-type {
+  border-top: 5rem solid inherit;
   margin-top: 10rem;
+  margin-right: 3rem;
+  display: block;
   text-align: right;
   font-weight: bold;
+
   &:first-letter {
-    font-size: 1.5em;
+    font-size: 2em;
     font-family: Forum;
+    font-weight: bold;
+    text-shadow: 0.3rem -0.1rem 0rem var(--shadow-color);
+    color: rgb(143, 0, 0);
   }
 }
+
 h1 {
   font-size: 4rem;
-  padding-top: 3rem;
-  border-top: 2rem solid var(--text-color);
+  margin-top: 3rem;
+  border-top: 2rem solid;
   font-family: Oswald;
-  text-shadow: 1rem -2rem 0.3rem gray;
+  text-shadow: 0.3rem -0.3rem 0.1rem var(--shadow-color);
+
 }
-h2,
-h3 {
-  text-shadow: 2rem 1.5rem 0.4rem gray;
-}
+
 h2 {
   font-size: 3rem;
 }
+
 h3 {
   font-size: 2rem;
 }
+
 h4 {
   font-size: 1.5rem;
-  padding-left: 1rem;
-  border-left: 0.3rem solid var(--text-color);
+  margin-left: 1rem;
+  border-left: 0.3rem solid;
 }
 
 ul,
 ol {
-  h1 {
-    border: none;
-    padding-bottom: 0;
-    margin-bottom: 0;
-  }
   &.columns {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     column-gap: 3rem;
   }
+
   &.laws,
   &.teorems {
     h2 {
       text-align: right;
+
       a {
         float: left;
       }
     }
+
     padding-left: 0;
+
     &::before {
       font-size: 5rem;
-      border-top: 5rem solid var(--text-color);
+      border-top: 0.5rem solid;
       display: block;
-      margin-top: 10rem;
       text-align: right;
       font-weight: bold;
       display: block;
-      border-width: 1rem;
       margin-top: 3rem;
       font-family: Georgia, "Times New Roman", Times, serif;
-      border-top: 0.5rem solid var(--text-color);
     }
+
     &::first-letter {
       font-size: 1.5em;
       font-family: Forum;
@@ -92,16 +100,19 @@ ol {
     &::before {
       content: "Законы";
     }
-    > .definition > .name {
+
+    >.definition>.name {
       &::before {
         content: "Закон";
       }
     }
   }
+
   &.teorems {
     &::before {
       content: "Теоремы";
     }
+
     .definition .name {
       &::before {
         content: "Теорема";
@@ -109,6 +120,7 @@ ol {
     }
   }
 }
+
 p {
   &.designation {
     &::before {
@@ -118,6 +130,7 @@ p {
     }
   }
 }
+
 p,
 span {
   &.intro {
@@ -125,6 +138,7 @@ span {
     font-size: larger;
     font-style: italic;
   }
+
   &.note {
     &::before {
       content: "!";
@@ -132,22 +146,27 @@ span {
       padding-left: 0.6rem;
       font-weight: bold;
     }
+
     .equation {
       background-color: var(--note-color);
     }
+
     background-color: var(--note-color);
     border-radius: 0.2rem;
   }
+
   &.important {
     background-color: darkred;
     border-radius: 0.2rem;
     font-weight: 600;
     padding-left: $space;
+
     &::after {
       content: "‼️";
       font-size: larger;
     }
   }
+
   &.remark {
     font-weight: normal;
     border-radius: $space;
@@ -156,159 +175,120 @@ span {
     background-color: darkslategrey;
   }
 }
-span {
-  &.equation {
-    display: inline-block;
-    max-width: 100%;
-    width: fit-content;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    vertical-align: middle;
-    position: relative;
 
-    /* Hide scrollbar for Chrome, Safari and Opera */
-    &::-webkit-scrollbar {
-      display: none;
-    }
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+.equation {
+  display: inline-block;
+  max-width: 100%;
+  width: fit-content;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  vertical-align: middle;
+  position: relative;
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none;
   }
+
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+span {
+
+
   &.if {
     span.if {
       padding-right: 0;
       padding-left: $space * 3;
+
       &::before {
         content: "при";
         font-style: italic;
         padding-right: $space;
       }
+
       &::after {
         content: "";
         padding-right: 0;
       }
     }
+
     span.vice_versa::before {
       content: "Наоборот";
       font-style: italic;
       padding-right: 0.5rem;
       padding-left: 0.5rem;
     }
+
     padding-left: 0.2em;
+
     &::before {
       content: "Если";
       font-style: italic;
       padding-right: 0.5rem;
     }
+
     &::after {
       content: ";";
       font-size: larger;
       font-weight: bold;
+
       padding: {
         left: 0.1rem;
         right: 1rem;
       }
     }
   }
+
   &.where {
     padding-left: $space * 2;
     font-weight: normal;
     font-size: small;
+
     li {
       display: inline;
     }
+
     &::before {
       content: "где";
-      background-color: #c99e00;
+      font-style: italic;
+      background-color: var(--note-color);
       padding-left: $space;
       padding-right: $space;
       margin-right: $space;
       border-radius: 0.2rem;
     }
-  }
-  &.tip {
-    text-decoration: underline;
-    text-decoration-style: dashed;
-    > span {
-      display: none;
-    }
-    &:hover > span {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      word-break: keep-all;
-      width: 75vw;
-      max-width: 750px;
-      transform: translateX(-50%) translateY(-50%);
-      padding: 0.5rem;
-      font-weight: 400;
-      font-size: larger;
-      background-color: $color-dark-gray;
-      border: 0.05rem solid var(--text-color);
-      z-index: 1;
-      display: block;
-      &::first-letter {
-        text-transform: capitalize;
-      }
-    }
-  }
-  &.collapse {
-    &:hover {
-      &:not([open]) {
-        span.summary {
-          &::after {
-            content: "…";
-            background-color: $color-dark-gray;
-            border-radius: 1rem;
-            padding-left: 1rem;
-            padding-right: 1rem;
-          }
-        }
-      }
-      &[open] {
-        background-color: $color-dark-gray;
-        border-radius: 0.2rem;
-      }
-    }
-    &[open] {
-      span {
-        display: inline;
-      }
-      span.summary {
-        &::after {
-          content: "";
-        }
-      }
-    }
-    span.summary {
-      display: inline;
-      &::after {
-        content: "…";
-        transition: background-color 0.2s linear 0s;
-        transition: padding 0.2s linear 0s;
-      }
 
-      padding-right: 0.2rem;
-    }
-    span {
-      display: none;
+    &+span.collapsible {
+      font-size: 0.9rem;
+      font-weight: normal;
     }
   }
+
+
   &.follow {
     &::before {
       content: "⇒";
     }
   }
+
   &.unit {
     font-family: "LMRoman10";
+
     &::before {
       content: "[";
     }
+
     &::after {
       content: "]";
     }
   }
 }
-summary.example + ol {
+
+summary.example+ol {
   // max-width: 100%;
   // width: fit-content;
   overflow-x: scroll;
@@ -319,16 +299,22 @@ summary.example + ol {
   &::-webkit-scrollbar {
     display: none;
   }
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
+
 .definition {
   display: block;
+
   a {
     float: right;
     padding: 0;
     margin: 0;
   }
+
   .name {
     font-weight: bold;
     font-size: 1.3rem;
@@ -341,10 +327,12 @@ summary.example + ol {
       font-size: 1.5rem;
     }
   }
+
   &::first-letter {
     text-transform: uppercase;
   }
-  > .meaning {
+
+  >.meaning {
     &::before {
       content: "－";
       font-weight: 900;
@@ -352,16 +340,19 @@ summary.example + ol {
       padding-right: $space * 3;
     }
   }
-  > ul {
-    > li {
+
+  >ul {
+    >li {
       padding-left: 5px;
+
       &::marker {
         content: "└";
       }
     }
   }
-  > ul.for {
-    > li {
+
+  >ul.for {
+    >li {
       &::before {
         content: "Для";
         padding-right: $space * 2;
@@ -371,7 +362,8 @@ summary.example + ol {
   }
 }
 
-@media (pointer: none), (pointer: coarse) {
+@media (pointer: none),
+(pointer: coarse) {
   .definition {
     abbr[term] {
       &::after {
@@ -381,15 +373,17 @@ summary.example + ol {
   }
 }
 
-@media screen and (0px <= width <= 500px) {
+@media screen and (0px <=width <=500px) {
   html {
     font-size: 18px;
   }
+
   .definition {
     .name {
       font-size: 1.1rem;
     }
   }
+
   @for $i from 1 through 4 {
     h#{$i} {
       font-size: #{3 - $i * 0.5}rem;

@@ -1,5 +1,5 @@
-@use "sass:math";
-@import "variables";
+@import "variables_and_mixins";
+
 #switch-theme {
   border: none;
   position: fixed;
@@ -7,40 +7,27 @@
   bottom: 25px;
   background: none;
   overflow: visible;
+  z-index: $index-toolbar;
 }
-#svg-1 {
-  #animated-circle {
-    transition: all linear 0.5s;
-    stroke-dasharray: 10 30;
-    fill: var(--text-color);
-    stroke: var(--background-color);
-    stroke-width: 0.3rem;
-  }
-  &:hover {
-    #animated-circle {
-      stroke-width: 1rem;
-      stroke-dasharray: 10 0;
-      fill: var(--background-color);
-      stroke: var(--text-color);
-    }
-  }
-}
+
 nav {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   padding: 1rem;
+
   a {
     padding: 0.5rem;
     display: inline-block;
   }
 }
+
 body {
   padding-right: 0.2rem;
   background-color: var(--background-color);
 }
 
-@media screen and (0px <= width <= 1000px) {
+@media screen and (0px <=width <=1000px) {
   html {
     word-break: break-all;
   }
