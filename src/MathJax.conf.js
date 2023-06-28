@@ -27,7 +27,14 @@ MathJax = {
 			return MathJax.startup.defaultPageReady().then(() => {
 				let equations = document.querySelectorAll("mjx-container.MathJax");
 				for (let equation of equations) {
-					if (equation.offsetWidth > equation.parentElement.innerWidth) {
+					let parentWidth = 0
+					let buf = equation.parentElement;
+					while (buf != null && buf.innerWidth == null) {
+						buf = buf.parentElement
+					}
+					if (buf == null) { parentWidth = window.innerWidth }
+					else { parentWidth = equation.parentElement.innerWidth }
+					if (equation.offsetWidth > parentWidth) {
 						equation.classList.add("equation");
 					}
 				}
