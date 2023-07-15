@@ -1285,7 +1285,7 @@ Lockfile:
   download@^7.1.0:
     version "7.1.0"
     resolved "https://registry.yarnpkg.com/download/-/download-7.1.0.tgz#9059aa9d70b503ee76a132897be6dec8e5587233"
-    integrity sha512-xqnBTVd/E+GxJVrX5/eUJiLYjCGPwMpdL+jGhGU57BvtcA7wwhtHVbXBeUk51kOpW3S7Jn3BQbN9Q1R1Km2qDQ==
+    integrity sha512-xqnBTVd/E+GxJVrX5/dl+jGhGU57BvtcA7wwhtHVbXBeUk51kOpW3S7Jn3BQbN9Q1R1Km2qDQ==
     dependencies:
       archive-type "^4.0.0"
       caw "^2.0.1"

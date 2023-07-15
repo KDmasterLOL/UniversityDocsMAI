@@ -3,9 +3,9 @@ import re
 
 
 def make_definition(words, idx) -> str:
-    name_part = "\tspan.name " + " ".join(words[0:idx])
-    meaning_part = "\tspan.meaning " + " ".join(words[(idx + 1) :])
-    return "\n".join([".definition", name_part, meaning_part])
+    name_part = "\tdt " + " ".join(words[0:idx])
+    meaning_part = "\tdd " + " ".join(words[(idx + 1) :])
+    return "\n".join(["dl", name_part, meaning_part])
 
 
 mark_list = re.compile(
@@ -29,7 +29,7 @@ def hung_flags(string, idx=None):
         reset_flag(DEFINITION | SEVERAL_DOTS | HEADER)
         if len(string.split(" ")) <= MAX_LEN_HEADER and string[-1] != ".":
             add_flag(HEADER)
-    elif len(string)!=0:
+    elif len(string) != 0:
         if string[-1] == ".":
             add_flag(SEVERAL_DOTS)
         if string in ["-", "—", "—", "–"] and not get_flag(SEVERAL_DOTS):

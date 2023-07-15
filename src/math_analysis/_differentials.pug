@@ -1,38 +1,33 @@
 h1 Дифференцируемость
 h2 Таблица
 ol.columns
-    li $\qty(\frac uv)' = \frac{u'v-v'u}{v^2}$
+  li $\qty(\frac uv)' = \frac{u'v-v'u}{v^2}$
 h2 Функций нескольких переменных #[a(href="https://gubkin.ru/faculty/faculty-of-complex-safety-of-the-fuel-and-energy-complex/kafedry-i-podrazdeleniya/ksa/files/chastnie.pdf")]
 h3 Частные приращения
 p Для функции $z = f(х, y)$ переменные $х$ и $у$ являются независимыми, их поведение не связано друг с другом, например одна может измениться, а другая при этом сохранить свое значение. Частное приращение функции по соответствующей переменной в точке $(x, у)$ - приращение, которое функция $z = f(х, y)$ получает, когда изменяется только одна из переменных, а другая фиксируется
 figure
-    img.no-invert(src="Приращение.webp" height = 300)
-    figcaption.title Приращение
-p Для примера рассмотрим функцию двух переменных $z = f(x, y)$, определенную в некоторой окрестности $М_0(х_0,y_0) \in D(f)$. Пусть $\Delta х, \Delta у$ настолько малы, что: $M_1(x_0+\Delta x;y_0),M_2(x_0;y_0+\Delta y),M_3(x_0+\Delta x;y_0+\Delta y) \in D(f)$]
-ul
-    li.definition
-        span.name Частное приращение $\Delta_x z = f(x_0+\Delta x,y_0)-f(x_0,y_0)$ по $x$ функции $z= f (x,y)$ в точке $M_0(x_0;y_0)$ 
-    li.definition
-        span.name Частное приращение $\Delta_y z = f(x_0,y_0+\Delta y)-f(x_0,y_0)$ по $x$ функции $z= f (x,y)$ в точке $M_0(x_0;y_0)$ 
-.definition 
-    span.name Полное приращение $\Delta z = f(x_0+\Delta x, y_0+\Delta y_0 - f(x_0,y_0)$ функции $z = f (x, y)$ в ТОЧКе $M_0(x_0;y_0)$
+  img.no-invert(src="Приращение.webp" height = 300)
+  figcaption.title Приращение
+p Для примера рассмотрим функцию двух переменных $z = f(x, y)$, определенную в некоторой окрестности $М_0(х_0,y_0) \in D(f)$. Пусть $\Delta х, \Delta у$ настолько малы, что: $M_1(x_0+\Delta x;y_0),M_2(x_0;y_0+\Delta y),M_3(x_0+\Delta x;y_0+\Delta y) \in D(f)$
+dl
+  dt Частное приращение $\Delta_x z = f(x_0+\Delta x,y_0)-f(x_0,y_0)$ по $x$ функции $z= f (x,y)$ в точке $M_0(x_0;y_0)$ 
+  dt Частное приращение $\Delta_y z = f(x_0,y_0+\Delta y)-f(x_0,y_0)$ по $x$ функции $z= f (x,y)$ в точке $M_0(x_0;y_0)$ 
+  dt Полное приращение $\Delta z = f(x_0+\Delta x, y_0+\Delta y_0 - f(x_0,y_0)$ функции $z = f (x, y)$ в ТОЧКе $M_0(x_0;y_0)$
 
 details
-    summary.example 
-    div.
-        Для функции $z=xy$ найти частные приращения и полное приращение в точке $M_0(1;2)$.
-        Решение. Воспользовавшись определением, вычисляем в точке $M(x; y)) приращения функции $z=xy$:
-        $\Delta_x z = (x+\Delta x) y - xy = y\Delta x,\quad \Delta_y z = (y+\Delta y) x - xy = x\Delta y \\ \Delta z = (x+\Delta x)(y+\Delta y)-xy = x\Delta y + y \Delta x + \Delta x \Delta y$
-        Ответ в точке $M_0(1;2)$: $\Delta_x z(M_0)=2\Delta x, \Delta_y z(M_0) = \Delta y,\quad \Delta z(M_0) = 2\Delta x + \Delta y + \Delta x \Delta y$
+  summary.example 
+  div.
+    Для функции $z=xy$ найти частные приращения и полное приращение в точке $M_0(1;2)$.
+    Решение. Воспользовавшись определением, вычисляем в точке $M(x; y)) приращения функции $z=xy$:
+    $\Delta_x z = (x+\Delta x) y - xy = y\Delta x,\quad \Delta_y z = (y+\Delta y) x - xy = x\Delta y \\ \Delta z = (x+\Delta x)(y+\Delta y)-xy = x\Delta y + y \Delta x + \Delta x \Delta y$
+    Ответ в точке $M_0(1;2)$: $\Delta_x z(M_0)=2\Delta x, \Delta_y z(M_0) = \Delta y,\quad \Delta z(M_0) = 2\Delta x + \Delta y + \Delta x \Delta y$
 
 h3 Частные производные
-ul
-    li.definition
-        span.name Частная производная $\pdv{z(x_0,y_0)}{x}\Leftrightarrow z’_x(x_0,y_0)=\lim_{\Delta x \to 0} \Delta \frac{\Delta_x z}{\Delta x} = \lim_{\Delta x\to 0} \frac{f(x_0+\Delta x, y_0)-f(x_0,y_0)}{\Delta x}$] по $x$ функции $z = f (x, у)$ в точке $M_0(x_0;y_0)$
-        span.meaning конечный предел отношения частного приращения $\Delta_x z$ к приращению $\Delta x$ при стремлении $\Delta x \to 0$ к нулю, если этот предел существует
-    li.definition 
-        span.name Частная производная $\pdv{z(x_0,y_0)}{y}\Leftrightarrow z’_y(x_0,y_0)=\lim_{\Delta y \to 0} \Delta \frac{\Delta_y z}{\Delta y} = \lim_{\Delta y\to 0} \frac{f(x_0+\Delta y, y_0)-f(x_0,y_0)}{\Delta y}$] по $y$ функции $z = f (x, у)$ в точке $M_0(x_0;y_0)$
-        span.meaning конечный предел отношения частного приращения $\Delta_y z$ к приращению $\Delta y$ при стремлении $\Delta y \to 0$ к нулю, если этот предел существует.
+dl
+  dt Частная производная $\pdv{z(x_0,y_0)}{x}\Leftrightarrow z’_x(x_0,y_0)=\lim_{\Delta x \to 0} \Delta \frac{\Delta_x z}{\Delta x} = \lim_{\Delta x\to 0} \frac{f(x_0+\Delta x, y_0)-f(x_0,y_0)}{\Delta x}$] по $x$ функции $z = f (x, у)$ в точке $M_0(x_0;y_0)$
+  dd конечный предел отношения частного приращения $\Delta_x z$ к приращению $\Delta x$ при стремлении $\Delta x \to 0$ к нулю, если этот предел существует
+  dt Частная производная $\pdv{z(x_0,y_0)}{y}\Leftrightarrow z’_y(x_0,y_0)=\lim_{\Delta y \to 0} \Delta \frac{\Delta_y z}{\Delta y} = \lim_{\Delta y\to 0} \frac{f(x_0+\Delta y, y_0)-f(x_0,y_0)}{\Delta y}$] по $y$ функции $z = f (x, у)$ в точке $M_0(x_0;y_0)$
+  dd конечный предел отношения частного приращения $\Delta_y z$ к приращению $\Delta y$ при стремлении $\Delta y \to 0$ к нулю, если этот предел существует.
 
 
 p Замечание 1. Из определения частных производных непосредственно вытекает метод их вычисления: чтобы найти $z’_x,z’_y$, нужно продифференцировать выражение $f(х, у)$ по $х,y$, считая величину $y,x$ постоянной соответсвенно.
@@ -40,7 +35,7 @@ p Замечание 2. Понятия частных приращений, по
 p Замечание 3. Процедура вычисления частных производных функции нескольких переменных сводится к вычислению обыкновенной производной этой функции по одной из переменных при условии, что остальные переменные выступают в роли параметров.
 p Отсюда следует, что правила вычисления частных производных совпадают с правилами, действующими для функции одной переменной. Однако требуется каждый раз помнить, по какой переменной вычисляется производная, а какие переменные при этом мысленно фиксируются.
 details
-    summary.example
-    ol
-        li Найти частные производные функции $z=x\ln y+\frac{y}{x}$. Решение: Чтобы найти частную производную по $х$, считаем $y$ постоянной величиной $z’_x=\ln y + y\qty(\frac 1x)’ = \ln y - \frac{y}{x^2}$. Аналогично находим $z’_y=x(\ln y)’ + \frac 1x y’ = \frac xy + \frac 1x$
+  summary.example
+  ol
+    li Найти частные производные функции $z=x\ln y+\frac{y}{x}$. Решение: Чтобы найти частную производную по $х$, считаем $y$ постоянной величиной $z’_x=\ln y + y\qty(\frac 1x)’ = \ln y - \frac{y}{x^2}$. Аналогично находим $z’_y=x(\ln y)’ + \frac 1x y’ = \frac xy + \frac 1x$
 

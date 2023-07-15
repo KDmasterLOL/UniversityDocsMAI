@@ -68,6 +68,32 @@ function process_collapsable() {
     });
   });
 }
+function find_next(element, selector, max_level = 1) {
+  let level = 0;
+  while (element) {
+    if (element.matches(selector)) {
+      return element
+    }
+    if (!element.nextElementSibling && level < max_level) { element = element.parentElement }
+    else { element = element.nextElementSibling }
+  }
+  return null
+}
+function toggle_process() {
+  let toggles = document.querySelectorAll("toggle")
+  for (let toggle of toggles) {
+    let target_selector = toggle.getAttribute("target");
+    let target = null;
+    target = find_next(toggle.parentElement, target_selector)
+    if (target == null) { continue }
+    target.classList.add("toggled");
+    target.classList.add("hidden");
+    toggle.addEventListener("click", () => {
+      toggle.classList.toggle("pressed");
+      target.classList.toggle("hidden");
+    });
+  }
+}
 function process_tip() {
   let elements = document.querySelectorAll("span.tip_for + span.tip");
   for (let el of elements) {
@@ -89,6 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
   process_tip();
   process_collapsible();
   process_folder();
+  toggle_process();
 });
 
 document.addEventListener("touchstart", function () { }, true);

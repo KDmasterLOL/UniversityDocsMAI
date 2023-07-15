@@ -1,0 +1,55 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	word-break: break-all;
+}
+
+h1 {
+	article>&:first-of-type {
+
+		letter-spacing: 0.5rem;
+		text-align: right;
+		font-weight: bold;
+
+		border-top: 7rem double;
+		margin-top: 10rem;
+		padding-right: 2rem;
+
+		&:first-letter {
+			font-size: 3em;
+			padding-right: 1rem;
+			font-family: Forum;
+			font-weight: bold;
+			text-shadow: 0.3rem -0.1rem 0rem var(--shadow-color);
+			color: var(--important-color);
+		}
+	}
+
+	font-size: 4rem;
+	margin-top: 3rem;
+	border-top: 2rem solid;
+	text-align: right;
+	font-family: Oswald;
+	text-shadow: 0.2rem 0.1rem 0.1rem var(--shadow-color);
+
+}
+
+h2 {
+	font-size: 3rem;
+	text-align: center;
+}
+
+h3 {
+	font-size: 2rem;
+}
+
+h4 {
+	font-size: 1.5rem;
+	margin-left: 1rem;
+	border-left: 0.3rem solid;
+	padding-left: 1rem;
+}

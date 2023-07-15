@@ -111,8 +111,8 @@ span.collapse[open]:not(:hover) span:not(.summary) {
 html[data-theme=light] {
   --background-color: #fff;
   --text-color: black;
-  --second-text-color: #928da0;
-  --added-text-color: #7f88ac;
+  --text-second-color: #928da0;
+  --text-added-color: #7f88ac;
   --link-color: #543fd7;
   --note-color: yellow;
   --shadow-color: gray;
@@ -124,8 +124,8 @@ html[data-theme=dark] {
   --background-color: #1d1c1e;
   --shadow-color: #558ABB;
   --text-color: #d7d7d7;
-  --second-text-color: #928da0;
-  --added-text-color: #7f88ac;
+  --text-second-color: #928da0;
+  --text-added-color: #7f88ac;
   --link-color: #6ee4ff;
   --note-color: #746429;
   --invert: 1;
@@ -166,8 +166,8 @@ body {
 html[data-theme=light] {
   --background-color: #fff;
   --text-color: black;
-  --second-text-color: #928da0;
-  --added-text-color: #7f88ac;
+  --text-second-color: #928da0;
+  --text-added-color: #7f88ac;
   --link-color: #543fd7;
   --note-color: yellow;
   --shadow-color: gray;
@@ -179,8 +179,8 @@ html[data-theme=dark] {
   --background-color: #1d1c1e;
   --shadow-color: #558ABB;
   --text-color: #d7d7d7;
-  --second-text-color: #928da0;
-  --added-text-color: #7f88ac;
+  --text-second-color: #928da0;
+  --text-added-color: #7f88ac;
   --link-color: #6ee4ff;
   --note-color: #746429;
   --invert: 1;
@@ -204,8 +204,8 @@ span.collapsible_toggle {
 html[data-theme=light] {
   --background-color: #fff;
   --text-color: black;
-  --second-text-color: #928da0;
-  --added-text-color: #7f88ac;
+  --text-second-color: #928da0;
+  --text-added-color: #7f88ac;
   --link-color: #543fd7;
   --note-color: yellow;
   --shadow-color: gray;
@@ -217,20 +217,12 @@ html[data-theme=dark] {
   --background-color: #1d1c1e;
   --shadow-color: #558ABB;
   --text-color: #d7d7d7;
-  --second-text-color: #928da0;
-  --added-text-color: #7f88ac;
+  --text-second-color: #928da0;
+  --text-added-color: #7f88ac;
   --link-color: #6ee4ff;
   --note-color: #746429;
   --invert: 1;
   --important-color: rgb(183, 0, 0);
-}
-
-html {
-  font-family: "Source Sans Pro";
-  word-break: keep-all;
-  font-size: 21px;
-  color: var(--text-color);
-  border-color: var(--text-color);
 }
 
 h1,
@@ -243,23 +235,6 @@ h6 {
   word-break: break-all;
 }
 
-section > h1:first-of-type {
-  border-top: 5rem solid inherit;
-  margin-top: 10rem;
-  letter-spacing: 0.5rem;
-  padding-right: 2rem;
-  display: block;
-  text-align: right;
-  font-weight: bold;
-}
-section > h1:first-of-type:first-letter {
-  font-size: 2em;
-  font-family: Forum;
-  font-weight: bold;
-  text-shadow: 0.3rem -0.1rem 0rem var(--shadow-color);
-  color: var(--important-color);
-}
-
 h1 {
   font-size: 4rem;
   margin-top: 3rem;
@@ -267,6 +242,22 @@ h1 {
   text-align: right;
   font-family: Oswald;
   text-shadow: 0.2rem 0.1rem 0.1rem var(--shadow-color);
+}
+article > h1:first-of-type {
+  letter-spacing: 0.5rem;
+  text-align: right;
+  font-weight: bold;
+  border-top: 7rem double;
+  margin-top: 10rem;
+  padding-right: 2rem;
+}
+article > h1:first-of-type:first-letter {
+  font-size: 3em;
+  padding-right: 1rem;
+  font-family: Forum;
+  font-weight: bold;
+  text-shadow: 0.3rem -0.1rem 0rem var(--shadow-color);
+  color: var(--important-color);
 }
 
 h2 {
@@ -282,6 +273,39 @@ h4 {
   font-size: 1.5rem;
   margin-left: 1rem;
   border-left: 0.3rem solid;
+  padding-left: 1rem;
+}
+
+html {
+  font-family: "Source Sans Pro";
+  word-break: keep-all;
+  font-size: 21px;
+  color: var(--text-color);
+  border-color: var(--text-color);
+}
+
+section[title=laws]::before {
+  content: "Законы";
+  font-size: 3rem;
+}
+section[title=laws] dt::before {
+  content: "Закон";
+  margin-right: 0.4rem;
+  color: var(--text-added-color);
+}
+section[title=teorems]::before {
+  content: "Теоремы";
+  font-size: 3rem;
+}
+section[title=teorems] dt::before {
+  content: "Теорема";
+  margin-right: 0.4rem;
+  color: var(--text-added-color);
+}
+
+p::first-letter,
+li::first-letter {
+  text-transform: capitalize;
 }
 
 ul.columns,
@@ -328,16 +352,16 @@ ul.laws::before,
 ol.laws::before {
   content: "Законы";
 }
-ul.laws > .definition > .name::before,
-ol.laws > .definition > .name::before {
+ul.laws > dl > .name::before,
+ol.laws > dl > .name::before {
   content: "Закон";
 }
 ul.teorems::before,
 ol.teorems::before {
   content: "Теоремы";
 }
-ul.teorems .definition .name::before,
-ol.teorems .definition .name::before {
+ul.teorems dl .name::before,
+ol.teorems dl .name::before {
   content: "Теорема";
 }
 
@@ -347,47 +371,85 @@ p.designation::before {
   padding-right: 0.8rem;
 }
 
-p.intro,
-span.intro {
+intro,
+note,
+remark,
+warning,
+important {
+  display: block;
+}
+p intro, dt intro, dd intro, intro intro,
+p note,
+dt note,
+dd note,
+intro note,
+p remark,
+dt remark,
+dd remark,
+intro remark,
+p warning,
+dt warning,
+dd warning,
+intro warning,
+p important,
+dt important,
+dd important,
+intro important {
+  display: inline;
+}
+
+intro {
   font-family: "Playfair Display";
   font-size: larger;
   font-style: italic;
 }
-p.note,
-span.note {
+
+note {
+  background-color: var(--note-color);
+  border-radius: 0.2rem;
+  padding-left: 0.4rem;
+}
+note::before {
+  content: "ℹ︎";
+  margin-right: 0.6rem;
+  font-weight: bold;
+}
+note .equation {
+  background-color: var(--note-color);
+}
+
+warning {
   background-color: var(--note-color);
   border-radius: 0.2rem;
 }
-p.note::before,
-span.note::before {
-  content: "!";
+warning::before {
+  content: "!!";
   padding-right: 0.6rem;
   padding-left: 0.6rem;
   font-weight: bold;
 }
-p.note .equation,
-span.note .equation {
+warning .equation {
   background-color: var(--note-color);
 }
-p.important,
-span.important {
+
+remark {
+  font-weight: lighter;
+  font-size: small;
+  border-radius: 0.4rem;
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
+  background-color: darkslategrey;
+}
+
+important {
   background-color: darkred;
   border-radius: 0.2rem;
   font-weight: 600;
   padding-left: 0.4rem;
 }
-p.important::after,
-span.important::after {
+important::after {
   content: "‼️";
   font-size: larger;
-}
-p.remark,
-span.remark {
-  font-weight: normal;
-  border-radius: 0.4rem;
-  padding-left: 0.4rem;
-  padding-right: 0.4rem;
-  background-color: darkslategrey;
 }
 
 .equation {
@@ -488,6 +550,70 @@ summary.example + ol::-webkit-scrollbar {
   display: none;
 }
 
+toggle {
+  background-color: var(--background-second-color);
+  font-size: 0.8rem;
+  padding: 0.1rem;
+  margin-left: 0.5rem;
+  border: 0.05rem solid var(--text-color);
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background-color ease-out 300ms, border-radius ease-in 300ms, padding ease-out 100ms, margin ease-out 100ms;
+}
+strong.heading + toggle {
+  margin-right: 1.5rem;
+}
+strong.heading + toggle:hover, strong.heading + toggle.pressed {
+  margin-right: 0.7rem;
+}
+toggle.pressed {
+  border-style: dashed;
+  background-color: transparent;
+}
+toggle:hover, toggle.pressed {
+  background-color: var(--background-color);
+  border-radius: 0px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+toggle[target=example]::before {
+  content: "Example";
+}
+
+.hidden {
+  display: none;
+}
+
+example {
+  display: block;
+  outline: thick double var(--text-second-color);
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  margin-top: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+example details summary::before {
+  content: "Example";
+  color: var(--text-added-color);
+  margin-right: 0.7rem;
+}
+p example, dt example, dd example, intro example {
+  display: inline;
+  color: var(--text-second-color);
+  background-color: inherit;
+  outline: none;
+  padding: 0;
+  font-weight: 200;
+}
+p example::before, dt example::before, dd example::before, intro example::before {
+  content: "(";
+}
+p example::after, dt example::after, dd example::after, intro example::after {
+  content: ")";
+}
+
 dl dt {
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -500,53 +626,72 @@ mark {
   padding-right: 0.4rem;
 }
 
-.flex {
-  display: flex;
-  justify-content: space-around;
+a {
+  color: var(--link-color);
+  text-transform: capitalize;
+}
+a:empty::before {
+  content: "#";
+}
+a[book] {
+  margin-left: 0.4rem;
+}
+a[book]::before {
+  content: "§";
+}
+a[book]:hover::before {
+  content: attr(book);
+}
+a[chapter]:hover::after {
+  content: "§ " attr(chapter);
+  margin-left: 0.4rem;
+}
+a[lang]::after {
+  content: "(" attr(lang) ")";
 }
 
-.definition {
+dl {
   display: block;
 }
-.definition a {
+dl a {
   float: right;
   padding: 0;
   margin: 0;
 }
-.definition .name {
+dl .name {
   font-weight: bold;
   font-size: 1.3rem;
   padding: 0;
 }
-.definition .name::before {
+dl .name::before {
   padding-right: 1rem;
   font-weight: bolder;
   color: #c99e00;
   font-size: 1.5rem;
 }
-.definition::first-letter {
+dl::first-letter {
   text-transform: uppercase;
 }
-.definition > .meaning::before {
+dl > .meaning::before {
   content: "－";
   font-weight: 900;
   padding-left: 0.4rem;
   padding-right: 1.2rem;
 }
-.definition > ul > li {
+dl > ul > li {
   padding-left: 5px;
 }
-.definition > ul > li::marker {
+dl > ul > li::marker {
   content: "└";
 }
-.definition > ul.for > li::before {
+dl > ul.for > li::before {
   content: "Для";
   padding-right: 0.8rem;
   font-style: italic;
 }
 
 @media (pointer: none), (pointer: coarse) {
-  .definition abbr[term]::after {
+  dl abbr[term]::after {
     display: inline;
   }
 }
@@ -554,7 +699,7 @@ mark {
   html {
     font-size: 18px;
   }
-  .definition .name {
+  dl .name {
     font-size: 1.1rem;
   }
   h1 {
@@ -573,8 +718,8 @@ mark {
 html[data-theme=light] {
   --background-color: #fff;
   --text-color: black;
-  --second-text-color: #928da0;
-  --added-text-color: #7f88ac;
+  --text-second-color: #928da0;
+  --text-added-color: #7f88ac;
   --link-color: #543fd7;
   --note-color: yellow;
   --shadow-color: gray;
@@ -586,17 +731,17 @@ html[data-theme=dark] {
   --background-color: #1d1c1e;
   --shadow-color: #558ABB;
   --text-color: #d7d7d7;
-  --second-text-color: #928da0;
-  --added-text-color: #7f88ac;
+  --text-second-color: #928da0;
+  --text-added-color: #7f88ac;
   --link-color: #6ee4ff;
   --note-color: #746429;
   --invert: 1;
   --important-color: rgb(183, 0, 0);
 }
 
-p::first-letter,
-li::first-letter {
-  text-transform: capitalize;
+.flex {
+  display: flex;
+  justify-content: space-around;
 }
 
 abbr[term] {
@@ -617,10 +762,10 @@ abbr[term]:hover::after, abbr[term]:active::after {
   padding-right: 0.3rem;
   position: relative;
 }
-.expression span.meaning {
+.expression dd {
   display: none;
 }
-.expression:hover span.meaning {
+.expression:hover dd {
   position: absolute;
   top: -100%;
   left: -100%;
@@ -634,25 +779,8 @@ abbr[term]:hover::after, abbr[term]:active::after {
   transform: translateY(-50%) translateX(25%);
   display: block;
 }
-.expression:hover span.meaning::first-letter {
+.expression:hover dd::first-letter {
   text-transform: capitalize;
-}
-
-a {
-  color: var(--link-color);
-  text-transform: capitalize;
-}
-a:empty::before {
-  content: "#";
-}
-a[book]::before {
-  content: "§";
-}
-a[book]:hover::after {
-  content: attr(book);
-}
-a[lang]::after {
-  content: "(" attr(lang) ")";
 }
 
 ul.condition {
@@ -776,7 +904,7 @@ ul.algorithm .name::before {
 }
 
 en {
-  color: var(--second-text-color);
+  color: var(--text-second-color);
   font-size: 0.8em;
 }
 

@@ -6,11 +6,9 @@
 @import "text_static";
 @import "variables_and_mixins";
 
-p,
-li {
-  &::first-letter {
-    text-transform: capitalize;
-  }
+.flex {
+  display: flex;
+  justify-content: space-around;
 }
 
 abbr[term] {
@@ -34,11 +32,11 @@ abbr[term] {
   padding-right: 0.3rem;
   position: relative;
 
-  span.meaning {
+  dd {
     display: none;
   }
 
-  &:hover span.meaning {
+  &:hover dd {
     position: absolute;
     top: -100%;
     left: -100%;
@@ -58,36 +56,7 @@ abbr[term] {
   }
 }
 
-a {
-  color: var(--link-color);
-  text-transform: capitalize;
 
-  &:empty::before {
-    content: "#";
-  }
-
-  &[book] {
-    &::before {
-      content: "§";
-    }
-
-    &:hover {
-
-      // &:empty::before {
-      //   display: none;
-      // }
-      &::after {
-        content: attr(book);
-      }
-    }
-  }
-
-  &[lang] {
-    &::after {
-      content: "(" attr(lang) ")";
-    }
-  }
-}
 
 ul.condition {
   padding: 0;
@@ -248,7 +217,7 @@ ul {
 }
 
 en {
-  color: var(--second-text-color);
+  color: var(--text-second-color);
   font-size: 0.8em;
 }
 

@@ -1,9 +1,9 @@
 extends ../_layout.pug
 
 block content 
-    article: include _introduction
-    ul #[span.name Виды решений ЗЛП]
-        li.definition
-            span.name #[abbr(term="Вырожденное решение") ВР]
-            span.meaning БР содержащее базисную переменную равную нулю
-    article: include _simplex_method
+  article: include _introduction
+  ul #[dt Виды решений ЗЛП]
+    dl
+      dt #[abbr(term="Вырожденное решение") ВР]
+      dd БР содержащее базисную переменную равную нулю
+  article: include _simplex_method

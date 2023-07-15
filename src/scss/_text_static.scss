@@ -1,4 +1,5 @@
 @import "variables_and_mixins";
+@import "headers";
 
 html {
   font-family: "Source Sans Pro";
@@ -8,58 +9,50 @@ html {
   border-color: var(--text-color);
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  word-break: break-all;
-}
-
-section>h1:first-of-type {
-  border-top: 5rem solid inherit;
-  margin-top: 10rem;
-  letter-spacing: 0.5rem;
-  padding-right: 2rem;
-  display: block;
-  text-align: right;
-  font-weight: bold;
-
-  &:first-letter {
-    font-size: 2em;
-    font-family: Forum;
-    font-weight: bold;
-    text-shadow: 0.3rem -0.1rem 0rem var(--shadow-color);
-    color: var(--important-color);
+@mixin before_dt($str) {
+  dt::before {
+    content: $str;
+    margin-right: $space;
+    color: var(--text-added-color);
   }
 }
 
-h1 {
-  font-size: 4rem;
-  margin-top: 3rem;
-  border-top: 2rem solid;
-  text-align: right;
-  font-family: Oswald;
-  text-shadow: 0.2rem 0.1rem 0.1rem var(--shadow-color);
+section {
 
+  &[title="laws"] {
+    &::before {
+      content: "Законы";
+      font-size: 3rem;
+    }
+
+    @include before_dt("Закон");
+  }
+
+  &[title="teorems"] {
+    &::before {
+      content: "Теоремы";
+      font-size: 3rem;
+    }
+
+    @include before_dt("Теорема");
+  }
 }
 
-h2 {
-  font-size: 3rem;
-  text-align: center;
+$in-inline: p &, dt &, dd &, intro &;
+
+%in-inline {
+  #{$in-inline} {
+    display: inline;
+  }
 }
 
-h3 {
-  font-size: 2rem;
+p,
+li {
+  &::first-letter {
+    text-transform: capitalize;
+  }
 }
 
-h4 {
-  font-size: 1.5rem;
-  margin-left: 1rem;
-  border-left: 0.3rem solid;
-}
 
 ul,
 ol {
@@ -104,7 +97,7 @@ ol {
       content: "Законы";
     }
 
-    >.definition>.name {
+    >dl>.name {
       &::before {
         content: "Закон";
       }
@@ -116,7 +109,7 @@ ol {
       content: "Теоремы";
     }
 
-    .definition .name {
+    dl .name {
       &::before {
         content: "Теорема";
       }
@@ -134,48 +127,82 @@ p {
   }
 }
 
-p,
-span {
-  &.intro {
-    font-family: $font-PD;
-    font-size: larger;
-    font-style: italic;
+intro,
+note,
+remark,
+warning,
+important {
+
+  p &,
+  dt &,
+  dd &,
+  intro & {
+    display: inline;
   }
 
-  &.note {
-    &::before {
-      content: "!";
-      padding-right: 0.6rem;
-      padding-left: 0.6rem;
-      font-weight: bold;
-    }
+  display: block;
+}
 
-    .equation {
-      background-color: var(--note-color);
-    }
+intro {
+  font-family: $font-PD;
+  font-size: larger;
+  font-style: italic;
+}
 
+note {
+
+  &::before {
+    content: "ℹ︎";
+    margin-right: 0.6rem;
+
+    font-weight: bold;
+  }
+
+  .equation {
     background-color: var(--note-color);
-    border-radius: 0.2rem;
   }
 
-  &.important {
-    background-color: darkred;
-    border-radius: 0.2rem;
-    font-weight: 600;
-    padding-left: $space;
+  background-color: var(--note-color);
+  border-radius: 0.2rem;
+  padding-left: 0.4rem;
+}
 
-    &::after {
-      content: "‼️";
-      font-size: larger;
-    }
+warning {
+
+  &::before {
+    content: "!!";
+    padding-right: 0.6rem;
+    padding-left: 0.6rem;
+    font-weight: bold;
   }
 
-  &.remark {
-    font-weight: normal;
-    border-radius: $space;
-    padding-left: $space;
-    padding-right: $space;
-    background-color: darkslategrey;
+  .equation {
+    background-color: var(--note-color);
+  }
+
+  background-color: var(--note-color);
+  border-radius: 0.2rem;
+}
+
+remark {
+
+  font-weight: lighter;
+  font-size: small;
+  border-radius: $space;
+  padding-left: $space;
+  padding-right: $space;
+  background-color: darkslategrey;
+}
+
+important {
+  background-color: darkred;
+  border-radius: 0.2rem;
+  font-weight: 600;
+  padding-left: $space;
+
+  &::after {
+    content: "‼️";
+    font-size: larger;
   }
 }
 
@@ -200,8 +227,6 @@ span {
 }
 
 span {
-
-
   &.if {
     span.if {
       padding-right: 0;
@@ -309,6 +334,87 @@ summary.example+ol {
   /* Firefox */
 }
 
+toggle {
+  background-color: var(--background-second-color);
+  font-size: 0.8rem;
+  padding: 0.1rem;
+  margin-left: 0.5rem;
+  border: 0.05rem solid var(--text-color);
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background-color ease-out 300ms, border-radius ease-in 300ms, padding ease-out 100ms, margin ease-out 100ms;
+
+  strong.heading+& {
+    margin-right: 1.5rem;
+
+    &:hover,
+    &.pressed {
+      margin-right: 0.7rem;
+    }
+  }
+
+  &.pressed {
+    border-style: dashed;
+    background-color: transparent;
+  }
+
+  &:hover,
+  &.pressed {
+    background-color: var(--background-color);
+    border-radius: 0px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  &[target="example"]::before {
+    content: "Example";
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+example {
+
+  details summary::before {
+    content: "Example";
+    color: var(--text-added-color);
+    margin-right: 0.7rem;
+  }
+
+  p &,
+  dt &,
+  dd &,
+  intro & {
+    display: inline;
+    color: var(--text-second-color);
+
+    &::before {
+      content: "(";
+    }
+
+    &::after {
+      content: ")";
+    }
+
+    background-color: inherit;
+    outline: none;
+    padding: 0;
+    font-weight: 200;
+  }
+
+  display: block;
+  outline: thick double var(--text-second-color);
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  margin-top: 0.8rem;
+  margin-bottom: 0.8rem;
+
+}
+
 dl {
   dt {
     font-family: Arial, Helvetica, sans-serif;
@@ -320,12 +426,44 @@ mark {
   @include space_around;
 }
 
-.flex {
-  display: flex;
-  justify-content: space-around;
+
+a {
+  color: var(--link-color);
+  text-transform: capitalize;
+
+  &:empty::before {
+    content: "#";
+  }
+
+  &[book] {
+    margin-left: $space;
+
+    &::before {
+      content: "§";
+    }
+
+    &:hover::before {
+      content: attr(book);
+    }
+
+
+  }
+
+  &[chapter] {
+    &:hover::after {
+      content: "§ " attr(chapter);
+      margin-left: $space;
+    }
+  }
+
+  &[lang] {
+    &::after {
+      content: "(" attr(lang) ")";
+    }
+  }
 }
 
-.definition {
+dl {
   display: block;
 
   a {
@@ -383,7 +521,7 @@ mark {
 
 @media (pointer: none),
 (pointer: coarse) {
-  .definition {
+  dl {
     abbr[term] {
       &::after {
         display: inline;
@@ -397,7 +535,7 @@ mark {
     font-size: 18px;
   }
 
-  .definition {
+  dl {
     .name {
       font-size: 1.1rem;
     }
