@@ -3,8 +3,8 @@ dl
 	dd Линейная программа
 		en Linear program
 	dd.flex.
-		$$\begin{gather*}
-		\vb {c^T}\vb x \to \max, i=\overline{1,m}:\sum_{j=1}^n a_{ij}x_j \quad \ge/\le/= \quad b_i  \vb x\ge 0 \\
+		$$\begin{gather}
+		\vb {c^T}\vb x \to \max, i=\overline{1,m}:\sum_{j=1}^n a_{ij}x_j \quad \ge/\le/= \quad b_i,\; \vb x\ge 0 \\
 		\hline
 		\vb{c^T}\vb x=c_1x_1+c_2x_2+…+c_nx_n \to \max/\min \\
 		\begin{cases}
@@ -14,7 +14,7 @@ dl
 		b_m \quad \ge/\le/= \quad a_{m1}x_1+a_{m2}x_2+…+a_{mn}x_n \\
 		x_1,x_2,…,x_n \ge 0
 		\end{cases}
-		\end{gather*}$$
+		\end{gather}$$
 		$$\begin{gather}
 		\text{maximize/minimize}\quad \vb {c^T}\vb x \quad\text{subject to}\quad A \vb x \quad \ge/\le/= \quad \vb b \quad\text{and}\quad \vb x\ge 0\\
 		\hline
@@ -27,4 +27,4 @@ dl
 		& x_1,x_2,…,x_n \ge 0
 		\end{split}
 		\end{gather}$$
-	dd $\vb c = \begin{pmatrix} c_1 \\ c_2 \\ \vdots \\ c_m \end{pmatrix};\quad \vb b = \begin{pmatrix} b_1 \\ b_2 \\ \vdots \\ b_m \end{pmatrix};\quad \vb x = (x_1; x_2; …; x_m);$
+	dd Вектора $\vb c = \begin{pmatrix} c_1 \\ c_2 \\ \vdots \\ c_m \end{pmatrix}$ - коэффициентов целевой функции; $\vb b = \begin{pmatrix} b_1 \\ b_2 \\ \vdots \\ b_m \end{pmatrix}$ - свободных членов; $\vb x = (x_1; x_2; …; x_m);$ - неизвестных
