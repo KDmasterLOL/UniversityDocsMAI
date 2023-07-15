@@ -1,0 +1,30 @@
+p.intro Linear programming is not directly related to computer programming. The term was introduced in the 1950s when computers were few and mostly top secret, and the word programming was a military term that, at that time, referred to plans or schedules for training, logistical supply, or deployment of men. The word linear suggests that feasible plans are restricted by linear constraints (inequalities), and also that the quality of the plan (e.g., costs or duration) is also measured by a linear function of the considered quantities. In a similar spirit, linear programming soon started to be used for planning all kinds of economic activities, such as transport of raw materials and products among factories, sowing various crop plants, or cutting paper rolls into shorter ones in sizes ordered by customers. The phrase “planning with linear constraints” would perhaps better capture this original meaning of linear programming. However, the term linear programming has been well established for many years, and at the same time, it has acquired a considerably broader meaning: Not only does it play a role only in mathematical economy, it appears frequently in computer science and in many other fields.
+dl
+	dd Линейная программа
+		en Linear program
+	dd.flex.
+		$$\begin{gather*}
+		\vb {c^T}\vb x \to \max, i=\overline{1,m}:\sum_{j=1}^n a_{ij}x_j \quad \ge/\le/= \quad b_i  \vb x\ge 0 \\
+		\hline
+		\vb{c^T}\vb x=c_1x_1+c_2x_2+…+c_nx_n \to \max/\min \\
+		\begin{cases}
+		b_1\quad\ge/\le/= \quad a_{11}x_1+a_{12}x_2+…+a_{1n}x_n \\
+		b_2 \quad\ge/\le/= \quad a_{21}x_1+a_{22}x_2+…+a_{2n}x_n \\
+		\vdots \\
+		b_m \quad \ge/\le/= \quad a_{m1}x_1+a_{m2}x_2+…+a_{mn}x_n \\
+		x_1,x_2,…,x_n \ge 0
+		\end{cases}
+		\end{gather*}$$
+		$$\begin{gather}
+		\text{maximize/minimize}\quad \vb {c^T}\vb x \quad\text{subject to}\quad A \vb x \quad \ge/\le/= \quad \vb b \quad\text{and}\quad \vb x\ge 0\\
+		\hline
+		\begin{split}
+		\text{maximize/minimize} \quad &  z=c_1x_1+c_2x_2+…+c_nx_n\\
+		\text{subject to} \quad & b_1\quad\ge/\le/= \quad a_{11}x_1+a_{12}x_2+…+a_{1n}x_n \\
+		& b_2 \quad\ge/\le/= \quad a_{21}x_1+a_{22}x_2+…+a_{2n}x_n \\
+		& \vdots \\
+		& b_m \quad \ge/\le/= \quad a_{m1}x_1+a_{m2}x_2+…+a_{mn}x_n \\
+		& x_1,x_2,…,x_n \ge 0
+		\end{split}
+		\end{gather}$$
+	dd $\vb c = \begin{pmatrix} c_1 \\ c_2 \\ \vdots \\ c_m \end{pmatrix};\quad \vb b = \begin{pmatrix} b_1 \\ b_2 \\ \vdots \\ b_m \end{pmatrix};\quad \vb x = (x_1; x_2; …; x_m);$

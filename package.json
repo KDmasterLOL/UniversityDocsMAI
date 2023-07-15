@@ -1,8 +1,8 @@
 {
   "type": "module",
   "dependencies": {
-    "chart.js": "^4.3.0",
-    "concurrently": "^8.1.0",
+    "@rollup/plugin-node-resolve": "^15.1.0",
+    "babel-plugin-prismjs": "^2.1.0",
     "del": "^6.0.0",
     "gulp": "^4.0.2",
     "gulp-htmlmin": "^5.0.1",
@@ -12,12 +12,11 @@
     "gulp-svgmin": "^4.1.0",
     "gulp-webp": "^4.0.1",
     "imagemin-webp": "^6.1.0",
+    "prismjs": "^1.29.0",
     "pug": "^3.0.2",
-    "pug-cli": "^1.0.0-alpha6"
+    "server": "^1.0.38"
   },
-  "scripts": {
-    "build": "pug ./src/pug -o ./dist & node-sass ./src -o dest"
-  },
+  "scripts": {},
   "devDependencies": {
     "gulp-ext-replace": "^0.3.0",
     "gulp-sass": "^5.1.0",

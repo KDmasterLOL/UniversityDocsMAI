@@ -1,3 +1,4 @@
+
 function process_wavy_text() {
   let elements = document.getElementsByClassName("wavy-text");
   for (let element of elements) {
@@ -34,7 +35,7 @@ function process_folder() {
   for (let element of elements) {
     let prev = element.previousElementSibling;
     element.style.display = "none"
-    prev.addEventListener("click", (e) => {
+    prev.addEventListener("click", () => {
       prev.style.display = "none"
       element.style.display = ""
     })

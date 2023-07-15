@@ -11,20 +11,38 @@ $buety-black: #121416d8;
   padding-right: $right;
 }
 
+@mixin upper-first-letter {
+  &::first-letter {
+    text-transform: uppercase;
+  }
+}
+
 html[data-theme="light"] {
   --background-color: #fff;
+
   --text-color: black;
+  --second-text-color: #928da0;
+  --added-text-color: #7f88ac;
+
   --link-color: #543fd7;
   --note-color: yellow;
   --shadow-color: gray;
+
   --invert: 0;
+  --important-color: rgb(143, 0, 0);
 }
 
 html[data-theme="dark"] {
+  --background-color: #1d1c1e;
   --shadow-color: #558ABB;
-  --background-color: black;
-  --text-color: #b8b8b8;
+
+  --text-color: #d7d7d7;
+  --second-text-color: #928da0;
+  --added-text-color: #7f88ac;
+
   --link-color: #6ee4ff;
   --note-color: #746429;
+
   --invert: 1;
+  --important-color: rgb(183, 0, 0);
 }

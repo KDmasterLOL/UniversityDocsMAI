@@ -111,19 +111,25 @@ span.collapse[open]:not(:hover) span:not(.summary) {
 html[data-theme=light] {
   --background-color: #fff;
   --text-color: black;
+  --second-text-color: #928da0;
+  --added-text-color: #7f88ac;
   --link-color: #543fd7;
   --note-color: yellow;
   --shadow-color: gray;
   --invert: 0;
+  --important-color: rgb(143, 0, 0);
 }
 
 html[data-theme=dark] {
+  --background-color: #1d1c1e;
   --shadow-color: #558ABB;
-  --background-color: black;
-  --text-color: #b8b8b8;
+  --text-color: #d7d7d7;
+  --second-text-color: #928da0;
+  --added-text-color: #7f88ac;
   --link-color: #6ee4ff;
   --note-color: #746429;
   --invert: 1;
+  --important-color: rgb(183, 0, 0);
 }
 
 #switch-theme {
@@ -160,19 +166,25 @@ body {
 html[data-theme=light] {
   --background-color: #fff;
   --text-color: black;
+  --second-text-color: #928da0;
+  --added-text-color: #7f88ac;
   --link-color: #543fd7;
   --note-color: yellow;
   --shadow-color: gray;
   --invert: 0;
+  --important-color: rgb(143, 0, 0);
 }
 
 html[data-theme=dark] {
+  --background-color: #1d1c1e;
   --shadow-color: #558ABB;
-  --background-color: black;
-  --text-color: #b8b8b8;
+  --text-color: #d7d7d7;
+  --second-text-color: #928da0;
+  --added-text-color: #7f88ac;
   --link-color: #6ee4ff;
   --note-color: #746429;
   --invert: 1;
+  --important-color: rgb(183, 0, 0);
 }
 
 span.tip::before, span.tip::after {
@@ -192,19 +204,25 @@ span.collapsible_toggle {
 html[data-theme=light] {
   --background-color: #fff;
   --text-color: black;
+  --second-text-color: #928da0;
+  --added-text-color: #7f88ac;
   --link-color: #543fd7;
   --note-color: yellow;
   --shadow-color: gray;
   --invert: 0;
+  --important-color: rgb(143, 0, 0);
 }
 
 html[data-theme=dark] {
+  --background-color: #1d1c1e;
   --shadow-color: #558ABB;
-  --background-color: black;
-  --text-color: #b8b8b8;
+  --text-color: #d7d7d7;
+  --second-text-color: #928da0;
+  --added-text-color: #7f88ac;
   --link-color: #6ee4ff;
   --note-color: #746429;
   --invert: 1;
+  --important-color: rgb(183, 0, 0);
 }
 
 html {
@@ -221,14 +239,15 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: Baskerville;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   word-break: break-all;
 }
 
 section > h1:first-of-type {
   border-top: 5rem solid inherit;
   margin-top: 10rem;
-  margin-right: 3rem;
+  letter-spacing: 0.5rem;
+  padding-right: 2rem;
   display: block;
   text-align: right;
   font-weight: bold;
@@ -238,15 +257,16 @@ section > h1:first-of-type:first-letter {
   font-family: Forum;
   font-weight: bold;
   text-shadow: 0.3rem -0.1rem 0rem var(--shadow-color);
-  color: rgb(143, 0, 0);
+  color: var(--important-color);
 }
 
 h1 {
   font-size: 4rem;
   margin-top: 3rem;
   border-top: 2rem solid;
+  text-align: right;
   font-family: Oswald;
-  text-shadow: 0.3rem -0.3rem 0.1rem var(--shadow-color);
+  text-shadow: 0.2rem 0.1rem 0.1rem var(--shadow-color);
 }
 
 h2 {
@@ -468,6 +488,23 @@ summary.example + ol::-webkit-scrollbar {
   display: none;
 }
 
+dl dt {
+  font-family: Arial, Helvetica, sans-serif;
+}
+dl dt::first-letter {
+  text-transform: uppercase;
+}
+
+mark {
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-around;
+}
+
 .definition {
   display: block;
 }
@@ -536,19 +573,25 @@ summary.example + ol::-webkit-scrollbar {
 html[data-theme=light] {
   --background-color: #fff;
   --text-color: black;
+  --second-text-color: #928da0;
+  --added-text-color: #7f88ac;
   --link-color: #543fd7;
   --note-color: yellow;
   --shadow-color: gray;
   --invert: 0;
+  --important-color: rgb(143, 0, 0);
 }
 
 html[data-theme=dark] {
+  --background-color: #1d1c1e;
   --shadow-color: #558ABB;
-  --background-color: black;
-  --text-color: #b8b8b8;
+  --text-color: #d7d7d7;
+  --second-text-color: #928da0;
+  --added-text-color: #7f88ac;
   --link-color: #6ee4ff;
   --note-color: #746429;
   --invert: 1;
+  --important-color: rgb(183, 0, 0);
 }
 
 p::first-letter,
@@ -730,6 +773,11 @@ td {
 
 ul.algorithm .name::before {
   content: "❖";
+}
+
+en {
+  color: var(--second-text-color);
+  font-size: 0.8em;
 }
 
 ol.inline {

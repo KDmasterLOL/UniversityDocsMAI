@@ -55,9 +55,7 @@ block content
     h1 FAQ
     h3 Как запомнить что производная от $\cos x$ это $-\sin x$, а от $\sin x$ просто $\cos x$
     p Производная имеет физический смысл скорости изменения в какую либо из сторон - положительную или отрицательную - и $\cos 0 = 1,\cos \pi = 0:\cos 0 \gt \cos \pi$ из этого следует что $x\in [0;\pi]:\dd{\qty(\cos x)}\le 0$, то есть можно сказать как только косинус появляется на свет в точке 0 он сразу начинает падать в низ. И так как синус и косинус описывают скорости изменения друг друга, а $x\in [0;\pi]:\sin x \ge 0$, то нужно брать синус со знаком минус
-    section
-        include _series
-    section 
-        include _integrals
-    section 
-        include _differentials
+    article: include _intro
+    article: include _series
+    article: include _integrals
+    article: include _differentials

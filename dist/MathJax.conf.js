@@ -19,6 +19,7 @@ MathJax = {
 			bvec: ["{\\overrightarrow {#1}}", 1],
 			def: ["{\\text{≝}}"],
 			if: ["{\\text{Если }}"],
+			R: ["{\\mathbb{R}}"],
 
 		}
 	},
@@ -38,7 +39,6 @@ MathJax = {
 						equation.classList.add("equation");
 					}
 				}
-				console.log('MathJax initial typesetting complete');
 			});
 		}
 	}

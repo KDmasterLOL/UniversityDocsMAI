@@ -247,6 +247,11 @@ ul {
   }
 }
 
+en {
+  color: var(--second-text-color);
+  font-size: 0.8em;
+}
+
 ol.inline {
   display: inline;
   counter-reset: inline-list;
