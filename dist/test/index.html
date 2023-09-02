@@ -1,0 +1,61 @@
+<!DOCTYPE html><html lang="en" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="../styles.css"><script type="module" src="../script.js"></script><script src="../MathJax.conf.js"></script><script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><title>University document</title></head><body> <header> <button type="button" id="switch-theme"><svg id="svg-1" viewBox="0 0 150 150" height="100"><circle id="animated-circle" cx="75" cy="75" r="50"></circle></svg></button><nav><a href="../engineering_graphics">Инженерная графика</a><a href="../math_analysis">Математический анализ</a><a href="../physics">Физика</a><a href="../linear_programing">Линейное программирование</a><a href="../info_university">Инфо Университет</a><a href="../linear_algebra">Линейная алгебра</a></nav></header><example>$$\begin{aligned}
+z = x+y \\
+\begin{cases}
+10x-2y\le 2 \\
+x+2y\le 2
+\end{cases}
+\end{aligned}
+
+\Longrightarrow
+
+\begin{aligned}
+z = x+y+0s_1+0s_2 \\
+\begin{cases}
+10x-2y+s_1 = 2 \\
+x+2y+s_2 = 2
+\end{cases}
+\end{aligned}
+
+\Longrightarrow
+
+\begin{aligned}
+z = x+y+0s_1+0s_2 \\
+\begin{cases}
+s_1 = 2-10x+2y \\
+s_2 = 2-x-2y
+\end{cases}
+\end{aligned}
+
+\Longrightarrow
+
+\begin{aligned}
+z = x+y=0.2+0=0.2 \\
+\begin{cases}
+x=\underbrace{0.2+0.2y-0.1s_1}_{(2+2y-s_1)/10} \Leftarrow 10x = 2+2y-s_1 \\
+s_2 =1.8-2.2y-0.1s_1=2-\overbrace{(0.2+0.2y-0.1s_1)}^x-2y
+\end{cases}
+\end{aligned}
+
+\Longrightarrow
+
+\begin{aligned}
+z = x+y+0s_1+0s_2 \\
+\begin{cases}
+x=0.2+0.2\overbrace{(\frac{18}{22}-\frac{1}{22}s_1-\frac{10}{22}s_2)}^{y}-0.1s_1 \\
+y=\underbrace{\frac{18}{22}-\frac{1}{22}s_1-\frac{10}{22}s_2}_{(1.8-0.1s_1-s_2)/2.2} \Leftarrow 2.2y=1.8-0.1s_1-s_2
+\end{cases}
+\end{aligned}
+$$<br>$$
+\begin{array}{cccc|c}
+1 & 1 & 0 & 0 & z \\
+\hline
+10 & -2 & 1 & 0 & 2 \\
+1 & 2 & 0 & 1 & 2
+\end{array}
+\Longrightarrow
+\begin{array}{cccc|c}
+1 & 1 & 0 & 0 & z \\
+\hline
+10 & -2 & 1 & 0 & 2 \\
+1 & 2 & 0 & 1 & 2
+\end{array}$$</example></body></html>

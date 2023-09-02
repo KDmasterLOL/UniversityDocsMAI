@@ -1,0 +1,5 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/ivantolmacev/Documents/HTML_DOCS/University/manim_animations/media/videos/scene/480p15/partial_movie_files/PolygonOnAxes/4266129954_2015970750_1500447074.mp4'
+file 'file:/Users/ivantolmacev/Documents/HTML_DOCS/University/manim_animations/media/videos/scene/480p15/partial_movie_files/PolygonOnAxes/1442284246_495941269_3236927445.mp4'
+file 'file:/Users/ivantolmacev/Documents/HTML_DOCS/University/manim_animations/media/videos/scene/480p15/partial_movie_files/PolygonOnAxes/1442284246_1439653764_2731675212.mp4'
+file 'file:/Users/ivantolmacev/Documents/HTML_DOCS/University/manim_animations/media/videos/scene/480p15/partial_movie_files/PolygonOnAxes/1442284246_670165307_1479480716.mp4'

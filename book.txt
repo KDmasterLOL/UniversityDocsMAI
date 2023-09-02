@@ -1,0 +1,147 @@
+8 What if there is no initial basis in the Simplex tableau?
+After learning the basics of the Simplex algorithm, we explore the special cases and exceptions. For example, what does one do when the initial tableau contains no starting basis? That is, what happens if the initial tableau (for a program where A is mxn) does not contain all the columns of an mxm identity matrix?
+This problem occurs when the constraints are in either equality or “greater than or equal to” form. In the case of an equality constraint, one cannot add a slack or an excess variable and therefore there will be no initial basic variable in that row. In the case of a “greater than or equal to” constraint, one must add an excess variable, which gives a −1 in that row instead of a +1. Simply multiplying through that row by −1 would not solve the problem, for then the right-hand-side variable would be negative.
+There are two main methods to dealing with this problem: the Two-Phase Method and the Big-M Method. Both of these methods involve adding “artifi- cial” variables that start out as basic variables but must eventually equal zero in
+28
+Row
+z
+x1 x2 s1 s2
+RHS
+BV
+ratio
+0 1 2
+1 0 0
+0 −19 −3 0 1 12 14 0
+2 41
+0 2 −2 1
+     
+-9 3 0
+z = −9 x1 = 3 s2 = 0
+- - -
+Table 3:
+Table 4:
+order for the original problem to be feasible. These two techniques are outlined in the following sections.
+  1
+-2 1 -1 0 0
+  0
+  0 0 0
+    2 1 -2 0 1 4 -1 2 0 0 2 3 -1 -1 0
+  8 2 4
+         1
+0 0 0 0 0 -1 -1
+  0
+  0 0 0
+    2 1 -2 0 1 0 0 4 -1 2 0 0 1 0 2 3 -1 -1 0 0 1
+  8 2 4
+       8.1 The Two-Phase Method
+Consider the following problem:
+Maximize Subject to
+2x1 − x2 + x3 2x1 + x2 − 2x3 4x1−x2+2x3 2x1+3x2−x3
+x1,x2,x3
+≤8 = 2 ≥ 4 ≥ 0.
+To put this in standard form, all constraints must become equalities. Adding a slack variable, s1, to the first constraint and subtracting an excess variable, e3, from the third constraint gives the initial Simplex tableau shown in Table 3.
+There is no initial basis in this tableau. To correct this, add two more vari- ables, called “artificial variables,” a1 and a3, to constraints two and three. This step alone however, will not solve the problem since these two extra variables cannot be in the final basis. Therefore, in addition to adding two artificial vari- ables, the initial objective function must be altered as well. To ensure that a1 and a3 are not in the final basis, the initial objective function must become “minimize z = a1 − a3.” Therefore, the tableau shown in Table 3 becomes the tableau shown in Table 4.
+The last step before performing the Simplex algorithm as usual, is to add rows 2 and 3 to Row 0. This gives the tableau shown in Table 5. The tableau
+29
+
+Table 5:
+Table 6:
+in Table 5 is better because I3 is in the body of the tableau.
+The tableau shown in Table 5 is the initial tableau for Phase I of the Two- Phase Method. Phase I will be complete when this tableau is optimal. To get this tableau to optimality takes two steps. The final optimal tableau for Phase I is shown in Table 6. In this tableau the variables a1 and a3 are zero and the
+variables x1, x2 and s1 are basic.
+For Phase II of the Two-Phase Method, replace the current objective func-
+tion with the objective function from the original problem and make all entries of Row 0 in the column of a basic variable equal to zero. Also, delete all columns associated with artificial variables. After that, proceed with the Simplex algo- rithm until optimality is reached. The first tableau for Phase II is shown in the first part of Table 7. After multiplying Row 2 by two, Row 3 by negative one, and adding both of the resultant rows to Row 0, the tableau becomes like the second part of Table 7. After obtaining this tableau, proceed with the Simplex algorithm as usual. Remember, now the objective function must be maximized. The solution to this phase is the solution to the original problem.
+In summary, the Two-Phase Method can be completed using the following steps:
+1. If there is no basis in the original tableau, add artificial variables to rows in which there are no slack variables.
+2. Set up a new objective function that minimizes these slack variables.
+3. Modify the tableau so that the Row 0 coefficients of the artificial variables are zero.
+30
+  1
+6 2 1 -1 0 0 0
+  6
+  0 0 0
+    2 1 -2 0 1 0 0 4 -1 2 0 0 1 0 2 3 -1 -1 0 0 1
+  8 2 4
+         1
+0 0 .6 -.3 0 -.8 -1.4
+  .8
+  0 0 0
+    0 0 -2.6 .2 1 -.25 .2 1 0 .3 -.1 0 .2 .10 0 1 -.8 -.4 0 -.2 .4
+  6.4 .8 1.2
+       
+Table 7:
+  1
+-2 1 -1 0 0
+  0
+  0 0 0
+    0 0 -2.6 .2 1 1 0 .3 -.1 0 0 1 -.8 -.4 0
+  6.4 .8 1.2
+      1
+0 0 .4 .2 0
+  .4
+  0 0 0
+    0 0 -2.6 .2 1 1 0 .3 -.1 0 0 1 -.8 -.4 0
+  6.4 .8 1.2
+          4. Complete the Simplex algorithm as usual for a minimization problem.
+5. At optimality, the artificial variables should be nonbasic variables, or basic variables equal to zero. If not, the original problem was infeasible.
+6. After reaching optimality, delete all rows associated with artificial vari- ables. Also, replace the artificial objective function with the original ob- jective function. This is the start of Phase II.
+7. Modify the tableau so that the Row 0 coefficients of the basic variables are zero.
+8. Proceed with the Simplex algorithm as usual. The optimal solution to this tableau will be the optimal solution to the original problem.
+8.2 The Big-M Method
+Another way to deal with no basis in the initial tableau is called the Big-M Method. The following example from [2] will help illustrate this method:
+Consider the problem
+Minimize x1 − 2x2 Subjectto x1+x2 −x1+x2 x2 x1,x2
+≥2 ≥ 1 ≤ 3 ≥ 0.
+Wouldn’t it be nice to be able to solve this problem with artificial variables, but without having to complete two phases? Well, the Big-M method makes that possible.
+31
+
+Table 8:
+Table 9:
+  1
+-1 2 0 0 0
+  0
+  0 0 0
+    1 1 -1 0 0 -1 1 0 -1 0 01001
+  2 1 3
+         1
+-1 2 0 0 0 0 0
+  0
+  0 0 0
+    1 1 -1 0 0 1 0 -1 1 0 -1 0 0 1 0100100
+  2 1 3
+      1
+-1 2 0 0 0 -M -M
+  0
+  0 0 0
+    1 1 -1 0 0 1 0 -1 1 0 -1 0 0 1 0100100
+  2 1 3
+      1
+-1 2+2M -M -M 0 0 0
+  3M
+  0 0 0
+    1 1 -1 0 0 1 0 -1 1 0 -1 0 0 1 0100100
+  2 1 3
+      1
+1+2M 0 -M 2+M 0 0 -2-2M
+  -2+M
+  0 0 0
+    2 0 -1 1 0 1 -1 -1 1 0 -1 0 0 1 1 0 0 1 1 0 -1
+  1 1 2
+      1
+-1 0 0 0 -2 -M -M
+  -6
+  0 0 0
+    1 0 0 1 1 0 -1 0100100 -1 0 1 0 1 -1 0
+  2 3 1
+                   First, the initial tableau of this problem is shown in Table 6. After adding artificial variables a1 and a2 to rows 1 and 2, the tableau becomes the tableau in the first part of Table 8. Since the artificial variables must go to zero at optimality, there must be a way to force them to do so. By adding Ma1 +Ma2 to the objective function, where M is a really big number (near infinity!), it is clear that this minimization problem will be optimal when a1 and a2 are zero. For a maximization problem, adding −Ma1 − Ma2 to the objective function produces the same effect. This step is shown in the second part of Table 9.
+Next, the coefficients in Row 0 must be modified so that they are zero for all basic variables. Therefore, multiply rows 1 and 2 by M and add them to Row 0. The resulting tableau is shown in the third part of Table 9.
+32
+
+The most positive coefficient in Row 0 is 2 + 2M . Therefore, this column is selected for a pivot and the ratio test is performed as usual. Row 2 wins the ratio test and the next tableau is shown in the fourth part of Table 9. The term 1 + 2M is the most positive so that column is the pivot column. This part of the Big-M Method is just like performing the Simplex Method as usual, except with a variable M floating around. This particular problem continues for a few more steps (two more pivots to be exact) before reaching optimality. The optimal tableau is shown in the fifth part of Table 9, where the solution is x2 =3, x3 =1, x4 =2andz=−6.
+In this tableau, there is no M in the objective function value. Also, none of the artificial variables are basic variables. If an artificial variable were a basic variable in the optimal tableau, this would indicate that the the original problem was infeasible. If there were an M in the objective function value, this would indicate that the original problem was unbounded.
+In summary, the Big-M Method can be completed using the following steps:
+1. If there is no basis in the original tableau, add artificial variables to rows in which there are no slack variables.
+2. Depending on whether the problem is minimization or maximization, add or subtract Mxa to the objective function where M is a really big number and xa is a vector of the artificial variables.
+3. Modify the tableau so that the Row 0 coefficients of the artificial variables are zero.
+4. Complete the Simplex algorithm as usual.
+5. At optimality, the artificial variables should be nonbasic variables and the objective function value should be finite.

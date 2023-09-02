@@ -1,0 +1,65 @@
+extends ../_layout.pug
+
+block content 
+	example.
+		$$\begin{aligned}
+		z = x+y \\
+		\begin{cases}
+		10x-2y\le 2 \\
+		x+2y\le 2
+		\end{cases}
+		\end{aligned}
+
+		\Longrightarrow
+
+		\begin{aligned}
+		z = x+y+0s_1+0s_2 \\
+		\begin{cases}
+		10x-2y+s_1 = 2 \\
+		x+2y+s_2 = 2
+		\end{cases}
+		\end{aligned}
+
+		\Longrightarrow
+
+		\begin{aligned}
+		z = x+y+0s_1+0s_2 \\
+		\begin{cases}
+		s_1 = 2-10x+2y \\
+		s_2 = 2-x-2y
+		\end{cases}
+		\end{aligned}
+
+		\Longrightarrow
+
+		\begin{aligned}
+		z = x+y=0.2+0=0.2 \\
+		\begin{cases}
+		x=\underbrace{0.2+0.2y-0.1s_1}_{(2+2y-s_1)/10} \Leftarrow 10x = 2+2y-s_1 \\
+		s_2 =1.8-2.2y-0.1s_1=2-\overbrace{(0.2+0.2y-0.1s_1)}^x-2y
+		\end{cases}
+		\end{aligned}
+
+		\Longrightarrow
+
+		\begin{aligned}
+		z = x+y+0s_1+0s_2 \\
+		\begin{cases}
+		x=0.2+0.2\overbrace{(\frac{18}{22}-\frac{1}{22}s_1-\frac{10}{22}s_2)}^{y}-0.1s_1 \\
+		y=\underbrace{\frac{18}{22}-\frac{1}{22}s_1-\frac{10}{22}s_2}_{(1.8-0.1s_1-s_2)/2.2} \Leftarrow 2.2y=1.8-0.1s_1-s_2
+		\end{cases}
+		\end{aligned}
+		$$#[br]$$
+		\begin{array}{cccc|c}
+		1 & 1 & 0 & 0 & z \\
+		\hline
+		10 & -2 & 1 & 0 & 2 \\
+		1 & 2 & 0 & 1 & 2
+		\end{array}
+		\Longrightarrow
+		\begin{array}{cccc|c}
+		1 & 1 & 0 & 0 & z \\
+		\hline
+		10 & -2 & 1 & 0 & 2 \\
+		1 & 2 & 0 & 1 & 2
+		\end{array}$$

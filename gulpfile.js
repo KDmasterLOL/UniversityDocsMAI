@@ -35,7 +35,7 @@ const FILES = {
   pug: [`${PATHS["src"]}/**/*.pug`, `!${PATHS["src"]}/**/_*.pug`],
   scss: `${PATHS["src"]}/scss/*.scss`,
   img: `${PATHS["src"]}/**/*.{png,jpg}`,
-  js: `${PATHS["src"]}/**/*.js`,
+  js: `${PATHS["src"]}/scripts/*.js`,
   svg: `${PATHS["src"]}/**/*.svg`,
 };
 function clear() {
@@ -58,17 +58,6 @@ function svg() {
   return (
     gulp
       .src(FILES["svg"])
-      // .pipe(
-      //   svgmin({
-      //     multipass: true,
-      //     plugins: [
-      //       {
-      //         name: "cleanupIDs",
-      //         active: false,
-      //       },
-      //     ],
-      //   })
-      // )
       .pipe(gulp.dest(PATHS["dist"]))
   );
 }
@@ -77,12 +66,6 @@ function compilePug() {
     gulp
       .src(FILES["pug"])
       .pipe(gpug())
-      // // .pipe(
-      // //   htmlmin({
-      // //     collapseWhitespace: true,
-      // //     removeComments: true,
-      // //   })
-      // )
       .pipe(gulp.dest(PATHS["dist"]))
   );
 }
@@ -93,7 +76,6 @@ function watch() {
   gulp.watch(FILES["scss"], buildStyles);
   gulp.watch(FILES["pug"][0], compilePug);
   gulp.watch(FILES["js"], scripts);
-  // watch(PATHS.pug,compilePug)
 }
 gulp.task("image", image);
 gulp.task("svg", svg);
