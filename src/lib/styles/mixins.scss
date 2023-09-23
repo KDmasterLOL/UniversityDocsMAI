@@ -1,0 +1,10 @@
+@mixin space_around($left: $space, $right: $space) {
+	padding-left: $left;
+	padding-right: $right;
+}
+
+@mixin upper-first-letter {
+	&::first-letter {
+		text-transform: uppercase;
+	}
+}

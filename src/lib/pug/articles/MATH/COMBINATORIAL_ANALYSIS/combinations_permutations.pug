@@ -1,0 +1,174 @@
+h3 Combinations and Permutations
+	a(href="https://www.mathsisfun.com/combinatorics/combinations-permutations.html")
+h4 What's the Difference?
+section.intro 
+	p.intro In English we use the word "combination" loosely, without thinking if the #[b order] of things is important. 
+		span.example "My fruit salad is a combination of apples, grapes and bananas" - We don't care what order the fruits are in, they could also be "bananas, grapes and apples" or "grapes, apples and bananas", its the same fruit salad.#[br]"The combination to the safe is 472" - Now we #[b do] care about the order. "724" won't work, nor will "247". It has to be exactly #[b 4-7-2].
+	p So, in Mathematics we use more #[em precise] language:
+	ul
+		li When the order doesn't matter, it is a #[b Combination].
+		li When the order #[b does] matter it is a #[b Permutation].
+dl
+	dt: dfn Permutation
+	dd 
+		p An #[strong ordered] Combination.
+		p.note To remember, think "#[+m P]ermutation as #[+m P]osition"
+		figure
+			img(src='https://www.mathsisfun.com/combinatorics/images/permutation-lock.jpg')
+			figcaption: h1 Permutation Lock
+		p There are basically two types of permutation:
+		ol
+			li #[b Repetition is Allowed]: such as the lock above. It could be "333".
+			li #[b No Repetition]: for example the first three people in a running race. You can't be first #[i and] second.
+dt Permutations with Repetition
+dd
+	p When a thing has #[+m n] different types ... we have #[+m n] choices each time! #[span.example Choosing 3 of those things, the permutations are: #[+m n × n × n] #[i (n multiplied 3 times)]]
+	p More generally: choosing #[+m r] of something that has #[+m n] different types, the permutations are: #[+m \underbrace{n × n × ...}_{\text{r times}}] #[eg There are #[+m n] possibilities for the first choice, THEN there are #[+m n] possibilites for the second choice, and so on, multplying each time.]
+	p Which is easier to write down using an #[a(href='https://www.mathsisfun.com/exponent.html') exponent] of #[+m r]: #[+m \underbrace{n × n × ...}_{\text{r times}} = n^r]
+		span.example In the lock above, there are 10 numbers to choose from (0,1,2,3,4,5,6,7,8,9) and we choose 3 of them: #[+m \underbrace{10 × 10 × ...}_{\text{3 times}} = 10^3 = 1,000] permutations
+	p So, the formula is simply: #[+m({'m': 'the number of things to choose from','r':'the count the things that we choose'}) n^r]
+dt Permutations without Repetition #[+m P(n,r) = P^n_r = \frac{n!}{(n−r)!}]
+dd
+	p In this case, we have to #[b reduce] the number of available choices each time.
+	details.example
+		summary 
+			p What order could 16 pool balls be in?
+			img(src='https://www.mathsisfun.com/combinatorics/images/pool-balls.jpg')
+		p After choosing, say, number 14 we can't choose it #[em again]. So, our first choice has 16 possibilites, and our #[em next choice] #[strong has 15 possibilities, then 14, 13, 12, 11, ... etc]. And the total permutations are: #[+m 16 × 15 × 14 × 13 × ... = 20,922,789,888,000]
+		p But maybe we don't want to choose them all, #[b just 3] of them, and that is then: #[+m 16 × 15 × 14 = 3,360]. #[eg There are 3,360 different ways that 3 pool balls could be arranged out of 16 balls].
+		p.note Without repetition our choices get reduced each time.
+		p(title="But how do we write that mathematically?") Answer: we use the "factorial function". So, when we want to select #[b all] of the billiard balls the permutations are: #[+m 16! = 20,922,789,888,000].#[br]But when we want to select just 3 we don't want to multiply after 14. How do we do that? There is a neat trick: we divide by #[+m 13!]. #[+m \frac{16 × 15 × 14 × 13 × 12 × ...}{13 × 12 × ...} = 16 × 15 × 14]
+		p That was neat: the #[b 13 × 12 × ... etc] gets "cancelled out", leaving only #[b 16 × 15 × 14].
+		p The formula is written:
+		table: tbody
+			tr: td: p n!#[strong (n − r)!]
+			tr: td where #[+m n] is the number of things to choose from, and we choose #[+m r] of them, no repetitions, order matters.
+	h5 Example Our "order of 3 out of 16 pool balls example" is:
+	| #[em 16!]#[strong (16−3)!] = #[em 16!]#[strong 13!] = #[em 20,922,789,888,000]#[strong 6,227,020,800] = 3,360
+	p (which is just the same as:#[b 16 × 15 × 14 = 3,360])
+	h5 Example: How many ways can first and second place be awarded to 10 people?
+	| #[em 10!]#[strong (10−2)!] = #[em 10!]#[strong 8!] = #[em 3,628,800]#[strong 40,320] = 90
+	p (which is just the same as:#[b 10 × 9 = 90])
+	h5 Examples:
+	ul
+		li P(10,2) = 90
+		li P = 90
+		li P = 90
+h4 Combinations
+p There are also two types of combinations (remember the order does #[b not] matter now):
+ol
+	li #[b Repetition is Allowed]: such as coins in your pocket (5,5,5,10,10)
+	li #[b No Repetition]: such as lottery numbers (2,14,15,27,30,33)
+h5 1. Combinations with Repetition
+p Actually, these are the hardest to explain, so we will come back to this later.
+h5 2. Combinations without Repetition
+p This is how #[a(href='https://www.mathsisfun.com/data/lottery.html') lotteries] work. The numbers are drawn one at a time, and if we have the lucky numbers (no matter what order) we win!
+p The easiest way to explain it is to:
+ul
+	li assume that the order does matter (ie permutations),
+	li then alter it so the order does #[b not] matter.
+p Going back to our pool ball example, let's say we just want to know which 3 pool balls are chosen, not the order.
+p We already know that 3 out of 16 gave us 3,360 permutations.
+p But many of those are the same to us now, because we don't care what order!
+p For example, let us say balls 1, 2 and 3 are chosen. These are the possibilites:
+table: tbody
+	tr
+		td Order does matter
+		td Order doesn't matter
+	tr
+		td 1 2 3 1 3 2 2 1 3 2 3 1 3 1 2 3 2 1
+		td 1 2 3
+p So, the permutations have 6 times as many possibilites.
+p In fact there is an easy way to work out how many ways "1 2 3" could be placed in order, and we have already talked about it. The answer is:
+p #[b 3!] #[b = 3 × 2 × 1 = 6]
+p (Another example: 4 things can be placed in #[b 4!] #[b = 4 × 3 × 2 × 1 = 24] different ways, try it for yourself!)
+p So we adjust our permutations formula to #[b reduce it] by how many ways the objects could be in order (because we aren't interested in their order any more):
+| n!#[strong (n−r)!] x #[em 1]#[strong r!] = n!#[strong r!(n−r)!]
+p That formula is so important it is often just written in big parentheses like this:
+table: tbody
+	tr: td n!#[strong r!(n−r)!] = (#[em n]#[strong r])
+	tr: td where #[+m n] is the number of things to choose from, and we choose #[+m r] of them, no repetition, order doesn't matter.
+p It is often called "n choose r" (such as "16 choose 3")
+p And is also known as the #[a(href='https://www.mathsisfun.com/data/binomial-distribution.html') Binomial Coefficient].
+h5 Notation
+p All these notations mean "n choose r":
+| C(n,r) = C = C = (#[em n]#[strong r]) = n!#[strong r!(n−r)!]
+p Just remember the formula:
+p n!#[strong r!(n − r)!]
+h5 Example: Pool Balls (without order)
+p So, our pool ball example (now without order) is:
+p #[em 16!]#[strong 3!(16−3)!]
+p = #[em 16!]#[strong 3! × 13!]
+p = #[em 20,922,789,888,000]#[strong 6 × 6,227,020,800]
+p = 560
+p Notice the formula #[em 16!]#[strong 3! × 13!] gives the same answer as #[em 16!]#[strong 13! × 3!]
+p So choosing 3 balls out of 16, or choosing 13 balls out of 16, have the same number of combinations:
+p #[em 16!]#[strong 3!(16−3)!] = #[em 16!]#[strong 13!(16−13)!] = #[em 16!]#[strong 3! × 13!] = 560
+p In fact the formula is nice and #[b symmetrical]:
+| n!#[strong r!(n−r)!] = (#[em n]#[strong r]) = (#[em n]#[strong n−r])
+p Also, knowing that 16!/13! reduces to 16×15×14, we can save lots of calculation by doing it this way:
+p #[em 16×15×14]#[strong 3×2×1]
+p = #[em 3360]#[strong 6]
+p = 560
+h5 Pascal's Triangle
+p We can also use #[a(href='https://www.mathsisfun.com/pascals-triangle.html') Pascal's Triangle] to find the values. Go down to row "n" (the top row is 0), and then along "r" places and the value there is our answer. Here is an extract showing row 16:
+| 1 14 91 364 ... 1 15 105 455 1365 ... 1 16 120 #[b 560] 1820 4368 ...
+h5 1. Combinations with Repetition
+p OK, now we can tackle this one ...
+img(src='https://www.mathsisfun.com/combinatorics/images/ice-cream2.jpg')
+p Let us say there are five flavors of icecream: #[b banana, chocolate, lemon, strawberry and vanilla].
+p We can have three scoops. How many variations will there be?
+p Let's use letters for the flavors: {b, c, l, s, v}. Example selections include
+ul
+	li {c, c, c} (3 scoops of chocolate)
+	li {b, l, v} (one each of banana, lemon and vanilla)
+	li {b, v, v} (one of banana, two of vanilla)
+p (And just to be clear: There are #[b n=5] things to choose from, we choose #[b r=3] of them, order does not matter, and we #[b can] repeat!)
+p Now, I can't describe directly to you how to calculate this, but I can show you a #[b special technique] that lets you work it out.
+img(src='https://www.mathsisfun.com/combinatorics/images/bclsv.gif')
+p Think about the ice cream being in boxes, we could say "move past the first box, then take 3 scoops, then move along 3 more boxes to the end" and we will have 3 scoops of chocolate!
+p So it is like we are ordering a robot to get our ice cream, but it doesn't change anything, we still get what we want.
+p We can write this down as 
+	img(src='https://www.mathsisfun.com/combinatorics/images/acccaaa.gif')
+	| (arrow means #[b move], circle means #[b scoop]).
+p In fact the three examples above can be written like this:
+table: tbody
+	tr
+		td {c, c, c} (3 scoops of chocolate):
+		td: img(src='https://www.mathsisfun.com/combinatorics/images/acccaaa.gif')
+	tr
+		td {b, l, v} (one each of banana, lemon and vanilla):
+		td: img(src='https://www.mathsisfun.com/combinatorics/images/caacaac.gif')
+	tr
+		td {b, v, v} (one of banana, two of vanilla):
+		td: img(src='https://www.mathsisfun.com/combinatorics/images/caaaacc.gif')
+p So instead of worrying about different flavors, we have a #[+m simpler] question: "how many different ways can we arrange arrows and circles?"
+p Notice that there are always 3 circles (3 scoops of ice cream) and 4 arrows (we need to move 4 times to go from the 1st to 5th container).
+p So (being general here) there are #[+m r + (n−1)] positions, and we want to choose #[+m r] of them to have circles.
+p This is like saying "we have #[+m r + (n−1)] pool balls and want to choose #[+m r] of them". In other words it is now like the pool balls question, but with slightly changed numbers. And we can write it like this:
+table: tbody
+	tr: td #[em (r + n − 1)!]#[strong r!(n − 1)!] = (#[em r + n − 1]#[strong r])
+	tr: td where #[+m n] is the number of things to choose from, and we choose #[+m r] of them repetition allowed, order doesn't matter.
+p Interestingly, we can look at the arrows instead of the circles, and say "we have #[+m r + (n−1)] positions and want to choose #[+m (n−1)] of them to have arrows", and the answer is the same:
+| #[em (r + n − 1)!]#[strong r!(n − 1)!] = (#[em r + n − 1]#[strong r]) = (#[em r + n − 1]#[strong n − 1])
+p So, what about our example, what is the answer?
+| #[em (3+5−1)!]#[strong 3!(5−1)!] = #[em 7!]#[strong 3!4!] = #[em 5040]#[strong 6×24] = 35
+p There are 35 ways of having 3 scoops from five flavors of icecream.
+h4 In Conclusion
+p Phew, that was a lot to absorb, so maybe you could read it again to be sure!
+p But knowing #[i how] these formulas work is only half the battle. Figuring out how to interpret a real world situation can be quite hard.
+p But at least you now know the 4 variations of "Order does/does not matter" and "Repeats are/are not allowed":
+table: tbody
+	tr
+		td
+		th Repeats allowed
+		th No Repeats
+	tr
+		th Permutations (order matters):
+		td n
+		td n!#[strong (n − r)!]
+	tr
+		th Combinations (order doesn't matter):
+		td #[em (r + n − 1)!]#[strong r!(n − 1)!]
+		td n!#[strong r!(n − r)!]
+| 708, 1482, 709, 1483, 747, 1484, 748, 749, 1485, 750#[a(href='https://www.mathsisfun.com/activity/subsets.html') Activity: Subsets]#[a(href='https://www.mathsisfun.com/combinatorics/combinations-permutations-calculator.html') Combinations and Permutations Calculator]#[a(href='https://www.mathsisfun.com/pascals-triangle.html') Pascal's Triangle]#[a(href='https://www.mathsisfun.com/data/lottery.html') Lotteries]

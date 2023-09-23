@@ -1,0 +1,64 @@
+
+figure
+	ol
+		li: +m.block \int x^n \dd x = \frac{x^{n+1}}{n+1} + C; \quad n \ne -1;\\\quad \int \dd x = x + C; 
+		li: +m.block \int \frac{\dd x}x = \ln |x| + C
+		li: +m.block \int e^x \dd x = e^x + C
+		li: +m.block \int a^x \dd x = \frac{a^x}{\ln{a}} + C \quad (a \gt 0, a \ne 1)
+		li: +m.block \int \sin x \dd x = - \cos{x} + C
+		li: +m.block \int \cos x \dd x = \sin{x} + C
+		li: +m.block \int \frac{\dd x}{\cos^2 x}= \tg x + C
+		li: +m.block \int \frac{\dd x}{\sin^2 x} = - \ctg x + C
+		li: +m.block a \gt 0: \int \frac{\dd x}{\sqrt{a^2 - x^2}} = \left\{\arcsin \frac xa = \frac{\pi}2 - \arccos \frac xa\right\} + C
+		li: +m.block \int\frac{\dd x}{\sqrt{x^2 \pm a^2}} = \ln \left| x+\sqrt{x^2 \pm a^2} \right| + C
+		li: +m.block \int\frac{\dd x}{x^2 + a^2} = \frac 1a \arctg\frac xa + C
+		li: +m.block \int\frac{\dd x}{x^2 - a^2} = \frac 1{2a} \ln \left|\frac{x - a}{x+a}\right| + C
+	figcaption: h2 Таблица неопределенных интегралов
+figure
+	ol
+		li: +m.block \int\sh x \dd x = \ch x + C
+		li: +m.block \int\ch x \dd x = \sh x + C
+		li: +m.block \int\frac{\dd x}{\ch^2 x} = \th x + C
+		li: +m.block \int\frac{\dd x}{\sh^2 x} = - \cth x + C
+		li: +m.block a \gt 0: \int\frac{\dd x}{\sqrt{x^2 + a^2}} = \arsh \frac xa + C;
+		li: +m.block a \gt 0, x \ge a: \int\frac{\dd x}{\sqrt{x^2 - a^2}} = \arch \frac xa + C;
+		li: +m.block \int\frac{\dd x}{\sqrt{x^2 - a^2}} = -\arch \left(-\frac xa\right) + C; \quad (a \gt 0, x \leqslant -a)
+		li: +m.block \int\frac{\dd x}{x^2 - a^2} = - \frac 1a \arth \frac xa + C; \quad a \gt 0, |x| \lt a
+		li: +m.block a \gt 0, |x| \gt a : \int\frac{\dd x}{x^2 - a^2} = - \frac 1a \arcth \frac xa + C;
+	figcaption: h2 Интегралы, связанные с гиперболическими функциями
+h4 Таблица интегралов в дифференциальной форме
+p В математическом анализе большое значение имеет преобразование дифференциалов. Задачей интегрирования является сведение функции за знак дифференциала. Ниже приводится таблица интегралов в дифференциальной форме, устанавливающая связь между дифференциалами – бесконечно малыми приращениями.
+ol
+	li: +m.block x^n \dd x = \frac 1{n+1} d x^{n+1}; \quad n \ne -1
+	li: +m.block \frac{\dd x}x = d \ln |x|
+	li: +m.block e^x \dd x = d e^x
+	li: +m.block a^x \dd x = \frac{1}{\ln{a}}d a^x \quad (a \gt 0, a \ne 1)
+	li: +m.block \sin x \dd x = - d\cos{x}
+	li: +m.block \cos x \dd x = d\sin{x}
+	li: +m.block \frac{\dd x}{\cos^2 x}= d\tg x
+	li: +m.block \frac{\dd x}{\sin^2 x} = - d\ctg x
+	li: +m.block \frac{\dd x}{\sqrt{a^2 - x^2}} = d\arcsin \frac xa \quad (a \gt 0)
+	li: +m.block \frac{\dd x}{\sqrt{x^2 \pm a^2}} = d\ln \left| x+\sqrt{x^2 \pm a^2} \right|
+	li: +m.block \frac{\dd x}{x^2 + a^2} = \frac 1a d\arctg\frac xa
+	li: +m.block \frac{\dd x}{x^2 - a^2} = \frac 1{2a} d\ln \left|\frac{x - a}{x +a}\right|
+p Формулы, связанные с гиперболическими функциями: 
+ol
+	li: +m.block \sh x \dd x = d\ch x
+	li: +m.block \ch x \dd x = d\sh x
+	li: +m.block \frac{\dd x}{\ch^2 x} = d\th x
+	li: +m.block \frac{\dd x}{\sh^2 x} = - d\cth x
+	li: +m.block \frac{\dd x}{\sqrt{x^2 + a^2}} = d\arsh \frac xa; \quad (a \gt 0)
+	li: +m.block \frac{\dd x}{\sqrt{x^2 - a^2}} = d\arch \frac xa ; \quad (a \gt 0, x \geqslant a)
+	li: +m.block \frac{\dd x}{\sqrt{x^2 - a^2}} = -d\arch \left(-\frac xa\right) ; \quad (a \gt 0, x \leqslant -a)
+	li: +m.block \frac{\dd x}{x^2 - a^2} = - \frac 1a d\arth \frac xa; \quad a \gt 0, |x| \lt a
+	li: +m.block \frac{\dd x}{x^2 - a^2} = - \frac 1a d\arcth \frac xa; \quad a \gt 0, |x| \gt a
+figure
+	ol
+		li: +m.block \int d\Bigl(f(x) \Bigr) = f(x) + C
+		li: +m.block \int (u \pm v) \dd x = \int u \dd x \pm \int v \dd x
+		li: +m.block \int c u \dd x = c \int u \dd x
+		li: +m.block \int u dv = uv - \int v du
+		li: +m.block \int f(x) \dd x = \int f(\varphi(t))\varphi'(t) dt,\quad x = \varphi(t)
+	figcaption 
+		h2 Основные методы интегрирования
+		p Где #[+m f, u, v] – это функции от #[+m x] #[+m c] – постоянная.
