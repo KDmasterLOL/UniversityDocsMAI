@@ -1,28 +1,18 @@
 <script lang="ts">
-	import renderMathInElement from 'katex/contrib/auto-render';
-
-	import katex from 'katex/dist/katex';
 	import katex from 'katex';
-	import { onMount } from 'svelte';
+	import 'katex/dist/katex.min.css';
 
-	let el: HTMLElement;
-	// onMount(() => {
-	// 	renderMathInElement(el, {
-	// 		delimiters: [
-	// 			{ left: '$$', right: '$$', display: true },
-	// 			{ left: '$', right: '$', display: false },
-	// 			{ left: '\\(', right: '\\)', display: false },
-	// 			{ left: '\\[', right: '\\]', display: true }
-	// 		],
-	// 		macros: { '\\dd': '\\text{d}#1' },
-	// 		throwOnError: false
-	// 	});
-	// 	katex.renderToString();
-	// });
+	export let expression: string;
+	export let is_block = false;
+	const props = {
+		macros: {
+			'\\dd': '\\text{d}#1',
+			'\\ddv': '\\frac{\\dd{#1}}{\\dd{#2}}',
+			'\\same': String.raw`\left\{#1\mathbb{=}#2\right\}`
+		},
+		displayMode: is_block,
+		throwOnError: false
+	};
 </script>
 
-<section bind:this={el} class="math">
-	<slot />
-</section>
-
-<svelte:head />
+{@html katex.renderToString(expression, props)}

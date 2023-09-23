@@ -1,7 +1,11 @@
 <script>
 	import katex from 'katex';
+	import Math from '$lib/components/Math.svelte';
+	
 </script>
 
+
+<Math expression="x_2+10"></Math>
 <figure>
 	<template lang="pug">
 		+m x_1` + x^{223} + \sum
@@ -10,3 +14,4 @@
 
 	<figcaption>Formula with some description of used symbols</figcaption>
 </figure>
+

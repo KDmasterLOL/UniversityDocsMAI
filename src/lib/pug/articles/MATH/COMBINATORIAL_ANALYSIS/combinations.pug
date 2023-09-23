@@ -1,0 +1,204 @@
+h3 Permutations and Combinations
+	+source(links=['https://www.geeksforgeeks.org/permutations-and-combinations/amp/'])
+p.intro Permutation and Combination are the most fundamental concepts in mathematics and with these concepts, a new branch of mathematics is introduced to students #[eg combinatorics]. Permutation and Combination are the ways to arrange a group of objects by selecting them in a specific order and forming their subsets. To arrange groups of data in a specific order permutation and combination formulas are used. Selecting the data or objects from a certain group is said to be permutation, whereas the order in which they are arranged is called a combination.
+dl 
+	dt: dfn Permutation
+	dd 
+		p The distinct interpretations of a provided number of components carried one by one, or some, or all at a time. #[span.example if we have two components A and B, then there are two likely performances, AB and BA]
+	dt: dfn Permutation formula #[+m P_r^n = \frac{n!}{(n-r)!}]
+		p The number of ways to pick #[strong r] things out of #[strong n] different things in #[strong a #[em specific] order] and replacement is not allowed
+		details.example
+			summary Let choose from components #[+m n = 3 (A, B, C)] and #[+m r = 2] elements #[eg All permutations of size 2].
+			p Then there are #[strong P] such permutations, which is equal to 6. These six permutations are AB, AC, BA, BC, CA, and CB. The six permutations of A, B, and C taken three at a time are shown in the image added below:
+			img(src="https://media.geeksforgeeks.org/wp-content/uploads/20230502131208/Permutation-Combination-4.webp")
+h5 Explanation of Permutation Formula
+blockquote
+	p As we know, permutation is a arrengement of r things out of n where order of arrengement is important( AB and BA are two different permutation). If there are three different numerals 1, 2 and 3 and if someone is curious to permute the numerals taking 2 at a moment, it shows (1, 2), (1, 3), (2, 1), (2, 3), (3, 1), and (3, 2). That is it can be accomplished in 6 methods.
+	p Here, (1, 2) and (2, 1) are distinct. Again, if these 3 numerals shall be put handling all at a time, then the interpretations will be (1, 2, 3), (1, 3, 2), (2, 1, 3), (2, 3, 1), (3, 1, 2) and (3, 2, 1) i.e. in 6 ways.
+	p In general, n distinct things can be set taking r (r < n) at a time in n(n – 1)(n – 2)…(n – r + 1) ways. In fact, the first thing can be any of the n things. Now, after choosing the first thing, the second thing will be any of the remaining n – 1 things. Likewise, the third thing can be any of the remaining n – 2 things. Alike, the r thing can be any of the remaining n – (r – 1) things.
+	p Hence, the entire number of permutations of n distinct things carrying r at a time is n(n – 1)(n – 2)…[n – (r – 1)] which is written as P. Or, in other words,
+h4 Combination
+p It is the distinct sections of a shared number of components carried one by one, or some, or all at a time. For example, if there are two components A and B, then there is only one way to select two things, select both of them.
+p For example, let n = 3 (A, B, and C) and r = 2 (All combinations of size 2). Then there are #[strong C] such combinations, which is equal to 3. These three combinations are AB, AC, and BC.
+p Here, the combination of any two letters out of three letters A, B, and C is shown below, we notice that in combination the order in which A and B are taken is not important as AB and BA represent the same combination.
+blockquote: p.note In the same example, we have distinct points for permutation and combination. For, AB and BA are two distinct items i.e., two distinct permutation, but for selecting, AB and BA are the same i.e., same combination.
+h5 Combination Formula
+p Combination Formula is used to choose #[+m r] components out of a total number of #[+m n] components, and is given by:
+p Using the above formula for r and (n-r), we get the same result. Thus,
+blockquote
+h5 Explanation of Combination Formula
+blockquote
+	p Combination, on the further hand, is a type of pack. Again, out of those three numbers 1, 2, and 3 if sets are created with two numbers, then the combinations are (1, 2), (1, 3), and (2, 3).
+	p Here, (1, 2) and (2, 1) are identical, unlike permutations where they are distinct. This is written as C. In general, the number of combinations of n distinct things taken r at a time is,
+h4 Derivation of Permutation and Combination Formulas
+p We can derive these Permutation and Combination formulas using the basic counting methods as these formulas represent the same thing. Derivation of these formulas is as follows:
+h5 Derivation of Permutations Formula
+p Permutation is selecting r distinct objects from n objects without replacement and where the order of selection is important, by the fundamental theorem of counting and the definition of permutation, we get
+blockquote: p: strong P (n, r) = n . (n-1) . (n-2) . (n-3).  . . .  .(n-(r+1))
+p By Multiplying and Dividing above with (n-r)! = (n-r).(n-r-1).(n-r-2).  . . .  .3. 2. 1, we get
+blockquote
+	p P (n, r) = [n.(n−1).(n−2)….(nr+1)[(n−r)(n−r−1)(n-r)!] / (n-r)!
+	p: strong ⇒ P (n, r) = n!/(n−r)!
+p Thus, the formula for P (n, r) is derived.
+h5 Derivation of Combinations Formula
+p Combination is choosing r items out of n items when the order of selection is of no importance. Its formula is calculated as,
+blockquote
+	p C(n, r) = Total Number of Permutations /Number of ways to arrange r different objects. [Since by the fundamental theorem of counting, we know that number of ways to arrange r different objects in r ways = r!]
+	p C(n,r) = P (n, r)/ r!
+	p: strong ⇒ C(n,r) = n!/(n−r)!r!
+p Thus, the formula for Combination i.e., C(n, r) is derived.
+h4 Difference Between Permutation and Combination
+p Various #[a(href='https://www.geeksforgeeks.org/permutation-vs-combination-definition-differences-examples/amp/') differences between the permutation and combination] can be understood by the following table:
+figure
+	figcaption: h1 Permutation VS Combination 
+	table
+		thead: tr
+			th: p Property
+			th: p Permutation
+			th: p Combination
+		tbody
+			tr
+				th Order of arrangement
+				td Important #[span.example AB and BA are different combinations].
+				td Not important #[span.example AB and BA are the same combinations].
+			tr
+				th When used
+				td When different kinds of things are to be sorted or arranged.
+				td When the same kind of things are tobe sorted.
+			tr
+				th Example
+				td Permutation of two things out of three given things a, b, c is ab, ba, bc, cb, ac, ca.
+				td the combination of two things from three given thingsa, b, c is ab, bc, ca.
+
+h4 Solved Examples on Permutation and Combination
+p #[strong Example 1: Find the number of permutations and combinations of n = 9 and r = 3].
+p: strong Solution:
+blockquote
+	p Given, n = 9, r = 3
+	p Using the formula given above:
+	p For Permutation:
+	p P = (n!) / (n – r)!
+	p ⇒ P = (9!) / (9 – 3)!
+	p ⇒ P = 9! / 6! = (9 × 8 × 7 × 6! )/ 6!
+	p: strong ⇒ P= 504
+	p For Combination:
+	p C= n!/r!(n − r)!
+	p ⇒ C= 9!/3!(9 − 3)!
+	p ⇒ C= 9!/3!(6)!
+	p ⇒ C= 9 × 8 × 7 × 6!/3!(6)!
+	p: strong ⇒ C= 84
+p: strong Example 2: In how many ways a committee consisting of 4 men and 2 women, can be chosen from 6 men and 5 women?
+p: strong Solution:
+blockquote
+	p Choose 4 men out of 6 men = C ways = 15 ways
+	p Choose 2 women out of 5 women = C ways = 10 ways
+	p The committee can be chosen in C × C= 150 ways.
+p: strong Example 3: In how many ways can 5 different books be arranged on a shelf?
+p: strong Solution:
+blockquote
+	p This is a permutation problem because the order of the books matters.
+	p Using the permutation formula, we get:
+	p P = 5! / (5 – 5)! = 5! / 0! = 5 x 4 x 3 x 2 x 1 = 120
+	p: strong Therefore, there are 120 ways to arrange 5 different books on a shelf.
+p: strong Example 4: How many 3-letter words can be formed using the letters from the word “FABLE”?
+p: strong Solution:
+blockquote
+	p This is a permutation problem because the order of the letters matters.
+	p Using the permutation formula, we get:
+	p P = 5! / (5 – 3)! = 5! / 2! = 5 x 4 x 3 = 60
+	p: strong Therefore, there are 60 3-letter words that can be formed using the letters from the word “FABLE”.
+p: strong Example 5: A committee of 5 members is to be formed from a group of 10 people. In how many ways can this be done?
+p: strong Solution:
+blockquote
+	p This is a combination problem because the order of the members doesn’t matter.
+	p Using the combination formula, we get:
+	p C = 10! / (5! x (10 – 5)!) = 10! / (5! x 5!)
+	p ⇒C= (10 x 9 x 8 x 7 x 6) / (5 x 4 x 3 x 2 x 1) = 252
+	p: strong Therefore, there are 252 ways to form a committee of 5 members from a group of 10 people.
+p: strong Example 6: A pizza restaurant offers 4 different toppings for their pizzas. If a customer wants to order a pizza with exactly 2 toppings, in how many ways can this be done?
+p: strong Solution:
+blockquote
+	p This is a combination problem because the order of the toppings doesn’t matter.
+	p Using the combination formula, we get:
+	p C = 4! / (2! x (4 – 2)!) = 4! / (2! x 2!) = (4 x 3) / (2 x 1) = 6
+	p: strong Therefore, there are 6 ways to order a pizza with exactly 2 toppings from 4 different toppings.
+p: strong Example 7: How considerable words can be created by using 2 letters from the term“LOVE”?
+p: strong Solution:
+blockquote
+	p The term “LOVE” has 4 distinct letters.
+	p Therefore, required number of words = P = 4! / (4 – 2)!
+	p Required number of words = 4! / 2! = 24 / 2
+	p: strong ⇒ Required number of words = 12
+p: strong Example 8: Out of 5 consonants and 3 vowels, how many words of 3 consonants and 2 vowels can be formed?
+p: strong Solution:
+blockquote
+	p Number of ways of choosing 3 consonants from 5 = C
+	p Number of ways of choosing 2 vowels from 3 = C
+	p Number of ways of choosing 3 consonants from 2 and 2 vowels from 3 = C × C
+	p ⇒ Required number = 10 × 3
+	p = 30
+	p It means we can have 30 groups where each group contains a total of 5 letters (3 consonants and 2 vowels).
+	p Number of ways of arranging 5 letters among themselves
+	p = 5! = 5 × 4 × 3 × 2 × 1 = 120
+	p Hence, the required number of ways = 30 × 120
+	p: strong ⇒ Required number of ways = 3600
+p: strong Example 9: How many different combinations do you get if you have 5 items and choose 4?
+p: strong Solution:
+blockquote
+	p Insert the given numbers into the combinations equation and solve. “n” is the number of items that are in the set (5 in this example); “r” is the number of items you’re choosing (4 in this example):
+	p C(n, r) = n! / r! (n – r)!
+	p ⇒ C= 5! / 4! (5 – 4)!
+	p ⇒ C= (5 × 4 × 3 × 2 × 1) / (4 × 3 × 2 × 1 × 1)
+	p ⇒ C= 120/24
+	p ⇒ C= 5
+	p: strong The solution is 5.
+p #[strong Example 10: Out of 6 consonants and 3 vowels, how many expressions] #[strong of 2 consonants and 1 vowel can be created?]
+p: strong Solution:
+blockquote
+	p Number of ways of selecting 2 consonants from 6 = C
+	p Number of ways of selecting 1 vowels from 3 = C
+	p Number of ways of selecting 3 consonants from 7 and 2 vowels from 4.
+	p ⇒ Required ways = C × C
+	p ⇒ Required ways = 15 × 3
+	p ⇒ Required ways= 45
+	p It means we can have 45 groups where each group contains a total of 3 letters (2 consonants and 1 vowels).
+	p Number of ways of arranging 3 letters among themselves = 3! = 3 × 2 × 1
+	p ⇒ Required ways to arrenge three letters = 6
+	p Hence, the required number of ways = 45 × 6
+	p: strong ⇒ Required ways = 270
+p #[strong Example 11: In how many distinct forms] #[strong can the letters of the term ‘PHONE’ be organized so that the vowels consistently] #[strong come jointly?]
+p: strong Solution:
+blockquote
+	p The word ‘PHONE’ has 5 letters. It has the vowels ‘O’,’ E’, in it and these 2 vowels should consistently come jointly. Thus these two vowels can be grouped and viewed as a single letter. That is, PHN(OE).
+	p Therefore we can take total letters like 4 and all these letters are distinct.
+	p Number of methods to organize these letters = 4! = 4 × 3 × 2 × 1
+	p ⇒ Required ways arrenge letters = 24
+	p All the 2 vowels (OE) are distinct.
+	p Number of ways to arrange these vowels among themselves = 2! = 2 × 1
+	p ⇒ Required ways to arrange vowels = 2
+	p Hence, the required number of ways = 24 × 2
+	p: strong ⇒ Required ways = 48.
+h4 FAQs on Permutations and Combinations
+h5 Q1: What is the factorial formula?
+p: strong Answer:
+blockquote
+	p Factorial formula is used for the calculation of permutations and combinations. The factorial formula for n! is given as
+	p: strong n! = n × (n-1) × . . . × 4 × 3 × 2 × 1
+	p For example, 3! = 3 × 2 × 1 = 6 and 5! = 5 × 4 × 3 × 2 × 1 = 120.
+h5 Q2: What does C represent?
+p: strong Answer:
+blockquote: p C represents the number of combinations that can be made from #[strong “n”] objects taking#[strong “r”] at a time.
+h5 Q3: What do you mean by permutations and combinations?
+p: strong Answer:
+blockquote: p A permutation is an act of arranging things in a specific order. Combinations are the ways of selecting #[strong r] objects from a group of #[strong n] objects, where the order of the object chosen does not affect the total combination.
+h5 Q4: Write examples of permutations and combinations.
+p: strong Answer:
+blockquote: p The number of 3-letter words that can be formed by using the letters of the word says, HELLO; P = 5!/(5-3)! this is an example of a permutation.The number of combinations we can write the words using the vowels of the word HELLO; C =5!/[2! (5-2)!], this is an example of a combination.
+h5 Q5: Write the formula for finding permutations and combinations.
+p: strong Answer:
+blockquote: ul
+	li Formula for calculating permutations: #[strong Pr = n!/(n-r)!]
+	li Formula for calculating combinations: #[strong Cr = n!/[r! (n-r)!]]
+h5 Q6: Write some real-life examples of permutations and combinations.
+p: strong Answer:
+blockquote: p Sorting of people, numbers, letters, and colors are some examples of permutations.Selecting the menu, clothes, and subjects, are examples of combinations.
