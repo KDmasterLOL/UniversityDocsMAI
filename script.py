@@ -5,7 +5,9 @@ import copy
 
 def process_files(function):
     # traverse root directory, and list directories as dirs and files as files
-    for root, dirs, files in os.walk("./src/lib/pug/articles/MATH/OPTIMIZATION"):
+    for root, dirs, files in os.walk(
+        "./src/lib/pug/articles/MATH/COMBINATORIAL_ANALYSIS"
+    ):
         path = root.split(os.sep)
         for file in files:
             if file.endswith(".pug"):
@@ -20,7 +22,7 @@ def process_files(function):
 # If you not sure not CHANGE!! DANGER
 def function(text):
     orig = copy.copy(text)
-    for entry in re.finditer(r"#\[\+m", orig):
+    for entry in re.finditer(r"#\[\+m(?!=)", orig):
         was_open = False
         pos = entry.end()
         result = None
@@ -34,6 +36,8 @@ def function(text):
                     buff = orig[entry.end() : pos].strip()
                     if "]" in buff:
                         buff = "= String.raw`%s`" % buff
+                    else:
+                        buff = " " + buff
                     result = entry[0] + buff + orig[pos]
             pos += 1
         text = text.replace(
@@ -43,203 +47,156 @@ def function(text):
 
 
 def test():
-    text = r"""h1 Симплекс метод
-    dl
-        dt Symplex method
-        toggle(target="example")
-        dd In the method first express each linear program in the form of a simplex tableau.
-        example
-            p
-                | Task: #[+m \begin{align} x_1 + x_2 \to \max \\ -x_1 + x_2 \le 1 \\ x_1  \le 3 \\ x_2 \le 2 \\ x_1,x_2 \ge 0 \end{align}]. The variables are nonnegative, but the inequalities have to be replaced by equations, by introducing slack variables.#[br]The equational form is
-                +m \begin{align} x_1 + x_2 \\ -x_1 + x_2 + x_3 = 1 \\ x_1 + x_4 = 3 \\ x_2 + x_5 = 2 \\ x_1,x_2,…,x_5 \ge 0 \end{align}
-                | with the matrix 
-                +m A = \begin{pmatrix} -1 & 1 & 1 & 0 & 0 \\ 1 & 0 & 0 & 1 & 0 \\ 0 & 1 & 0 & 0 & 1 \end{pmatrix}
-            p First express linear program in the form of a simplex tableau. In our case begin with the tableau #[+m \begin{array}{ccc} x_3& = 1 + x_1 - x_2 \\ x_4& = 3 - x_1 \\ x_5& = 2 - x_2 \\ \hline z& = x_1+x_2 \end{array}]. The first three rows consist of the equations of the linear program, in which the slack variables have been carried over to the left-hand side and the remaining terms are on the right-hand side. The last row, separated by a line, contains a new variable z, which expresses the objective function. Each simplex tableau is associated with a certain basic feasible solution. In our case we #[mark substitute #[+m 0] for the variables #[+m x_1, x_2] from the right-hand side, and without calculation see that #[+m x_3 = 1, x_4 = 3, x_5 = 2]]. This #[strong feasible solution] is basic with #[+m B = \{3, 4, 5\}] variables indeces. #[note #[+m A_B] is the identity matrix]. The variables #[+m x_3, x_4, x_5] from the left-hand side are basic and the variables #[+m x_1, x_2] from the right-hand side are nonbasic. The value of the objective function #[+m z = 0] corresponding to this basic feasible solution can be read off from the last row of the tableau. 
-            p From the initial simplex tableau we will construct a sequence of tableaus of a similar form, by gradually rewriting them according to certain rules. Each tableau will contain the same information about the linear program, only written differently. The procedure terminates with a tableau that represents the information so that the desired optimal solution can be read off directly. 
-            p Let us go to the first step. We try to increase the value of the objective function by increasing one of the nonbasic variables #[+m x_1] or #[+m x_2]. In the tableau observe that #[mark increasing the value of #[+m x_1] (i.e. making #[+m x_1] positive) increases the value of #[+m z]]. #[em The same is true for #[+m x_2], because both variables have positive coefficients in the #[+m z]-row of the tableau]. We can choose either #[+m x_1] or #[+m x_2]. Decide #[em (arbitrarily)] increase #[+m x_2], while #[+m x_1] will stay 0.#[br]#[strong How much can we increase #[+m x_2]?] To maintain feasibility, we have to be careful not to let any of the basic variables #[+m x_3, x_4, x_5] go #[em below zero]. This means that the equations determining #[+m x_3, x_4, x_5] may limit the increment of #[+m x_2].#[br]Let us consider the #[strong first equation] #[+m x_3 = 1 + x_1 − x_2]. Together with the implicit constraint #[+m x_3 ≥ 0] it #[mark lets us increase #[+m x_2] up to the value #[+m x_2 = 1]] (while keeping #[+m x_1 = 0]). The #[strong second equation] #[+m x_4 = 3 − x_1] does not limit the increment of #[+m x_2] at all, and the #[strong third equation] #[+m x_5 = 2 − x_2] allows for an increase of #[+m x_2] up to #[+m x_2 = 2] before #[+m x_5] gets negative. The most stringent restriction thus follows from the first equation.
-            p.
-                We increase #[+m x_2] as much as we can, obtaining #[+m x_2 = 1] and #[+m x_3 = 0]. From the remaining equations of the tableau we get the values of the other variables:
-                #[+m \begin{align} x_4 =3−x_1=3 \\ x_5 =2−x_2=1\end{align} ]. In this new feasible solution #[+m x_3] became zero and #[+m x_2] nonzero. Quite naturally we thus transfer #[+m x_3] to the right-hand side, where the nonbasic variables live, and #[+m x_2] to the left-hand side, where the basic variables reside. We do it by means of the most stringent equation #[+m x_3 = 1 + x_1 − x_2], from which we express #[+m x_2 = 1 + x_1 − x_3].
-                We substitute the right-hand side for #[+m x_2] into the remaining equations, and
-                we arrive at a new tableau: #[+m \begin{array}{ccc} x_2 &= 1 + x_1 − x_3 \\ x_4 &= 3 − x_1 \\ x_5 &= 1 − x_1 +x_3 \\ \hline z &= 1 + 2x_1 − x_3 \end{array}]
-                Here #[+m B = \{2,4,5\}], which corresponds to the basic feasible solution #[+m x = (0, 1, 0, 3, 1)] with the value of the objective function #[+m z = 1].#[br]This process of rewriting one simplex tableau into another is called a #[dfn pivot step]. In each pivot step some nonbasic variable, in our case #[+m x_2], enters the basis, while some basic variable, in our case #[+m x_3], leaves the basis.#[br]In the new tableau we can further increase the value of the objective function by increasing #[+m x_1], while increasing #[+m x_3] would lead to a smaller #[+m z]-value. The first equation does not restrict the increment of #[+m x_1] in any way, from the second one we get #[+m x_1 ≤ 3], and from the third one #[+m x_1 ≤ 1], so the strictest limitation is implied by the third equation. Similarly as in the previous step, we express #[+m x_1] from it and we substitute this expression into the remaining equations. Thereby #[+m x_1] enters the basis and moves to the left-hand side, and #[+m x_5] leaves the basis and migrates to the right-hand side.#[br]The tableau we obtain is 
-                #[+m \begin{array}{ccc} x_1 = 1 + x_3 − x_5 \\ x_2 = 2 − x_5 \\ x_4 = 2 − x_3 + x_5 \\ \hline z = 3 + x_3 − 2x_5 \end{array}] with #[+m B = \{1,2,4\}], basic feasible solution #[+m x = (1,2,0,2,0)], and #[+m z = 3]. After one more pivot step, in which #[+m x_3] enters the basis and #[+m x_4] leaves it, we arrive at the tableau
-                #[+m \begin{array}{ccc} x_1 =3 − x_4 \\ x_2 = 2 − x_5 \\ x_3 =2−x_4 +x_5 \\ \hline z = 5 − x_4 − x_5 \end{array}] with basis #[+m {1, 2, 3}], basic feasible solution #[+m x = (3, 2, 2, 0, 0)], and #[+m z = 5]. In this tableau, no nonbasic variable can be increased without making the objective function value smaller, so we are stuck. Luckily, this also means that we have already found an optimal solution! Why?#[br]Let us consider an arbitrary feasible solution #[+m \tilde x  = (\tilde{x_1},…,\tilde{x_5})] of our linear program, with the objective function attaining some value #[+m \tilde z]. Now #[+m \tilde x] and #[+m z] satisfy all equations in the final tableau, which was obtained from the original equations of the linear program by equivalent transformations. Hence we necessarily have #[+m \tilde z = 5 − \tilde {x_4} − \tilde {x_5}].#[br]Together with the nonnegativity constraints #[+m x_4,x_5 ≥ 0] this implies #[+m z ≤ 5]. The tableau even delivers a #[em proof] that #[+m x = (3, 2, 2, 0, 0)] is the only optimal solution: #[mark If #[+m z = 5], then #[+m x_4 = x_5 = 0], and this determines the values of the remaining variables #[strong uniquely]].
-
-
-
-    h4 Exception Handling
-    h5 Infeasibility
-    intro In order that the simplex method be able to start at all, we need a feasible basis. #[note In linear programs of the #[strong form] #[+m \vb c^T\vb x \to \max] subject to #[+m A \vb x ≤ b] and #[+m \vb x ≥ 0] with #[+m \vb b ≥ 0] we get free feasible basis. Indeed, the indices of the slack variables introduced in the transformation to equational form can serve as a feasible basis.]#[br]#[small However, in general, finding any feasible solution of a linear program is equally as difficult as finding an optimal solution]. Computing the initial feasible basis can be done by the simplex method itself, if we apply it to a suitable auxiliary problem.
-        toggle(target="example")
-    example
-        p Task: linear program in equational form #[+m \begin{aligned} x_1 + 2x_2 \to \max\\ x_1+3x_2+x_3=4 \\ 2x_2 +x_3 =2\\ x_1,x_2,x_3 ≥0 \end{aligned}]
-        ol
-            li Produce a feasible solution starting with #[+m() (x_1, x_2, x_3) = (0, 0, 0)]. This vector is #[em nonnegative], but of course it is #[strong not feasible], since it does not satisfy the equations of the linear program. 
-            li Introduce auxiliary variables #[+m x_4] and #[+m x_5] as “corrections” of infeasibility: #[+m x_4 =4−x_1−3x_2−x_3] expresses by how much the original variables #[+m x_1, x_2, x_3] fail to satisfy the first equation, and #[+m x_5 = 2 − 2x_2 − x_3] plays a similar role for the second equation. #[mark If we managed to find nonnegative values of #[+m x_1,x_2,x_3] for which both of these corrections come out as zeros, we would have a feasible solution of the considered linear program].
-            li The task of finding nonnegative #[+m x_1, x_2, x_3] with zero corrections can be captured by a linear program: #[+m \begin{aligned} − x_4 − x_5 \to \max\\ x_1 +3x_2 + x_3 +x_4 =4 \\ 2x_2 + x_3 + x_5 = 2\\ x_1,x_2,...,x_5 ≥ 0 \end{aligned}]
-            li The optimal value of the objective function #[+m −x_4 − x_5] is 0 exactly if there exist values of #[+m x_1,x_2,x_3] with zero corrections, i.e., a feasible solution of the original linear program. This is the #[strong right auxiliary linear program]. The variables #[+m x_4] and #[+m x_5] form a feasible basis, with the basic feasible solution #[+m() (0,0,0,4,2)]. #[small Here we use that the right-hand sides, 4 and 2, are nonnegative, but since we deal with equations, this can always be achieved by sign changes]. Once we express the objective function using the nonbasic variables, that is, in the form #[+m z = −6 + x_1 + 5x_2 + 2x_3], we can start the simplex method on the auxiliary linear program.
-            li The auxiliary linear program is surely bounded, since the objective function cannot be positive. The simplex method thus computes a basic feasible solution that is optimal. As training the reader can check that if we let #[+m x_1] enter the basis in the first pivot step and #[+m x_3] in the second, the final simplex tableau comes out as #[+m x_1 = 2 − x_2 − x_4 + x_5 x_3 = 2 − 2x_2 − x_5 z = − x_4 − x_5].
-            li The corresponding optimal solution #[+m() (2, 0, 2, 0, 0)] yields a basic feasible solution of the original linear program: #[+m() (x_1 , x_2 , x_3 ) = (2, 0, 2)]. The initial simplex tableau for the original linear program can even be obtained from the final tableau of the auxiliary linear program, by leaving out the columns of the auxiliary variables #[+m x_4] and #[+m x_5], and by changing the objective function back to the original one, expressed in terms of the nonbasic variables: #[+m \begin{aligned}x_1 =2− x_2 \\ x_3 =2−2x2 \\ \hline z = 2 + x_2 \end{aligned}]. #[small Starting from this tableau, a single pivot step already reaches the optimum].
-
-
-
-
-
-
-
-
-
-
-    dl
-        dt #[abbr(term="Условие допустимости") УД]
-        dd в задаче максимизации отсутствие отрицательных коэффициентов в ЦФ, а в задаче минимизации отсутствие положительных
-
-    h2 Особые случаи применения
-    dl
-        dt Вырожденность
-            toggle(target="example")
-        dd оптимальное решение - вырожденое. В ходе выполнения симплекс-метода проверка УД может привести к неоднозначному выбору исключаемой переменной, то есть #[+m \theta] нескольких ограничений будут одинаковы. И на следующей итерации одна или несколько базисных переменных примут нулевое значение. Тогда новое решение будет вырожденным. зам В вырожденном решении нет никакой опасности, за исключением небольших теоретических неудобств. С практической точки зрения вырожденность объясняется тем, что в исходной задаче присутствует по крайней мере одно избыточное ограничение
-        example
-            .
-                #[+m z=3x_1+9x_2 \rightarrow \max \\ \begin{cases} x_1+4x_2 \le 8 \\ x_1+2x_2 \le 4 \\ x_1,x_2 \ge 0 \end{cases}]
-                #[img.invert(src="Симплекс-таблица с оптимальным вырожденным решением.webp")]
-                На начальной итерации в качестве исключаемой можно выбрать как переменную #[+m x_3], так и #[+m х_4],. Если оставить в базисе переменную #[+m x_4] на следующей итерации она примет значение 0, т.е. получим вырожденное базисное решение. Оптимальное решение получается на следующей итерации.
-                Что же практически приводит к вырожденности решения? В графическом представлении решении этой задачи. Точка оптимума #[+m x_1=0, x_2=2] - пересечение трех прямых. Поскольку данная задача двухмерна, эта точка переопределена (на плоскости для определения точки достаточно двух прямых), и, следовательно, одно из ограничений избыточно.
-                #[img.invert(src="Пример графического оптимального вырожненого решения.webp")]
-                На практике информация о том, что некоторые ресурсы недефицитны, может быть полезной при интерпретации результатов решения задачи. Эти сведения также могут помочь выявить неточности и ошибки в постановке исходной задачи. К сожалению, не существует способов определить избыточное ограничение непосредственно из данных симплекс-таблиц.
-                С вычислительной и теоретической точек зрения вырожденность может привести к: 
-                1. В процессе вычислений может возникнуть зацикливание. Если в приведенной выше таблице сравнить первую и вторую итерации, то можно заметить, что значение ЦФ не изменилось (#[+m z= 18]). Поэтому может возникнуть ситуация, когда при реализации симплекс-метода некоторая последовательность будет повторяться, не изменяя значения целевой функции и не приводя к завершению вычислительного процесса. Существуют методы, предотвращающие зацикливание, однако они значительно замедляют процесс вычислений. Поэтому в большинстве программ, реализующих симплекс-метод, отсутствуют специальные средства защиты от зацикливания, тем более, что вероятность зацикливания очень мала.
-                2. Во-вторых, последствие вырожденности решения можно обнаружить, сравнивая первую и вторую итерации в приведенной выше таблице. Хотя в этих итерациях состав базисных и небазисных переменных различен, значения всех переменных и значение целевой функции не изменяются:
-                #[+m x_1 = 0, x_2 = 2, x_3= 0, x_4 = 0, z= 18]
-                Можно ли, несмотря на то, что оптимальное решение не достигнуто, остановить вычисления на первой итерации (когда впервые обнаруживается вырожденность)? Ответ отрицательный, так как решение может быть только временно вырожденным.
-            dt Связывающее неравенство
-            dd неравенство которое в точке оптимума выполняется как точное равенство
-            dt Альтернативные оптимальные решения
-            dd доступен диапазон оптимальных решений. #[i На примере графического метода] Возникает когда прямая ЦФ параллельна прямой, соответствующей связывающему неравенству, ЦФ принимает одно и тоже оптимальное значение на некотором множестве точек границы пространства решений, то есть имеет альтернативные оптимальные решения. Следующий пример показывает, что таких решений(если они существуют) бесконечное множество. Этот пример также проиллюстрирует практическую значимость альтернативных решений.
-            details
-                summary.example
-                div
-                    img(src="Альтернативные решения на графике.webp" alt="" srcset="")
-                    p множество альтернативных оптимальных решений - следствие того, что прямая ЦФ параллельна прямой, соответствующей связывающему ограничению
-                    img(src="Альтернативные решения таблица.webp")
-
-    example
-        +m.block.
-            \begin{aligned}
-            z = x+y \\
-            \begin{cases}
-            10x-2y\le 2 \\
-            x+2y\le 2
-            \end{cases}
-            \end{aligned}
-
-            \Longrightarrow
-
-            \begin{aligned}
-            z = x+y+0s_1+0s_2 \\
-            \begin{cases}
-            10x-2y+s_1 = 2 \\
-            x+2y+s_2 = 2
-            \end{cases}
-            \end{aligned}
-
-            \Longrightarrow
-
-            \begin{aligned}
-            z = x+y+0s_1+0s_2 \\
-            \begin{cases}
-            s_1 = 2-10x+2y \\
-            s_2 = 2-x-2y
-            \end{cases}
-            \end{aligned}
-
-            \Longrightarrow
-
-            \begin{aligned}
-            z = x+y=0.2+0=0.2 \\
-            \begin{cases}
-            x=\underbrace{0.2+0.2y-0.1s_1}_{(2+2y-s_1)/10} \Leftarrow 10x = 2+2y-s_1 \\
-            s_2 =1.8-2.2y-0.1s_1=2-\overbrace{(0.2+0.2y-0.1s_1)}^x-2y
-            \end{cases}
-            \end{aligned}
-
-            \Longrightarrow
-
-            \begin{aligned}
-            z = x+y+0s_1+0s_2 \\
-            \begin{cases}
-            x=0.2+0.2\overbrace{(\frac{18}{22}-\frac{1}{22}s_1-\frac{10}{22}s_2)}^{y}-0.1s_1 \\
-            y=\underbrace{\frac{18}{22}-\frac{1}{22}s_1-\frac{10}{22}s_2}_{(1.8-0.1s_1-s_2)/2.2} \Leftarrow 2.2y=1.8-0.1s_1-s_2
-            \end{cases}
-            \end{aligned}
-        +m.block.
-            \begin{array}{cccc|c}
-            1 & 1 & 0 & 0 & z \\
-            \hline
-            10 & -2 & 1 & 0 & 2 \\
-            1 & 2 & 0 & 1 & 2
-            \end{array}
-            \Longrightarrow
-            \begin{array}{cccc|c}
-            1 & 1 & 0 & 0 & z \\
-            \hline
-            10 & -2 & 1 & 0 & 2 \\
-            1 & 2 & 0 & 1 & 2
-            \end{array}
-    h2 FAQ
-    mixin question(question)
-        li 
-            strong=question+'?'
-            block
-    ol
-        +question("Зачем нужны ограничения если оптимальное решение только на вершинах многоугольника") Чтобы найти этот многоугольник!! Привести пример сложной системы графиков где точка (0,0) не является допустимым решением и сделать подводку к нахождению начального базисного решения 
-        +question("Как происходит перемещение из точки в точку с помощью введения в базис переменных") 
-        li Доказательство того что уменьшив или увеличив на какое-то число, то просто ее пересечения с осями сместятся на это число, а не в конец перпендикулярного этой прямой вектора с длинной этого числа. Это можно логически доказать как если бы у нас было уравнение состоящее из целых чисел #[+m x,y,s\in Z:x+y+s=\const], то если бы добавочная переменная 
-        li Переводя какую-либо переменную в базис #[+m \begin{cases}s_1=\const_1+ \alpha_1 x+\beta_1 y\\ s_2=\const_2+ \alpha_2 x+\beta_2 y \end{cases} \Rightarrow \begin{cases}x=(\const_1+\beta_1 y - s_1)/\alpha_1\\ s_2=\const_2+ \alpha_2 (\const_1+\beta_1 y - s_1)/\alpha_1+\beta_2 y \end{cases}] мы двигаем второй график на величину #[+m \frac{\alpha_2\const_1}{\alpha_1}] и в случае если бы графиком было #[+m m], то все бы они также подвинулись на эту величину, #[mark то есть: #[strong вводя переменную в базис все ограничения двигуются из исходной точки в направлении оси представляющей переменную на величину ] #[+m \frac{\alpha_2\const_1}{\alpha_1}]]
-        li В уравнение #[+m \alpha_1x_1+\alpha_2x_2+…+\alpha_nx_n + s = \const] каждая единица #[+m s] смещает график на #[+m \pm \frac{s}{\const}] это следует из #[+m p\in [1,n],i=\overline{1,n},\forall i\ne p,x_i = 0: \alpha_1x_1+\alpha_2x_2+…+\alpha_2x_2+…+\alpha_nx_n + s = \const \Leftrightarrow \alpha_10+\alpha_20+…+\alpha_px_p+…+\alpha_n0 + s = \alpha_px_p + s = \const \Rightarrow x_p = \frac{\const-s}{\alpha_p} =\frac{\const}{\alpha_p}-\frac{s}{\alpha_p}], то есть чтобы пересечение по оси #[+m x_p] было в точке ноль нужно обнулить чтобы выполнялось равенство #[+m \frac{\const}{\alpha_p}=\frac{s}{\alpha_p}], которое выполняется только при #[+m \const = s]
-        li 
-            p Сколько прямых столько и выбор на сколько сместиться по оси, то есть например если мы выбираем на сколько сместится по оси #[+m x], то у нас стоит выбор между количеством точек равным количеству прямых ограничений, так как они все пересекаются с этой осью #[small если они не паралельны ей] #[+m \begin{cases}\alpha_1x_1+…\\\alpha_2x_2+…\\\vdots\\\alpha_mx_m+…\end{cases}]
-
-
-
-
-
-    hgroup 
-        h5 There is no initial basis in the Simplex tableau 
-            a(book="Linear Programming: Theory and Applications Catherine Lewis May 11, 2008" chapter="8. What if there is no initial basis in the Simplex tableau?")
-        intro What does one do when the initial tableau contains no starting basis? That is, what happens if the initial tableau (for a program where  is ) does not contain all the columns of an  identity matrix?
-    p This problem occurs when the constraints are in either equality or “greater than or equal to” form. In the case of an equality constraint, one cannot add a slack or an excess variable and therefore there will be no initial basic variable in that row. In the case of a “greater than or equal to” constraint, one must add an excess variable, which gives a −1 in that row instead of a +1. #[small Simply multiplying through that row by −1 would not solve the problem, for then the right-hand-side variable would be negative].#[br]#[em There are two main methods to dealing with this problem]: the #[dfn Two-Phase Method] and the #[dfn Big-M Method]. Both of these methods involve adding #[dfn artificial] variables that start out as basic variables but #[mark #[strong must] eventually equal zero in order for the original problem to be feasible].
-    h6 The Two-Phase Method
-    ol In summary, the Two-Phase Method can be completed using the following steps:
-        toggle(target="example")
-        li If there is no basis in the original tableau, add artificial variables to rows in which there are no slack variables.
-        li Set up a new objective function that minimizes these slack variables.
-        li Modify the tableau so that the Row 0 coefficients of the artificial variables are zero.
-        li Complete the Simplex algorithm as usual for a minimization problem.
-        li At optimality, the artificial variables should be nonbasic variables, or basic variables equal to zero. If not, the original problem was infeasible.
-        li After reaching optimality, delete all rows associated with artificial variables. Also, replace the artificial objective function with the original objective function. This is the start of Phase II.
-        li Modify the tableau so that the Row 0 coefficients of the basic variables are zero.
-        li Proceed with the Simplex algorithm as usual. The optimal solution to this tableau will be the optimal solution to the original problem.
-    example
-        p.
-            Consider the following problem:
-            #[+m \begin{aligned} \text{Maximize} \quad &  z=2x_1 − x_2 + x_3 \\ \text{subject to} \quad & 2x_1 + x_2 − 2x_3 ≤ 8 \\ & 4x_1−x_2+2x_3 = 2 \\ & 2x_1+3x_2−x_3 ≥ 4 \\ & x_1,x_2,x_3 ≥ 0 \\ \end{aligned}]
-        ol
-            li: .step
-                p To put this in standard form, all constraints must become equalities. Adding a slack variable, #[+m s_1], to the first constraint and subtracting an excess variable #[+m e_3] from the third constraint gives the initial Simplex tableau. 
-                .
-                    #[+m \begin{array}{c|ccccc|c}
-                    1 & -2 & 1 & -1 & 0 & 0 & 0 \\ 
-                    \hline
-                    0 & 2 & 1 & -2 & 0 & 1 & 8 \\ 
-                    0 & 4 & -1 & 2 & 0 & 0 & 2 \\ 
-                    0 & 2 & 3 & -1 & -1 & 0 & 4
-                    \end{array}]
-            li: .step"""
+    text = r"""h3 Combinatorial analysis
+	+source(links=['https://encyclopediaofmath.org/wiki/Combinatorial_analysis'])
+dl
+	dt Combinatorial analysis
+	dd The branch of mathematics devoted to the solution of problems of choosing and arranging the elements of certain (usually finite) sets in accordance with prescribed rules. Each such rule defines a method of constructing some configuration of elements of the given set, called a #[dfn combinatorial configuration] #[span.example permutations, combinations and arrangements]. One can therefore say that the aim of combinatorial analysis is the study of combinatorial configurations. This study includes questions of the existence of combinatorial configurations, algorithms and their construction, optimization of such algorithms, as well as the solution of problems of enumeration, in particular the determination of the number of configurations of a given class.
+p #[dfn #[+m n]-set] - A set #[+m X] of #[+m n] elements and #[dfn Combination of size #[+m m]] is #[+m m]-subset of #[+m n]-set (#[+m m \le n])
+dl 
+	dt Binomial coefficients #[+m C_{n}^{m} = C(n, m) = \begin{pmatrix} n \\ m \end{pmatrix} = \frac{n (n - 1) \dots (n - m + 1)}{m!}] 
+	dd The number of combinations of size #[+m m] from #[+m n] distinct elements. #[span.example #[+m n=5,m=3: \begin{pmatrix} 5 \\ 3 \end{pmatrix} = \frac{5*\overbrace{(5-1)}^4*\overbrace{(5-3+1)}^3}{3!} = \frac{5*4*3}{3*2} = 5*2 = 10] #[+m() (1,2,3),()]]
+p Newton binomial formula #[+m() (1 + t)^{n} =\\sum_{m = 0}^n \left (\begin{array}{c} n \\ m \end{array}\\right ) t^{m} ,\\\left (\begin{array}{c} n \\ 0 \end{array}\\right ) = 1]. 
+p An ordered #[+m m]-subset is called an arrangement of size #[+m m]. The number of arrangements of size #[+m m] of #[+m n] distinct elements is equal to #[+m A (n, m) =\n (n - 1) \dots (n - m + 1)]. For #[+m m = n] an arrangement is a permutation of the elements of #[+m X], the number of such permutations being #[+m P (n) = n! ].
+p The rise of the fundamental notions and developments of combinatorial analysis was parallel with the development of other branches of mathematics such as algebra, number theory, probability theory, all closely linked to combinatorial analysis. The formula expressing the number of combinations in terms of the binomial coefficients and the Newton binomial formula for positive integers #[+m n] was already known to the mathematicians of the Ancient Orient. Magic squares (cf. #[a(title='Magic square' href='https://encyclopediaofmath.org/wiki/Magic_square') Magic square]) of order three were studied for mystical ends. The birth of combinatorial analysis as a branch of mathematics is associated with the work of B. Pascal and P. (de) Fermat on the theory of games of chance. These works, which formed the foundations of probability theory, contained at the same time the principles for determining the number of combinations of elements of a finite set, and thus established the traditional connection between combinatorial analysis and probability theory.
+p A large contribution to the systematic development of combinatorial methods was provided by G. Leibniz in his dissertation Ars Combinatoria (the Art of Combinatorics) in which, apparently, the term "combinatorial" appeared for the first time. Of great significance for the establishment of combinatorial analysis was the paper Ars Conjectandi (the Art of Conjecturing) by J. Bernoulli; it was devoted to the basic notions of probability theory, and a number of combinatorial notions were of necessity set forth and applications to the calculation of probabilities were given. It can be said that with the appearance of the works of Leibniz and Bernoulli, combinatorial methods started to be an independent branch of mathematics.
+p A major contribution to the development of combinatorial methods was provided by L. Euler. In his papers on the partitioning and decomposition of positive integers into summands he laid down the beginnings of one of the basic methods of calculating combinatorial configurations, namely the method of generating functions.
+p The 1950s are associated with an expansion of interest in combinatorial analysis in connection with the rapid development of cybernetics and discrete mathematics and the wide application of computer techniques. In this period an interest in classical combinatorial problems was activated.
+p Two factors proved to be of influence in the formation of the direction of subsequent investigations. On the one hand, the choice of the objects of investigation; on the other, the formation of the aims of the investigation, depending in the final reckoning on the complexity of the objects under study. If the combinatorial configuration under investigation has a complex character, then the aim of the investigation is to elucidate the conditions for its existence and to develop algorithms for its construction.
+p A large well-developed branch of combinatorial analysis is the theory of block designs (cf. #[a(title='Block design' href='https://encyclopediaofmath.org/wiki/Block_design') Block design], and also [2], [3], [10]); the main problems of this branch relate to questions of classification, conditions of existence and methods of constructing certain classes of block designs. A special case of block designs are the so-called balanced incomplete block designs or #[+m() (b, v, r, k, \lambda ) ]- configurations, which are defined as collections of #[+m b] #[+m k]-subsets of some #[+m v]- set, called blocks, with the condition that each element appears in #[+m r] blocks and each pair of elements in #[+m \lambda ] blocks. When #[+m b = v ], and hence when #[+m r = k ], a #[+m() (b, v, r, k, \lambda ) ]- configuration is called a #[+m() (v, k, \lambda ) ]- configuration, or a symmetric balanced incomplete block design. Even for #[+m() (v, k, \lambda ) ]- configurations the question of necessary and sufficient conditions for their existence remains unsolved (1988). For the existence of #[+m() (v, k, \lambda ) ]- configurations it is necessary that when #[+m v] is even, #[+m k - \lambda ] be a perfect square, while when #[+m v] is odd, the equation
+p #[+m z^{2} =\(k - \lambda ) x^{2} + (- 1)^{(v - 1)/2} \lambda y^{2} ]
+p must have an integral solution in #[+m x, y, z ], not all zero.
+p When #[+m v = n^{2} + n + 1 ], #[+m k = n + 1 ], #[+m \lambda = 1 ]a#[+m() (v, k, \lambda ) ]- configuration represents a projective plane of order #[+m n] and is a particular case of a finite geometry containing a finite number of points and lines under prescribed incidence conditions. Corresponding to each projective plane of order #[+m n] there is a unique complete set of #[+m n - 1 ] pairwise orthogonal Latin squares of order #[+m n](cf. #[a(title='Latin square' href='https://encyclopediaofmath.org/wiki/Latin_square') Latin square]). In order that a projective plane of order #[+m n] exists, it is necessary that for #[+m n \equiv 1, 2 ](#[+m \mathop{\rm mod} 4 ]) there exist integers #[+m a, b ] such that
+p #[+m n = a^{2} + b^{2} . ]
+p An affirmative solution to the question of the existence of projective planes of order #[+m n] has been obtained only for #[+m n = p^\alpha ], where #[+m p] is a prime number and #[+m \alpha ] is a positive integer. Even for #[+m n = 10 ] this question remains open (1988). Related to this circle of questions is a result in connection with the falsification of the Euler conjecture on the non-existence of pairs of orthogonal Latin squares of order #[+m n = 4k + 2 ], #[+m k = 1, 2 , . . . ](see #[a(title='Classical combinatorial problems' href='https://encyclopediaofmath.org/wiki/Classical_combinatorial_problems') Classical combinatorial problems]).
+p Another direction in combinatorial analysis relates to #[a(title='Selection theorems' href='https://encyclopediaofmath.org/wiki/Selection_theorems') selection theorems]. At the foundation of a whole series of results along these lines is the P. Hall theorem on the existence of a system of distinct representatives (a transversal) of a family of subsets #[+m() (X_{1} \dots X_{n} ) ] of a set #[+m X], that is, a system of elements #[+m() (x_{1} \dots x_{n} ) ] such that #[+m x_{i} \in X_{i} ] and #[+m x_{i} \neq x_{j} ] when #[+m i \neq j ]. A transversal exists if and only if for any #[+m i_{1} \dots i_{k} ] such that #[+m 1 \leq i_{1} < \dots < i_{k} \leq n ], #[+m 1 \leq k \leq n ], the following inequality holds:
+p #[+m | X_{i_{1}} \cup \dots \cup X_{i_{k}} | \geq k, ]
+p where #[+m | Y | ] is the number of elements in #[+m Y]. A corollary of Hall's theorem is the theorem on the existence of Latin squares, stating that any Latin rectangle of order #[+m k \times n ], #[+m 1 \leq k \leq n - 1 ], can be extended to a Latin square of order #[+m n]. Another corollary of Hall's theorem: Any non-negative matrix #[+m A = \| a_{ij} \|_{i, j = 1}^{n} ] such that
+p #[+m \sum_{i = 1}^n a_{ij} =\\sum_{j = 1}^n a_{ij} =\t > 0, ]
+p can be represented in the form
+p #[+m A =\\alpha_{1} \Pi_{1} + \dots + \alpha_{s} \Pi_{s} , ]
+p where #[+m \Pi_{1} \dots \Pi_{s} ] are permutation matrices of order #[+m n] and #[+m s \leq (n - 1)^{2} + 1 ]. Hall's theorem also implies that the minimum number of rows and columns of a non-negative matrix containing all positive elements is equal to the maximum number of elements that pairwise are not in the same row or in the same column. The extremal property of partially ordered sets, which is analogous to this theorem, is established by the theorem stating that the minimum number of non-intersecting chains is the same as the size of the maximal subset consisting of pairwise-incomparable elements. The following theorem also bears an extremal character: If for an #[+m n]- set #[+m X] one collects all the #[+m C (n, r) ] combinations of #[+m r] elements and partitions them into #[+m k] non-intersecting classes, then, given an integer #[+m m], there exists an #[+m n_{0} = n_{0} (m, r, k) ] such that for #[+m n \geq n_{0} ] there is a subset of #[+m m] elements #[+m Y \subset X ] for which all the #[+m C (m, r) ] combinations belong to the same class.
+p The travelling-salesman problem is an extremal problem too; it consists in composing the shortest route visiting #[+m n] towns and returning to the starting point, where the distances between the towns are known. This problem has applications in the study of transportation networks. Combinatorial problems of an extremal character are considered in the theory of flows in networks and in graph theory.
+p A significant portion of combinatorial analysis consists of enumeration problems. For their solution one either indicates a method of sorting out combinatorial configurations of a given class, or one determines the number of them, or one does both. Typical results of enumeration problems are: The number of permutations of order #[+m n] with #[+m k] cycles is equal to #[+m | S (n, k) | ], where #[+m S (n, k) ] is the Stirling number of the first kind, defined by the equation
+p #[+m x (x - 1) \dots (x - n + 1) =\\sum_{k = 0}^n S (n, k) x^{k} ; ]
+p the number of partitions of a set of #[+m n] elements into #[+m k] subsets is equal to the Stirling number of the second kind
+p #[+m \sigma (n, k) =\{ \frac{1}{k!}} \sum_{j = 0}^{ k} (- 1)^{j} \left (\begin{array}{c} k \\ j \end{array}\\right ) (k - j)^{n} ; ]
+p and, the number of arrangements of #[+m m] distinct objects in #[+m n] distinct cells with no cell empty is equal to #[+m n! \sigma (m, n) ].
+p A useful device for the solution of enumeration problems is the permanent of a matrix. The permanent of a matrix #[+m A = \| a_{ij} \| ](#[+m i = 1 \dots n ]; #[+m j = 1 \dots m ], #[+m n \leq m ]) the elements of which belong to some ring, is defined by the formula
+p #[+m \mathop{\rm per} A =\\sum_{(j_{1} \dots j_{n} )} a_{1j_{1}} \dots a_{nj_{n}} , ]
+p where the summation is carried out over all possible arrangements of size #[+m n] from #[+m m] distinct elements. The number of transversals of some family of subsets of a finite set is equal to the permanent of the corresponding incidence matrix.
+p A whole class of problems on the determination of the number of permutations with restricted positions reduces to the calculation of permanents. For convenience, these problems are sometimes formulated as problems on the arrangement of mutually non-attacking pieces on an #[+m n \times n ] chessboard. Connected with the determination of the permanents of certain classes of matrices are variants of the problem of dimers, which arises in the study of the phenomenon of adsorption and consists in the determination of the number of ways of combining the atoms of di-atomic molecules on some surface. Its solution can also be obtained in terms of Pfaffians (cf. #[a(href='https://encyclopediaofmath.org/wiki/Pfaffian' title='Pfaffian') Pfaffian]), which are certain functions of matrices close to determinants. The problem of the number of Latin rectangles (squares) is also connected with the development of effective methods for calculating permanents of certain #[+m() (0, 1) ]- matrices.
+p For the calculation of permanents one applies the formula:
+p #[+m \mathop{\rm per} A =\\sum_{k = m - n}^{ m} (- 1)^{k - m + n} \left (\begin{array}{c} k \\ m - n \end{array}\\right ) S_{k} , ]
+p #[+m S_{k} = \sum_{1 \leq j_{1} < \dots < j_{k} \leq m} \prod_{i = 1}^n \left (\sum_{l = 1}^{ m} a_{il} - \sum_{r = 1}^{ k} a_{ij_{r}} \right ) . ]
+p There are a large number of inequalities giving an estimate of the size of the permanent in certain classes of matrices. The determination of the extremal values of the permanent in specific classes of non-negative matrices is of interest. For a #[+m() (0, 1) ]- matrix #[+m A] with given values #[+m r_{1} \dots r_{n} ] of the number of ones in the rows one has the estimate
+p #[+m \mathop{\rm per} A \leq \prod_{i = 1}^n (r!)^{1/r_{i}} , ]
+p cf. [12]. The famous #[a(title='Van der Waerden conjecture' href='https://encyclopediaofmath.org/wiki/Van_der_Waerden_conjecture') van der Waerden conjecture], that the minimum permanent of a doubly-stochastic matrix of order #[+m n] is equal to #[+m n!/n^{n} ] was proved, independently, by D.I. Falikman (1979) and G.P. Egorichev (1980), cf. [13].
+p An important role in the solution of enumeration problems is played by the method of generating functions (cf. #[a(title='Generating function' href='https://encyclopediaofmath.org/wiki/Generating_function') Generating function]). A generating function
+p #[+m f (t) =\\sum_{n = 0}^\infty a_{n} t^{n} ]
+p sets up a correspondence between the sequence #[+m() (a_{0} , a_{1} , . . . ) ] and the elements of some ring, and is regarded as a formal power series. According to this definition, generating functions are effectively used for the solution of enumeration problems in parallel with methods of recurrence relations and finite-difference equations. In obtaining asymptotic formulas for the generating functions, analytic functions of a real or complex variable are usually employed. In the latter case, the Cauchy integral is applied in finding expressions for the coefficients.
+p There are results in the direction of a possible unification of enumeration methods; these are connected with the study of so-called incidence algebras and the use of the Möbius function on a partially ordered set (see for example, [10]). In the solution of enumeration problems, an essential role is played by the formalization of the concept of indistinguishability of objects. The use of the notion of equivalence of objects with respect to a certain group of permutations in combination with the application of the method of generating functions forms the basis of the so-called Pólya theory of enumeration (see [10]), the essence of which is as follows. Consider the set #[+m Y^{X} ] of configurations
+p #[+m f: X \rightarrow Y,\\| X | = m,\\| Y | = n. ]
+p On the set #[+m X], a group #[+m A] of permutations acts, thus defining an equivalence relation #[+m \sim ] under which #[+m f \sim f_{1} ], #[+m f, f_{1} \in Y^{X} ], if there exists an #[+m \alpha \in A ] such that #[+m f (\alpha (x)) = f_{1} (x) ] for all #[+m x \in X ]. To each #[+m y \in Y ] corresponds a characteristic #[+m [ y] = (s_{1} \dots s_{k} ) ], where #[+m s_{i} ], #[+m i = 1 \dots k ], are elements of an Abelian group. The characteristic of the configuration #[+m f] is given by the formula #[+m= String.raw`[ f] =\\sum_{x \in X} [ f (x)]`] .
+p If #[+m a (s_{1} \dots s_{k} ) ] is the number of elements #[+m y \in Y ] with a given value of the characteristic and #[+m b_{m} (s_{1} \dots s_{k} ) ] is the number of inequivalent configurations #[+m f \in Y^{X} ],
+p #[+m F (y_{1} \dots y_{k} ) =\\sum_{(s_{1} \dots s_{k} )} a (s_{1} \dots s_{k} ) y_{1}^{s_{1}} \dots y_{k}^{s_{k}} , ]
+p #[+m \Phi_{m} (y_{1} \dots y_{k} ) = \sum_{(s_{1} \dots s_{k} )} b (s_{1} \dots s_{k} ) y_{1}^{s_{1}} \dots y_{k}^{s_{k}} , ]
+p then Pólya's fundamental theorem states that
+p #[+m \Phi_{m} (y_{1} \dots y_{k} ) = ]
+p #[+m =\Z (F (y_{1} \dots y_{k} ), F (y_{1}^{2} \dots y_{k}^{2} ) \dots F (y_{1}^{m} \dots y_{k}^{m} )), ]
+p where #[+m Z] is the cyclic index of the group #[+m A], defined by the equation
+p #[+m Z (t_{1} \dots t_{m} ; A) = ]
+p #[+m =\\sum_{j_{1} + 2j_{2} + \dots + mj_{m} = n} C (j_{1} \dots j_{m} ; A) t_{1}^{j_{1}} \dots t_{m}^{j_{m}} , ]
+p and #[+m C (j_{1} \dots j_{m} ; A) ] is the number of elements of the cyclic class #[+m \{ 1^{j_{1}} \dots m^{j_{m}} \} ](cf. #[a(title='Symmetric group' href='https://encyclopediaofmath.org/wiki/Symmetric_group') Symmetric group]) of #[+m A]. This theorem is based on Burnside's lemma: The number of equivalence classes #[+m N (A) ] defined on the set #[+m X] by the permutation group #[+m A] is given by the formula
+p #[+m N (A) =\{ \frac{1}{| A |}} \sum_{\alpha \in A} j_{1} (\alpha ), ]
+p where #[+m j_{1} (\alpha ) ] is the number of unit cycles of #[+m \alpha \in A ]. Pólya's theory has applications in the solution of enumeration problems in graph theory and in the enumeration of carbon chemical compounds. There is a generalization of Pólya's theory to the case when the equivalence of two configurations is defined by two groups #[+m G] and #[+m H] acting on #[+m X] and #[+m Y], respectively (see [4] and [10]). In this form it is applied, for example, in the determination of the number of non-isomorphic abstract automata.
+p If #[+m X = \{ 1 \dots m \} ], #[+m Y = \{ a_{1} \dots a_{n} \} ] and #[+m \sigma : X \rightarrow Y ], where #[+m a_{j} ] is used as an image #[+m \alpha_{j} ] times, then the expression
+p #[+m [ \sigma ] =\[ a_{1}^{\alpha_{1}} \dots a_{n}^{\alpha_{n}} ] ,\\\alpha_{1} + \dots + \alpha_{n} = m, ]
+p is called the first specification of #[+m \sigma ]. If the numbers #[+m \alpha_{1} \dots \alpha_{n} ] contain #[+m \beta_{0} ] zeros, #[+m \beta_{1} ] ones, etc., then the expression
+p #[+m [[ 0^{\beta_{0}} \dots m^{\beta_{m}} ]],\\\beta_{0} + \dots + \beta_{m} = n, ]
+p #[+m \beta_{1} + 2 \beta_{2} + \dots + m \beta_{m} = m, ]
+p is called the second specification. Under some specification of the groups #[+m G] and #[+m H] defining the equivalence of configurations #[+m \sigma : X \rightarrow Y ], it is possible to give a method of constructing generating functions for the enumeration of the inequivalent configurations. This method, called the general combinatorial scheme, can be subdivided into four particular cases, according as the groups #[+m G] and #[+m H] take values in the identity group #[+m E] or the symmetric groups #[+m S_{n} ] of corresponding orders. These particular cases are the models for the majority of the known combinatorial schemes (see [9], [10]).
+p 1) The commutative non-symmetric case: #[+m G = S_{m} ], #[+m H = E ]. This models combination schemes of distributing identical objects into different cells, etc. The generating function for the enumeration of inequivalent configurations #[+m \sigma ] such that
+p #[+m [ \sigma ] =\[ a_{1}^{\alpha_{1}} \dots a_{n}^{\alpha_{n}} ] , ]
+p #[+m \alpha_{i} \in \Lambda_{i} \subseteq \mathbf N_{0} =\\{ 0, 1 , . . . \} ,\\Lambda = (\Lambda_{1} \dots \Lambda_{n} ), ]
+p has the form:
+p #[+m \Phi (t; x_{1} \dots x_{n} ; \Lambda ) =\\prod_{j = 1}^n\\sum_{\alpha_{j} \in \Lambda_{j}} (tx_{j} )^{\alpha_{j}} . ]
+p 2) The non-commutative non-symmetric case: #[+m G = E ], #[+m H = E ]. This models allocation schemes of distributing distinct objects into different cells, etc. The generating function for the enumeration of inequivalent configurations #[+m \sigma ] such that
+p #[+m [ \sigma ] =\[ a_{1}^{\alpha_{1}} \dots a_{n}^{\alpha_{n}} ] ,\\\alpha_{i} \in \Lambda_{i} ,\\\Lambda = (\Lambda_{1} \dots \Lambda_{n} ), ]
+p has the form:
+p #[+m \widetilde \Phi (t; x_{1} \dots x_{n} ; \Lambda ) =\\prod_{j = 1}^n\\sum_{\alpha_{j} \in \Lambda_{j}} \frac{t^{\alpha_{j}}}{\alpha_{j} !} x_{j}^{\alpha_{j}} . ]
+p 3) The commutative symmetric case: #[+m G = S_{m} ], #[+m H = S_{n} ]. This models schemes of distributing identical objects into identical cells, the enumeration of the partitions of natural numbers, etc. The enumeration of configurations #[+m \sigma ] such that
+p #[+m [[ \sigma ]] =\[ [ 0^{\beta_{0}} \dots m^{\beta_{m}} ] ] ,\\\beta_{j} \in \Lambda_{j} ,\\\Lambda = (\Lambda_{1} , \Lambda_{2} , . . . ), ]
+p is based on the use of generating functions of the form:
+p #[+m \Psi (t; x_{1} , . . . ; \Lambda ) =\\prod_{j = 1}^\infty\\sum_{\beta_{j} \in \Lambda_{j}} (x_{j} t^{j} )^{\beta_{j}} . ]
+p 4) The non-commutative symmetric case: #[+m G = E ], #[+m H = S_{n} ]. This models schemes of partitioning finite sets into blocks, distributing distinct objects into identical cells, etc. The enumeration of configurations #[+m \sigma ] such that
+p #[+m [[ \sigma ]] =\[ [ 0^{\beta_{0}} \dots m^{\beta_{m}} ] ] ,\\\beta_{j} \in \Lambda_{j} ,\\\Lambda = (\Lambda_{1} , \Lambda_{2} , . . . ), ]
+p is based on the use of generating functions of the form:
+p #[+m \widetilde \Psi (t; x_{1} , . . . ; \Lambda ) =\\prod_{j = 1}^\infty\\sum_{\beta_{j} \in \Lambda_{j}} \left (\frac{x_{j} t^{j}}{j!} \right )^{\beta_{j}} { \frac{1}{\beta_{j} !}} . ]
+p An important place in combinatorial analysis is taken up by asymptotic methods. They are applied both for the simplification of complex finite expressions for large values of the parameters entering into them, as well as for obtaining approximate formulas in roundabout ways when the exact formulas are unknown. It is sometimes convenient to formulate a combinatorial problem of an enumerative character as a problem of finding the characteristics of the distribution of some random process. Such an interpretation makes it possible to apply the well-developed apparatus of probability theory for finding asymptotics or limit theorems. Classical schemes of random allocations of objects in cells are open to a detailed investigation from these points of view; so also are random partitions of sets, the cyclic structure of random permutations, as well as various classes of random graphs, including graphs of mappings (see [8], [9], [11]).
+p The probabilistic approach is applied in the study of the combinatorial properties of symmetric groups and semi-groups. The limiting distribution of the order of a random element of the symmetric group #[+m S_{n} ] as #[+m n \rightarrow \infty ] has been investigated, as also have the asymptotics of the probability of the generation of random elements of them. For certain classes of random non-negative matrices, the distributions have been studied of the number of zero rows in a matrix and in permanents, and estimates have been given of the probability of the primitiveness of such matrices. For the proof of the existence of combinatorial configurations without constructing them, one sometimes employs a certain specific probabilistic device. The essence of this device consists in the proof of the existence of the configuration (without constructing it) by means of an estimate of the probability of some event (see [7]).
+h6 References
+table: tbody
+	tr
+		td [1]
+		td J. Riordan, "An introduction to combinational analysis" , Wiley (1958)
+	tr
+		td [2]
+		td H.J. Ryser, "Combinatorial mathematics" , #[i Carus Math. Monogr.] , #[b 14] , Math. Assoc. Amer. (1963)
+	tr
+		td [3]
+		td M. Hall, "Combinatorial theory" , Blaisdell (1967)
+	tr
+		td [4]
+		td E.F. Beckenbach (ed.) , #[i Applied combinatorial mathematics] , Wiley (1964)
+	tr
+		td [5]
+		td F. Harary, "Graph theory" , Addison-Wesley (1969) pp. Chapt. 9
+	tr
+		td [6]
+		td F Harary, E. Palmer, "Graphical enumeration" , Acad. Press (1973)
+	tr
+		td [7]
+		td P. Erdös, J. Spencer, "Probabilistic methods in combinatorics" , Acad. Press (1974)
+	tr
+		td [8]
+		td V.F. Kolchin, V.P. Chistyakov, "Combinatorial problems of probability theory" #[i Itogi Nauk. i Tekhn. Teor. Veroyatnost. Mat. Stat. Teoret. Kibernet.] , #[b 11] (1974) pp. 5–45 (In Russian)
+	tr
+		td [9]
+		td V.N. Sachkov, , #[i Questions of cybernetics. Proc. Seminar on Combinatorial Mathematics] , Moscow (1973) pp. 146–164 (In Russian)
+	tr
+		td [10]
+		td V.N. Sachkov, "Combinatorial methods in discrete mathematics" , Moscow (1977) (In Russian)
+	tr
+		td [11]
+		td V.N. Sachkov, "Probabilistic methods in combinatorial analysis" , Moscow (1978) (In Russian)
+	tr
+		td [12]
+		td H. Minc, "Permanents" , Addison-Wesley (1978)
+	tr
+		td [13]
+		td G.P. [G.P. Egorichev] Egorychev, "The solution of van der Waerden's problem for permanents" #[i Adv. in Math.] , #[b 42] : 3 (1981) pp. 299–305
+h6 Comments
+p The marriage problem is the following. Let there be a set #[+m \{ g_{1} \dots g_{n} \} ] of #[+m n] girls and a set #[+m \{ b_{1} \dots b_{m} \} ] of #[+m m] boys. Each girl #[+m g_{i} ] likes a subset #[+m B_{i} \subset \{ b_{1} \dots b_{m} \} ] of boys. When is it possible that each girl marries a boy she likes? The solution is of course given by the P. Hall theorem on distinct representatives, and this theorem is also known as the marriage theorem or the P. Hall marriage theorem. The abbreviation SDR is often used for systems of distinct representatives. Let #[+m G] be the bipartite graph (cf. #[a(title='Graph, bipartite' href='https://encyclopediaofmath.org/wiki/Graph,_bipartite') Graph, bipartite]) consisting of the vertices #[+m \{ g_{1} \dots g_{n} , b_{1} \dots b_{m} \} ] and with an edge joining #[+m g_{i} ] and #[+m b_{j} ] if and only if girl #[+m i] likes boy #[+m j](and no other edges). Then a solution of the marriage problem provides a matching, and in this context the marriage theorem is also known as the P. Hall matching theorem.
+p A good up-to-date book on design theory is [a1]. For more on extremal problems in graph theory cf. [a2]. For more on the dimer problem and other uses of combinatorics in theoretical physics cf., e.g., [a3]. Finally, [a4] is completely devoted to transversal theory including infinite versions.
+h6 References
+table: tbody
+	tr
+		td [a1]
+		td D.R. Hughes, F.C. Piper, "Design theory" , Cambridge Univ. Press (1985)
+	tr
+		td [a2]
+		td B. Bollobas, "Extremal graph theory" , Acad. Press (1978)
+	tr
+		td [a3]
+		td J.K. Percus, "Combinatorial methods" , Springer (1971)
+	tr
+		td [a4]
+		td L. Mirsky, "Transversal theory" , Acad. Press (1971)
+"""
     print(function(text))
 
 
-process_files(function)
+# process_files(function)
 
-# test()
+test()

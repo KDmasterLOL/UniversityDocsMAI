@@ -7,6 +7,7 @@
 	const props = {
 		macros: {
 			'\\dd': '\\text{d}#1',
+			'\\ddvd': '\\frac{\\dd^{#1}{#2}}{\\dd{#3}^{#1}}',
 			'\\ddv': '\\frac{\\dd{#1}}{\\dd{#2}}',
 			'\\same': String.raw`\left\{#1\mathbb{=}#2\right\}`,
 			'\\arsh': `\\operatorname{arsh}`,

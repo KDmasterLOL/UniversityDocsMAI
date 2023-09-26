@@ -1,16 +1,18 @@
+
+
+article: include ./temp
 article: include ../tables
 h3 Differential Equations
-	a(href="https://www.mathsisfun.com/calculus/differential-equations-solution-guide.html")
+	+source(links=['https://www.mathsisfun.com/calculus/second-derivative.html','https://www.mathsisfun.com/calculus/differential-equations-solution-guide.html','https://www.mathsisfun.com/algebra/degree-expression.html'])
+
 dl 
-	dt: dfn Differential Equation
+	dt: dfn Differential Equation #[+m F(x,y,y',y'',…,y^{(n)}) = F(x,y,\ddv yx,\ddvd 2yx,…,\ddvd {(n)}yx) = 0]
 	dd
 		p An equation with a function and one or more of its derivatives
-		figure.example
-			img(src='https://www.mathsisfun.com/calculus/images/diff-eq-1.svg')
-			figcaption An equation with the function #[+m y] and its derivative #[+m \frac{\dd y}{\dd x}]
-		p(title="Solve") We #[b solve] it when we discover #[em the function #[+m y] (or set of functions)]. There are many #[em tricks] to solving Differential Equations #[small if they can be solved].
 		figure
-			p In our world things change, and #[b describing how they change] often ends up as a Differential Equation:
+			figcaption
+				h1 Why Are Differential Equations Useful?
+				p In our world things change, and #[b describing how they change] often ends up as a Differential Equation:
 			details
 				summary Rabbits!
 				img(src='https://www.mathsisfun.com/calculus/images/rabbits.jpg').no-invert
@@ -35,8 +37,7 @@ dl
 				p: i And here is a cool thing: it is the same as the equation we got with the Rabbits! It just has different letters. So mathematics shows us these two things behave the same.
 				p: b Solving
 				p The Differential Equation says it well, but is hard to use.
-				p But don't worry, it can be solved (using a special method called #[a(href='https://www.mathsisfun.com/calculus/separation-variables.html') Separation of Variables]) and results in:
-				p V = Pe
+				p But don't worry, it can be solved (using a special method called #[a(href='https://www.mathsisfun.com/calculus/separation-variables.html') Separation of Variables]) and results in: #[+m V = Pe]
 				p Where #[+m P] is the Principal (the original loan), and e is #[a(href='https://www.mathsisfun.com/numbers/e-eulers-number.html') Euler's Number].
 				p So a continuously compounded loan of 1,000 for 2 years at an interest rate of 10% becomes: #[+m V = 1000 × eV = 1000 × 1.22140...V = 1,221.40] (to the nearest cent)
 				p So Differential Equations are great at describing things, but need to be solved to be useful.
@@ -75,28 +76,19 @@ dl
 				p: i Note: we haven't included "damping" (the slowing down of the bounces due to friction), which is a little more complicated, but you can play with it here (press #[b play]):
 				iframe(src='https://www.mathsisfun.com/physics/ispring.html')
 				p #[b Creating] a differential equation is the first major step. But we also need to #[b solve] it to discover how, for example, the spring bounces up and down over time.
-			figcaption: h1 Why Are Differential Equations Useful?
-
-
+		p(title="Solve") We #[b solve] it when we discover #[em the function #[+m y] (or set of functions)]. There are many #[em tricks] to solving Differential Equations #[small if they can be solved].
 h4 Classify Before Trying To Solve
-p So how do we #[b solve] them? It isn't always easy!#[br]Over the years wise people have worked out #[b special methods] to solve #[b some types] of Differential Equations. So we need to know #[b what type] of Differential Equation it is first.
-p #[i It is like travel: different kinds of transport have solved how to get to certain places.] #[i Is it near, so we can just walk? Is there a road so we can take a car? Or is it in another galaxy and we just can't get there yet?]
-p So let us first #[b classify the Differential Equation].
-h5 Ordinary or Partial
+p.intro So how do we #[b solve] them? It isn't always easy!#[br]Over the years wise people have worked out #[b special methods] to solve #[b some types] of Differential Equations. So we need to know #[b what type] of Differential Equation it is first.#[br]It is like travel: different kinds of transport have solved how to get to certain places. Is it near, so we can just walk? Is there a road so we can take a car? Or is it in another galaxy and we just can't get there yet?#[br]#[strong So let us first #[b classify the Differential] Equation].
 dl
-	dt ODEs
-	dt: dfn Ordinary Differential Equations
+	dt: dfn: abbr(title="Ordinary Differential Equations") ODEs
 	dd have #[b a single independent variable] (like #[+m y])
-	dt PDEs
-	dt: dfn Partial Differential Equations
+	dt: dfn: abbr(title="Partial Differential Equations") PDEs
 	dd have two or more independent variables.
-p We are learning about #[b Ordinary Differential Equations] here!
 h5 Order and Degree
-p Next we work out the Order and the Degree:
 img(src='https://www.mathsisfun.com/calculus/images/diff-eq-2.svg')
 dl
 	dt: dfn Order
-	dd The #[b highest derivative] (is it a first derivative? a #[a(href='https://www.mathsisfun.com/calculus/second-derivative.html') second derivative]? etc):
+	dd The #[b highest derivative]
 		dl.example
 			dt #[+m \dd y\dd x + y = 5x]
 			dd It has only the first derivative #[+m \frac{\dd y}{\dd x}], so is #[strong First Order]
@@ -106,11 +98,10 @@ dl
 			dd This has a third derivative #[+m \frac{\dd y}{\dd x}] which outranks the #[+m \frac{\dd y}{\dd x}] , so is #[strong Order 3]
 
 	dt Degree
-		a(href='https://www.mathsisfun.com/algebra/degree-expression.html')
 	dd 
 		p The exponent of the highest derivative.
 		dl.example 
-			//- dt: +m() (\dd y \dd x) + y = 5x
+			dt: +m() (\dd y \dd x) + y = 5x
 			dd
 				p The highest derivative is just #[+m \frac{\dd y}{\dd x}], and it has an exponent of 2, so this is "Second Degree"
 				p In fact it is a #[b First Order Second Degree Ordinary Differential Equation]
