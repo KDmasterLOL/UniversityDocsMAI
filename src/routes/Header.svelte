@@ -8,7 +8,8 @@
 		LINEAR_ALGEBRA: {},
 		MATH_ANALYSIS: {},
 		PHYSICS: {},
-		DIFFERENTIALS_EQUATIONS: {}
+		DIFFERENTIALS_EQUATIONS: {},
+		OPTIMIZATION: {}
 	};
 	let hovered = '';
 	let timeout_id = -1;

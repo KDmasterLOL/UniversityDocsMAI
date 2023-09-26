@@ -3,5 +3,5 @@
 </script>
 
 <template lang="pug">
-article: include /articles/MATH/MATH_ANALYSIS/index
+	article: include /articles/MATH/OPTIMIZATION/index
 </template>

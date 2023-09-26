@@ -18,7 +18,24 @@ def process_files(function):
 
 # If you not sure not CHANGE!! DANGER
 def function(text):
-    test(text)
+    # test(text)
+    for entry in re.finditer(r"#\[\+m", text):
+        was_open = False
+        pos = entry.end()
+        result = None
+        while result == None:
+            if text[pos] == "[":
+                was_open = True
+            elif text[pos] == "]":
+                if was_open:
+                    was_open = False
+                else:
+                    buff = text[entry.end() : pos].strip()
+                    if "]" in buff:
+                        buff = "String.raw`%s`" % buff
+                    result = entry[0] + " " + buff + text[pos]
+            pos += 1
+        text.replace(text[entry.start() : pos + 1], result)
     return text
 
 
@@ -44,7 +61,7 @@ def test(input):
                     result = entry[0] + " " + buff + text[pos]
             pos += 1
         text.replace(text[entry.start() : pos + 1], result)
-        print(result)
+        print(text)
 
     # print(text)
 
