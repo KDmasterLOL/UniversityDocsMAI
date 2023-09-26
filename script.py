@@ -33,8 +33,8 @@ def function(text):
                 else:
                     buff = orig[entry.end() : pos].strip()
                     if "]" in buff:
-                        buff = "String.raw`%s`" % buff
-                    result = entry[0] + "= " + buff + orig[pos]
+                        buff = "= String.raw`%s`" % buff
+                    result = entry[0] + buff + orig[pos]
             pos += 1
         text = text.replace(
             orig[entry.start() : pos], re.sub(r" {2,}", " ", result.replace("\n", " "))
