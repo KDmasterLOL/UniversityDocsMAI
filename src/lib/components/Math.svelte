@@ -8,11 +8,17 @@
 		macros: {
 			'\\dd': '\\text{d}#1',
 			'\\ddv': '\\frac{\\dd{#1}}{\\dd{#2}}',
-			'\\same': String.raw`\left\{#1\mathbb{=}#2\right\}`
+			'\\same': String.raw`\left\{#1\mathbb{=}#2\right\}`,
+			'\\arsh': `\\operatorname{arsh}`,
+			'\\arch': `\\operatorname{arch}`,
+			'\\arth': `\\operatorname{arth}`,
+			'\\arcth': `\\operatorname{arcth}`
 		},
 		displayMode: is_block,
 		throwOnError: false
 	};
 </script>
 
-{@html katex.renderToString(expression, props)}
+{#if expression}
+	{@html katex.renderToString(expression, props)}
+{/if}

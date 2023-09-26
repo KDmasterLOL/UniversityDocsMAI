@@ -1,0 +1,372 @@
+h1 Симплекс метод
+dl
+	dt Symplex method #[+m asdfsdfsdf
+fsdf
+asdf{asdfdldfdfdf}\ef ]
+	toggle(target="example")
+	dd In the method first express each linear program in the form of a simplex tableau.
+	example
+		p.
+			Task: #[+m \begin{align} x_1 + x_2 \to \max \\ -x_1 + x_2 \le 1 \\ x_1  \le 3 \\ x_2 \le 2 \\ x_1,x_2 \ge 0 \end{align} ]
+			. The variables are nonnegative, but the inequalities have to be replaced by equations, by introducing slack variables.#[br]The equational form is
+			#[+m \begin{align}
+			x_1 + x_2 \\
+			-x_1 + x_2 + x_3 = 1 \\
+			x_1 + x_4 = 3 \\
+			x_2 + x_5 = 2 \\
+			x_1,x_2,…,x_5 \ge 0
+			\end{align} ]
+			with the matrix 
+			#[+m A = \begin{pmatrix}
+			-1 & 1 & 1 & 0 & 0 \\
+			1 & 0 & 0 & 1 & 0 \\
+			0 & 1 & 0 & 0 & 1 \\
+			\end{pmatrix} ]
+		p.
+			First express linear program in the form of a simplex tableau. In our case begin with the tableau
+			#[+m \begin{array}{ccc}
+			x_3& = 1 + x_1 - x_2 \\
+			x_4& = 3 - x_1 \\
+			x_5& = 2 - x_2 \\
+			\hline
+			z& = x_1+x_2
+			\end{array}]. The first three rows consist of the equations of the linear program, in which the slack variables have been carried over to the left-hand side and the remaining terms are on the right-hand side. The last row, separated by a line, contains a new variable z, which expresses the objective function. Each simplex tableau is associated with a certain basic feasible solution. In our case we #[mark substitute #[+m 0] for the variables #[+m x_1, x_2] from the right-hand side, and without calculation see that #[+m x_3 = 1, x_4 = 3, x_5 = 2]]. This #[strong feasible solution] is basic with #[+m B = \{3, 4, 5\}] variables indeces. #[note #[+m A_B] is the identity matrix]. The variables #[+m x_3, x_4, x_5] from the left-hand side are basic and the variables #[+m x_1, x_2] from the right-hand side are nonbasic. The value of the objective function #[+m z = 0] corresponding to this basic feasible solution can be read off from the last row of the tableau. 
+		p From the initial simplex tableau we will construct a sequence of tableaus of a similar form, by gradually rewriting them according to certain rules. Each tableau will contain the same information about the linear program, only written differently. The procedure terminates with a tableau that represents the information so that the desired optimal solution can be read off directly. 
+		p Let us go to the first step. We try to increase the value of the objective function by increasing one of the nonbasic variables #[+m x_1] or #[+m x_2]. In the tableau observe that #[mark increasing the value of #[+m x_1] (i.e. making #[+m x_1] positive) increases the value of #[+m z]]. #[em The same is true for #[+m x_2], because both variables have positive coefficients in the #[+m z]-row of the tableau]. We can choose either #[+m x_1] or #[+m x_2]. Decide #[em (arbitrarily)] increase #[+m x_2], while #[+m x_1] will stay 0.#[br]#[strong How much can we increase #[+m x_2]?] To maintain feasibility, we have to be careful not to let any of the basic variables #[+m x_3, x_4, x_5] go #[em below zero]. This means that the equations determining #[+m x_3, x_4, x_5] may limit the increment of #[+m x_2].#[br]Let us consider the #[strong first equation] #[+m x_3 = 1 + x_1 − x_2]. Together with the implicit constraint #[+m x_3 ≥ 0] it #[mark lets us increase #[+m x_2] up to the value #[+m x_2 = 1]] (while keeping #[+m x_1 = 0]). The #[strong second equation] #[+m x_4 = 3 − x_1] does not limit the increment of #[+m x_2] at all, and the #[strong third equation] #[+m x_5 = 2 − x_2] allows for an increase of #[+m x_2] up to #[+m x_2 = 2] before #[+m x_5] gets negative. The most stringent restriction thus follows from the first equation.
+		p.
+			We increase #[+m x_2] as much as we can, obtaining #[+m x_2 = 1] and #[+m x_3 = 0]. From the remaining equations of the tableau we get the values of the other variables:
+			#[+m \begin{align} 
+			x_4 =3−x_1=3 \\ 
+			x_5 =2−x_2=1
+			\end{align} ]. In this new feasible solution #[+m x_3] became zero and #[+m x_2] nonzero. Quite naturally we thus transfer #[+m x_3] to the right-hand side, where the nonbasic variables live, and #[+m x_2] to the left-hand side, where the basic variables reside. We do it by means of the most stringent equation #[+m x_3 = 1 + x_1 − x_2], from which we express #[+m x_2 = 1 + x_1 − x_3].
+			We substitute the right-hand side for #[+m x_2] into the remaining equations, and
+			we arrive at a new tableau:
+			#[+m \begin{array}{ccc}
+			x_2 &= 1 + x_1 − x_3 \\
+			x_4 &= 3 − x_1 \\
+			x_5 &= 1 − x_1 +x_3 \\
+			\hline
+			z &= 1 + 2x_1 − x_3
+			\end{array}]
+			Here #[+m B = \{2,4,5\}], which corresponds to the basic feasible solution #[+m x = (0, 1, 0, 3, 1)] with the value of the objective function #[+m z = 1].#[br]This process of rewriting one simplex tableau into another is called a #[dfn pivot step]. In each pivot step some nonbasic variable, in our case #[+m x_2], enters the basis, while some basic variable, in our case #[+m x_3], leaves the basis.#[br]In the new tableau we can further increase the value of the objective function by increasing #[+m x_1], while increasing #[+m x_3] would lead to a smaller #[+m z]-value. The first equation does not restrict the increment of #[+m x_1] in any way, from the second one we get #[+m x_1 ≤ 3], and from the third one #[+m x_1 ≤ 1], so the strictest limitation is implied by the third equation. Similarly as in the previous step, we express #[+m x_1] from it and we substitute this expression into the remaining equations. Thereby #[+m x_1] enters the basis and moves to the left-hand side, and #[+m x_5] leaves the basis and migrates to the right-hand side.#[br]The tableau we obtain is 
+			#[+m \begin{array}{ccc}
+			x_1 = 1 + x_3 − x_5 \\
+			x_2 = 2 − x_5 \\
+			x_4 = 2 − x_3 + x_5 \\
+			\hline
+			z = 3 + x_3 − 2x_5
+			\end{array}] with #[+m B = \{1,2,4\}], basic feasible solution #[+m x = (1,2,0,2,0)], and #[+m z = 3]. After one more pivot step, in which #[+m x_3] enters the basis and #[+m x_4] leaves it, we arrive at the tableau
+			#[+m \begin{array}{ccc}
+			x_1 =3 − x_4 \\
+			x_2 = 2 − x_5 \\
+			x_3 =2−x_4 +x_5 \\
+			\hline
+			z = 5 − x_4 − x_5
+			\end{array}] with basis #[+m {1, 2, 3}], basic feasible solution #[+m x = (3, 2, 2, 0, 0)], and #[+m z = 5]. In this tableau, no nonbasic variable can be increased without making the objective function value smaller, so we are stuck. Luckily, this also means that we have already found an optimal solution! Why?#[br]Let us consider an arbitrary feasible solution #[+m \tilde x  = (\tilde{x_1},…,\tilde{x_5})] of our linear program, with the objective function attaining some value #[+m \tilde z]. Now #[+m \tilde x] and #[+m z] satisfy all equations in the final tableau, which was obtained from the original equations of the linear program by equivalent transformations. Hence we necessarily have #[+m \tilde z = 5 − \tilde {x_4} − \tilde {x_5}].#[br]Together with the nonnegativity constraints #[+m x_4,x_5 ≥ 0] this implies #[+m z ≤ 5]. The tableau even delivers a #[em proof] that #[+m x = (3, 2, 2, 0, 0)] is the only optimal solution: #[mark If #[+m z = 5], then #[+m x_4 = x_5 = 0], and this determines the values of the remaining variables #[strong uniquely]].
+
+
+
+h4 Exception Handling
+h5 Infeasibility
+intro In order that the simplex method be able to start at all, we need a feasible basis. #[note In linear programs of the #[strong form] #[+m \vb c^T\vb x \to \max] subject to #[+m A \vb x ≤ b] and #[+m \vb x ≥ 0] with #[+m \vb b ≥ 0] we get free feasible basis. Indeed, the indices of the slack variables introduced in the transformation to equational form can serve as a feasible basis.]#[br]#[small However, in general, finding any feasible solution of a linear program is equally as difficult as finding an optimal solution]. Computing the initial feasible basis can be done by the simplex method itself, if we apply it to a suitable auxiliary problem.
+	toggle(target="example")
+example
+	p Task: linear program in equational form #[+m \begin{aligned} x_1 + 2x_2 \to \max\\ x_1+3x_2+x_3=4 \\ 2x_2 +x_3 =2\\ x_1,x_2,x_3 ≥0 \end{aligned}]
+	ol
+		li Produce a feasible solution starting with #[+m() (x_1, x_2, x_3) = (0, 0, 0)]. This vector is #[em nonnegative], but of course it is #[strong not feasible], since it does not satisfy the equations of the linear program. 
+		li Introduce auxiliary variables #[+m x_4] and #[+m x_5] as “corrections” of infeasibility: #[+m x_4 =4−x_1−3x_2−x_3] expresses by how much the original variables #[+m x_1, x_2, x_3] fail to satisfy the first equation, and #[+m x_5 = 2 − 2x_2 − x_3] plays a similar role for the second equation. #[mark If we managed to find nonnegative values of #[+m x_1,x_2,x_3] for which both of these corrections come out as zeros, we would have a feasible solution of the considered linear program].
+		li The task of finding nonnegative #[+m x_1, x_2, x_3] with zero corrections can be captured by a linear program: #[+m \begin{aligned} − x_4 − x_5 \to \max\\ x_1 +3x_2 + x_3 +x_4 =4 \\ 2x_2 + x_3 + x_5 = 2\\ x_1,x_2,...,x_5 ≥ 0 \end{aligned}]
+		li The optimal value of the objective function #[+m −x_4 − x_5] is 0 exactly if there exist values of #[+m x_1,x_2,x_3] with zero corrections, i.e., a feasible solution of the original linear program. This is the #[strong right auxiliary linear program]. The variables #[+m x_4] and #[+m x_5] form a feasible basis, with the basic feasible solution #[+m() (0,0,0,4,2)]. #[small Here we use that the right-hand sides, 4 and 2, are nonnegative, but since we deal with equations, this can always be achieved by sign changes]. Once we express the objective function using the nonbasic variables, that is, in the form #[+m z = −6 + x_1 + 5x_2 + 2x_3], we can start the simplex method on the auxiliary linear program.
+		li The auxiliary linear program is surely bounded, since the objective function cannot be positive. The simplex method thus computes a basic feasible solution that is optimal. As training the reader can check that if we let #[+m x_1] enter the basis in the first pivot step and #[+m x_3] in the second, the final simplex tableau comes out as #[+m x_1 = 2 − x_2 − x_4 + x_5 x_3 = 2 − 2x_2 − x_5 z = − x_4 − x_5].
+		li The corresponding optimal solution #[+m() (2, 0, 2, 0, 0)] yields a basic feasible solution of the original linear program: #[+m() (x_1 , x_2 , x_3 ) = (2, 0, 2)]. The initial simplex tableau for the original linear program can even be obtained from the final tableau of the auxiliary linear program, by leaving out the columns of the auxiliary variables #[+m x_4] and #[+m x_5], and by changing the objective function back to the original one, expressed in terms of the nonbasic variables: #[+m \begin{aligned}x_1 =2− x_2 \\ x_3 =2−2x2 \\ \hline z = 2 + x_2 \end{aligned}]. #[small Starting from this tableau, a single pivot step already reaches the optimum].
+
+
+
+
+
+
+
+
+
+
+dl
+	dt #[abbr(term="Условие допустимости") УД]
+	dd в задаче максимизации отсутствие отрицательных коэффициентов в ЦФ, а в задаче минимизации отсутствие положительных
+
+h2 Особые случаи применения
+dl
+	dt Вырожденность
+		toggle(target="example")
+	dd оптимальное решение - вырожденое. В ходе выполнения симплекс-метода проверка УД может привести к неоднозначному выбору исключаемой переменной, то есть #[+m \theta] нескольких ограничений будут одинаковы. И на следующей итерации одна или несколько базисных переменных примут нулевое значение. Тогда новое решение будет вырожденным. зам В вырожденном решении нет никакой опасности, за исключением небольших теоретических неудобств. С практической точки зрения вырожденность объясняется тем, что в исходной задаче присутствует по крайней мере одно избыточное ограничение
+	example
+		.
+			#[+m z=3x_1+9x_2 \rightarrow \max \\
+			\begin{cases}
+			x_1+4x_2 \le 8 \\
+			x_1+2x_2 \le 4 \\
+			x_1,x_2 \ge 0
+			\end{cases}]
+			#[img.invert(src="Симплекс-таблица с оптимальным вырожденным решением.webp")]
+			На начальной итерации в качестве исключаемой можно выбрать как переменную #[+m x_3], так и #[+m х_4],. Если оставить в базисе переменную #[+m x_4] на следующей итерации она примет значение 0, т.е. получим вырожденное базисное решение. Оптимальное решение получается на следующей итерации.
+			Что же практически приводит к вырожденности решения? В графическом представлении решении этой задачи. Точка оптимума #[+m x_1=0, x_2=2] - пересечение трех прямых. Поскольку данная задача двухмерна, эта точка переопределена (на плоскости для определения точки достаточно двух прямых), и, следовательно, одно из ограничений избыточно.
+			#[img.invert(src="Пример графического оптимального вырожненого решения.webp")]
+			На практике информация о том, что некоторые ресурсы недефицитны, может быть полезной при интерпретации результатов решения задачи. Эти сведения также могут помочь выявить неточности и ошибки в постановке исходной задачи. К сожалению, не существует способов определить избыточное ограничение непосредственно из данных симплекс-таблиц.
+			С вычислительной и теоретической точек зрения вырожденность может привести к: 
+			1. В процессе вычислений может возникнуть зацикливание. Если в приведенной выше таблице сравнить первую и вторую итерации, то можно заметить, что значение ЦФ не изменилось (#[+m z= 18]). Поэтому может возникнуть ситуация, когда при реализации симплекс-метода некоторая последовательность будет повторяться, не изменяя значения целевой функции и не приводя к завершению вычислительного процесса. Существуют методы, предотвращающие зацикливание, однако они значительно замедляют процесс вычислений. Поэтому в большинстве программ, реализующих симплекс-метод, отсутствуют специальные средства защиты от зацикливания, тем более, что вероятность зацикливания очень мала.
+			2. Во-вторых, последствие вырожденности решения можно обнаружить, сравнивая первую и вторую итерации в приведенной выше таблице. Хотя в этих итерациях состав базисных и небазисных переменных различен, значения всех переменных и значение целевой функции не изменяются:
+			#[+m x_1 = 0, x_2 = 2, x_3= 0, x_4 = 0, z= 18]
+			Можно ли, несмотря на то, что оптимальное решение не достигнуто, остановить вычисления на первой итерации (когда впервые обнаруживается вырожденность)? Ответ отрицательный, так как решение может быть только временно вырожденным.
+		dt Связывающее неравенство
+		dd неравенство которое в точке оптимума выполняется как точное равенство
+		dt Альтернативные оптимальные решения
+		dd доступен диапазон оптимальных решений. #[i На примере графического метода] Возникает когда прямая ЦФ параллельна прямой, соответствующей связывающему неравенству, ЦФ принимает одно и тоже оптимальное значение на некотором множестве точек границы пространства решений, то есть имеет альтернативные оптимальные решения. Следующий пример показывает, что таких решений(если они существуют) бесконечное множество. Этот пример также проиллюстрирует практическую значимость альтернативных решений.
+		details
+			summary.example
+			div
+				img(src="Альтернативные решения на графике.webp" alt="" srcset="")
+				p множество альтернативных оптимальных решений - следствие того, что прямая ЦФ параллельна прямой, соответствующей связывающему ограничению
+				img(src="Альтернативные решения таблица.webp")
+
+example.
+	#[+m \begin{aligned}
+	z = x+y \\
+	\begin{cases}
+	10x-2y\le 2 \\
+	x+2y\le 2
+	\end{cases}
+	\end{aligned}
+
+	\Longrightarrow
+
+	\begin{aligned}
+	z = x+y+0s_1+0s_2 \\
+	\begin{cases}
+	10x-2y+s_1 = 2 \\
+	x+2y+s_2 = 2
+	\end{cases}
+	\end{aligned}
+
+	\Longrightarrow
+
+	\begin{aligned}
+	z = x+y+0s_1+0s_2 \\
+	\begin{cases}
+	s_1 = 2-10x+2y \\
+	s_2 = 2-x-2y
+	\end{cases}
+	\end{aligned}
+
+	\Longrightarrow
+
+	\begin{aligned}
+	z = x+y=0.2+0=0.2 \\
+	\begin{cases}
+	x=\underbrace{0.2+0.2y-0.1s_1}_{(2+2y-s_1)/10} \Leftarrow 10x = 2+2y-s_1 \\
+	s_2 =1.8-2.2y-0.1s_1=2-\overbrace{(0.2+0.2y-0.1s_1)}^x-2y
+	\end{cases}
+	\end{aligned}
+
+	\Longrightarrow
+
+	\begin{aligned}
+	z = x+y+0s_1+0s_2 \\
+	\begin{cases}
+	x=0.2+0.2\overbrace{(\frac{18}{22}-\frac{1}{22}s_1-\frac{10}{22}s_2)}^{y}-0.1s_1 \\
+	y=\underbrace{\frac{18}{22}-\frac{1}{22}s_1-\frac{10}{22}s_2}_{(1.8-0.1s_1-s_2)/2.2} \Leftarrow 2.2y=1.8-0.1s_1-s_2
+	\end{cases}
+	\end{aligned}
+	]#[br]#[+m \begin{array}{cccc|c}
+	1 & 1 & 0 & 0 & z \\
+	\hline
+	10 & -2 & 1 & 0 & 2 \\
+	1 & 2 & 0 & 1 & 2
+	\end{array}
+	\Longrightarrow
+	\begin{array}{cccc|c}
+	1 & 1 & 0 & 0 & z \\
+	\hline
+	10 & -2 & 1 & 0 & 2 \\
+	1 & 2 & 0 & 1 & 2
+	\end{array}]
+h2 FAQ
+mixin question(question)
+	li 
+		strong=question+'?'
+		block
+ol
+	+question("Зачем нужны ограничения если оптимальное решение только на вершинах многоугольника") Чтобы найти этот многоугольник!! Привести пример сложной системы графиков где точка (0,0) не является допустимым решением и сделать подводку к нахождению начального базисного решения 
+	+question("Как происходит перемещение из точки в точку с помощью введения в базис переменных") 
+	li Доказательство того что уменьшив или увеличив на какое-то число, то просто ее пересечения с осями сместятся на это число, а не в конец перпендикулярного этой прямой вектора с длинной этого числа. Это можно логически доказать как если бы у нас было уравнение состоящее из целых чисел #[+m x,y,s\in Z:x+y+s=\const], то если бы добавочная переменная 
+	li Переводя какую-либо переменную в базис #[+m \begin{cases}s_1=\const_1+ \alpha_1 x+\beta_1 y\\ s_2=\const_2+ \alpha_2 x+\beta_2 y \end{cases} \Rightarrow \begin{cases}x=(\const_1+\beta_1 y - s_1)/\alpha_1\\ s_2=\const_2+ \alpha_2 (\const_1+\beta_1 y - s_1)/\alpha_1+\beta_2 y \end{cases}] мы двигаем второй график на величину #[+m \frac{\alpha_2\const_1}{\alpha_1}] и в случае если бы графиком было #[+m m], то все бы они также подвинулись на эту величину, #[mark то есть: #[strong вводя переменную в базис все ограничения двигуются из исходной точки в направлении оси представляющей переменную на величину ] #[+m \frac{\alpha_2\const_1}{\alpha_1}]]
+	li В уравнение #[+m \alpha_1x_1+\alpha_2x_2+…+\alpha_nx_n + s = \const] каждая единица #[+m s] смещает график на #[+m \pm \frac{s}{\const}] это следует из #[+m p\in [1,n],i=\overline{1,n},\forall i\ne p,x_i = 0: \alpha_1x_1+\alpha_2x_2+…+\alpha_2x_2+…+\alpha_nx_n + s = \const \Leftrightarrow \alpha_10+\alpha_20+…+\alpha_px_p+…+\alpha_n0 + s = \alpha_px_p + s = \const \Rightarrow x_p = \frac{\const-s}{\alpha_p} =\frac{\const}{\alpha_p}-\frac{s}{\alpha_p}], то есть чтобы пересечение по оси #[+m x_p] было в точке ноль нужно обнулить чтобы выполнялось равенство #[+m \frac{\const}{\alpha_p}=\frac{s}{\alpha_p}], которое выполняется только при #[+m \const = s]
+	li 
+		p Сколько прямых столько и выбор на сколько сместиться по оси, то есть например если мы выбираем на сколько сместится по оси #[+m x], то у нас стоит выбор между количеством точек равным количеству прямых ограничений, так как они все пересекаются с этой осью #[small если они не паралельны ей]
+		| #[+m \begin{cases}\alpha_1x_1+…\\\alpha_2x_2+…\\\vdots\\\alpha_mx_m+…\end{cases}]
+
+
+
+
+
+hgroup 
+	h5 There is no initial basis in the Simplex tableau 
+		a(book="Linear Programming: Theory and Applications Catherine Lewis May 11, 2008" chapter="8. What if there is no initial basis in the Simplex tableau?")
+	intro What does one do when the initial tableau contains no starting basis? That is, what happens if the initial tableau (for a program where  is ) does not contain all the columns of an  identity matrix?
+p This problem occurs when the constraints are in either equality or “greater than or equal to” form. In the case of an equality constraint, one cannot add a slack or an excess variable and therefore there will be no initial basic variable in that row. In the case of a “greater than or equal to” constraint, one must add an excess variable, which gives a −1 in that row instead of a +1. #[small Simply multiplying through that row by −1 would not solve the problem, for then the right-hand-side variable would be negative].#[br]#[em There are two main methods to dealing with this problem]: the #[dfn Two-Phase Method] and the #[dfn Big-M Method]. Both of these methods involve adding #[dfn artificial] variables that start out as basic variables but #[mark #[strong must] eventually equal zero in order for the original problem to be feasible].
+h6 The Two-Phase Method
+ol In summary, the Two-Phase Method can be completed using the following steps:
+	toggle(target="example")
+	li If there is no basis in the original tableau, add artificial variables to rows in which there are no slack variables.
+	li Set up a new objective function that minimizes these slack variables.
+	li Modify the tableau so that the Row 0 coefficients of the artificial variables are zero.
+	li Complete the Simplex algorithm as usual for a minimization problem.
+	li At optimality, the artificial variables should be nonbasic variables, or basic variables equal to zero. If not, the original problem was infeasible.
+	li After reaching optimality, delete all rows associated with artificial variables. Also, replace the artificial objective function with the original objective function. This is the start of Phase II.
+	li Modify the tableau so that the Row 0 coefficients of the basic variables are zero.
+	li Proceed with the Simplex algorithm as usual. The optimal solution to this tableau will be the optimal solution to the original problem.
+example
+	p.
+		Consider the following problem:
+		#[+m \begin{aligned}
+		\text{Maximize} \quad &  z=2x_1 − x_2 + x_3 \\
+		\text{subject to} \quad & 2x_1 + x_2 − 2x_3 ≤ 8 \\
+		& 4x_1−x_2+2x_3 = 2 \\
+		& 2x_1+3x_2−x_3 ≥ 4 \\
+		& x_1,x_2,x_3 ≥ 0 \\
+		\end{aligned}]
+	ol
+		li: .step
+			p To put this in standard form, all constraints must become equalities. Adding a slack variable, #[+m s_1], to the first constraint and subtracting an excess variable #[+m e_3] from the third constraint gives the initial Simplex tableau. 
+			.
+				#[+m \begin{array}{c|ccccc|c}
+				1 & -2 & 1 & -1 & 0 & 0 & 0 \\ 
+				\hline
+				0 & 2 & 1 & -2 & 0 & 1 & 8 \\ 
+				0 & 4 & -1 & 2 & 0 & 0 & 2 \\ 
+				0 & 2 & 3 & -1 & -1 & 0 & 4
+				\end{array}]
+		li: .step
+			p #[strong There is no initial basis in this tableau]. To correct this, add two more variables, called #[dfn artificial variables] #[+m a_1] and #[+m a_3], to constraints two and three. This step alone however, will not solve the problem since these two extra variables cannot be in the final basis. Therefore, in addition to adding two artificial variables, the initial objective function must be altered as well. To ensure that #[+m a_1] and #[+m a_3] are not in the final basis, the initial objective function must become “minimize #[+m z = -a_1 − a_3]”. 
+			.
+				#[+m \begin{array}{c|ccccccc|c}
+				1 & 0 & 0 & 0 & 0 & 0 & -1 & -1 & 0 \\ 
+				\hline
+				0 & 2 & 1 & -2 & 0 & 1 & 0 & 0 & 8 \\ 
+				0 & 4 & -1 & 2 & 0 & 0 & 1 & 0 & 2 \\ 
+				0 & 2 & 3 & -1 & -1 & 0 & 0 & 1 & 4
+				\end{array}]
+		li: .step
+			p The last step before performing the Simplex algorithm as usual, is to add rows 2 and 3 to Row 0. The tableau in Table 5 is better because #[+m I_3] is in the body of the tableau. This tableau is the initial tableau for Phase I of the Two Phase Method. 
+			.
+				#[+m \begin{array}{c|ccccccc|c}
+				1 & 6 & 2 & 1 & -1 & 0 & 0 & 0 & 6 \\ 
+				\hline
+				0 & 2 & 1 & -2 & 0 & 1 & 0 & 0 & 8 \\ 
+				0 & 4 & -1 & 2 & 0 & 0 & 1 & 0 & 2 \\ 
+				0 & 2 & 3 & -1 & -1 & 0 & 0 & 1 & 4
+				\end{array}]
+		li: .step
+			p Phase I will be complete when this tableau is optimal. To get this tableau to optimality takes two steps. In new tableau the variables #[+m a_1] and #[+m a_3] are zero and the variables #[+m x_1], #[+m x_2] and #[+m s_1] are basic.
+			.
+				#[+m \begin{array}{c|ccccccc|c}
+				1 & 0 & 0 & .6 & -.3 & 0 & -.8 & -1.4 & .8 \\ 
+				\hline
+				0 & 0 & 0 & -2.6 & .2 & 1 & -.25 & .2 & 6.4 \\ 
+				0 & 1 & 0 & .3 & -.1 & 0 & .2 & .10 & .8 \\ 
+				0 & 0 & 1 & -.8 & -.4 & 0 & -.2 & .4 & 1.2
+				\end{array}]
+		li: .step
+			p For #[strong Phase II], replace the current objective function with the objective function from the original problem and make all entries of Row 0 in the column of a basic variable equal to zero. Also, delete all columns associated with artificial variables. After that, proceed with the Simplex algorithm until optimality is reached. The first tableau for Phase II is shown in the first part of tableau. After multiplying Row 2 by two, Row 3 by negative one, and adding both of the resultant rows to Row 0, the tableau becomes like the second part of Table 7. After obtaining this tableau, proceed with the Simplex algorithm as usual. Remember, now the objective function must be maximized. The solution to this phase is the solution to the original problem.
+			.
+				#[+m \begin{array}{c|ccccc|c}
+				1 & -2 & 1 & -1 & 0 & 0 & 0 \\ 
+				\hline
+				0 & 0 & 0 & -2.6 & .2 & 1 & 6.4 \\ 
+				0 & 1 & 0 & .3 & -.1 & 0 & .8 \\ 
+				0 & 0 & 1 & -.8 & -.4 & 0 & 1.2 \\
+				\\
+				\\
+				1 & 0 & 0 & .4 & .2 & 0 & .4 \\ 
+				\hline
+				0 & 0 & 0 & -2.6 & .2 & 1 & 6.4 \\ 
+				0 & 1 & 0 & .3 & -.1 & 0 & .8 \\ 
+				0 & 0 & 1 & -.8 & -.4 & 0 & 1.2
+				\end{array}]
+
+h6 The Big-M Method
+p.
+	Consider the problem:
+	#[+m \begin{aligned}
+		\text{Minimize} \quad &  z=x_1 − 2x_2 \\
+		\text{subject to} \quad & x_1+x_2 ≥ 2 \\
+		& −x_1+x_2 ≥ 1 \\
+		& x_2 ≤ 3 \\
+		& x_1,x_2 ≥ 0 \\
+		\end{aligned}]
+
+p Wouldn’t it be nice to be able to solve this problem with artificial variables, but without having to complete two phases? Well, the Big-M method makes that possible.
+p.
+	Table 8:
+	#[+m \begin{array}{c|ccccc|c}
+	1 & -1 & 2 & 0 & 0 & 0 & 0 \\ 
+	\hline
+	0 & 1 & 1 & -1 & 0 & 0 & 2 \\ 
+	0 & -1 & 1 & 0 & -1 & 0 & 1 \\ 
+	0 & 0 & 1 & 0 & 0 & 1 & 3
+	\end{array}]
+p.
+	Table 9:
+	#[+m \begin{array}{c|ccccccc|c}
+	1 & -1 & 2 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+	\hline
+	0 & 1 & 1 & -1 & 0 & 0 & 1 & 0 & 2 \\ 
+	0 & -1 & 1 & 0 & -1 & 0 & 0 & 1 & 1 \\ 
+	0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 3
+	\end{array}]
+p.
+	#[+m \begin{array}{c|ccccccc|c}
+	1 & -1 & 2 & 0 & 0 & 0 & -M & -M & 0 \\ 
+	\hline
+	0 & 1 & 1 & -1 & 0 & 0 & 1 & 0 & 2 \\ 
+	0 & -1 & 1 & 0 & -1 & 0 & 0 & 1 & 1 \\ 
+	0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 3
+	\end{array}]
+	#[+m \begin{array}{c|ccccccc|c}
+	1 & -1 & 2+2M & -M & -M & 0 & 0 & 0 & 3M \\ 
+	\hline
+	0 & 1 & 1 & -1 & 0 & 0 & 1 & 0 & 2 \\ 
+	0 & -1 & 1 & 0 & -1 & 0 & 0 & 1 & 1 \\ 
+	0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 3
+	\end{array}]
+	#[+m \begin{array}{c|ccccccc|c}
+	1 & 1+2M & 0 & -M & 2+M & 0 & 0 & -2-2M & -2+M \\ 
+	\hline
+	0 & 2 & 0 & -1 & 1 & 0 & 1 & -1 & 1 \\ 
+	0 & -1 & 1 & 0 & -1 & 0 & 0 & 1 & 1 \\ 
+	0 & 1 & 0 & 0 & 1 & 1 & 0 & -1 & 2
+	\end{array}]
+	#[+m \begin{array}{c|ccccccc|c}
+	1 & -1 & 0 & 0 & 0 & -2 & -M & -M & -6 \\ 
+	\hline
+	0 & 1 & 0 & 0 & 1 & 1 & 0 & -1 & 2 \\ 
+	0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 3 \\ 
+	0 & -1 & 0 & 1 & 0 & 1 & -1 & 0 & 1
+	\end{array}]
+p First, the initial tableau of this problem is shown in Table 6. After adding artificial variables #[+m a_1] and #[+m a_2] to rows 1 and 2, the tableau becomes the tableau in the first part of Table 8. Since the artificial variables must go to zero at optimality, there must be a way to force them to do so. By adding Ma_1 +Ma_2 to the objective function, where #[+m M] is a really big number (near infinity!), it is clear that this minimization problem will be optimal when #[+m a_1] and #[+m a_2] are zero. For a maximization problem, adding −Ma_1 − Ma_2 to the objective function produces the same effect. This step is shown in the second part of Table 9.
+p Next, the coefficients in Row 0 must be modified so that they are zero for all basic variables. Therefore, multiply rows 1 and 2 by #[+m M] and add them to Row 0. The resulting tableau is shown in the third part of Table 9.
+p The most positive coefficient in Row 0 is 2 + 2M . Therefore, this column is selected for a pivot and the ratio test is performed as usual. Row 2 wins the ratio test and the next tableau is shown in the fourth part of Table 9. The term 1 + 2M is the most positive so that column is the pivot column. This part of the Big-M Method is just like performing the Simplex Method as usual, except with a variable #[+m M] floating around. This particular problem continues for a few more steps (two more pivots to be exact) before reaching optimality. The optimal tableau is shown in the fifth part of Table 9, where the solution is x_2 =3, x_3 =1, x_4 =2andz=−6.
+p In this tableau, there is no #[+m M] in the objective function value. Also, none of the artificial variables are basic variables. If an artificial variable were a basic variable in the optimal tableau, this would indicate that the the original problem was infeasible. If there were an #[+m M] in the objective function value, this would indicate that the original problem was unbounded.
+p In summary, the Big-M Method can be completed using the following steps:
+ol
+	li If there is no basis in the original tableau, add artificial variables to rows in which there are no slack variables.
+	li Depending on whether the problem is minimization or maximization, add or subtract Mxa to the objective function where #[+m M] is a really big number and xa is a vector of the artificial variables.
+	li Modify the tableau so that the Row 0 coefficients of the artificial variables are zero.
+	li Complete the Simplex algorithm as usual.
+	li At optimality, the artificial variables should be nonbasic variables and the objective function value should be finite.
+
+
+
+
+
+
+
+<iframe frameborder="0" style="width:100%;height:2664px;" src="https://viewer.diagrams.net/?tags=%7B%7D&highlight=0000ff&edit=_blank&layers=1&nav=1&title=SimplexAlgoritm.drawio#R7V1Zc%2BM2tv41rkkepALAReSjJLtnMpOpye2kapYXF1uibXUk0ZHk3n79JUgCPAAOuIikRHfck%2FJIFAiCwNlwlg83znL35a%2BH6Pnpn8k63t4wsv5y49zeMMY8x0n%2Fj1%2F5WlxxApZfeTxs1vk1Wl74dfMtLi6S4urLZh0flYanJNmeNs%2FqxVWy38erk3ItOhySz2qzh2SrPvU5eoyNC7%2Buoq159d%2Bb9ekpvxqwWXn9b%2FHm8Uk8mfph%2FssuEo2LLo5P0Tr5nF%2FKXs65u3GWhyQ55Z92X5bxls%2BemJd8Bt5ZfpUDO8T7U5MbnA375V%2B3n96Hf3u%2FXHxOVj%2F9%2B%2FfjpOjlU7R9KV74183ueRt%2FKcZ8%2Biom4pC87Ncx74vcOIvPT5tT%2FOtztOK%2Ffk7XPr32dNpt0280%2FZi%2B6zP%2FZfflkdPF9GGbfF49RYfT9BQfdpt9dEoOvNnpkPwu5zWdkYX5UmKE8eEUfwGXipf8a5zs4tPha9qk%2BHXi0ILoCpqbUOoV1PS5XEJKimtPYPnc4lpUUM2j7L2c2PRDMbct5tmlxoTG65TQiq%2FJ4fSUPCb7aHtXXl2oU162%2BTlJnouJ%2FhifTl8LroleTom6DOkkHr7%2BB375L%2B9s6omvt1%2BKzvNvX4tv6%2Bj4lD03v28954yUft0n%2Bzi%2F8m7D3z9rbF0y%2FoKVC3aIt9Fp80nlNGzqi1t%2FSTbpI%2BRCew5R1pk6ZErAP%2BaoPZ6iw2N8KjrR1lOO6vwlDpnBS9dYc%2BtyHJOXwyqulwX5NFW9qHOZ9XV8dX0nrqexZ%2F5KxorW98QIuSxtOCZtpAscZn8X%2Bd%2B77K%2Bbtio%2B8L%2F551vxl94Ei%2ByvJ5rNQDN5S9ogvx6IZovia9mbl%2F0NwZV8AE7xubjxXdYbURvIK%2FnfJfgbGO2Z8SJ5m3fiEUx8yNvT7NdQGSTLX8oVzeQjlkUzZ87bMH%2BbEu7iwyH99Mg%2F0Sm%2F7JPl%2FT6d9R9W9x9%2FvOG0kN0czkF3t%2BIB8jH5KH0wcR5YBlYsRjH0ORhTIBrkt8DrciLyVVwasw9fNf3rgAZzYzyB%2BcKseOH5%2Fc1ssbvxlqfNLjWfGNnfzG75FET8h83H9Fs2E3wa8gmgxlgYuELUJVuCi8x4db%2F4tZybLtMMxmO8rlO87uJ%2Bx1%2Fuw%2F0GrO%2BcGl0sBIXJpfHFhFODFanCljgHSk5bqEOHg0bo0i3G%2FT4f90EZd7EgTO0rvRIYz4CclL%2BDtiB3xQqUHFa71JAQmyy1ygbKbN6Bh0JR54He5Lzn5J7%2BvQMCICjGcM4iwRttiyTeUVfU0oCN9i%2FR9qf988tJs3AN0xUziUttzu%2BJDqtCbdOsi%2Fwz8%2Fnn9L7N%2FrHoqvj2c%2FzA9bBXXnlfmKr8UrTdPHKptkoVfcyt6afksPmW7E%2BRHGN%2B0yI5nRJOZxNaaa%2B1MLFdw8QmM9PEdjATmwZD2diUjsMCk1Y3mQahYnnT1D4Namzv7Nsv8SGV29my3lauWa1RJyyPWquO0muZdaG%2B6zrbrJvNBjPr%2FE9%2FPAff%2Fvu%2Fu%2BP2Pz9v458ef3IOEye4Cn192Zxy8qKuW3zP93VhGBbfS%2BLiX76CL%2F2RlqSYetpy%2FL5pq6OkQOzx3EpkXGVwcyJTxxPVNHUNNbkE%2BowY6kda6VCJUqDJAqD8FqquCkAzr9BeUguWxrnUagSoRmLoUc2QlhpUPm4OXiqEBgsgbv%2BPlyS7nBzW8WGySrbcizPP5vHww2QCr%2F%2BYkZa4Q9g9VstUnW1XtQlq5xk1VrB5%2FlPM8PueqLftrMKLS8NQW2hG8Q9%2FSd%2F4Lzm%2F%2FYWP11umssEn%2FFLxfZt9%2F9FqnG244ZNKzl9PySFz49a5JTO%2FNOXGU%2BaPzswhm4kWoEaeapkxUl76LZPeXtbjKZVhCbfNJmFfFpcfahZX6M6mnmFysQAzuRyvuyDFFeC1DSzpyfyvYky1MK1KbeoBXSr0LK5HG%2BlMdMJ8t6nKJN4g5tj8cIi%2BggbP3DY62q21CfM1wvP1OIN2B%2FNIxxs8n2iUmY%2B6V9tNTvDr9dcKqwoSUyXVjcX8EgPX3KFzuJmfAZ0FvQ%2FLSxgJmfpJRfMptVVO0YdtHL1IK0XYBfIhnhgO9MBo9sKicNTg%2Fg1pNZgqFBognrAjpIWiPYuCxtA%2Fw91kfrTj2nD%2F4ficUV36Ki7%2FD3tPviJ8Bv54idam8yr94UP8uEntttwHkVL%2F7NZstuHdeMskVXLbzT5OW6ePXO6ytrxz%2Fh8jH9FWe7THtF28X9c8NjOXKoa8io6p2WnpvpiKnx74ELOB8rf4mHE3W5YzoswlAe9j7%2FNue4zThlrXFd2u7j%2FCiWrXtzFk8uF%2BYxDBWYNmy4%2F5cPK%2B8juygMrSSjKl11muYbkOGRnaw8203q6LPhyT7cspnpcONsWW81Fbjltfm1UqqqMP8faX5LgpjLbdZr3OZLtoMC88bfIHYYA%2BxV%2BiR37P4hlYFcVVaWiw0teXbtmJS%2F3yH%2F9tqz1fOvQMD59qfTrA%2BhSOQac3D5%2Bu9gMkhu6iDr4%2BguioGmPXcbcY8W89PN4kGN5Am89eqzdFjFyPbrqK6iv0lQOUNwz4Qc0pdBqDgbNbcKOqCUt11zzuqD1RCw9pQayBw0P52PqPll0gNDkHT9dCk8NaNJXkRNQgt3TDdbHaNOuTgdmQ66XGpFnKpk4Rcsl1HAF2yPMuOh02X3JLRDYEplW25Ul%2FTVXlzWy5Sv%2Bpbb9BLZz%2FTa%2Bs7qnlOkOv39wxPu65b7lrD40bMMynzForL32wPDfT%2FJQWVp%2FlZ2b7uXp0%2Bc17zaJUBoW%2FdHYjqx4U6zIoVjGo9MKndcL33FjfXX5cN7oTnaed%2FV121fO06zJPu71B%2F4WFL6gf%2BQ1yTs5XkiulyrhVGb8JtxKTYc%2Fj1oxTlxq3Xo4PjJ8L1kTW%2FXJ8gAyKDcEfzVigLX9cig%2FQedo1lMCDSH7j%2BjfLaM5nW2C3MKmatWQWmMeh2TlUzUDRGD8AvqQl0Pu3QrPLK0sjbkfVLDetk%2BzX0q6QUkWzKuVTtBw%2B%2BBSZw6fdHqjzU20RyRmg4BEL0M959o82Y%2FIp0ryEE6L1Qy15ikwdAFHDUXfY2jHLU9CcSI2cmPHWS7ARIGpkDtqogWEEmiYu%2FKDRHpztoBhh%2BSBXfYRGPzDjSQtYwulFXaJarqe0lkmDOLTQoUbITfGe0JuG2f7Rfl8Ew%2B4p5tCwuj6ysER8uPsU8%2BiE3Qn0kOxPwuVDuvl01MheT24ULUV9QonwjsA8KVHsAt0ojliF3t0oSNwjXfdQI9cKpgswptaSjyHVoc00kShS%2F3Tx0iEnWHI3st%2BHA4AjJ6psgWIBvhEDsyS2wwbLfN7stlHmMFIy84iFlGGcGjqYjqeUkwoadzNFn2y30fNx8yF7Ul8Ov5meTOVTk1LLShpIqrOqlL7iie%2Fj1SnaP25j8MiQ6I8MMR9jA96ItlkmwClecG%2Ff0WCRHlL40XihT%2FIoR0qgPLTh5SGiStnJmsrObZI83283u83JQjDmqleye2NSCH2qLMsli6fwLAMzPHDRNDuYGCBzATok2FUtU72fmDT2E4uisyunEFBCVT53fE%2BjiW7x%2Fep50vmVLfh%2FF%2BTT9eaQCr%2FcDvkcH09Dsu6MajNt8i6WITRY3SMVSz%2B6LIuOTOg1ZUJ6oWrIMKBTkQAviq2JOyVaEWTT3GqkO5eZ3Q1cNydnT2Xiw%2F0mY2A9p6Efhl7Hq80xY9fLqt2ATUUkTSwgI9MgMDjYm02ZbzKxP5T%2BDa%2Bjf2WW302r4uWGBRTd%2BJ8i%2FI%2F26M76Zv%2BO8rjZ7g%2BNeAaYz0G61s0QpObEqI60Zvs1rp99YtxG9XK24gYjcaXcbcKyxZnqxiJl6JSpqV6fosOGZ0GJXC%2Bjf0temLfgaTETyjcAWTqTpT%2BNiepAFAzxpeUq12S9UHdAaUVDb%2Bp5YfnPUyQX9dxpMAM%2FzwwpxoWb0DBQjAX%2BYLQfjMIWqQNUkBsPuO2Qm5DrbTyELq6VeUFTmSccASkhBF5hWXQ0gwJKDDNIV4xNbaCZywdWAkq4qm1NtW4ttlDZrWiYPDwcY6VN2y3VTPOcMI9q7DHEjkqk6eF5PjD7QvOSmVoD%2BvZlwIJiZTOoe1AGbkzHvibptdt1i7FSwkPxrd%2FpZOE62TT%2BsoqPx%2Fv0Dous7zWfMZPsTcBz%2BpH1KbVNRc6ZkO80NAQ69cLpDLNL2VACnSEC%2FUyCNIN3tjqufgnSboDUUNxxG61%2B%2F04JztOQfGg97fm4MTEg7YXjMCaklzKdtasZDJVmQL2PRPDx4IhRqUIn1JtRlwX8r6rQmR7GsNgJbZW1jGrgyrq%2BPauun%2FJpZfuByqcQ72pZjFqWb8IKVYQ7sjitJov0ILE1ZHuIj5tvURkGKxaC78AW2VYMoegaZtZFlAQWLB5zA7H7bLasI7rrSK4ayIar3m9akWes7W7%2Bj%2F%2F99PH9PyZ%2FvHjO%2F737%2Fe8zeoeAAmZaFaZJ3NojqlK36qU4SJ0zD99P8toIHqal7PnLjaWq2aL50uXIFCNFS8htJoCmz6W2fzdpbwyUN59lDMDb%2B58r1S4VkzXpdbZa2fKjnq0oFTQPm9Um2taRVwAohAqnlLTrzFqGitfoOAu6z7twa6cyL9pu423yeIh2VX4lfgVWLyk3AguhHb6RWvPEI4CB%2FM%2F1btTEndy1JYvmuSgHeEjtLZPmhqbrTf1AFbJICoIzQ0JmgWsX592i3f5V7MhuVU5NDUVU3wjLGRqKeMPea%2BKbrlTluHVFCVMiDWxHRZOlq3Ff6PGyvJiKqhYoOmDCp8wGJGqVk3himZeo5TESkFPqYOIl2xHzv4G9W2gGmKMys8VgNmalU7%2FRsJuEErQCKCEwlYwyNBVWm21T6t4V13uYCijJc%2FUps3a1NSVlZmz5dKl3ILGFxrBloKNtrjV8NMx8s%2BkpVx2z7I2qak5LkdVMSnkv9LTA6n3aOCW7FWwh6XlB9d40YwjSoQfulVzpKyRnXW41J1NfQfkTLLJzAJ1o2ANnTGxFCnFlKL5r%2FvA2S9JFk4Rhsk0cHW05OaV94d7oub8NMXz6sUAmlITTUPmnOrsCatgjLgtQR2sYymyB3q0S10xwHXXaTqX90CBrZ2SWhiVqf4aje64bISi%2BCZRGUBlCxQtRS2w6WcoPv3E0fWqzj37gEBP0R8zZfX7aPyKGSlSH%2Bi2P3OOwmbIB4ogTzXEdtM1PHZjEULKIzrypGsb3pqEPJJPLDFnE%2FPTdXWR7FExJD4F8PB%2FpSmH78w5T6FuGBa90s9Qg%2BUJw4Ofoa6bbOYP9Hp9WT8IrUDIXpvtN%2F%2B9Dumdd5iCKYlurO40z3oNOZMB8OYNCJ8hxHz3%2FluR%2B2nNUVHNm9AlJOcgWA0OqiBjipOijhghfzXAcTgpL5kyLlP3z2bM6SaKeP4cJerVOJQnIVMP68SriR1hMDaXM%2FjOE0Vl0TGPgwgiUGYYT0AczJ6zRCDgOZetjdjrSaWM90juddlL%2BlFzJP1qs%2BISnJmgmQBCyc5Zc94FDbbWOH6KXrYhkiJdD6wE7ntbUjYzcpkmBsh5n6CC%2FDOMXAsl3BpNI1VOiWDpWrEUEwPC2GgbI%2BId20w4e6DwwCNLiavUT2vT0XfRvh14UuB7aLx8ykJdq%2FBjrz53wY177KuAUf%2BVVvirEzdszr%2FRMCz1kvP18X83d6e9d%2BDu9%2Fbvl8DZ8fxkOlyvKamS2aJMF6Dqub9mRdaUnVxSGI%2Bu%2FzUw0XGorBFgE2%2FS01KxmqfE3sRDA973Ure2CN7399szmeruO7e0Ii42Y3Q6i2B%2BHtNILr4fFKxi%2FbknrFTfrS3GzBor7isLwFa90A73NGuht1pfeZmfr7YvwxHe60qNWLW%2FPHFxtkw%2F5mYOV8L1dGNsO3%2Ft6FOjoDAATUzhHDTa4W%2FOtq0Ucx%2BI8o5QOZgvzsCGudvPtVGHGOfN9%2BmU3yS9%2BzO67tZxR07rWggd5Bq%2B1cKlDXMedBcwnIfGzGRqoekJDIXBF6QLISphhgJGOO1TxRHClI2LwAwnlb72nBnUtuO39QLh%2BYCyKUJ0VkCOobD9MpWuAFXqrla6PY6x0reSP7oWuZOqEgQpXJgpHOwZwJ56aAq2lNPdS94rnFWInQsKVdm7r1%2FnKKVAXECn43DXNEinrpAMiwNE6EoyrFcwb8MCWiH9XcSUQgGoSpYYn3AArxn%2FLrbTnVoYmSJSLQi0yxHrRqavH1CbyJxApbu8i5VKJZxZcBHiyuS%2BKLUZrAUgi68UE8KiKodKPBaDmOk8uZgBQYsrNC2L4iM8jwe%2FpH7oUX%2B1wpqlVHYenJ%2FUd%2BiH6nIGPGXdwqRFgJZxEB3kYsxxhfcmR1Bacea62l%2BgHDlIYQlqvlxAlVwFNbpULDLDDfF%2BRPbOAtpY%2BwAlCSHCjJEg7Tp0rpGfU5m6Wh9d76VSzVGW3IaRoX0TqokckgPrLR%2B7Y%2FgHFJ%2FyR%2B2id24rGBkBy2jO%2FDasDNXYrrwq63XEDfT%2FhYBVavofWbVcdn9PtpKcGYN%2FwsGQI6zA3UDNsSApEhceSCBpUPUVYAzzScD1U9PCiDSxphkegUXu3Z%2BMoQVxa7dg8iEzBAJQGNXAT4MFRGj4LfIqGhiVnO7A0oDiGeavGygDyRXeM8cPGtZ3IAcAq9Hfg88K4t5pCYFn5GUspb6%2BUJRfCnigOermkFKKaHc0QKCuKHTVHBxNAAvb9euEY11EtET886%2FyIC%2FtIBBh6vY%2FE79tS6aZwkM2OFd84Mx9YJfyeeghDA5g%2F0gTm72GzX98%2FbA7H0%2F1DHOUH6ckBSQyMmh3aICMzY9cADSNar7mBxS0pw8ia8idNV8n2mJlmV8KDNlBz9OM5BzPADOQKipxax8QJBlD4eYPJPt%2FkhTenfEU2gXZ22QUhDvD1uwrEQc%2BKJESqvCsl90gUSfiGFtKJeRxyZe6xHL%2BYpTmXeWJZ7lWWoPnHS7TmM1NWMSmtmIa%2Fq53Nq%2B0TiLpDqwCbZOJDBVYfNQ4Y1zaEZ2Aom322PUFCux3duFaAO75KxGdt31kHRcja2mjOeTYaAG41nQHidXSKhLMP%2FShEPTdNNnONSYOul1CZRsSnYgKoGiyRNZtqs1YerKbjv8vRwJXWDvCWj4f%2BHAisCc5%2B09fbU18%2BowD9VUMMY5QBOtNe0vR4LBXKQ8YM31o2cAAdQznxTuUt1ItiIsnCIclVNx0pMsJMDLcM7KoJwG4TWpQoukV2rjwziRgvPzMIDZAIg9xwByTH0ngrjYbQs%2BI1edCQwiSDvgODWYArFZi12tGIBNM48MBDuTxeSz4mdY42qJ7gGGagB6iVTFRG6XETZK2sDhwPBN81XwSlHm1WKT%2FgqORYDYpYLopGKqYXeA7GNgdTAaYLUWoL5F1aM5sDWgoFqlDIyF2NcP%2FtDGh%2Beqrn0cNA9J2Leh59xBN1ZVek4og8ywmJwttVR2rNFafm1hFPEhfZ%2FLV7R3%2BYbHIzMZhpQHWTmR4wbXq0o6dlG8gU0gtFXv0GGZvjP%2FUBIaVKAqmnpKthllaO2%2BbOrnQkMwJ8yWiOYCUgMrLNKD3mmcNiNIf%2BibzI5qDnzkzjPz9A%2FBUi8x9qDB1esr%2B1tsfKSYfNKtxhQ%2BPXDNcSw2LSuqo%2BIYBYwtboZoqAgCz0CqCjIvZYrae%2BprYhQhvDaaTioBF0O3Mt26rivIDihABLLKM9H2jYqRMfM5ywkO1gbBBcBee%2FfXi1qeoRxyfUwpyGl7FhKJ1N2az8n8iiFEGPhqUrvVWOWI50ro19IjQyjrxUQcC9pKX6LlPXp%2Fh2LhFcIO%2F0Ogd18I3mu2i32fJ5%2Blu8%2FRTzZb5BMG7T7ybGLcS0zU5SuKxAsMwkHZUxKo%2Brrak%2FgXbB5bkUW28rYZiE0JDJJZX3wuUOE3D2Qg%2BPns0FFbfcmVwx0%2FYM40g7%2F5YhKR3Uu2Q%2BbfD6fUiNBGdHqO9gZIKTIMkEXHDaNki%2B6qg3dybnbZYcdbfWZMsEb2myccKd0p83u22UKdGn5LD5lgreSOjRGhfBKtluo%2BdcfAjn4nO0Fw4G5LC1D9Hq98eM5P%2F1cspAVvL7dsknLpEL7ZNdMpS%2B4nsSo%2F4574NfetxGx6O4%2BSlaZ%2BYBMVisD9kz00vKEdkjy8EVjzb1B0upoFcpKYLih%2FmKAJoS4vYjhKoZt%2FZQpKb%2BRUp63%2BZ1OkbHYtG5IpxGxYmNOc%2FDgKjtiEwtNKidP6uRzys%2FN62ng9JKBdE8114LIMwQ08RHxEMfwgGlJIv3svIoYt0zKRWXVC%2BgIqNMisn7taOgvBHVmUTlOucR1WApzOxKzsDz7N198vcXnqmSfeE7lfl%2Bs4PnKqYLnRziu1z05%2Fe%2F7OJDdBLfV8lusxpKR4WmjqrSCSMxnhHYuxGTwNUWbZiC4bYIByxUBYh6kJsZBKdVzTvjIVRN6J80r%2FsMpcA0kDWKBEovmthNG6Tmj6dQAmX16r1B%2FS5CrMFIZLQcuWb9zWG6npofr3sNtIPjYeBHuh7kZkT6I2AuqnZKtNnYBeHr%2FNFz0EkgGlcmRSTb9f03rXjQiutaXSSHPCmDf7XgF6QrvvzIxUkOCIs5UkeIBksCx3PDVBrMwlnIZqxFDuA59quGBYX4TBwf8dcO6DFpoG5epawSEqiBrBpXSpUcOZ5nAzNUzAwbVFZ1F0JQ%2FIASAvx4%2BjKpqwyGm45b9OEV2dOwukHeqKFSzMCD5EvANw7L9koeugs6gRPpK6%2BLjEr2r9WoUFB45CjO8vrCI5hZQIEacIwBqPUzcMKVyTk7QUuTA9fJnetL9jqq7MWqZ53gkrEySq%2BO%2FXCpnWO14G0goscF4iBHjpuTZrpBtQlplCGVEipr1o9ckF7wpSoBzyir1DqRg6zWNaq3tJHBCwX3ZXyodb5N1WdaHiowI2Hgup4XeoHnBqHbyqHaMJ%2ByuPS%2BkE1t8CLOkJeeKi%2Bx%2BJ7jXtRWdV%2BVvLQeaN5nFtgAQrlpTQt1xyaUETgRLpTNnACbOCZq%2BeI7Q4rl4olOVAFpRI7Kz9Kog%2BkPMkhJRWGoI5otwSBgSgVMgIfS0TzM43UbaaEqdFwMo%2BayG2QXp6rQdG%2F0qpHMfLJkP3mOHuP7Q%2FwQpxPPV1TN8cjXCRMa%2Bvo1kkKBVQpBb3F5tbm6y55SzBsdjpaoo2aoeAgxDRWBttCSJc3qjZbGTks%2BU2mJXZuUvGsf45QauX8Ca8hrbA15vWPBdyQQi96iBt28yZpxyRq99Pr6ess3ieYVVswMIB2awqXLpKTRSAekup5LBxPl%2Bhb4mMYTA73CpqeRzOpIs7iEGtBE1swaH9tvYckTA8oaJOP3TfhgLNw4GcMfF3KlHLnuqHFU7whRYaoqhA8aiKMAz2jkPnQdP2zUru6MnIc04NqKx1797B7iZ%2FeGlcHamYkB6vNCZPBwgUmfvcngRjLYb5xkImTeWGSwb0kygX5qLV2DGGh4EK4FWo4qKoKSQkGqziypbaBL0C7YsASDUHkzJPsxJGcjMCQboMu%2FCTFgHjYwJEeWKYdBGPaIPvYmGwaJw4Q%2BIhuwSuHBIJyoDcrsLRAzducoDfVij6t7Rx28RnneNqGgqhRVo8oOgAWqQlNoDaIHqEgDwwgiQ7fhNIgg%2BZqoCybFtYc0ECGTioynEMsQnfVRXooiilhiOGecTqhlYktoDaqil8kDA4gFpQNLWvbJWeUl1cUkvJBkUdSTPPKSPIKVlNQQO6pg6%2FF6VAmcewPSbw74WvgLkLQ8cOm3RBTb2rUEZF8UaqqpLJViqHmyTW1M2%2FHZlCAUL1V67xRfc97qIT69HPYZjYgDUawlCMORSrowu80%2BOiUHnVj2CcRvUYG28tXlVdcct00UY6744qc8c5D31Iu2vgggYKrEw8rpMYjZqtUvHvaev%2Ff%2BMX2JModCswMdBNE2QDS3%2FrRom85%2FOvvxgquyo0Fy7WpwUSq05Om0w5EbScmUIIv6jaCLeLOqmPTy20B0NM5VotNlKsyNAvhTd3hml2VDX18waO2q9Z6ue14FvnYGKz9uFFCA2d7v0jzwNPLqVrBvWapr56UHTM3FmjrsrDNce8coLY5jmHAcLHgiQ8omgWiAn8rAvxjDQ7cH6saz6Zamp%2BNqm7NpiCBwjZhNXaKeFupUA2U4Ohpcv0AZlTNatTuC8V5Hje6C3JP8Oo4RL6%2FPjW7NTVdQt30iLauftAiz7bCr2rPDzYgJPM7vFowHYt%2BbdVi3YO%2B3qA1cjwiQvk3ZQntD2hVVAtClObukS1O6O3pE8KQqGsZMja7JahoCuAgePadBc94azq8lRljQSwGhP6kR23MtORta5Q0D1A%2Fry8Wr9ehbgwrQxTdzihIajiB9b%2BprjtLCcIIk6jF36jgmlVamFtg3ePzQEv2QaRc5ZtX1GjzyArs84fAYEc9I5dCgONgnmxvM7bbLYlzc%2B7bb7NNr3EHyFJ%2BiwuGWWg73mxsRA9tkrhLJLAZWQe58yW4HiDIPh2iV9vwh7Yg78hbRffpn87Hw6rV3vmhYLTWxMx9115wfqZG4NIdkFXNzEdT1tivkbcjQ7X3Tnpda0OCfepYxRSJqDhZRm7GB9uDBOA6Tazn%2FDU54a2i0C1EyEpcIRZZjXNZAMxyViuDCPpdy3%2B4%2FQsG0i76kv3%2FLRd0B%2FPYxk0oIdNZYQxejFYnEpywMUiXup8rd8WjgjUREqjtQDN6FkqmQgH2HhnGpaIcJsRG%2F5CYNeohUHsBuWr3NjzbTzvKFEcC5pTAe3eBSA2W72xZTR17qHVnErKA886QPy361xEtuuGO1MlEHPlY2wSC5uQxNauFL0GaRnE7J7qaVQ6w93zohmwbaOSZYHAo7SoAMxrnjSB4cwmXZv%2FETXC0tEB8OXts2r95SkbPkrZR1sBlMlqg4vRHCjmhHzGviuuKMlI5uPPjiwbl9EnufUnp3MR2b1%2FwQ4OC8A9NrZrKbHlmo3TQ6ka9MRU0RsUO11KbQwEF2dOtqHVJxzA7MlxfdGs7aVs7b6oSIczRgf6rJyKHBlKvpioNBLc03PZyyCzzpcStdZKa2cxAXGaWD7d7HAVjd8aztbtqONU1%2BCMaV%2FcDGcU56w%2BVokdbQdD3Y1WDIcKsJCcRchZeGRflsvI4IgEqltTn08cLM96fEAa5UTRqL0oCa44Xt8fTez6v1LVgNt4a9Q85J6cWI87UdgVrNib2cgDqbqZlFRU%2FjPQBV2hBV%2BRHQNUQxQ10zm6FzSZ6mmJdQOcB4huX0RTVnXuLgG%2Fso1%2Bi315DsSMsdHB5X6rXcoa%2FIMSUqnbsh4kgVIB2KeRoO5YxhljIIGK9YKBLv%2FE0nxTDpbW4DCpA7YYHF2fvdAOxHG6dMyFBwFtddVoRLnDkI1GatikCuGr%2BdLQ6XCON2BBeV4q05sJZ2%2BgZShojlnw8WHmCWNHMzmcU1qJs0Lqi%2FEjFa8hK85Z5njDQgVT7jJVmKOJ5yaSIvpLfxaF%2F2gNU6OYkfxHO%2BR3KmGjlj9TtYEsBw9Py6zpIRM16%2FFW26hxEMPZb6eGccfp1L7CmrK1qG3lQ6oVY6qu8i81cydpFGR76eR91wO9rfpgHH5gpf0e6yMbnZis%2FP2R8a4rjgtI6EpeZwThz1%2FgE3jx6yebyC6LgWekq3ojnLlI7r3Fo58pboKdjBfuflTYCK6%2BoD%2FCq37o1JxCCGXiq721JUm5xPrfTNTOBmBKnOHQ42xbNU3LxhSl8WNuWMegCt9hoLOl74LAQTfG3EYZErwdcjwUvLbFJTC12murAjFTSIlr3G066vg49auedqj4dDtZRa6R272sna3ncBRN8%2Bka%2B5HEDAAKo5b3BJkH49JMkJ7k%2B4Nv9nsuabwLv%2FBw%3D%3D"></iframe>
