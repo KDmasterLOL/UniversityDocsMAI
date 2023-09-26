@@ -37,6 +37,9 @@ const config = {
 			precompress: false,
 			strict: true
 		}),
+		alias: {
+			"$img": "src/lib/img"
+		},
 		paths: {
 			base: dev ? '' : process.env.BASE_PATH,
 		},

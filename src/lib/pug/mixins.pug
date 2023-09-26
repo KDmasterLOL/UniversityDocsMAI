@@ -16,7 +16,7 @@ mixin m(where)
 	- secBuf = pug_html;
 	- pug_html = '';
 	- is_block = attributes.class && attributes.class.includes("block") ? "true" : "false"
-	<Math expression={String.raw`#{secBuf}`} is_block={#{is_block}}></Math>
+	<Math expression={String.raw`!{secBuf}`} is_block={#{is_block}}></Math>
 	- pug_html = oldBuf + pug_html
 	if where
 		span

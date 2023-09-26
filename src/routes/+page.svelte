@@ -1,11 +1,10 @@
-<script>
+<script lang="ts">
 	import Math from '$lib/components/Math.svelte';
-
+	import Switcher from '$lib/components/Switcher.svelte';
+	import Header from './Header.svelte';
+	
 </script>
 
-
-<Math expression={"x_2+10_{123}"}></Math>
-<Math expression={"x_2+10_{123}"}></Math>
 <Math expression={"(2+3i)^2 = (2+3i)(2+3i) = 4+6i+6i+9i^2 = 4+12i-9 = -5+12i"}></Math>
 <figure>
 	<template lang="pug">
@@ -17,4 +16,7 @@
 
 	<figcaption>Formula with some description of used symbols</figcaption>
 </figure>
-
+<Switcher>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui aut eligendi magnam obcaecati. Suscipit natus, accusantium assumenda aut repellat minima? Ex beatae maxime sunt, harum quaerat reiciendis nesciunt obcaecati ad.</p>
+<p style="color: red">Another Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut omnis eius et. Vitae eius rerum explicabo, doloremque illo, beatae temporibus dolorum dolor quibusdam voluptatem distinctio ipsa commodi cupiditate, labore totam?</p>
+</Switcher>

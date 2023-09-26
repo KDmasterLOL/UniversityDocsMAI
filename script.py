@@ -34,7 +34,7 @@ def function(text):
                     buff = orig[entry.end() : pos].strip()
                     if "]" in buff:
                         buff = "String.raw`%s`" % buff
-                    result = entry[0] + " " + buff + orig[pos]
+                    result = entry[0] + "= " + buff + orig[pos]
             pos += 1
         text = text.replace(
             orig[entry.start() : pos], re.sub(r" {2,}", " ", result.replace("\n", " "))
@@ -240,6 +240,6 @@ def test():
     print(function(text))
 
 
-# process_files(function)
+process_files(function)
 
-test()
+# test()

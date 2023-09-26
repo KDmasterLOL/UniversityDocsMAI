@@ -93,6 +93,10 @@ ul.condition {
   }
 }
 
+.hidden {
+  display: none;
+}
+
 iframe {
   filter: invert(var(--invert));
   margin: auto;

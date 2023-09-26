@@ -9,7 +9,8 @@
 		MATH_ANALYSIS: {},
 		PHYSICS: {},
 		DIFFERENTIALS_EQUATIONS: {},
-		OPTIMIZATION: {}
+		OPTIMIZATION: {},
+		COMBINATORIAL_ANALYSIS: {}
 	};
 	let hovered = '';
 	let timeout_id = -1;

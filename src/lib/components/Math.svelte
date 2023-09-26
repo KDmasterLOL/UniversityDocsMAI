@@ -12,7 +12,9 @@
 			'\\arsh': `\\operatorname{arsh}`,
 			'\\arch': `\\operatorname{arch}`,
 			'\\arth': `\\operatorname{arth}`,
-			'\\arcth': `\\operatorname{arcth}`
+			'\\arcth': `\\operatorname{arcth}`,
+			'\\const': `\\operatorname{const}`,
+			'\\vb': `\\textbf{#1}`
 		},
 		displayMode: is_block,
 		throwOnError: false
@@ -20,5 +22,5 @@
 </script>
 
 {#if expression}
-	{@html katex.renderToString(expression, props)}
+	{@html katex.renderToString(expression.replace('\n', ' '), props)}
 {/if}
