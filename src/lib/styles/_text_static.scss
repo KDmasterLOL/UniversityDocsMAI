@@ -128,28 +128,14 @@ p {
   }
 }
 
-intro,
-note,
-warning,
-important {
 
-  p &,
-  dt &,
-  dd &,
-  intro & {
-    display: inline;
-  }
-
-  display: block;
-}
-
-intro {
+p.intro {
   font-family: $font-PD;
   font-size: larger;
   font-style: italic;
 }
 
-note {
+p.note {
 
   &::before {
     content: "ℹ︎";
@@ -158,26 +144,18 @@ note {
     font-weight: bold;
   }
 
-  .equation {
-    background-color: var(--note-color);
-  }
-
   background-color: var(--note-color);
   border-radius: 0.2rem;
   padding-left: 0.4rem;
 }
 
-warning {
+p.warning {
 
   &::before {
     content: "!!";
     padding-right: 0.6rem;
     padding-left: 0.6rem;
     font-weight: bold;
-  }
-
-  .equation {
-    background-color: var(--note-color);
   }
 
   background-color: var(--note-color);
@@ -218,20 +196,6 @@ important {
   /* IE and Edge */
   scrollbar-width: none;
   /* Firefox */
-}
-
-.equation {
-  display: inline-block;
-  max-width: 100%;
-  width: fit-content;
-  vertical-align: middle;
-  position: relative;
-}
-
-.equation,
-mjx-container[jax="CHTML"][display="true"],
-summary.example+ol {
-  @extend %scroll-without-scrollbar;
 }
 
 span {
@@ -426,6 +390,22 @@ dl {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     @include upper-first-letter;
+
+    a {
+      float: right;
+      padding: 0;
+      margin: 0;
+    }
+
+    @media (pointer: none),
+    (pointer: coarse) {
+      abbr[title] {
+        &::after {
+          display: inline;
+          content: attr(title)
+        }
+      }
+    }
   }
 }
 
@@ -473,39 +453,6 @@ a {
 }
 
 dl {
-  display: block;
-
-  a {
-    float: right;
-    padding: 0;
-    margin: 0;
-  }
-
-  .name {
-    font-weight: bold;
-    font-size: 1.3rem;
-    padding: 0;
-
-    &::before {
-      padding-right: 1rem;
-      font-weight: bolder;
-      color: #c99e00;
-      font-size: 1.5rem;
-    }
-  }
-
-  &::first-letter {
-    text-transform: uppercase;
-  }
-
-  >.meaning {
-    &::before {
-      content: "－";
-      font-weight: 900;
-      padding-left: $space;
-      padding-right: $space * 3;
-    }
-  }
 
   >ul {
     >li {
@@ -528,26 +475,11 @@ dl {
   }
 }
 
-@media (pointer: none),
-(pointer: coarse) {
-  dl {
-    abbr[term] {
-      &::after {
-        display: inline;
-      }
-    }
-  }
-}
+
 
 @media screen and (0px <=width <=500px) {
   html {
     font-size: 18px;
-  }
-
-  dl {
-    .name {
-      font-size: 1.1rem;
-    }
   }
 
   @for $i from 1 through 4 {

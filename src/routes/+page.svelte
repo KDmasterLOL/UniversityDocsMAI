@@ -2,7 +2,8 @@
 	import Math from '$lib/components/Math.svelte';
 	import Switcher from '$lib/components/Switcher.svelte';
 	import Header from './Header.svelte';
-	import book from '$lib/books/Киясов С. Н., Шурыгин В. В..pdf'
+	
+	import book_1 from '$lib/books/DifferentialsEquations.pdf?url'
 	
 </script>
 
@@ -13,7 +14,8 @@
 		p.intro What about #[+m \sqrt{i}], for instance? Won't we need a #[+m() j], or some other invention (er, dimension)? Well..., you can take everything to extremes, but we won't need to. #[+m() (2+3i)^2 = (2+3i)(2+3i) = 4+6i+6i+9i^2 = 4+12i-9 = -5+12i]. Therefore, the square root of #[+m() -5+12i] is #[+m() 2+3i]. It turns out that the Square Root of #[+m() i] is another complex number. We won't need a #[+m() j]. We won't need a third dimension for #[+m() \sqrt{i}].
 
 		div #[+m({'z':'чето','x':'чето','m':'чето'}) x_2+h+z=z^m];
-		<a href={book}></a>
+		<a href={book_1+'#page=3'}>Link asset</a>
+		+source(links=['https://www.mathsisfun.com/calculus/second-derivative.html','https://www.mathsisfun.com/calculus/differential-equations-solution-guide.html','https://www.mathsisfun.com/algebra/degree-expression.html'] books=[{index: 1,page: 3}])
 	</template>
 
 	<figcaption>Formula with some description of used symbols</figcaption>

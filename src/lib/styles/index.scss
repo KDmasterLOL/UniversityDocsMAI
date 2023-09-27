@@ -12,6 +12,19 @@
   justify-content: space-around;
 }
 
+p[title] {
+  &::before {
+    content: attr(title)" ";
+    color: gray;
+  }
+}
+
+img {
+  &.right {
+    float: right;
+  }
+}
+
 body {
   background-color: var(--background-color);
 }
@@ -118,7 +131,13 @@ img {
 }
 
 figure {
-  margin: auto;
+  display: flex;
+  flex-direction: column;
+
+  iframe,
+  img {
+    overflow: hidden;
+  }
 
   .group {
     overflow-x: scroll;
@@ -133,27 +152,16 @@ figure {
     }
   }
 
-  &.float {
-    width: min-content;
-
-    img {
-      width: max-content;
-      margin: 0;
-      padding: 0;
-    }
-
-    float: right;
-  }
-
   figcaption {
-    &.title {
-      text-align: center;
-      font-weight: 600;
-      font-size: 2rem;
-    }
 
-    &::first-letter {
-      text-transform: capitalize;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      all: unset;
+      font-size: 2rem;
     }
 
     text-align: center;
@@ -169,6 +177,16 @@ details {
     padding: 0.5rem;
     padding-left: $space;
     padding-top: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    all: unset;
+    font-size: 2rem;
   }
 
   summary {
@@ -190,20 +208,6 @@ details {
       &::before {
         content: "Вывод";
         padding: 0.5rem;
-      }
-    }
-
-    &.proof {
-      &::before {
-        content: "Доказательство";
-        padding: 0.5rem;
-      }
-    }
-
-    &.info {
-      &::before {
-        content: "ℹ️";
-        margin-right: 1em;
       }
     }
   }
@@ -275,21 +279,6 @@ span {
   }
 }
 
-figure {
-  figcaption {
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      all: unset;
-
-      font-size: 2rem;
-    }
-  }
-}
 
 @keyframes blink {
   0% {

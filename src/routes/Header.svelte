@@ -7,10 +7,9 @@
 	const links: { [key: string]: Object } = {
 		LINEAR_ALGEBRA: {},
 		MATH_ANALYSIS: {},
+		MATH: { DifferentialsEquations: {}, CombinatorialAnalysis: {} },
 		PHYSICS: {},
-		DIFFERENTIALS_EQUATIONS: {},
-		OPTIMIZATION: {},
-		COMBINATORIAL_ANALYSIS: {}
+		OPTIMIZATION: {}
 	};
 	let hovered = '';
 	let timeout_id = -1;

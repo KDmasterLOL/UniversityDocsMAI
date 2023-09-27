@@ -1,3 +1,8 @@
+<script>
+	import Math from '$lib/components/Math.svelte';
+</script>
+
+<template lang="pug">
 dl
 	dt #[dfn Factorial function #[+m !]]
 		+source(links=['https://www.mathsisfun.com/numbers/factorial.html'])
@@ -307,3 +312,5 @@ table: tbody
 		tr
 			td [a4]
 			td L. Mirsky, "Transversal theory" , Acad. Press (1971)
+
+</template>
