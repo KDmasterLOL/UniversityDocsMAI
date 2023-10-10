@@ -7,6 +7,16 @@ import katex from "katex";
 const dev = process.argv.includes('dev');
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
+	vitePlugin: {
+		onwarn(warning, defaultHandler) {
+			// don't warn on <marquee> elements, cos they're cool
+			return;
+			if (warning.code === 'a11y-distracting-elements') return;
+
+			// handle all other warnings normally
+			defaultHandler(warning);
+		}
+	},
 	preprocess: [preprocess({
 		pug: {
 			basedir: "./src/lib/pug",
@@ -28,8 +38,10 @@ const config = {
 		paths: {
 			base: dev ? '' : process.env.BASE_PATH,
 		},
-	}
+	},
+	compilerOptions: {
 
+	}
 };
 
 export default config;

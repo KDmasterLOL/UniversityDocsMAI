@@ -24,12 +24,6 @@ $left-panel-speed: 0.5s;
 }
 
 @media (prefers-color-scheme: dark) {
-  .theme-a.adaptive {
-    background: #753;
-    color: #dcb;
-    outline: 5px dashed #000;
-  }
-
   :root {
     --background-color: #1d1c1e;
     --shadow-color: #558ABB;

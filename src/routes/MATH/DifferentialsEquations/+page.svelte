@@ -20,7 +20,7 @@ dl
 				p In our world things change, and #[b describing how they change] often ends up as a Differential Equation:
 			details
 				summary Rabbits!
-				img(src='https://www.mathsisfun.com/calculus/images/rabbits.jpg').no-invert
+				img(alt="alt string" src='https://www.mathsisfun.com/calculus/images/rabbits.jpg').no-invert
 				p: mark The more rabbits we have the more baby rabbits we get. Then those rabbits grow up and have babies too! #[strong The population will grow faster and faster].
 				ul(title="The important parts:")
 					li The population #[+m N] at any time #[+m t] - #[+m N(t)]
@@ -30,7 +30,7 @@ dl
 				p So it is better to say the rate of change (at any instant) is the growth rate times the population at that instant: #[mark #[+m \ddv Nt = rN]. And that is a #[em Differential Equation], because it has a function #[+m N(t)] and its derivative].#[br]And how powerful mathematics is! That short equation says "the rate of change of the population over time equals the growth rate times the population".
 			details
 				summary Compound Interest
-				img(src='https://www.mathsisfun.com/money/images/coin-stack-add.jpg').no-invert
+				img(alt="alt string" src='https://www.mathsisfun.com/money/images/coin-stack-add.jpg').no-invert
 				p Money earns interest. The interest can be calculated at fixed times, such as yearly, monthly, etc. and added to the original amount.#[br]This is called #[a(href='https://www.mathsisfun.com/money/compound-interest.html'): dfn compound interest].
 				p But when it is compounded #[b continuously] then at any time the interest gets added in proportion to the current value of the loan (or investment).
 				p And as the loan grows it earns more interest.
@@ -44,7 +44,7 @@ dl
 				p So Differential Equations are great at describing things, but need to be solved to be useful.
 				h4 More Examples of Differential Equations
 				h5 The Verhulst Equation
-				img(src='https://www.mathsisfun.com/calculus/images/rabbits.jpg').no-invert
+				img(alt="alt string" src='https://www.mathsisfun.com/calculus/images/rabbits.jpg').no-invert
 				h5 Example: Rabbits Again!
 				p Remember our growth Differential Equation: #[+m \ddv Nt = rN]
 				p Well, that growth can't go on forever as they will soon run out of available food.
@@ -57,7 +57,7 @@ dl
 				dl 
 					dt Simple Harmonic Motion
 					dd In Physics: A type of periodic motion where the restoring force is directly proportional to the displacement. An example of this is given by a mass on a spring.
-				img(src='https://www.mathsisfun.com/calculus/images/spring-mass.svg').right
+				img(alt="alt string" src='https://www.mathsisfun.com/calculus/images/spring-mass.svg').right
 				p A spring gets a weight attached to it:
 				ul
 					li the weight gets pulled down due to gravity
@@ -84,7 +84,7 @@ dl
 	dt: dfn: abbr(title="Partial Differential Equations") PDEs
 	dd have two or more independent variables.
 h5 Order and Degree
-img(src='https://www.mathsisfun.com/calculus/images/diff-eq-2.svg')
+img(alt="alt string" src='https://www.mathsisfun.com/calculus/images/diff-eq-2.svg')
 dl
 	dt: dfn Order
 	dd The #[b highest derivative]

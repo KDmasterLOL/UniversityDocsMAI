@@ -164,7 +164,7 @@ table#GOST-font
     td 8.4 
     td 12
 figure 
-  img(src="./Шрифты.png" alt="")
+  img(alt="alt string" src="./Шрифты.png" )
   figcaption Шрифт
 
 

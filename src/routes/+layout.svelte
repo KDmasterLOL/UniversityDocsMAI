@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Header from './Header.svelte';
 	import 'katex/dist/katex.min.css';
+	import '$lib/styles/index.scss';
 </script>
 
 <Header />
@@ -17,7 +18,4 @@
 </svelte:head>
 
 <style lang="scss">
-	:global {
-		@import 'index';
-	}
 </style>

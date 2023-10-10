@@ -17,11 +17,11 @@ dl
   dd.intro 
     p The real numbers include basically anything that a calculator will turn into a decimal, or anything that has a position on the number line. But #[+m \sqrt{-1}] does not have a position on the number line. There is no number we can square to get negative one.#[br] So we can't use a real number for #[+m \sqrt{-1}]. We must use a different kind of number. The sixteenth century mathematicians who first seriously worked with #[+m \sqrt{-1}] weren't sure what its significance was, so they called it an imaginary number #[small , a very unfortunate term cause in fact, there is nothing imaginary about #[+m \sqrt{-1}] (But it did take two centuries before mathematicians generally understood its significance)]. #[mark We don't need any other definitions for square roots of other numbers, having #[+m i] is enough. #[span.example We can write #[+m \sqrt{-9} = 3i], since the square root of 9 is 3, and the square root of a negative number will produce the number #[+m i].]]
     figure
-      img(src='http://www.milefoot.com/math/complex/images/numberline.gif')
+      img(alt="alt string" src='http://www.milefoot.com/math/complex/images/numberline.gif')
       figcaption Number line
   dd To draw them #[small when they aren't on the number line,] we need second number line to represent the pure imaginary part of the complex number, cause a one-dimensional number line will not sufficient #[eg we need a two-dimensional picture to represent complex numbers]. So the real numbers are points on the horizontal axis. #[em Imaginary numbers] are located somewhere other than the horizontal axis. #[mark #[dfn Pure imaginary numbers] are points on the vertical axis (other than the origin). #[dfn Complex numbers] include all possible points in the picture.]
     figure
-      img(src='http://www.milefoot.com/math/complex/images/argand.gif')
+      img(alt="alt string" src='http://www.milefoot.com/math/complex/images/argand.gif')
       figcaption The number #[+m 2+3i], represented by a point.
   dt Pure imaginary numbers #[+m b \in \mathbb{R}: bi]
   dd Product of a nonzero real number #[+m b] with the imaginary number #[+m i]. The collection of numbers created by taking square roots of the negative numbers. #[mark None of the pure imaginary numbers have a position on the number line].
@@ -40,7 +40,7 @@ dl
   dd #[strong Imaginary Numbers and Trigonometry]
     a(href="http://www.milefoot.com/math/complex/imagandtrig.htm")
     figure
-      img(src='http://www.milefoot.com/math/complex/images/argand2.gif')
+      img(alt="alt string" src='http://www.milefoot.com/math/complex/images/argand2.gif')
       figcaption Graphical representation of #[+m 2+3i]. The parts of the complex number #[+m 2+3i] are shown by the horizontal and vertical sides of the triangle. The hypotenuse of the right triangle has length #[+m \sqrt{13}], found by using the Pythagorean Theorem or the distance formula.
     p In the triangle, if we use #[+m P] for the name of the angle at the origin, then we can rewrite the number #[+m 2+3i] by using its trigonometric components. The horizontal component is #[+m \sqrt{13}\cos P], the vertical component is #[+m \sqrt{13}(\sin P)i], so the number #[+m 2+3i] is the same as #[+m \sqrt{13}(\cos P + i \sin P)]. #[mark Basically, every complex number can be written in the form #[+m a + bi = r(\cos P + i\sin P)].]
     p #[span.intro There are many identities in trigonometry, and they are the key to multiplying and dividing complex numbers.] Suppose we have the two complex numbers #[+m r(\cos P + i \sin P)] and #[+m s(\cos Q + i \sin Q)]. When we multiply them using distributive property, we obtain #[+m rs (\cos P \cos Q + i \cos P \sin Q + i \sin P \cos Q - \sin P \sin Q)]. But the formulas for the sine and cosine of a sum allow us to rewrite this result as #[+m [r (\cos P + i \sin P)][s (\cos Q + i \sin Q)] = rs[\cos(P+Q)+i\sin(P+Q)]] 

@@ -14,7 +14,7 @@ dl
 		p An #[strong ordered] Combination.
 		p.note To remember, think "#[+m P]ermutation as #[+m P]osition"
 		figure
-			img(src='https://www.mathsisfun.com/combinatorics/images/permutation-lock.jpg')
+			img(alt="alt string" src='https://www.mathsisfun.com/combinatorics/images/permutation-lock.jpg')
 			figcaption: h1 Permutation Lock
 		p There are basically two types of permutation:
 		ol
@@ -33,7 +33,7 @@ dd
 	details.example
 		summary 
 			p What order could 16 pool balls be in?
-			img(src='https://www.mathsisfun.com/combinatorics/images/pool-balls.jpg')
+			img(alt="alt string" src='https://www.mathsisfun.com/combinatorics/images/pool-balls.jpg')
 		p After choosing, say, number 14 we can't choose it #[em again]. So, our first choice has 16 possibilites, and our #[em next choice] #[strong has 15 possibilities, then 14, 13, 12, 11, ... etc]. And the total permutations are: #[+m 16 × 15 × 14 × 13 × ... = 20,922,789,888,000]
 		p But maybe we don't want to choose them all, #[b just 3] of them, and that is then: #[+m 16 × 15 × 14 = 3,360]. #[eg There are 3,360 different ways that 3 pool balls could be arranged out of 16 balls].
 		p.note Without repetition our choices get reduced each time.
@@ -115,7 +115,7 @@ p We can also use #[a(href='https://www.mathsisfun.com/pascals-triangle.html') P
 | 1 14 91 364 ... 1 15 105 455 1365 ... 1 16 120 #[b 560] 1820 4368 ...
 h5 1. Combinations with Repetition
 p OK, now we can tackle this one ...
-img(src='https://www.mathsisfun.com/combinatorics/images/ice-cream2.jpg')
+img(alt="alt string" src='https://www.mathsisfun.com/combinatorics/images/ice-cream2.jpg')
 p Let us say there are five flavors of icecream: #[b banana, chocolate, lemon, strawberry and vanilla].
 p We can have three scoops. How many variations will there be?
 p Let's use letters for the flavors: {b, c, l, s, v}. Example selections include
@@ -125,23 +125,23 @@ ul
 	li {b, v, v} (one of banana, two of vanilla)
 p (And just to be clear: There are #[b n=5] things to choose from, we choose #[b r=3] of them, order does not matter, and we #[b can] repeat!)
 p Now, I can't describe directly to you how to calculate this, but I can show you a #[b special technique] that lets you work it out.
-img(src='https://www.mathsisfun.com/combinatorics/images/bclsv.gif')
+img(alt="alt string" src='https://www.mathsisfun.com/combinatorics/images/bclsv.gif')
 p Think about the ice cream being in boxes, we could say "move past the first box, then take 3 scoops, then move along 3 more boxes to the end" and we will have 3 scoops of chocolate!
 p So it is like we are ordering a robot to get our ice cream, but it doesn't change anything, we still get what we want.
 p We can write this down as 
-	img(src='https://www.mathsisfun.com/combinatorics/images/acccaaa.gif')
+	img(alt="alt string" src='https://www.mathsisfun.com/combinatorics/images/acccaaa.gif')
 	| (arrow means #[b move], circle means #[b scoop]).
 p In fact the three examples above can be written like this:
 table: tbody
 	tr
 		td {c, c, c} (3 scoops of chocolate):
-		td: img(src='https://www.mathsisfun.com/combinatorics/images/acccaaa.gif')
+		td: img(alt="alt string" src='https://www.mathsisfun.com/combinatorics/images/acccaaa.gif')
 	tr
 		td {b, l, v} (one each of banana, lemon and vanilla):
-		td: img(src='https://www.mathsisfun.com/combinatorics/images/caacaac.gif')
+		td: img(alt="alt string" src='https://www.mathsisfun.com/combinatorics/images/caacaac.gif')
 	tr
 		td {b, v, v} (one of banana, two of vanilla):
-		td: img(src='https://www.mathsisfun.com/combinatorics/images/caaaacc.gif')
+		td: img(alt="alt string" src='https://www.mathsisfun.com/combinatorics/images/caaaacc.gif')
 p So instead of worrying about different flavors, we have a #[+m simpler] question: "how many different ways can we arrange arrows and circles?"
 p Notice that there are always 3 circles (3 scoops of ice cream) and 4 arrows (we need to move 4 times to go from the 1st to 5th container).
 p So (being general here) there are #[+m r + (n−1)] positions, and we want to choose #[+m r] of them to have circles.
