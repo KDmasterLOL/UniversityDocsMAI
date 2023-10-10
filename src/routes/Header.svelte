@@ -12,7 +12,7 @@
 			CombinatorialAnalysis: {},
 			ComplexFunction: {}
 		},
-		Physics: {},
+		PHYSICS: {},
 		OPTIMIZATION: { LinearProgramming: {} }
 	};
 	let hovered = '';
