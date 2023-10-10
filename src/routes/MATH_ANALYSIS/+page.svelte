@@ -1,7 +1,0 @@
-<script>
-	import Math from '$lib/components/Math.svelte';
-</script>
-
-<template lang="pug">
-article: include /articles/MATH/MATH_ANALYSIS/index
-</template>

@@ -52,7 +52,7 @@ dl
 				ul: li the maximum population that the food can support #[+m k]
 				p A guy called Verhulst figured it all out and got this Differential Equation: #[+m \ddv Nt = rN(1−N/k)]
 				p: i: b The Verhulst Equation
-			details(open)
+			details
 				summary Simple Harmonic Motion
 				dl 
 					dt Simple Harmonic Motion
@@ -60,11 +60,11 @@ dl
 				img(src='https://www.mathsisfun.com/calculus/images/spring-mass.svg').right
 				p A spring gets a weight attached to it:
 				ul
-					li the weight gets pulled down due to gravity,
-					li as the spring stretches its tension increases,
-					li the weight slows down,
-					li then the spring's tension pulls it back up,
-					li then it falls back down, up and down, again and again.
+					li the weight gets pulled down due to gravity
+					li as the spring stretches its tension increases
+					li the weight slows down
+					li then the spring's tension pulls it back up
+					li then it falls back down, up and down, again and again
 				h1 Describe this with mathematics!
 				p #[b The weight] is pulled down by gravity, and we know from #[a(href='https://www.mathsisfun.com/physics/force.html') Newton's Second Law] that force equals mass times acceleration #[+m F=ma] and #[a(href='https://www.mathsisfun.com/measure/metric-acceleration.html') acceleration] is the #[a(href='https://www.mathsisfun.com/calculus/second-derivative.html') second derivative] of position with respect to time, so #[+m F = m \ddvd 2xt]
 				p #[b The spring] pulls it back up based on how stretched it is (#[+m k] is the spring's stiffness, and #[+m x] is how stretched it is): #[b F = -kx]
@@ -73,9 +73,11 @@ dl
 					iframe(src='https://www.mathsisfun.com/physics/ispring.html' width="380px" height="400px")
 					figcaption We haven't included "damping" (the slowing down of the bounces due to friction), which is a little more complicated, but you can play with it here (press #[b play]):
 				p #[b Creating] a differential equation is the first major step. But we also need to #[b solve] it to discover how, for example, the spring bounces up and down over time.
-		p(title="Solve") We #[b solve] it when we discover #[em the function #[+m y] (or set of functions)]. There are many #[em tricks] to solving Differential Equations #[small if they can be solved].
-h4 Classify Before Trying To Solve
-p.intro So how do we #[b solve] them? It isn't always easy!#[br]Over the years wise people have worked out #[b special methods] to solve #[b some types] of Differential Equations. So we need to know #[b what type] of Differential Equation it is first.#[br]It is like travel: different kinds of transport have solved how to get to certain places. Is it near, so we can just walk? Is there a road so we can take a car? Or is it in another galaxy and we just can't get there yet?#[br]#[strong So let us first #[b classify the Differential] Equation].
+		
+		figure
+			figcaption: h1 Solving 
+			p #[mark We solve it when we discover #[em the function #[+m y] (or set of functions)]]. There are many #[em tricks] to solving Differential Equations #[small if they can be solved].#[br]
+				span.intro So how do we exactly solve them? #[small It isn't always easy!] Over the years wise people have worked out #[em special] methods to solve #[em some types] of Differential Equations. So we need to know #[b what type] of Differential Equation it is first. #[small It is like travel: different kinds of transport have solved how to get to certain places. Is it near, so we can just walk? Is there a road so we can take a car? Or is it in another galaxy and we just can't get there yet?] #[strong So let us first #[b classify the Differential] Equation].
 dl
 	dt: dfn: abbr(title="Ordinary Differential Equations") ODEs
 	dd have #[b a single independent variable] (like #[+m y])
@@ -86,33 +88,22 @@ img(src='https://www.mathsisfun.com/calculus/images/diff-eq-2.svg')
 dl
 	dt: dfn Order
 	dd The #[b highest derivative]
-		dl.example
-			dt #[+m \dd y\dd x + y = 5x]
-			dd It has only the first derivative #[+m \frac{\dd y}{\dd x}], so is #[strong First Order]
-			dt #[+m \dd y\dd x + xy = sin(x)]
-			dd This has a second derivative #[+m \frac{\dd y}{\dd x}], so is #[strong Order 2]
-			dt #[+m \dd y\dd x + x\dd y\dd x + y = e]
-			dd This has a third derivative #[+m \frac{\dd y}{\dd x}] which outranks the #[+m \frac{\dd y}{\dd x}] , so is #[strong Order 3]
-
+		ol.example
+			li: p #[+m \ddv yx + y = 5x] - It has only the first derivative #[+m \ddv yx], so is #[strong First Order]
+			li: p #[+m \ddvd 2yx + xy = \sin(x)] - This has a second derivative #[+m \ddvd 2yx], so is #[strong Order 2]
+			li: p #[+m \ddvd 3yx + x\ddv yx + y = e] - This has a third derivative #[+m \ddvd 3yx] which outranks the #[+m \ddv yx], so is #[strong Order 3]
 	dt Degree
 	dd 
 		p The exponent of the highest derivative.
-		dl.example 
-			dt: +m() (\dd y \dd x) + y = 5x
-			dd
-				p The highest derivative is just #[+m \frac{\dd y}{\dd x}], and it has an exponent of 2, so this is "Second Degree"
-				p In fact it is a #[b First Order Second Degree Ordinary Differential Equation]
-			dt #[+m \dd y \dd x + (\dd y \dd x) + y = 5x]
-			dd
-				p The highest derivative is #[+m \frac{\dd y}{\dd x}], but it has no exponent (well actually an exponent of 1 which is not shown), so this is "First Degree".
-				p (The exponent of 2 on #[+m \frac{\dd y}{\dd x}] does not count, as it is not the highest derivative).
-				p So it is a #[b Third Order First Degree Ordinary Differential Equation]
-				p Be careful not to confuse order with degree. Some people use the word order when they mean degree!
+		ol.example 
+			li: p #[+m() (\ddv yx)^2 + y = 5x^2] - The highest derivative is just #[+m \ddv yx], and it has an exponent of 2, so this is "Second Degree". #[mark #[small In fact] it is a #[strong First Order Second Degree Ordinary Differential Equation]]
+			li: p #[+m \ddvd 3yx + (\ddv yx)^2 + y = 5x^2] - The highest derivative is #[+m \ddvd 3yx], but it has no exponent #[small actually an exponent of 1 which is not shown], so this is "First Degree". #[mark The exponent of 2 on #[+m \ddv yx] does not count, as it is not the highest derivative. So it is a #[b Third Order First Degree Ordinary Differential Equation]]
+	p.warning Be careful not to confuse order with degree. Some people use the word order when they mean degree!
 h5 Linear
 p It is #[b Linear] when the variable (and its derivatives) has no exponent or other function put on it.
-p So #[b no] y, y, √y, sin(y), ln(y) etc, #[b just plain y] (or whatever the variable is)
+p So #[b no] y^2, y^3, \sqrt y, \sin y, \ln y …, #[b just plain y] (or whatever the variable is)
 p More formally a #[b Linear Differential Equation] is in the form:
-p \dd y\dd x + P(x)y = Q(x)
+p \ddv yx + P(x)y = Q(x)
 h4 Solving
 p OK, we have classified our Differential Equation, the next step is solving.
 p And we have a #[a(href='https://www.mathsisfun.com/calculus/differential-equations-solution-guide.html') Differential Equations Solution Guide] to help you.

@@ -5,11 +5,15 @@
 	import { afterNavigate } from '$app/navigation';
 
 	const links: { [key: string]: Object } = {
-		LINEAR_ALGEBRA: {},
-		MATH_ANALYSIS: {},
-		MATH: { DifferentialsEquations: {}, CombinatorialAnalysis: {} },
-		PHYSICS: {},
-		OPTIMIZATION: {}
+		LinearAlgebra: {},
+		MATH: {
+			MATH_ANALYSIS: {},
+			DifferentialsEquations: {},
+			CombinatorialAnalysis: {},
+			ComplexFunction: {}
+		},
+		Physics: {},
+		OPTIMIZATION: { LinearProgramming: {} }
 	};
 	let hovered = '';
 	let timeout_id = -1;

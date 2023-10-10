@@ -1,9 +1,11 @@
-h1 О чем то
-h2 Используемая литература
-ol
+<script>
+	import Math from '$lib/components/Math.svelte';
+</script>
+
+<template lang="pug">
+ol(title="Литература")
 	li Ильин В.А., Позняк Э.Г. Основы математического анализа В 2-х частях. часть 1 и 2
-h2 Полезные ресурсы
-ol.columns
+ol(title="Интересно")
 	li: a(href="https://youtu.be/3zRubo5fHUo") великая теорема ферма
 	li: a(href="https://youtu.be/0GorifJmJVM") кватернионы
 	li: a(href="https://youtu.be/FdHB5SXddvY") Суть алгебры
@@ -11,14 +13,6 @@ ol.columns
 	li: a(href="https://youtu.be/EYsr0DZWMCg") 10 глупых вопросов МАТЕМАТИКУ | Алексей Савватеев 
 	li: a(href="https://youtu.be/7kR1e5BaNB0") Как мировая элита использует теорию игр (Д. Перетолчин, А. Савватеев) 
 	li: a(href="https://youtube.com/playlist?list=PLZjXXN70PH5ilxFCrbVJyNofV0_yC2IgH") Суть матанализа
-h2 Таблицы
-h3 Интегралов
-ol.columns
-	li #[+m \euint{}{x}]
-	li #[+m \euint{x^n}{\frac{x^{n+1}}{n+1}}]
-	li #[+m \euint{\frac 1x}{\ln x}]
-	li #[+m \euint{\cos x}{\sin x}]
-	li #[+m \euint{\sin x}{-\cos x}]
 h1 Об о всем и ни о чем
 dl 
 	dt Параметрическая функция #[+m f(t)]
@@ -33,17 +27,22 @@ dl
 	dd разность двух значений переменной #[+m x]
 	dt Приращение функции #[+m \Delta f(х) = f(x_1) - f(x_0)] соответствующее данному приращению аргумента #[+m \Delta х]
 	dd разность двух значений функции от соответствующих аргументов
-h1 Обозначения
-dl
-	dt #[+m() (A)] - фигура с именем #[+m A]
-	dd #[+m A] - площадь фигуры #[+m() (A)]
-	dt #[+m \Delta] - приращение
-	dt #[+m \dd] - дифференциал
+figure
+	ol
+		li #[+m() (A)] - фигура с именем #[+m A]
+		li #[+m A] - площадь фигуры #[+m() (A)]
+		li #[+m \Delta] - приращение
+		li #[+m \dd] - дифференциал
+	figcaption: h1 Обозначения
 h1 FAQ
-h3 Как запомнить что производная от #[+m \cos x] это #[+m -\sin x], а от #[+m \sin x] просто #[+m \cos x]
-p Производная имеет физический смысл скорости изменения в какую либо из сторон - положительную или отрицательную - и #[+m \cos 0 = 1,\cos \pi = 0:\cos 0 \gt \cos \pi] из этого следует что #[+m= String.raw`x\in [0;\pi]:\dd{\qty(\cos x)}\le 0`], то есть можно сказать как только косинус появляется на свет в точке 0 он сразу начинает падать в низ. И так как синус и косинус описывают скорости изменения друг друга, а #[+m x\in [0;\pi]:\sin x \ge 0], то нужно брать синус со знаком минус
-article: include complex_numbers
+dl
+	dt Как запомнить что производная от #[+m \cos x] это #[+m -\sin x], а от #[+m \sin x] просто #[+m \cos x]
+	dd
+		p Производная имеет физический смысл скорости изменения в какую либо из сторон - положительную или отрицательную - и #[+m \cos 0 = 1,\cos \pi = 0:\cos 0 \gt \cos \pi] из этого следует что #[+m= String.raw`x\in [0;\pi]:\dd{\qty(\cos x)}\le 0`], то есть можно сказать как только косинус появляется на свет в точке 0 он сразу начинает падать в низ. И так как синус и косинус описывают скорости изменения друг друга, а #[+m x\in [0;\pi]:\sin x \ge 0], то нужно брать синус со знаком минус
+		
 //- article: include intro
 //- article: include series
 //- article: include integrals
 //- article: include differentials
+
+</template>

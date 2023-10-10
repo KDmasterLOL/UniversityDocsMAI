@@ -1,4 +1,4 @@
-Example of task (my imagination)
+section.example of task (my imagination)
 $$
 \begin{aligned}
 z=x+y \to \max \\

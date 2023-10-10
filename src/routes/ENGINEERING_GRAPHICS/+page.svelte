@@ -1,3 +1,8 @@
+<script>
+	import Math from '$lib/components/Math.svelte';
+</script>
+
+<template lang="pug">
 table#GOST-font
   tr 
     th Параметры шрифта	
@@ -16,7 +21,8 @@ table#GOST-font
     td 10 
     td 14 
     td 20
-  th Высота строчных букв 
+  tr
+    th Высота строчных букв 
     td c 
     td (7/10) 
     td 1.3 
@@ -158,6 +164,59 @@ table#GOST-font
     td 8.4 
     td 12
 figure 
-  img(src="./Шрифты.webp" alt="").invert
+  img(src="./Шрифты.png" alt="")
   figcaption Шрифт
 
+
+</template>
+
+<style lang="scss">
+	$highlight-color: rgba(255, 255, 0, 0.3);
+
+	#GOST-font {
+		margin: auto;
+
+		td {
+			text-align: center;
+			padding: 0.3rem;
+		}
+
+		th {
+			border-top: 0.1rem solid var(--text-color);
+			padding: 0.3rem;
+		}
+
+		tr:not(:nth-child(4)) {
+			td:nth-last-child(-n + 8) {
+				border: 0.1rem solid var(--text-color);
+			}
+		}
+
+		border-collapse: collapse;
+		overflow: hidden;
+
+		td,
+		th {
+			position: relative;
+		}
+
+		tr:hover {
+			background-color: $highlight-color;
+		}
+
+		td:hover::after {
+			content: '';
+			height: 10000px;
+			left: 0;
+			position: absolute;
+			top: -5000px;
+			width: 100%;
+			z-index: -1;
+		}
+
+		td:hover::after,
+		th:hover::after {
+			background-color: $highlight-color;
+		}
+	}
+</style>

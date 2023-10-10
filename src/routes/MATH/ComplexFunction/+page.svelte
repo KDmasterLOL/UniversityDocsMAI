@@ -1,4 +1,11 @@
+<script>
+	import Math from '$lib/components/Math.svelte';
+</script>
+
+<template lang="pug">
+
 h2 Complex numbers
++m() (a+bi)^2=a^2+2abi-b^2 \\ (a+bi)(a-bi)=a^2+abi-abi+b^2=a^2+b^2 \\ (a+bi)^3=(a^2+2abi-b^2)(a+bi)=a^3+2a^2bi-ab^2+a^2bi-2ab^2-b^3i=a^3+3a^2bi-3ab^2-b^3i
 
 h4 Imaginary Numbers
   a(href="http://www.milefoot.com/math/complex/imagnumbers.htm")
@@ -93,7 +100,7 @@ p Substituting the quantity #[+m ix] in place of the variable #[+m x], we can pr
 | #[+m \cos{ix} = \frac{e^x+e^{-x}}{2} = \cosh x, \qquad \sin{ix} = \frac{e^{-x}-e^{x}}{2i} = i\sinh x] 
 p Then, using the formulas for the sine and cosine of the sum of two angles, we can obtain formulas for the sine and cosine of complex numbers.
 | #[+m \cos(a+bi) = \cos a \cosh b - i\sin a \sinh b] #[+m \sin(a+bi) = \sin a \cosh b + i\cos a \sinh b] 
-p As an example, consider the cosine of #[+m i]. We get #[+m \cos i = \cos 0 \cosh 1 - i\sin 0 \sinh 1 = \cosh 1 = \frac{e^1+e^{-1}}{2} \approx 1.5431 ].
+p As an example, consider the cosine of #[+m i]. We get #[+m \cos i = \cos 0 \cosh 1 - i\sin 0 \sinh 1 = \cosh 1 = \frac{ e^1+e^{-1} }{2} \approx 1.5431 ].
 h5 Hyperbolic Functions
 p Using the connection between hyperbolic functions and trigonometric functions, the results for hyperbolic functions are almost immediate.
 | #[+m \cosh(a+bi) = \cosh a \cos b + i\sinh a \sin b] #[+m \sinh(a+bi) = \sinh a \cos b + i\cosh a \sin b] 
@@ -109,3 +116,36 @@ p The formulas are identical to those previously found for inverse hyperbolic fu
 p For example, one of the values of the inverse hyperbolic cosine of #[+m i] (using the plus sign in the formula) is: #[+m= String.raw`-i\left[\ln(1+\sqrt{2}) +\frac{\pi}{2}i \right] = \frac{\pi}{2} -i\ln(1+\sqrt{2}) \approx 1.57-0.88i`]. Then using the logarithm formula, we get: #[+m= String.raw`\ln\left[(1+\sqrt{2})i\right] =\ln(1+\sqrt{2})+\frac{\pi}{2}i \approx 0.88+1.57i`].
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+dl.example
+  dt Доказать справедливость равенств #[+m \overline{z_1z_2}=\overline{z_1}\overline{z_2}, \overline{\left(\frac{z_1}{z_2} \right) }=\frac{ \overline{z_1} }{ \overline{z_2} }, \overline{(z^n)}=(\overline{z})^n]
+  dd
+    ol
+      li: +m \overline{z_1z_2}=\overline{z_1}\overline{z_2} \Rightarrow \overline{(a_1+b_1i) * (a_2+b_2i)} = \overline{a_1+b_1i} * \overline{a_2+b_2i} \Rightarrow \overline{([a_1a_2-b_1b_2]+[a_2b_1+a_1b_2]i)} = (a_1-b_1i) * (a_2-b_2i) \Rightarrow ([a_1a_2-b_1b_2]-[a_2b_1+a_1b_2]i) \equiv ([a_1a_2-b_1b_2]+[-a_2b_1-a_1b_2]i)
+      li: +m \overline{\left(\frac{z_1}{z_2} \right) }=\frac{ \overline{z_1} }{ \overline{z_2} } \Rightarrow \overline{\left(\frac{a_1+b_1i}{a_2+b_2i} \right) } = \frac{ \overline{a_1+b_1i} }{ \overline{a_2+b_2i} } \Rightarrow \overline{\left(\frac{(a_1+b_1i)(a_2-b_2i)}{(a_2+b_2i)(a_2-b_2i)} \right) }=\frac{a_1-b_1i}{a_2-b_2i} \Rightarrow \overline{ \frac{ [a_1a_2+b_1b_2]+[-b_2a_1+b_1a_2]i }{ a_2^2+b_2 } }=\frac{(a_1-b_1i)(a_2+b_2i)}{(a_2-b_2i)(a_2+b_2i)} \Rightarrow \frac{[a_1a_2+b_1b_2]-[-b_2a_1+b_1a_2]i}{a_2^2+b_2^2}=\frac{[a_1a_2+b_1b_2]+[b_2a_1-b_1a_2]i}{a_2^2+b_2^2} \Rightarrow \frac{[a_1a_2+b_1b_2]+[b_2a_1-b_1a_2]i}{a_2^2+b_2^2}=\frac{[a_1a_2+b_1b_2]+[b_2a_1-b_1a_2]i}{a_2^2+b_2^2}
+      li: +m \overline{(z^n)}=(\overline{z})^n \Rightarrow \overline{([\arg z(\sin \theta+ i\cos \theta)]^n)}=(\overline{\arg z(\sin \theta+ i\cos \theta)})^n
+//- include temp
+
+</template>

@@ -15,7 +15,9 @@
 			'\\arth': `\\operatorname{arth}`,
 			'\\arcth': `\\operatorname{arcth}`,
 			'\\const': `\\operatorname{const}`,
-			'\\vb': `\\textbf{#1}`
+			'\\vb': `\\textbf{#1}`,
+			'\\Veci': String.raw`\vb #1 = \left( #1_1, #1_2, \dots, #1_#2 \right)`,
+			'\\Vec': String.raw`\vb #1 = \begin{pmatrix} #1_1 \\ #1_2 \\ \vdots \\ #1_#2 \end{pmatrix}`
 		},
 		displayMode: is_block,
 		throwOnError: false
