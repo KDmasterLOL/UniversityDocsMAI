@@ -18,4 +18,13 @@
 </svelte:head>
 
 <style lang="scss">
+	main {
+		margin: {
+			left: var(--content-margin);
+			right: var(--content-margin);
+		}
+		@media screen and (width <= 900px) {
+			margin: 0;
+		}
+	}
 </style>

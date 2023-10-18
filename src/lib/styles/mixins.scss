@@ -9,6 +9,18 @@
 	}
 }
 
+@mixin headers {
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@content
+	}
+}
+
 %scroll-without-scrollbar {
 	overflow-x: scroll;
 	overflow-y: hidden;
@@ -22,4 +34,24 @@
 	/* IE and Edge */
 	scrollbar-width: none;
 	/* Firefox */
+}
+
+.no-invert {
+	filter: invert(0);
+}
+
+.invert {
+	filter: invert(var(--invert));
+}
+
+.right {
+	float: right;
+}
+
+.left {
+	float: left;
+}
+
+.hidden {
+	display: none;
 }

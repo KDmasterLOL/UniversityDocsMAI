@@ -1,0 +1,99 @@
+dl 
+	dt Deformable Body	
+		a(href="https://scienceworld.wolfram.com/physics/DeformableBody.html")
+	dd In mechanics, any body that changes its shape and/or volume while being acted upon by any kind of external force.
+	dt Rigid body
+		a(href="https://scienceworld.wolfram.com/physics/RigidBody.html")
+	dd A body, regardless of shape and volume, with the characteristic that the relative distance between any two points of it remains constant, even if the body is acted upon by external forces. #[mark Since all real materials deform at least slightly, rigid bodies do not exist in the real world. However, in cases where #[strong a body's deformations are small and therefore #[em unimportant] for defining its mechanical status], it can be useful to #[strong approximate] the body as #[em rigid].]
+
+
+h3 Момент силы относительно точки
+	a(href="https://isopromat.ru/teormeh/kratkaja-teoria/moment-sily-otnositelno-tochki")
+	a(href="https://web.mit.edu/4.441/1_lectures/1_lecture5/1_lecture5.html")
+	a(href="https://www.nagwa.com/en/explainers/653128293684/")
+p #[em Момент силы относительно точки] (или центра) — вращательный эффект силы, характеризующий #[a(title='Вращение твердого тела' href='https://isopromat.ru/teormeh/obzornyj-kurs/vrashenie-tverdogo-tela-vokrug-nepodvizhnoj-osi') вращение твердого тела] вокруг некоторой точки под действием приложенной силы.
+h4 Определение
+p #[i Моментом силы относительно точки] (рисунок 1.1) называется векторное произведение радиус-вектора точки приложения силы на вектор силы.
+img(alt="alt string" src='https://isopromat.ru/wp-content/uploads/moment-sily-otnositelno-tochki-1.png')
+| Рисунок 1.1
+p Вектор момента направлен перпендикулярно плоскости, в которой лежат сила и точка, в ту сторону, откуда поворот от действия силы виден происходящим против хода часовой стрелки.
+h4 Вычисление момента
+p Вектор момента характеризует положение плоскости и направление вращательного действия силы, а также дает меру этого действия: #[+m \left|\vec{M}_0\vec{F}\right|=Fr\sin \alpha = Fh], где h – #[i: a(href='https://isopromat.ru/glossary/plecho-sily') плечо силы] (кратчайшее расстояние от точки O – центра #[a(href='https://isopromat.ru/glossary/moment') момента] – до линии действия силы). Если сила проходит через точку, то ее момент относительно этой точки равен нулю.
+p Момент силы относительно точки не меняется от переноса силы вдоль линии ее действия.
+p Если силы расположены в одной плоскости, то используется понятие алгебраического момента силы.
+p #[i Алгебраическим моментом силы относительно точки] (или центра) называется взятое #[a(href='https://isopromat.ru/tehmeh/video/pravilo-znakov-dla-momentov') со знаком плюс или минус] произведение модуля силы на плечо (рисунок 1.2).
+p Наш короткий видеоурок про #[a(title='Момент силы' href='https://isopromat.ru/teormeh/obzornyj-kurs/moment-sily') момент силы] с примерами:
+iframe(src='https://frontend.vh.yandex.ru/player/4b17b35645c5235eb5db0f7de56d7c9e?from=partner&mute=0&autoplay=0&tv=0&no_ad=false&loop=false&play_on_visible=false').no-invert
+h4 Правило знаков
+p Знак плюс выбирается в том случае, если сила стремится #[a(href='https://isopromat.ru/sopromat/teoria/pravilo-znakov/sil-i-momentov-v-uravneniah-statiki') поворачивать плоскость относительно центра момента против хода часовой стрелки].
+img(alt="alt string" src='https://isopromat.ru/wp-content/uploads/moment-sily-otnositelno-tochki-4.png')
+p Если сила F задана своими #[a(href='https://isopromat.ru/teormeh/obzornyj-kurs/proekcia-sily-na-os') проекциями на оси координат] F, F, F и даны координаты x, y, z точки приложения этой силы, то момент силы относительно начала координат вычисляется следующим образом:
+img(alt="alt string" src='https://isopromat.ru/wp-content/uploads/moment-sily-otnositelno-tochki-5.png')
+p Проекции момента силы на оси координат равны:
+img(alt="alt string" src='https://isopromat.ru/wp-content/uploads/moment-sily-otnositelno-tochki-6.png')
+
+
+dl
+	dt Statics
+		a(href="https://scienceworld.wolfram.com/physics/Statics.html")
+	dd The study of the conditions under which mechanical and other systems remain in a configuration ("state") which does #[strong not change #[em with time]]. Statics theory is based on five axioms:
+		ol
+			li A rigid body acted upon by two forces is in a state of static equilibrium if and only if the two forces are of the same intensity, lie along the same line of action, and are oriented in opposite directions along the line.
+			li If a system of two forces in equilibrium is added to or extracted from a given system of forces, the way that the system of forces acts on a rigid body undergoes no change.
+			li The resultant of two forces acting at the same material point is equal to the vector sum of the two forces. The line of the resulting force's action contains the material point. This axiom obeys the principle of vector summation.
+			li Two interacting bodies react on each other with two forces of equal intensity, and along the same line of action, but in opposite directions along the line. This axiom is also known as principle of action and reaction.
+			li If a deformable body is in a state of static equilibrium, it would also be in static equilibrium if the body were rigid. This axiom is also known as the principle of solidification.
+	dt Static Equilibrium
+		a(href="https://scienceworld.wolfram.com/physics/StaticEquilibrium.html")
+	dd A system is in static equilibrium when the sum of external torques and forces is zero #[+m \sum \tau_{\text{ext}}=\sum F_{\text{ext}}=0].
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+hgroup 
+	h3 Система сил
+	//- https://de.ifmo.ru/bk_netra/page.php?index=4&layer=2&tutindex=29#:~:text=Две%20системы%20сил%20называются%20эквивалентными,движения%2C%20в%20котором%20находится%20тело.
+	+source(links=['https://shorturl.at/jmtSW'])
+img(alt="alt string" src='https://de.ifmo.ru/bk_netra/image.php?img=p-fsys.gif&bn=29')
+dl
+	dt: dfn Система сил
+	dd 
+		p Совокупность сил #[+m F_1,F_2,…,F_n], приложенных к рассматриваемому материальному объекту #[span.example твердому телу].
+		ul(title="В зависимости от расположения линий действия")
+			li #[dfn плоская], если линии действия всех сил лежат в одной плоскости
+			li #[dfn пространственная], если линии действия сил не лежат в одной плоскости
+			li #[dfn система сходящихся сил], если линии действия всех сил пересекаются в одной точке
+			li #[dfn система параллельных сил], если линии действия всех сил параллельны друг другу
+		p Две системы сил #[dfn эквивалентные], если одну систему сил, приложенных к свободному твердому телу, можно заменить другой системой, не изменяя при этом состояния покоя/движения, в котором находится тело.
+		p Система сил #[dfn уравновешена #[eg эквивалентна нулю]], если в результате ее приложения к покоящемуся телу она не сообщает телу никакого движения.
+		p Одна сила которой эквивалентна система сил называется #[dfn равнодействующей силой] данной системы сил. Сила, равная по модулю равнодействующей силе, противоположная ей по направлению и действующая вдоль той же прямой, называется #[dfn уравновешивающей силой].
+	dt: dfn Принцип отвердения
+	dd Равновесие деформируемого твердого тела, находящегося под действием данной системы сил, не нарушится, если тело считать абсолютно твердым.
+	dt: dfn Закон параллелограмма сил
+	dd 
+		img(alt="alt string" src='https://de.ifmo.ru/bk_netra/image.php?img=p-rf1f2.gif&bn=29')
+		p Две силы #[+m F_1,F_2], приложенные к телу в одной точке, имеют равнодействующую силу #[+m R], приложенную в той же точке и являющуюся диагональю параллелограмма, построенного на этих силах, как на сторонах. 
+			| #[br] Вектор #[+m R=F_1+F_2] называют геометрической суммой векторов #[+m F_1,F_2]. Модуль равнодействующей может быть вычислен с использованием теоремы косинусов по следующей формуле: #[+m({'\\alpha':'угол между силами $F_1,F_2$'}) R=(F_1+F_2+2F_1F_2\cos\alpha )]
+
+
+
+
+
+
+
+
+
+
+

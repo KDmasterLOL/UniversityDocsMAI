@@ -1,0 +1,167 @@
+hgroup 
+	h3 Линейные дифференциальные уравнения 1-го порядка и уравнение Бернулли
+	+source(links=['http://www.mathhelpplanet.com/static.php?p=linyeinye-differentsialnye-uravneniya-pervogo-poryadka-i-uravnenie-bernulli'])
+dl
+	dt: dfn Линейным дифференциальным уравнением первого порядка #[+m({'p(x),q(x)':'заданные функции от $x$, непрерывные в той области, в которой требуется проинтегрировать уравнение'}) \ddv yx+p(x)y=q(x)]
+	dd
+		p Уравнение линейное относительно неизвестной функции и её производной. Если #[+m q(x)\equiv 0], то уравнение #[dfn линейным однородным]. Оно является уравнением с разделяющимися переменными и имеет общее решение #[+m y=C\exp\left(-\int{p(x)}\,\dd x\right),]
+		p Общее решение неоднородного уравнения можно найти методом вариации произвольной постоянной, который состоит в том, что решение уравнения (1) ищется в виде #[+m y=C(x)\exp\left(-\int{p(x)}\,\dd x\right)], где #[+m C(x)] — новая неизвестная функция от #[+m x].
+		ol.example
+			li: p #[+m.task y'+2xy=2xe^{-x^2}] #[strong Применим метод вариации постоянной]. Рассмотрим однородное уравнение #[+m y'+2xy=0], соответствующее данному неоднородному уравнению. Это уравнение с разделяющимися переменными. Его общее решение имеет вид #[+m y=Ce^{-x^2}]. Общее решение неоднородного уравнения ищем в виде #[+m({'C(x)': 'неизвестная функция от $x$'}) y=C(x)e^{-x^2}]. Подставляя, получаем #[+m C'(x)=2x], откуда #[+m C(x)=x^2+C]. #[span.solution Общее решение неоднородного уравнения #[+m({'C': 'постоянная интегрирования'}) y=(x^2+C)e^{-x^2}]]. #[mark Может оказаться, что дифференциальное уравнение линейно относительно #[+m x] как функция от #[+m y]. Нормальный вид такого уравнения #[+m \frac{\dd x}{\dd y}+r(y)x=\varphi(y)]].
+			li 
+				+m.block.task \ddv yx=\frac{1}{x\cos y+\sin2y}
+				ol 
+					li Данное уравнение является линейным, если рассматривать #[+m x] как функцию от #[+m y]: #[+m \frac{\dd x}{\dd y}-x\cos y=\sin{2y}.]
+					li Применяем метод вариации произвольной постоянной. Сначала решаем соответствующее однородное уравнение #[+m \frac{\dd x}{\dd y}-x\cos y=0], которое является уравнением с разделяющимися переменными. Его общее решение имеет вид #[+m x=Ce^{\sin y},~C=\text{const}].
+					li Общее решение уравнения ищем в виде #[+m({'C(y)': 'неизвестная функция от y'}) x=C(y)e^{\sin y}]. Подставляя, получаем #[+m C'(y)e^{\sin y}=\sin2y] или #[+m C'(y)=e^{-\sin y}\sin2y.]
+					li Отсюда, интегрируя по частям, будем иметь #[+m C(y)=\int{e^{-\sin y}\sin2y}\,\dd y=2\int{e^{-\sin y}\cos y\sin y}\,\dd y=2\int\sin y\,d(-e^{-\sin y})= -2\sin y\,e^{-\sin y}+2\int{e^{-\sin y}\cos y}\,\dd y=C-2(\sin y+1)e^{-\sin y},] итак, #[+m C(y)=-2e^{-\sin y}(1+\sin y)+C.] Подставляя это уравнение в #[+m x=C(y)e^{\sin y}], получаем общее решение исходного уравнения, а значит, и данного уравнения:#[+m x=Ce^{\sin y}-2(1+\sin y)]
+					li Исходное уравнение может быть проинтегрировано также следующим образом. Полагаем #[+m({'u(x), v(x)': 'неизвестные функции от $x$, одна из которых, например $v(x)$, может быть выбрана произвольно'}) y=u(x)v(x)]
+					li Подставляя #[+m y=u(x)v(x)] в #[+m \ddv yx+p(x)y=q(x)], после преобразования получаем #[+m vu'+(pv+v')u=q(x)].
+					li.solution Определяя #[+m v(x)] из условия #[+m v'+pv=0], найдем затем из #[+m vu'+(pv+v')u=q(x)] функцию #[+m u(x)], а следовательно, и решение #[+m y=uv] уравнения #[+m \ddv yx+p(x)y=q(x)]. В качестве #[+m v(x)] можно взять любое частое решение уравнения #[+m v'+pv=0,~v\not\equiv0].
+			li #[+m.task x(x-1)y'+y=x^2(2x-1),~y|_{x=2}=4] Ищем общее решение уравнения в виде #[+m y=u(x)v(x)] имеем #[+m y'=u'v+uv']. Подставляя выражение для #[+m y] и #[+m y'] в исходное уравнение, будем иметь #[+m x(x-1)(u'v+uv')+uv=x^2(2x-1)] или #[+m x(x-1)vu'+[x(x-1)v'+v]u=x^2(2x-1)]. Функцию #[+m v=v(x)] находим из условия #[+m x(x-1)v'+v=0]. Беря любое частное решение последнего уравнения, например #[+m v=\frac{x}{x-1}], и подставляя его, получаем уравнение #[+m u'=2x-1], из которого находим функцию #[+m u(x)=x^2-x+C]. Следовательно, общее решение уравнения #[+m x(x-1)y'+y=x^2(2x-1)] будет #[+m y=uv=(x^2-x+C)\frac{x}{x-1},] или #[+m y=\frac{Cx}{x-1}+x^2]. Используя начальное условие #[+m y|_{x=2}=4], получаем для нахождения #[+m C] уравнение #[+m 4=\frac{2C}{2-1}+2^2], откуда #[+m C=0]. #[+m.solution y=x^2]
+			p Пример 4. Известно, что между силой тока #[+m i] и электродвижущей силой #[+m E] в цепи, имеющей сопротивление #[+m R] и самоиндукцию #[+m L], существует зависимость #[+m E=Ri+L\frac{di}{dt}], где #[+m R] и #[+m L] — постоянные. Если считать #[+m E] функцией времени #[+m t], то получим линейное неоднородное уравнение для силы тока #[+m i]: #[+m \frac{di}{dt}+\frac{R}{L}i(t)=\frac{E(t)}{L}.]
+			p Найти силу тока #[+m i(t)] для случая, когда #[+m E=E_0=\text{const}] и #[+m i(0)=I_0].
+			p Решение. Имеем #[+m \frac{di}{dt}+\frac{R}{L}i(t)=\frac{E_0}{L},~i(0)=I_0]. Общее решение этого уравнения имеем вид #[+m i(t)=\frac{E_0}{R}+Ce^{-(R/L)t}]. Используя начальное условие (13), получаем из #[+m C=I_0-\frac{E_0}{R}], так что искомое решение будет #[+m i(t)=\frac{E_0}{R}+\left(I_0-\frac{E_0}{R}\right)e^{-(R/L)t}.]
+			p Отсюда видно, что при #[+m t\to+\infty] сила тока #[+m i(t)] стремится к постоянному значению #[+m \frac{E_0}{R}].
+			p Пример 5. Дано семейство #[+m C_\alpha] интегральных кривых линейного неоднородного уравнения #[+m y'+p(x)y=q(x)].
+			p Показать, что касательные в соответственных точках к кривым #[+m C_\alpha], определяемым линейным уравнением, пересекаются в одной точке (рис. 13).
+			p Решение. Рассмотрим касательную к какой-либо кривой #[+m C_\alpha] в точке #[+m M(x,y)].Уравнение касательной в точке #[+m M(x,y)] имеет вид #[+m \eta-q(x)(\xi-x)=y[1-p(x)(\xi-x)]], где #[+m \xi,\eta] — текущие координаты точки касательной.
+			p По определению, в соответственных точках #[+m x] является постоянным, а #[+m y] переменным. Беря любые две касательные к линиям #[+m C_\alpha] в соответственных точках, для координат точки #[+m S] их пересечения, получаем #[+m \xi=x+\frac{1}{p(x)}, \quad \eta=x+\frac{q(x)}{p(x)}.]
+			p Отсюда видно, что все касательные к кривым #[+m C_\alpha] в соответственных точках (#[+m x] фиксировано) пересекаются в одной и той же точке #[+m S\left(x+\frac{1}{p(x)};\,x+\frac{q(x)}{p(x)}\right).]
+			p Исключая в системе аргумент #[+m x], получаем уравнение геометрического места точек #[+m S \colon f(\xi,\eta)=0].
+			p Пример 6. Найти решение уравнения #[+m y'-y=\cos{x}-\sin{x}], удовлетворяющее условию: #[+m y] ограничено при #[+m y\to+\infty].
+			p Решение. Общее решение данного уравнения #[+m y=Ce^x+\sin{x}]. Любое решение уравнения, получаемое из общего решения при #[+m C\ne0], будет неограниченно, так как при #[+m x\to+\infty] функция #[+m \sin{x}] ограничена, а #[+m e^x\to+\infty]. Отсюда следует, что данное уравнение имеет единственное решение #[+m y=\sin{x}], ограниченное при #[+m x\to+\infty], которое получается из общего решения при #[+m C=0].
+//- img(title='Касательные к кривым, определяемым линейным дифференциальным уравнением' src='data:image/png;base64,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')
+h4 Уравнение Бернулли
+p Дифференциальное уравнение Бернулли имеет вид #[+m \ddv yx+p(x)y=q(x)y^n], где #[+m n\ne0;1] (при #[+m n=0] и #[+m n=1] это уравнение является линейным).
+p С помощью замены переменной #[+m z=\frac{1}{y^{n-1}}] уравнение Бернулли приводится к линейному уравнению и интегрируется как линейное.
+p Пример 7. Решить уравнение Бернулли #[+m y'-xy=-xy^3].
+p Решение. Делим обе части уравнения на #[+m y^3]: #[+m \frac{y'}{y^3}-\frac{x}{y^2}=-x]
+p Делаем замену переменной #[+m \frac{1}{y^2}=z\Rightarrow-\frac{2y'}{y^3}=z'], откуда #[+m \frac{y'}{y^3}=-\frac{z'}{2}]. После подстановки последнее уравнение обратится в линейное уравнение #[+m -\frac{z'}{2}-xz=-x] или #[+m z'+2xz=2x], общее решение которого #[+m z=1+Ce^{-x^2}.]Отсюда получаем общий интеграл данного уравнения#[+m \frac{1}{y^2}=1+Ce^{-x^2}] или #[+m y^2(1+Ce^{-x^2})=1.]
+p Замечание. Уравнение Бернулли может быть проинтегрировано также методом вариации постоянной, как и линейное уравнение, и с помощью подстановки #[+m y(x)=u(x)v(x)].
+p Пример 8. Решить уравнение Бернулли #[+m xy'+y=y^2\ln{x}.].
+p Решение. Применим метод вариации произвольной постоянной. Общее решение соответствующего однородного уравнения #[+m xy'+y=0] имеет вид #[+m y=\frac C{x}]. Общее решение уравнения ищем в виде #[+m y=\frac{C(x)}{x}], где #[+m C(x)] — новая неизвестная функция. Подставляя в исходное уравнение, будем иметь #[+m C'(x)=C^2(x)\frac{\ln{x}}{x^2}.]
+p Для нахождения функции #[+m C(x)] получим уравнение с разделяющимися переменными, из которого, разделяя переменные и интегрируя, найдем #[+m \frac{1}{C(x)}=\frac{\ln{x}}{x}+\frac{1}{x}+C~\Rightarrow~C(x)=\frac{x}{1+Cx+\ln{x}}.]
+p Итак, общее решение исходного уравнения #[+m y=\frac{1}{1+Cx+\ln{x}}].
+p Некоторые нелинейные уравнения первого порядка с помощью удачно найденной замены переменных сводятся к линейным уравнениям или к уравнениям Бернулли.
+p Пример 9. Решить уравнение #[+m y'+\sin y+x\cos y+x=0].
+p Решение. Запишем данное уравнение в виде #[+m y'+2\sin\frac y{2}\cos\frac y{2}+2x\cos^2\frac y{2}=0.].
+p Деля обе части уравнения на #[+m 2\cos^2\frac y{2}], получаем #[+m \frac{y'}{2\cos^2\dfrac y{2}}+\operatorname{tg}\frac y{2}+x=0].
+p Замена #[+m \operatorname{tg}\frac y{2}=z\Rightarrow\frac{dz}{\dd x}=\frac{y'}{\cos^2\dfrac y{2}}] приводит это уравнение к линейному #[+m \frac{dz}{\dd x}+z=-x], общее решение которого #[+m z=1-x+Ce^{-x}].
+p Заменяя #[+m z] его выражением через #[+m y], получаем общий интеграл данного уравнения #[+m \operatorname{tg}\frac y{2}=1-x+Ce^{-x}].
+p В некоторых уравнениях искомая функция #[+m y(x)] может находиться под знаком интеграла. В этих случаях иногда удается путем дифференцирования свести данное уравнение к дифференциальному.
+p Пример 10. Решить уравнение #[+m x\int\limits_{x}^{0}y(t)\,dt=(x+1)\int\limits_{0}^{x}ty(t)\,dt,~x&gt;0].
+p Решение. Дифференцируя обе части этого уравнения по #[+m x], получаем #[+m \int\limits_{0}^{x}y(t)\,dt+xy(x)=\int\limits_{0}^{x}ty(t)\,dt+x(x+1)y(x)] или #[+m \int\limits_{0}^{x}y(t)\,\dd x=\int\limits_{0}^{x}ty(t)\,dt+x^2y(x).]
+p Дифференцируя еще раз по #[+m x], будем иметь линейное однородное уравнение относительно #[+m y(x)\colon y(x)=xy(x)+x^2y'(x)+2xy(x)] или #[+m x^2y'(x)+(3x-1)y(x)=0.]
+p Разделяя переменные и интегрируя, найдем #[+m y=\frac C{x^3}e^{-1/x}]. Это решение, как легко проверить, удовлетворяет исходному уравнению.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+section 
+	p Рассмотрим линейное неоднородное дифференциальное уравнение первого порядка: #[b (1)] #[+m y' + p(x) y = q(x)]. Существует три способа решения этого уравнения:
+	ul
+		li метод введения двух функций (Бернулли)
+		li #[a(href='https://1cov-edu.ru/differentsialnye-uravneniya/pervogo-poryadka/linejnye/') метод интегрирующего множителя]
+		li #[a(href='https://1cov-edu.ru/differentsialnye-uravneniya/pervogo-poryadka/linejnye/metod-lagranzha/') метод вариации постоянной (Лагранжа)]
+
+	hgroup 
+		h3 Метод Лагранжа (вариации постоянной). Линейные дифференциальные уравнения первого порядка.
+		+source(links=['https://1cov-edu.ru/differentsialnye-uravneniya/pervogo-poryadka/linejnye/metod-lagranzha/'])
+	dl
+		dt: dfn Метод Лагранжа
+		dt: dfn Метод вариации постоянной
+		dd
+			ol.algorithm
+				li.task Рассмотрим уравнение:  #[+m y' + p(x) y = q(x)]
+				li(title="Этап Ⅰ"): strong Упрощаем исходное уравнение и решаем однородное уравнение
+				li Ищем решение однородного уравнения #[+m y' + p(x)y = 0]
+				li Это уравнение с разделяющимися переменными #[+m \ddv yx + p(x)y = 0]
+				li Разделяем переменные - умножаем на #[+m \dd x] и делим на #[+m y]: #[+m \frac{\dd y}y + p(x)\dd x = 0] 
+				li Интегрируем: #[+m \int \frac{\dd y}y + \int p(x)\dd x = C \Rightarrow \ln|y| = C -\int p(x)\dd x] 
+				li Потенцируем: #[+m |y| = e^C \cdot e^{-\int p(x)\dd x}] 
+				li Заменим постоянную #[+m e^C \to C] и уберем знак модуля, что сводится к умножению на постоянную #[+m ±1], которую включим в #[+m C]: #[+m y = Ce^{-\int p(x)\dd x}]
+				li(title="Этап Ⅱ"): strong Заменим постоянную интегрирования, полученную на первой стадии решения, на функцию. После чего ищем общее решение исходного уравнения.
+				li Теперь заменим постоянную #[+m C] на функцию от #[+m x]: #[+m C → С(x)] #[eg будем искать решение исходного уравнения  в виде:  #[+m y = С(x) e^{-\int p(x)\dd x}]]
+				li Находим производную по правилу дифференцирования сложной функции: #[+m \left( e^{-\int p(x)\dd x} \right)' = e^{-\int p(x)\dd x} \cdot \left( -\int p(x)\dd x \right)' = - e^{-\int p(x)\dd x} \cdot p(x)]
+				li По правилу дифференцирования произведения: #[+m y' = С'(x) e^{-\int p(x)\dd x} + С(x) \cdot \left( e^{-\int p(x)\dd x} \right)' = С'(x)e^{-\int p(x)\dd x} - С(x) \cdot p(x) \cdot e^{-\int p(x)\dd x}]
+				li Подставляем в исходное уравнение : #[+m С'(x)e^{-\int p(x)\dd x} - \cancel{С(x)p(x)e^{-\int p(x)\dd x}} + \cancel{p(x)С(x)e^{-\int p(x)\dd x}} = q(x) \Longrightarrow {С'(x)e^{-\int p(x)\dd x} = q(x)} \Longrightarrow {С'(x) = q(x)e^{\int p(x)\dd x}}]
+				li Интегрируем: #[+m С(x) = \int q(x)e^{\int p(x)\dd x} \dd x + C]
+				li Подставляем в искомое общее решение: #[+m= String.raw`y = \left[\int q(x)e^{\int p(x)\dd x}\dd x+C\right]e^{-\int p(x)\dd x}`]
+				li.solution 
+					p В результате получаем общее решение линейного дифференциального уравнения первого порядка
+					+m.block y = Ce^{-\int p(x)\dd x} + e^{-\int p(x)\dd x} \int q(x)e^{\int p(x)\dd x} \dd x
+			details.example(open)
+				summary.task Решить уравнение линейного дифференциального уравнения первого порядка методом Лагранжа #[+m xy' + 3y = x^2]
+				ol
+					li: strong Решаем однородное уравнение: #[+m xy' + 3y = 0] 
+					li Разделяем переменные: #[+m x\ddv yx + 3y = 0]
+					li Умножим на #[+m \frac{\dd x}{xy}]: #[+m \frac{\dd y}{y} + 3\frac{\dd x}x = 0] 
+					li Интегрируем: #[+m \int \frac{\dd y}{y} + 3 \int \frac{\dd x}x = C] 
+					li Интегралы табличные: #[+m \ln|y| + 3 \ln|x| = C] 
+					li Потенцируем: #[+m |y||x|^3 = e^C] 
+					li Заменим постоянную #[+m e^C] на #[+m C] и убираем знаки модуля: #[+m yx^3 = C] 
+					li Отсюда: #[+m y = \frac C{x^3}] 
+					li: strong Заменим постоянную #[+m C] на функцию от #[+m x]: #[+m C = C(x)]
+					li Находим производную: #[+m y' = \left(Cx^{-3}\right)' = C'x^{-3} + C\left( x^{-3} \right)' = \frac{C'}{x^3} + C\left( -3x^{-4} \right) = \frac{C'}{x^3} -\frac{3C(x)}{x^4}]
+					li Подставляем в исходное уравнение: #[+m x\left( \frac{C'}{x^3} -\frac{3C(x)}{x^4} \right) + \frac{3C}{x^3} = x^2 \Longrightarrow \frac{C'}{x^2} - \cancel{\frac{3C}{x^3}} + \cancel{\frac{3C}{x^3}} = x^2 \Longrightarrow \ddv Cx = x^4].
+					li Интегрируем: #[+m C(x) = \int x^4 \dd x = \frac {x^5}5 + C]
+					li Решение уравнения: #[+m y = \frac {C(x)}{x^3} = \frac {\frac {x^5}5 + C}{x^3} = \frac15 x^2 + \frac C{x^3}]
+				p.solution Общее решение уравнения: #[+m y = \frac C{x^3} + \frac {x^2}5]
+
+	hgroup 
+		h3 Решение линейного неоднородного дифференциального уравнения первого порядка: #[+m y' + p(x) y = q(x)]
+		+source(links=['https://1cov-edu.ru/differentsialnye-uravneniya/pervogo-poryadka/linejnye/metod-bernulli/'])
+	dl
+		dt: dfn Метод Бернулли
+		dt: dfn Метод введения двух функций
+		dd 
+			ol 
+				li Ищем решение исходного уравнения в виде произведения двух функций: #[+m u=u(x), v=v(x):y = u\cdot v]. 
+				li Дифференцируем: #[+m y' = u' · v + u · v']. 
+				li Подставляем в исходное уравнение: #[+m u'v + uv' + p(x) uv = q(x)]
+				li Выносим #[+m u] за скобки: #[+m u' v + u (v' + p(x)v) = q(x)] 
+				li В качестве #[+m v] возьмем любое, отличное от нуля, решение уравнения: #[+m v' + p(x)v = 0] 
+				li Это уравнение с разделяющимися переменными. #[+m \ddv vx + p(x) v = 0] 
+				li Разделяем переменные. Умножаем обе части уравнения на #[+m \dd x] и делим на #[+m v]: #[+m \frac{\dd v}v + p(x) \dd x = 0] 
+				li Интегрируем: #[+m \int \frac{\dd v}v + \int p(x)\dd x = C] 
+				li Постоянную #[+m C] возьмем равной нулю, поскольку нам нужно любое, отличное от нуля, решение: #[+m \int \frac{\dd v}v = \ln |v| = -\int p(x)\dd x]
+				li Потенцируем и опускаем знак модуля (Знак модуля сводится к умножению на постоянную ±1): #[+m v = e^{-\int p(x)\dd x}] 
+				li Подставим в #[+m u' v + u (v' + p(x)v) = q(x)] учитывая, что согласно #[+m v' + p(x)v = 0], выражение в скобках равно нулю: #[+m \ddv udx \cdot e^{-\int p(x)\dd x} = q(x)] Отсюда #[+m \frac{du}{\dd x} = q(x), e^{\int p(x)\dd x}] 
+				li Интегрируем #[+m u = \int q(x) e^{\int p(x)\dd x}\dd x + C] 
+				li Окончательно находим: #[+m y = uv = \left(\int q(x) e^{\int p(x)\dd x} \dd x + C \right) \cdot e^{-\int p(x)\dd x} = C \cdot e^{-\int p(x)\dd x} + e^{-\int p(x) \dd x} \int q(x) e^{\int p(x)\dd x} \dd x]
+		details.example
+			summary: +m xy' + 3y = x^2
+			ol
+				li Делаем подстановку: #[+m y = u(x)\cdot v(x)]. 
+				li Дифференцируем: #[+m y' = u' · v + u · v'] 
+				li Подставляем в исходное уравнение: #[+m x( u' v + u v' ) + 3 u v = x^2] 
+				li Выносим u за скобки: #[b (3) x u' v + u ( xv' + 3v) = x^2] 
+				li В качестве v возьмем любое, отличное от нуля, решение уравнения: #[b (4) xv' + 3v = 0]. 
+				li Это уравнение с разделяющимися переменными, #[+m x \frac{dv}{\dd x} + 3v = 0]. 
+				li Разделяем переменные. Умножаем обе части уравнения на \dd x и делим на xv: #[+m \frac{dv}{v} + 3\frac{\dd x}x = 0] 
+				li Интегрируем: #[+m \int \frac{dv}{v} + 3 \int \frac{\dd x}x = C] 
+				li Постоянную C возьмем равной нулю, поскольку нам нужно любое, отличное от нуля, решение. По #[a(href='https://1cov-edu.ru/mat_analiz/integrali/tablitsa/') таблице интегралов], находим: #[+m \int \frac{dv}{v} = \ln|v| = - 3 \int \frac{\dd x}x = - 3 \ln|x|] Или #[+m \ln|v| = - 3 \ln|x|] 
+				li Потенцируем и опускаем знаки модуля (Знак модуля сводится к умножению на постоянную ±1). #[+m v = x^{-3}] 
+				li Подставим в (3) учитывая, что согласно (4), выражение в скобках равно нулю: #[+m x \frac{du}{\dd x} x^{-3} = x^2] 
+				li Отсюда #[+m \frac{du}{\dd x} = x^4] 
+				li Интегрируем, применяя формулу #[+m \int x^n\dd x = \frac 1{n+1} x^{n+1}]: #[+m u = \int x^4\dd x = \frac 1{4+1} x^{4+1} + C = \frac 15 x^5 + C]. 
+				li Окончательно находим: #[+m y = uv = \left( \frac 15 x^5 + C \right) x^{-3} = C x^{-3} + \frac 15 x^2].
+				li.solution Общее решение уравнения #[+m y = \frac C{x^3} + \frac 15 x^2]

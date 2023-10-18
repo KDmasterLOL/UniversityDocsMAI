@@ -1,10 +1,14 @@
 <script>
 	import Math from '$lib/components/Math.svelte';
 </script>
+
 <template lang="pug">
-article: include ./temp
-article: include ../tables
-h3 Differential Equations
+//- article: include ./temp
+//- article: include ../tables
+article: include types
+
+hgroup
+	h3 Differential Equations
 	+source(links=['https://www.mathsisfun.com/calculus/differential-equations.html','https://www.mathsisfun.com/calculus/second-derivative.html','https://www.mathsisfun.com/calculus/differential-equations-solution-guide.html','https://www.mathsisfun.com/algebra/degree-expression.html'])
 
 dl 
@@ -17,8 +21,8 @@ dl
 		figure
 			figcaption
 				h1 Why Are Differential Equations Useful?
-				p In our world things change, and #[b describing how they change] often ends up as a Differential Equation:
-			details
+			p In our world things change, and #[b describing how they change] often ends up as a Differential Equation
+			details.example
 				summary Rabbits!
 				img(alt="alt string" src='https://www.mathsisfun.com/calculus/images/rabbits.jpg').no-invert
 				p: mark The more rabbits we have the more baby rabbits we get. Then those rabbits grow up and have babies too! #[strong The population will grow faster and faster].
@@ -28,7 +32,7 @@ dl
 					li The population's #[+m N] rate of change - #[+m \ddv Nt], Think of it as "how much the population changes as time changes, for any moment in time".
 				p Let us imagine the growth rate #[+m r = 0.01] new rabbits per week #[strong for every current rabbit.]. When the population #[+m N = 1000], then the rate of change #[+m \ddv Nt = 1000×0.01 = 10] #[strong new rabbits] per week. #[mark But that is #[strong only true] at a #[em specific time], and #[strong doesn't include that the population is #[em constantly] increasing]. #[strong The bigger the population, the more new rabbits we get!]] When the population #[+m N=2000] we get #[+m 2000×0.01 = 20] new rabbits per week, etc.
 				p So it is better to say the rate of change (at any instant) is the growth rate times the population at that instant: #[mark #[+m \ddv Nt = rN]. And that is a #[em Differential Equation], because it has a function #[+m N(t)] and its derivative].#[br]And how powerful mathematics is! That short equation says "the rate of change of the population over time equals the growth rate times the population".
-			details
+			details.example
 				summary Compound Interest
 				img(alt="alt string" src='https://www.mathsisfun.com/money/images/coin-stack-add.jpg').no-invert
 				p Money earns interest. The interest can be calculated at fixed times, such as yearly, monthly, etc. and added to the original amount.#[br]This is called #[a(href='https://www.mathsisfun.com/money/compound-interest.html'): dfn compound interest].
@@ -42,17 +46,14 @@ dl
 				p Where #[+m P] is the Principal (the original loan), and e is #[a(href='https://www.mathsisfun.com/numbers/e-eulers-number.html') Euler's Number].
 				p So a continuously compounded loan of 1,000 for 2 years at an interest rate of 10% becomes: #[+m V = 1000 × eV = 1000 × 1.22140...V = 1,221.40] (to the nearest cent)
 				p So Differential Equations are great at describing things, but need to be solved to be useful.
-				h4 More Examples of Differential Equations
-				h5 The Verhulst Equation
+			details.example
+				summary The Verhulst Equation. Rabbits Again!
 				img(alt="alt string" src='https://www.mathsisfun.com/calculus/images/rabbits.jpg').no-invert
-				h5 Example: Rabbits Again!
 				p Remember our growth Differential Equation: #[+m \ddv Nt = rN]
 				p Well, that growth can't go on forever as they will soon run out of available food.
-				p So let's improve it by including:
-				ul: li the maximum population that the food can support #[+m k]
-				p A guy called Verhulst figured it all out and got this Differential Equation: #[+m \ddv Nt = rN(1−N/k)]
-				p: i: b The Verhulst Equation
-			details
+				p So let's improve it by including: the maximum population that the food can support #[+m k]
+				p A guy called Verhulst figured it all out and got this Differential Equation: The Verhulst Equation #[+m \ddv Nt = rN(1−N/k)] 
+			details.example
 				summary Simple Harmonic Motion
 				dl 
 					dt Simple Harmonic Motion
@@ -102,8 +103,7 @@ dl
 h5 Linear
 p It is #[b Linear] when the variable (and its derivatives) has no exponent or other function put on it.
 p So #[b no] y^2, y^3, \sqrt y, \sin y, \ln y …, #[b just plain y] (or whatever the variable is)
-p More formally a #[b Linear Differential Equation] is in the form:
-p \ddv yx + P(x)y = Q(x)
+p More formally a #[b Linear Differential Equation] is in the form: #[+m \ddv yx + P(x)y = Q(x)]
 h4 Solving
 p OK, we have classified our Differential Equation, the next step is solving.
 p And we have a #[a(href='https://www.mathsisfun.com/calculus/differential-equations-solution-guide.html') Differential Equations Solution Guide] to help you.
@@ -112,46 +112,5 @@ p And we have a #[a(href='https://www.mathsisfun.com/calculus/differential-equat
 
 
 
-section 
-	h3 Решение линейного неоднородного дифференциального уравнения первого порядка: #[+m y' + p(x) y = q(x)]
-		+source(links=['https://1cov-edu.ru/differentsialnye-uravneniya/pervogo-poryadka/linejnye/metod-bernulli/'])
-	ul
-		li #[a(href='https://1cov-edu.ru/differentsialnye-uravneniya/pervogo-poryadka/linejnye/') метод интегрирующего множителя];
-		li #[a(href='https://1cov-edu.ru/differentsialnye-uravneniya/pervogo-poryadka/linejnye/metod-lagranzha/') метод вариации постоянной (Лагранжа)].
-	dl
-		dt: dfn Метод Бернулли
-		dt: dfn Метод введения двух функций
-		dd 
-			ol 
-				li Ищем решение исходного уравнения в виде произведения двух функций: #[+m u=u(x), v=v(x):y = u\cdot v]. 
-				li Дифференцируем: #[+m y' = u' · v + u · v']. 
-				li Подставляем в исходное уравнение: #[+m u'v + uv' + p(x) uv = q(x)]
-				li Выносим #[+m u] за скобки: #[+m u' v + u (v' + p(x)v) = q(x)] 
-				li В качестве #[+m v] возьмем любое, отличное от нуля, решение уравнения: #[+m v' + p(x)v = 0] 
-				li Это уравнение с разделяющимися переменными. #[+m \ddv vx + p(x) v = 0] 
-				li Разделяем переменные. Умножаем обе части уравнения на #[+m \dd x] и делим на #[+m v]: #[+m \frac{\dd v}v + p(x) \dd x = 0] 
-				li Интегрируем: #[+m \int \frac{\dd v}v + \int p(x)\dd x = C] 
-				li Постоянную #[+m C] возьмем равной нулю, поскольку нам нужно любое, отличное от нуля, решение: #[+m \int \frac{\dd v}v = \ln |v| = -\int p(x)\dd x]
-				li Потенцируем и опускаем знак модуля (Знак модуля сводится к умножению на постоянную ±1): #[+m v = e^{-\int p(x)\dd x}] 
-				li Подставим в #[+m u' v + u (v' + p(x)v) = q(x)] учитывая, что согласно #[+m v' + p(x)v = 0], выражение в скобках равно нулю: #[+m \ddv udx \cdot e^{-\int p(x)\dd x} = q(x)] Отсюда #[+m \frac{du}{dx} = q(x), e^{\int p(x)\dd x}] 
-				li Интегрируем #[+m u = \int q(x) e^{\int p(x)\dd x}\dd x + C] 
-				li Окончательно находим: #[+m y = uv = \left(\int q(x) e^{\int p(x)\dd x} \dd x + C \right) \cdot e^{-\int p(x)\dd x} = C \cdot e^{-\int p(x)\dd x} + e^{-\int p(x) \dd x} \int q(x) e^{\int p(x)\dd x} \dd x]
-		details.example
-			summary #[+m xy' + 3y = x^2]
-			ol
-				li Делаем подстановку: #[+m y = u(x)\cdot v(x)]. 
-				li Дифференцируем: #[+m y' = u' · v + u · v'] 
-				li Подставляем в исходное уравнение: #[+m x( u' v + u v' ) + 3 u v = x^2] 
-				li Выносим u за скобки: #[b (3)] #[+m x u' v + u ( xv' + 3v) = x^2] 
-				li В качестве v возьмем любое, отличное от нуля, решение уравнения: #[b (4)] #[+m xv' + 3v = 0]. 
-				li Это уравнение с разделяющимися переменными, #[+m x \frac{dv}{dx} + 3v = 0]. 
-				li Разделяем переменные. Умножаем обе части уравнения на dx и делим на xv: #[+m \frac{dv}{v} + 3\frac{dx}x = 0] 
-				li Интегрируем: #[+m \int \frac{dv}{v} + 3 \int \frac{dx}x = C] 
-				li Постоянную C возьмем равной нулю, поскольку нам нужно любое, отличное от нуля, решение. По #[a(href='https://1cov-edu.ru/mat_analiz/integrali/tablitsa/') таблице интегралов], находим: #[+m \int \frac{dv}{v} = \ln|v| = - 3 \int \frac{dx}x = - 3 \ln|x|] Или #[+m \ln|v| = - 3 \ln|x|] 
-				li Потенцируем и опускаем знаки модуля (Знак модуля сводится к умножению на постоянную ±1). #[+m v = x^{-3}] 
-				li Подставим в (3) учитывая, что согласно (4), выражение в скобках равно нулю: #[+m x \frac{du}{dx} x^{-3} = x^2] 
-				li Отсюда #[+m \frac{du}{dx} = x^4] 
-				li Интегрируем, применяя формулу #[+m \int x^n\dd x = \frac 1{n+1} x^{n+1}]: #[+m u = \int x^4\dd x = \frac 1{4+1} x^{4+1} + C =]#[+m \frac 15 x^5 + C]. 
-				li Окончательно находим: #[+m y = uv = \left( \frac 15 x^5 + C \right) x^{-3} =]#[+m C x^{-3} + \frac 15 x^2].
-				li Ответ: Общее решение уравнения: #[+m y = \frac{C}{x^3} + \frac 15 x^2]
+
 </template>

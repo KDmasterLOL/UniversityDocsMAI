@@ -8,35 +8,49 @@ $buety-black: #121416d8;
 $left-panel-speed: 0.5s;
 
 :root {
-  --background-color: #fff;
+  --darkness: 0%;
+  --background: color-mix(in srgb, black var(--darkness), white);
+  --second-background: #999;
+  --solution: green;
   --shadow-color: gray;
 
   --text-color: black;
-  --text-second-color: #928da0;
+  --second-text: #928da0;
   --text-added-color: #7f88ac;
 
   --link-color: #543fd7;
   --note-color: yellow;
   --mark-color: yellow;
 
-  --invert: 0;
+  --invert: var(--darkness);
+
   --important-color: rgb(143, 0, 0);
+
+
+
+
+
+  --content-margin: 10vw;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background-color: #1d1c1e;
+    --darkness: 95%;
+    --second-background: #3e2628;
+
     --shadow-color: #558ABB;
 
     --text-color: #d7d7d7;
-    --text-second-color: #928da0;
+    --second-text: #928da0;
     --text-added-color: #7f88ac;
 
     --link-color: #6ee4ff;
     --note-color: #746429;
     --mark-color: rgb(73, 73, 0);
 
-    --invert: 1;
     --important-color: rgb(183, 0, 0);
+
+    --solution: rgb(13, 150, 13);
+
   }
 }

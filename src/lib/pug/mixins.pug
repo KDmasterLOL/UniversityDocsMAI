@@ -16,13 +16,13 @@ mixin m(where)
 	- secBuf = pug_html;
 	- pug_html = '';
 	- is_block = attributes.class && attributes.class.includes("block") ? "true" : "false"
-	span
+	span&attributes(attributes)
 		<Math expression={String.raw`!{secBuf}`} is_block={#{is_block}}></Math>
 		if where
 			span
 				| (
 				each val,index in where
-					span #[+m= index] #[span= ': ' + val + ', '] 
+					span #[+m= index] #[span!= ': ' + val.replaceAll(/(?<=\W)\$(\w+)\$(?=\W)?/g,"<Math expression='$1'/>") + ', '] 
 				| )
 	- pug_html = oldBuf + pug_html
 

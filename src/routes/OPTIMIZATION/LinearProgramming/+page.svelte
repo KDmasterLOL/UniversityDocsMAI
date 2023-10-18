@@ -13,9 +13,13 @@ figure
 		ul: a(href="https://www.whitman.edu/Documents/Academics/Mathematics/lewis.pdf") Linear Programming: Theory and Applications Catherine Lewis May 11, 2008
 		ul: a(href="https://math.mit.edu/~goemans/18310S15/lpnotes310.pdf") 18.310A lecture notes March 17, 2015; Linear programming; Lecturer: Michel Goemans
 		ul: a(href="https://www.uky.edu/~dsianita/300/online/LP.pdf") Linear programming
+		ul: a(href="https://mat.tepper.cmu.edu/classes/QUANT/NOTES/") Quantitative Methods for the Management Sciences 45-760 Course Notes
+		ul: a(href="https://www.matem.unam.mx/~omar/math340/") Math 340: Linear Programming
+		ul: a(href="https://econweb.ucsd.edu/~jsobel/172aw02/") Math 340: Linear Programming
+
 	figcaption: h1 Литература
 
-	p.intro Linear programming is not directly related to computer programming. The term was introduced in the 1950s when computers were few and mostly top secret, and the word programming was a military term that, at that time, referred to plans or schedules for training, logistical supply, or deployment of men. The word linear suggests that feasible plans are restricted by linear constraints (inequalities), and also that the quality of the plan (e.g., costs or duration) is also measured by a linear function of the considered quantities. In a similar spirit, linear programming soon started to be used for planning all kinds of economic activities, such as transport of raw materials and products among factories, sowing various crop plants, or cutting paper rolls into shorter ones in sizes ordered by customers. The phrase “planning with linear constraints” would perhaps better capture this original meaning of linear programming. However, the term linear programming has been well established for many years, and at the same time, it has acquired a considerably broader meaning: Not only does it play a role only in mathematical economy, it appears frequently in computer science and in many other fields.
+p.intro Linear programming is not directly related to computer programming. The term was introduced in the 1950s when computers were few and mostly top secret, and the word programming was a military term that, at that time, referred to plans or schedules for training, logistical supply, or deployment of men. The word linear suggests that feasible plans are restricted by linear constraints (inequalities), and also that the quality of the plan (e.g., costs or duration) is also measured by a linear function of the considered quantities. In a similar spirit, linear programming soon started to be used for planning all kinds of economic activities, such as transport of raw materials and products among factories, sowing various crop plants, or cutting paper rolls into shorter ones in sizes ordered by customers. The phrase “planning with linear constraints” would perhaps better capture this original meaning of linear programming. However, the term linear programming has been well established for many years, and at the same time, it has acquired a considerably broader meaning: Not only does it play a role only in mathematical economy, it appears frequently in computer science and in many other fields.
 dl
 	dt(lang='en'): dfn Linear program
 	dt: dfn Линейная программа 
@@ -67,7 +71,7 @@ dl
 
 h2 Виды решений ЗЛП
 	dl
-		dt #[abbr(term="Вырожденное решение") ВР]
+		dt #[abbr(title="Вырожденное решение") ВР]
 		dd БР содержащее базисную переменную равную нулю
 
 section.example
@@ -171,7 +175,7 @@ section
 article
 	h1 Симплекс метод
 	dl
-		dt #[abbr(term="Условие допустимости") УД]
+		dt: dfn: abbr(title="Условие допустимости") УД
 		dd В задаче максимизации отсутствие отрицательных коэффициентов в ЦФ, а в задаче минимизации отсутствие положительных
 		dt Symplex method
 		dd 

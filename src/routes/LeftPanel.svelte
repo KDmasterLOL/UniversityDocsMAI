@@ -28,7 +28,7 @@
 		top: 0;
 		bottom: 0;
 		left: 0;
-		background-color: var(--background-color);
+		background-color: var(--background);
 		width: calc(var(--padding-main) * 2);
 		box-sizing: border-box;
 		z-index: $pop-up-index;
@@ -55,7 +55,7 @@
 			svg {
 				background-color: var(--text-color);
 				line {
-					stroke: var(--background-color);
+					stroke: var(--background);
 					stroke-width: 10px;
 				}
 			}

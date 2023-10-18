@@ -94,7 +94,7 @@
 				right: $space-around;
 			}
 			border-radius: 25px;
-			box-shadow: inset 0 0px 10px 0 var(--background-color);
+			box-shadow: inset 0 0px 10px 0 var(--background);
 			border: 1px solid white;
 		}
 
