@@ -1,6 +1,5 @@
 <script>
-	import Math from '$lib/components/Math.svelte';
-	import Switcher from '$lib/components/Switcher.svelte';
+	import { Math, Switcher } from 'docs-lib';
 </script>
 
 <template lang="pug">

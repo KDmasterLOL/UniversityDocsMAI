@@ -18,10 +18,7 @@ const config = {
 		}
 	},
 	preprocess: [preprocess({
-		pug: {
-			basedir: "./src/lib/pug",
-			prependData: "include /mixins",
-		},
+		pug: { basedir: '.', prependData: "include /node_modules/docs-lib/dist/mixins" },
 		scss: { includePaths: ["./src/lib/styles"], prependData: "@import 'variables','mixins';" },
 	}), importAssets()],
 	kit: {

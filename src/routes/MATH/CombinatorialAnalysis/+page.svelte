@@ -1,6 +1,5 @@
 <script>
-	import Math from '$lib/components/Math.svelte';
-</script>
+	import {Math} from 'docs-lib';</script>
 
 <template lang="pug">
 dl

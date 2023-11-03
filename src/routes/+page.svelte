@@ -1,12 +1,12 @@
 <script lang="ts">
-	import Math from '$lib/components/Math.svelte';
-	import Switcher from '$lib/components/Switcher.svelte';
+	import {Math, Switcher, CodeBlock} from 'docs-lib';
 	import Header from './Header.svelte';
 	import Task from './Task.svelte';
 	import book_1 from '$lib/books/DifferentialsEquations.pdf?url';
 </script>
 
-<Math expression={'(2+3i)^2 = (2+3i)(2+3i) = 4+6i+6i+9i^2 = 4+12i-9 = -5+12i'} />
+<Math expression={'(2+3i)^2 = (2+3i)(2+3i) = \\mathbb{A} 4+6i+6i+9i^2 = 4+12i-9 = -5+12i'} />
+<CodeBlock language="js" code="function() => return 10;"/>
 <template lang="pug">
 ol.example(title="Найти все делители числа n")
 	li n = 10: Для этого поделим число на нименьший простой делитель например 2 и в результате 5,2,1

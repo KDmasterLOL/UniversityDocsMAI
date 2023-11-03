@@ -10,10 +10,11 @@
 			MATH_ANALYSIS: {},
 			DifferentialsEquations: {},
 			CombinatorialAnalysis: {},
-			ComplexFunction: {}
+			ComplexFunction: {},
+			THEORY_PROBABILITY: {}
 		},
 		PHYSICS: {},
-		OPTIMIZATION: { LinearProgramming: {} }
+		OPTIMIZATION: { LinearProgramming: {}, NonlinearProgramming: {} }
 	};
 	let hovered = '';
 	let timeout_id = -1;

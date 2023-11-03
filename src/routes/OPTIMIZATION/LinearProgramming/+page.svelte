@@ -1,6 +1,5 @@
 <script>
-	import Math from '$lib/components/Math.svelte';
-	import Switcher from '$lib/components/Switcher.svelte';
+	import {Math, Switcher } from 'docs-lib';	
 
 	import book_1 from './docs/SimplexMethodSpecialCases.pdf?url'
 </script>
@@ -16,7 +15,6 @@ figure
 		ul: a(href="https://mat.tepper.cmu.edu/classes/QUANT/NOTES/") Quantitative Methods for the Management Sciences 45-760 Course Notes
 		ul: a(href="https://www.matem.unam.mx/~omar/math340/") Math 340: Linear Programming
 		ul: a(href="https://econweb.ucsd.edu/~jsobel/172aw02/") Math 340: Linear Programming
-
 	figcaption: h1 Литература
 
 p.intro Linear programming is not directly related to computer programming. The term was introduced in the 1950s when computers were few and mostly top secret, and the word programming was a military term that, at that time, referred to plans or schedules for training, logistical supply, or deployment of men. The word linear suggests that feasible plans are restricted by linear constraints (inequalities), and also that the quality of the plan (e.g., costs or duration) is also measured by a linear function of the considered quantities. In a similar spirit, linear programming soon started to be used for planning all kinds of economic activities, such as transport of raw materials and products among factories, sowing various crop plants, or cutting paper rolls into shorter ones in sizes ordered by customers. The phrase “planning with linear constraints” would perhaps better capture this original meaning of linear programming. However, the term linear programming has been well established for many years, and at the same time, it has acquired a considerably broader meaning: Not only does it play a role only in mathematical economy, it appears frequently in computer science and in many other fields.

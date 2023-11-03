@@ -1,0 +1,68 @@
+hgroup
+	h3 Conditional Probability
+	+source(links=['https://byjus.com/maths/conditional-probability/','https://byjus.com/maths/tree-diagram/'])
+dl
+	dt: dfn Conditional probability
+	dd
+		+m({"P(A|B)": "the probability of occurrence of $A$ given $B$ has occurred", "N(A ∩ B)": "the number of elements common to both A and B", "N(B)": "the number of elements in B, and it cannot be equal to zero", "N": "the total number of elements in the sample space", "N(A ∩ B)/N and N(B)/N": "the ratio of the number of favourable outcomes to the total number of outcomes or the probability"}) P(A|B) = \frac { \frac {N(A∩B)}N }{\frac {N(B)}N } = \frac {P(A∩B)}{P(B)}
+		p The probability of occurrence of any event #[+m A] when another event #[+m B] in relation to #[+m A] has already occurred #[eg The possibility of an event or outcome happening, based on the existence of a previous event or outcome].
+		p It is calculated by multiplying the probability of the preceding event by the renewed probability of the succeeding, or conditional, event. #[span.example Imagine a student who takes leave from school twice a week, excluding Sunday. If it is known that he will be absent from school on Tuesday then what are the chances that he will also take a leave on Saturday in the same week?]
+		figure
+			img(title='Conditional Probability' src='https://cdn1.byjus.com/wp-content/uploads/2019/11/conditional-probability.png')
+			figcaption 
+				p Sample space is given by S, and there are two events #[+m A, B]. In a situation where event B has already occurred, then our sample space S naturally gets reduced to B because now the chances of occurrence of an event will lie inside B.
+				p As we have to figure out the chances of occurrence of event A, only a portion common to both A and B is enough to represent the probability of occurrence of A, when B has already occurred. The common portion of the events is depicted by the intersection of both the events A and B, i.e. A ∩ B.
+	dt Marginal probability
+	dd
+		p The probability of an event happening, such as (p(A)), and it can be mentioned as an unconditional probability. It does not depend on the occurrence of another event. For example, the likelihood that a card is drawn from a deck of cards is black (P(black) = 0.5), and the probability that a card is drawn is 7 (P(7)=1/13), both are independent events since the outcome of another event does not condition the result of one event.
+	dt Joint Probability
+	dd
+		p The probability of event A and event B happening, P(A and B). It is the likelihood of the intersection of two or more events. The probability of the intersection of A and B is written as P(A ∩ B). For example, the likelihood that a card is black and seven is equal to P(Black and Seven) = 2/52 = 1/26. (There are two Black-7 in a deck of 52: the 7 of clubs and the 4 of spades).
+	dt: dfn Bayes Theorem
+	dd
+		+m P(A|B) = \frac {P(B|A)P(A)}{P(B)}
+		p Defines the probability of occurrence of an event associated with any condition. It is considered for the case of conditional probability. Also, this is known as the formula for the likelihood of “causes”.
+		p A tree diagram will help you in understanding the probability of different events in different cases.
+		ol(title="Properties")
+			li Let E and F be events of a sample space S of an experiment, then we have: P(S|F) = P(F|F) = 1.
+			li If A and B are any two events of a sample space S and F is an event of S such that P(F) ≠ 0, then; P((A ∪ B)|F) = P(A|F) + P(B|F) – P((A ∩ B)|F)
+			li P(A′|B) = 1 − P(A|B)
+		h4 Problems and Solutions
+		p: strong Example 1: Two dies are thrown simultaneously, and the sum of the numbers obtained is found to be 7. What is the probability that the number 3 has appeared at least once?
+		p Solution: The sample space S would consist of all the numbers possible by the combination of two dies. Therefore S consists of 6 × 6, i.e. 36 events.
+		p Event A indicates the combination in which 3 has appeared at least once.
+		p Event B indicates the combination of the numbers which sum up to 7.
+		+m A = {(3, 1), (3, 2), (3, 3)(3, 4)(3, 5)(3, 6)(1, 3)(2, 3)(4, 3)(5, 3)(6, 3)}
+		+m B = {(1, 6)(2, 5)(3, 4)(4, 3)(5, 2)(6, 1)}
+		p P(A) = 11/36
+		p P(B) = 6/36
+		p A ∩ B = 2
+		p P(A ∩ B) = 2/36
+		p Applying the conditional probability formula we get,
+		p P(A|B) = P(A∩B)/P(B) = (2/36)/(6/36) = ⅓
+		p: strong Example 2: In a group of 100 computer buyers, 40 bought CPU, 30 purchased monitor, and 20 purchased CPU and monitors. If a computer buyer chose at random and bought a CPU, what is the probability they also bought a Monitor?
+		p #[strong Solution:]As per the first event, 40 out of 100 bought CPU,
+		p So, P(A) = 40% or 0.4
+		p Now, according to the question, 20 buyers purchased both CPU and monitors. So, this is the intersection of the happening of two events. Hence,
+		p P(A∩B) = 20% or 0.2
+		p By the formula of conditional probability we know;
+		p P(B|A) = P(A∩B)/P(B)
+		p P(B|A) = 0.2/0.4 = 2/4 = ½ = 0.5
+		p The probability that a buyer bought a monitor, given that they purchased a CPU, is 50%.
+		p To learn more about probability, visit BYJU’S and register with us. 
+h4 Frequently Asked Questions – FAQs
+section Q1
+	h5 How do you find conditional probability?
+	| Suppose A and B be the two independent events with probabilities respectively P(A) and P(B) such that the probability of occurrence of event B given A is given by: P(B|A) = P(A ∩ B)/P(A)
+section Q2
+	h5 What is the difference between probability and conditional probability?
+	| The main difference between the probability and the conditional probability is that probability is the likelihood of occurrence of an event say A, whereas the conditional probability defines the probability of an event by assuming another event has already occurred, i.e. in the conditional probability of A given B, the event B is assumed to have already occurred.
+section Q3
+	h5 Why do we need conditional probability?
+	| Conditional probability is required when some events may occur in relation to the occurrence of another event.
+section Q4
+	h5 What does given mean in probability?
+	| While writing the conditional probability of A given B, i.e. P(A|B), the symbol “|” represent the word “given”. This means the event after “|” is already occurred.
+section Q5
+	h5 What is an example of conditional probability?
+	| Suppose three cards from a deck of 52 cards are missing. Now the probability of picking up a card from this deck is a diamond can be found using the conditional probability.

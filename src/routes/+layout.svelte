@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Prism from 'prismjs';
 	import Header from './Header.svelte';
 	import 'katex/dist/katex.min.css';
 	import '$lib/styles/index.scss';

@@ -1,6 +1,5 @@
 <script>
-	import Math from '$lib/components/Math.svelte';
-</script>
+	import {Math} from 'docs-lib';</script>
 
 <template lang="pug">
 
@@ -73,32 +72,26 @@ dl
 hgroup
 	h4 Using #[+m i] as an Exponent
 	+source(links=['http://www.milefoot.com/math/complex/exponentofi.htm'])
-p There is a relationship between #[a(href='http://www.milefoot.com/math/complex/imagandtrig.htm') imaginary numbers and trigonometry], which produces the multiplication formula #[+m= String.raw`\left[r(\cos \theta+i\sin \theta)\right]\left[s(\cos \theta_1+i\sin \theta_1)\right]= rs\left[\cos(\theta+\theta_1)+i\sin(\theta+\theta_1)\right]`]. This formula basically states that multiplication of complex numbers is related to addition of angles.
-p There is another situation in which multiplication turns into addition, which you may call from your beginning algebra days. Exponent rules have the property that #[+m a^xa^y = a^{\theta+y}]. So we might expect a connection between complex numbers and exponential functions. And such a connection does exist! It is not normally studied until calculus, because of the difficulties in the details. But we won't let that stop us...
-h5 A definition
-p In a (usually second semester) calculus course, relationships between functions and "infinite degree polynomials" are studied. Such relationships are called series representations of the functions. For our purpose, the important series representations are: #[+m e^x = 1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\frac{x^4}{4!}+\frac{x^5}{5!}+\ldots] #[+m \cos x = 1-\frac{x^2}{2!}+\frac{x^4}{4!}-\frac{x^6}{6!}+\ldots] #[+m \sin x = x-\frac{x^3}{3!}+\frac{x^5}{5!}-\frac{x^7}{7!}+\ldots] 
-p You should immediately notice that if the terms of the sine and cosine series were combined, and certain signs changed, that the exponential series would result. In fact, by introducing the number #[+m i] into the mix, we can get the following result:
-| #[+m e^{i\theta} = 1+i\theta-\frac{\theta^2}{2!}-\frac{i\theta^3}{3!}+\frac{\theta^4}{4!}+\frac{i\theta^5}{5!}-\ldots = \cos \theta + i\sin \theta] 
-p This result is often used as a the beginning of a definition of complex number exponents.
-h5 Some examples
-p Let's substitute some numbers.
-p Using a value of 1 for #[+m \theta], we get #[+m e^i = \cos 1 + i\sin 1 \approx 0.5403+0.8415i].
-p Using #[+m \pi] for the value of #[+m \theta], we get #[+m e^{i\pi} = \cos\pi + i\sin\pi =-1+0i=-1]. This result is often written as #[+m e^{i\pi}+1=0]. It is considered a quite remarkable relationship between five important numbers of mathematics: the additive identity 0, the multiplicative identity 1, the imaginary unit #[+m i], and the constants #[+m e] and #[+m \pi].
-h5 Different bases
-p What if we want to raise other numbers to the power #[+m i]? We can use the following relationship: #[+m a^\theta = (e^{\ln a})^\theta = e^{\theta \ln a}].
-p Using base #[+m 2] and exponent #[+m i], we get #[+m 2^i = e^{i\ln 2} = \cos\ln 2+i\sin\ln 2 \approx 0.7692+0.6390i]. (This is actually the principal value of #[+m 2] to the #[+m i] power, there are other values which are possible.)
-p Using base #[+m i] and exponent #[+m i], we get: #[+m i^i = e^{i\ln i} = e^{i\ln\left(\cos\frac \pi 2+i\sin\frac \pi 2\right)} = e^{i\ln e^{\frac{i\pi}2}} = e^{\frac{-\pi}2}]. This is another amazing result. An imaginary number to an imaginary power is a real number! In this case, the number is approximately #[+m 0.2079]. (Although this is also the principal value, one of many possible values.)
-h5 General formula
-p Let's get a general formula for a complex number to a complex power. (In the process, we will see why powers can have many answers.) We begin with #[+m() (a+bi)^{c+di} = e^{(c+di)\ln(a+bi)}]. Then we can rewrite #[+m a+bi] in trigonometric form, say #[+m r(\cos \theta+i\sin \theta)]. But we found a relationship between trigonometry and complex exponentials, so this number also has a complex exponential form, #[+m re^{i\theta}]. Substituting this form into the exponent of our original equation, we have #[+m() (a+bi)^{c+di} = e^{(c+di)\ln re^{i\theta}}]. This can be simplified to obtain #[+m() (a+bi)^{c+di} = e^{(c\ln r-dP)+i(d\ln r+cP)}]. The real and imaginary parts of this exponent can be simplified separately, to obtain the result:
-| #[+m() (a+bi)^{c+di} = r^c e^{-dP}\left[\cos(d\ln r+cP)+i\sin(d\ln r+cP)\right]] 
-p So why can this formula give many answers? Because there are many ways to describe the angle #[+m \theta]. So we allow the variable #[+m \theta] in the above formula to vary by multiples of #[+m 2\pi]. This gives our final result:
-| #[+m() (a+bi)^{c+di} = r^c e^{-dP}\left[\cos(d\ln r+cP+2ck\pi)+i\sin(d\ln r+cP+2ck\pi)\right]] 
-h5 Epilogue
-p Once you have mastered imaginary exponents, you can do almost any function involving imaginary numbers. Read on in #[a(href='http://www.milefoot.com/math/complex/functionsofi.htm') Functions of Complex Numbers], where you will learn how to do logarithms, trigonometric, and hyperbolic functions, and their inverses.
-
-
-
-
+p.intro There is a relationship between #[a(href='http://www.milefoot.com/math/complex/imagandtrig.htm') imaginary numbers and trigonometry], which produces the multiplication formula #[+m= String.raw`\left[r(\cos \theta+i\sin \theta)\right]\left[s(\cos \theta_1+i\sin \theta_1)\right]= rs\left[\cos(\theta+\theta_1)+i\sin(\theta+\theta_1)\right]`]. This formula basically states that multiplication of complex numbers is related to addition of angles.
+	| #[br]There is another situation in which multiplication turns into addition, which you may call from your beginning algebra days. Exponent rules have the property that #[+m a^xa^y = a^{\theta+y}]. So we might expect a connection between complex numbers and exponential functions. And such a connection does exist! It is not normally studied until calculus, because of the difficulties in the details. But we won't let that stop us...
+p To do this view some series representations of the functions:
++m.block e^x = 1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\frac{x^4}{4!}+\frac{x^5}{5!}+\ldots \\ \cos x = 1-\frac{x^2}{2!}+\frac{x^4}{4!}-\frac{x^6}{6!}+\ldots \\ \sin x = x-\frac{x^3}{3!}+\frac{x^5}{5!}-\frac{x^7}{7!}+\ldots \\ \cos x + \sin x = 1+x-\frac{x^2}{2!}-\frac{x^3}{3!}+\frac{x^4}{4!}+\frac{x^5}{5!}-\frac{x^6}{6!}-\frac{x^7}{7!}+\ldots
+p By introducing the imaginary number #[+m i] in exponent change signs of some parts and multiply sinus we get equality: 
++m.block e^{i\theta} = \cos \theta + i\sin \theta = 1+i\theta-\frac{\theta^2}{2!}-\frac{i\theta^3}{3!}+\frac{\theta^4}{4!}+\frac{i\theta^5}{5!}-\ldots 
+p(title="Different bases") To raise other numbers to the power #[+m i] use the following relationship: #[+m a^\theta = (e^{\ln a})^\theta = e^{\theta \ln a}].
+ol
+	li: +m e^{i\theta} = \begin{cases}\theta = 1: \cos 1 + i\sin 1 \approx 0.5403+0.8415i \\ \theta = \pi: \cos\pi + i\sin\pi =-1+0i=-1\end{cases} 
+	li: +m 2^i = e^{i\ln 2} = \cos\ln 2+i\sin\ln 2 \approx 0.7692+0.6390i
+	li #[+m i^i = e^{i\ln i} = e^{i\ln\left(\cos\frac \pi 2+i\sin\frac \pi 2\right)} = e^{i\ln e^{\frac{i\pi}2}} = e^{\frac{-\pi}2} \approx 0.2079] - #[strong an imaginary number to an imaginary power is a real number!]
+dl
+	dt General formula #[+m= String.raw`r^{a_2} e^{-b_2\theta}[\cos(b_2\ln r+a_2\theta + 2a_2k\pi)+i\sin(b_2\ln r+a_2\theta + 2a_2k\pi)]`] for #[+m() (a_1+b_1i)^{a_2+b_2i}] a complex number #[+m a_1+b_1i] to a complex power #[+m a_2+b_2i]
+	dd
+		ol
+			li Change base #[+m() (a_1+b_1i)^{a_2+b_2i} = e^{(a_2+b_2i)\ln(a_1+b_1i)}]
+			li Rewrite #[+m a_1+b_1i] in exponential form #[+m re^{i\theta}] and get #[+m e^{(a_2+b_2i)\ln re^{i\theta}}]
+			li Transform #[+m= String.raw`e^{(a_2+b_2i)\ln re^{i\theta}} = e^{(a_2+b_2i)(\ln r + i\theta)} = e^{(a_2\ln r-b_2\theta)+i(b_2\ln r+a_2\theta)} = e^{a_2\ln r-b_2\theta}e^{i(b_2\ln r+a_2\theta)} = r^{a_2} e^{-b_2\theta}[\cos(b_2\ln r+a_2\theta)+i\sin(b_2\ln r+a_2\theta)]`]
+			li But this formula give many answers, because there are many ways to describe the angle #[+m \theta] in trigonometric functions, so allow #[+m \theta] to vary by multiples of #[+m 2\pi]: #[+m= String.raw`r^{a_2} e^{-b_2\theta}[\cos(b_2\ln r+a_2\theta + 2a_2k\pi)+i\sin(b_2\ln r+a_2\theta + 2a_2k\pi)]`]
+	
 
 hgroup 
 	h4 Functions of Complex Numbers
@@ -159,15 +152,19 @@ dl.example
 			li: +m \overline{z_1z_2}=\overline{z_1}\overline{z_2} \Rightarrow \overline{(a_1+b_1i) * (a_2+b_2i)} = \overline{a_1+b_1i} * \overline{a_2+b_2i} \Rightarrow \overline{([a_1a_2-b_1b_2]+[a_2b_1+a_1b_2]i)} = (a_1-b_1i) * (a_2-b_2i) \Rightarrow ([a_1a_2-b_1b_2]-[a_2b_1+a_1b_2]i) \equiv ([a_1a_2-b_1b_2]+[-a_2b_1-a_1b_2]i)
 			li: +m \overline{\left(\frac{z_1}{z_2} \right) }=\frac{ \overline{z_1} }{ \overline{z_2} } \Rightarrow \overline{\left(\frac{a_1+b_1i}{a_2+b_2i} \right) } = \frac{ \overline{a_1+b_1i} }{ \overline{a_2+b_2i} } \Rightarrow \overline{\left(\frac{(a_1+b_1i)(a_2-b_2i)}{(a_2+b_2i)(a_2-b_2i)} \right) }=\frac{a_1-b_1i}{a_2-b_2i} \Rightarrow \overline{ \frac{ [a_1a_2+b_1b_2]+[-b_2a_1+b_1a_2]i }{ a_2^2+b_2 } }=\frac{(a_1-b_1i)(a_2+b_2i)}{(a_2-b_2i)(a_2+b_2i)} \Rightarrow \frac{[a_1a_2+b_1b_2]-[-b_2a_1+b_1a_2]i}{a_2^2+b_2^2}=\frac{[a_1a_2+b_1b_2]+[b_2a_1-b_1a_2]i}{a_2^2+b_2^2} \Rightarrow \frac{[a_1a_2+b_1b_2]+[b_2a_1-b_1a_2]i}{a_2^2+b_2^2}=\frac{[a_1a_2+b_1b_2]+[b_2a_1-b_1a_2]i}{a_2^2+b_2^2}
 			li: +m \overline{(z^n)}=(\overline{z})^n \Rightarrow \overline{([\arg z(\sin \theta+ i\cos \theta)]^n)}=(\overline{\arg z(\sin \theta+ i\cos \theta)})^n
-	dt
-		p Найти  #[+m \Re z,\Im z]
-		ol
-			li: +m z = \cos{1-i}
-			li: +m z = \sh 2i
+	dt Найти #[+m \Re z,\Im z \quad \text{If} \begin{cases}z = \cos{1-i}\\ z = \sh 2i\end{cases}]
 	dd
 		ol
 			li: +m z = \cos{1-i} \Rightarrow z = \frac{e^{i(1-i)}+e^{-i(1-i)} }2 \Rightarrow z = 2^{-1} (e^{1+i}+e^{1-i}) \Rightarrow z = 2^{-1} (ee^i+ee^{-i}) \Rightarrow z = 2^{-1} (e(\cos 1 + i\sin 1)+e(\cos 1 - i\sin 1)) \Rightarrow z = 2^{-1} e(\cos 1 + i\sin 1 + \cos 1 - i\sin 1) \Rightarrow z = 2^{-1} e(\cos 1 + \cos 1) \Rightarrow z = 2^{-1} 2e\cos 1 \Rightarrow z = 0.54e
-		
+	dt Найти #[+m z=ie^{-\frac \pi7}: |z|, \arg z]
+	dd
+		ol
+			li Выразим комплексное в экспоненциальной форме в виде тригонометрическом #[+m z = ie^{-\frac \pi7} \Rightarrow z = -\sin{\frac \pi7} + i\cos{\frac \pi7}]
+			li.solution Аргумент комлексного числа уже виден и в экспоненциальной форме #[+m \arg z = \frac \pi7], как впринципе и длина но тригонометрический вид позволяет это точнее разглядеть так как синус и косинус с одинаковыми аргументами от 0 до #[+m 2\pi] образуют окружность с радиусом в единицу так и по главному тригонометрическому тождеству #[+m \sin^2 \theta + \cos^2 \theta = 1] понятно что #[+m |z| = \sqrt{(-\sin{\frac \pi7})^2 + (\cos{\frac \pi7})^2} = 1]
+	dt: +m \begin{aligned}z_1 = (1-\sqrt 3)i\\z_2=-2e^{\frac \pi3 i}\end{aligned},z = z_1z_2: |z|, \arg z
+	dd
+		ol 
+			li: +m z = [(1-\sqrt 3)i][-2e^{\frac \pi3 i}] = 
 //- include temp
 
 </template>

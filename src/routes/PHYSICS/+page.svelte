@@ -1,6 +1,6 @@
 <script>
 	import { text } from '@sveltejs/kit';
-	import Math from '$lib/components/Math.svelte';
+	import { Math } from 'docs-lib';
 </script>
 
 <template lang="pug">
