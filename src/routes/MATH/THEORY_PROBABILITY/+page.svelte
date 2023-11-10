@@ -19,6 +19,19 @@ mixin sum(vari, from,to, str)
 		let reg = new RegExp(String.raw`(?<=\W)${vari}(?=\W)`, "g")
 		output += Array.from({length: to-from+1}, (_,i)=> str.replace(reg,from+i)).join('+')
 	| #{output} 
+mixin table(object)
+	table
+		each key in Object.keys(object)
+			tr
+				th: +m= key
+				each val in object[key]
+					td= val
+
+figure
+	ol
+		li: a(href="https://www.probabilitycourse.com/preface.php") Probability course
+	figcaption Literature
+article: include probability
 section
 	hgroup
 		h3 Random Variables: Mean, Variance and Standard Deviation
@@ -26,95 +39,34 @@ section
 	dl
 		dt: dfn Random Variable 
 		dd 
-			p A variable whose possible values are numerical outcomes of a random experiment or a set of #[b possible values] from a random experiment. 
-			p Can be either Discrete or Continuous:
-			ul
-				li Discrete Data can only take certain values (such as 1,2,3,4,5)
-				li Continuous Data can take any value within a range (such as a person's height)
-
+			p A variable whose possible values are numerical outcomes of a random experiment or a set of #[b possible values] from a random experiment. Can be either Discrete(certain values #[span.example 1,2,3,4,5]) or Continuous(any value within a range #[span.example such as a person's height])
 			details.example
 				summary Tossing a coin: we could get Heads or Tails
 				p Let's give them the values #[b Heads=0] and #[b Tails=1] and we have a Random Variable "X":
-				img(src='https://www.mathsisfun.com/data/images/random-variable-1.svg')
-				p So:
-				ul
-					li We have an #[b experiment] (like tossing a coin)
-					li We give #[b values] to each event
-					li The #[b set of values] is a #[b Random Variable]
-		dt #[dfn Expected Value] of random event #[+m X]
-		dt #[dfn Mean] of random event #[+m X]
+				figure
+					img(src='https://www.mathsisfun.com/data/images/random-variable-1.svg')
+					figcaption Experiment - like tossing a coin. Values #[+m 1, 2] matched to each event. The #[b set of values] is a #[b Random Variable]
+		dt(lang="en"): dfn Expected Value
+		dt(lang="en"): dfn Mean
+		dt: dfn Математическое ожидание
 		dd
-			+m({'p': 'probability of every random value'}).block \mu = \sum_{i=0}^n x_ip_i
-			p When we know the probability #[+m p] of every value #[+m X] we can calculate the Expected Value of #[+m X]:
-			ul
-				li multiply each value by its probability
-				li sum them up
+			+m({'p': 'probability of every random value'}).block \mu = M(X) = \sum_{i=0}^n x_ip_i
+			p When we know the probability #[+m p] of every value #[+m X] we can calculate the Expected Value of #[+m X]
 			details.example
 				summary Tossing a single #[b unfair] die
-				img(src='https://www.mathsisfun.com/data/images/die.jpg')
+				img(src='https://www.mathsisfun.com/data/images/die.jpg').no-invert
 				p Imagine a #[b weighted] die (cheating!) so we have these probabilities:
-				table
-					tr
-						th: +m x
-						td 1
-						td 2
-						td 3
-						td 4
-						td 5
-						td 6
-					tr
-						th: +m p
-						td 0.1
-						td 0.1
-						td 0.1
-						td 0.1
-						td 0.1
-						td 0.5
-					tr
-						th: +m xp
-						td 0.1
-						td 0.2
-						td 0.3
-						td 0.4
-						td 0.5
-						td 3
+				+table({'x': [1, 2, 3, 4, 5, 6],'p': [0.1, 0.1, 0.1, 0.1, 0.1, 0.5], 'xp': [0.1, 0.2, 0.3, 0.4, 0.5, 3]})
 				+m.block \mu = \sum_{i=0}^n x_ip_i = 0.1+0.2+0.3+0.4+0.5+3 = 4.5
 				p.note This is a weighted mean: values with higher probability have higher contribution to the mean.
 		dt: dfn Variance
+		dd
 			+m.block Var(X) = \mu(X^2) - \mu(X)^2 = \sum_{i=0}^n x_i^2p_i − (\sum_{i=0}^n x_ip_i)^2
-			ul
-				li square each value and multiply by its probability
-				li sum them up
-				li then subtract the square of the Expected Value #[b \mu]
 			details.example
 				summary Tossing a single #[b unfair] die
 				img(src='https://www.mathsisfun.com/data/images/die.jpg')
 				p Imagine a #[b weighted] die (cheating!) so we have these probabilities:
-				table
-					tr
-						th: +m x
-						td 1
-						td 2
-						td 3
-						td 4
-						td 5
-						td 6
-					tr
-						th: +m p
-						td 0.1
-						td 0.1
-						td 0.1
-						td 0.1
-						td 0.1
-						td 0.5
-					tr
-						th: +m x^2p
-						td 0.1
-						td 0.4
-						td 0.9
-						td 1.6
-						td 2.5
-						td 18
+				+table({'x': [ 1, 2, 3, 4, 5, 6], 'p': [0.1, 0.1, 0.1, 0.1, 0.1, 0.5], 'x^2p': [ 0.1, 0.4, 0.9, 1.6, 2.5, 18]})
 				+m.block \sum_{i=0}^n x_i^2p_i = 0.1+0.4+0.9+1.6+2.5+18 = 23.5 \\ Var(X) = \sum_{i=0}^n x_i^2p_i − (\sum_{i=0}^n x_ip_i)^2 = 23.5 - 4.5 = 3.25
 		dt: dfn Standard Deviation
 		dd
@@ -124,78 +76,27 @@ section
 				img(src='https://www.mathsisfun.com/data/images/die.jpg')
 				p Imagine a #[b weighted] die (cheating!) so we have these probabilities:
 				table
-					tr
-						th: +m x
-						td 1
-						td 2
-						td 3
-						td 4
-						td 5
-						td 6
-					tr
-						th: +m p
-						td 0.1
-						td 0.1
-						td 0.1
-						td 0.1
-						td 0.1
-						td 0.5
-					tr
-						th: +m x^2p
-						td 0.1
-						td 0.4
-						td 0.9
-						td 1.6
-						td 2.5
-						td 18
+					tr #[th: +m x] #[td 1] #[td 2] #[td 3] #[td 4] #[td 5] #[td 6]
+					tr #[th: +m p] #[td 0.1] #[td 0.1] #[td 0.1] #[td 0.1] #[td 0.1] #[td 0.5]
+					tr #[th: +m x^2p] #[td 0.1] #[td 0.4] #[td 0.9] #[td 1.6] #[td 2.5] #[td 18]
 				+m σ = \sqrt{Var(X)} = \sqrt {3.25} = 1.803...
 	details
 		summary
 			p You plan to open a new McDougals Fried Chicken, and found these stats for similar restaurants:
 			table
-				tr
-					th Percent
-					th Year's Earnings
-				tr
-					td 20%
-					td $50,000 Loss
-				tr
-					td 30%
-					td $0
-				tr
-					td 40%
-					td $50,000 Profit
-				tr
-					td 10%
-					td $150,000 Profit
+				tr #[th Percent] #[th Year's Earnings]
+				tr #[td 20%] #[td $50,000 Loss]
+				tr #[td 30%] #[td $0]
+				tr #[td 40%] #[td $50,000 Profit]
+				tr #[td 10%] #[td $150,000 Profit]
 			p Using that as #[b probabilities] for your new restaurant's profit, what is the Expected Value and Standard Deviation?
 		p The Random Variable is #[+m X = \text{possible profit}]
 		table
-			tr
-				th: +m p_i
-				th: +m x_i
-				th: +m xp
-				th: +m x^2p
-			tr
-				td 0.2
-				td -50
-				td -10
-				td 500
-			tr
-				td 0.3
-				td 0
-				td 0
-				td 0
-			tr
-				td 0.4
-				td 50
-				td 20
-				td 1000
-			tr
-				td 0.1
-				td 150
-				td 15
-				td 2250
+			tr #[th: +m p_i] #[th: +m x_i] #[th: +m xp] #[th: +m x^2p]
+			tr #[td 0.2] #[td -50] #[td -10] #[td 500]
+			tr #[td 0.3] #[td 0] #[td 0] #[td 0]
+			tr #[td 0.4] #[td 50] #[td 20] #[td 1000]
+			tr #[td 0.1] #[td 150] #[td 15] #[td 2250]
 		+m.block \mu = \sum_{i=0}^n x_ip_i = 25 \\ Var(X) = \sum_{i=0}^n x_i^2p_i − \mu^2 = 3750 − 25 = 3750 − 625 = 3125 \\ σ = \sqrt{3125} = 56 \text{ Rounded to nearest whole number}
 		p But remember these are in thousands of dollars, so:
 		ul
@@ -204,31 +105,11 @@ section
 		p So you might expect to make $25,000, but with a very wide deviation possible.
 		p Let's try that again, but with a much higher probability for $50,000: Now with different probabilities (the $50,000 value has a high probability of #[b 0.7] now):
 		table
-			tr
-				th Probability p
-				th Earnings ($'000s) x
-				th xp
-				th xp
-			tr
-				td 0.1
-				td -50
-				td -5
-				td 250
-			tr
-				td 0.1
-				td 0
-				td 0
-				td 0
-			tr
-				td 0.7
-				td 50
-				td 35
-				td 1750
-			tr
-				td 0.1
-				td 150
-				td 15
-				td 2250
+			tr #[th Probability p] #[th Earnings ($'000s) x] #[th xp] #[th xp]
+			tr #[td 0.1] #[td -50] #[td -5] #[td 250]
+			tr #[td 0.1] #[td 0] #[td 0] #[td 0]
+			tr #[td 0.7] #[td 50] #[td 35] #[td 1750]
+			tr #[td 0.1] #[td 150] #[td 15] #[td 2250]
 			tr
 				td Σp = 1
 				td Sums:
@@ -238,9 +119,7 @@ section
 		//- p Var(X) = \sum_{i=0}^n x_ip_i − \mu = 4250 − 45 = 4250 − 2025 = #[b 2225]
 		p σ = √2225 = #[b 47] (to nearest whole number)
 		p In thousands of dollars:
-		ul
-			li \mu = $45,000
-			li σ = $47,000
+		ul #[li \mu = $45,000] #[li σ = $47,000]
 		p The mean is now much closer to the most probable value.
 		p And the standard deviation is a little smaller (showing that the values are more central.)
 
@@ -294,26 +173,6 @@ dl
 				p Небольшое замечание по поводу факториалов. Многие испытывают смутное ощущение дискомфорта, когда видят запись «0!» (читается «ноль факториал»). Так вот, 0! = 1 по определению.
 				p P. S. А самая большая вероятность в последней задаче — это получить четыре телевизора со скрытыми дефектами. Подсчитайте сами — и убедитесь.
 
-dl
-	dt: dfn Bell curve
-	dt: dfn Gaussian distribution
-	dt: dfn Normal Distribution 
-	dd
-		+m({"\\mu": "Mean", "\\sigma": "Standard deviation", "x": "Normal random variable"}).block \begin{array}{l}f(x)= \frac{1}{\sqrt{2\pi \sigma ^{2}}}e^{\frac{-(x-\mu )^{2}}{2\sigma ^{2}}}\end{array}
-		p Defined as the probability density function f(x) for the continuous random variable, say x, in the system. One of the most important continuous probability distributions. Is a very important statistical data distribution pattern occurring in many natural phenomena, such as height, blood pressure, lengths of objects produced by machines, etc. Here, we are going to discuss the normal distribution formula and examples in detail.
-		p(title="two characteristics") The two characteristics of the normal distribution are: The mean, median, and mode are equal. The normal distribution is unimodal and symmetric.
-		p The distribution is said to be a #[dfn standard normal distribution] if the mean is equal to zero and the standard deviation is equal to 1.
-		details.example
-			summary Find the probability density function for the normal distribution where #[+m \mu = 4, \sigma = 2, x = 3]
-			+m.block.
-				\begin{aligned}
-				f(3)= \frac{1}{\sqrt{2\pi (2)^{2}}}e^{\frac{-(3-4 )^{2}}{2(2)^{2}}} = \\
-					\frac{1}{2\sqrt{2\pi }}e^{\frac{-1}{8}} = \\
-					0.19947 \times e^{-0.125} = \\
-					0.19947 \times 0.882496 = \\
-					0.17603 \\
-				\end{aligned}
-			p Therefore, the probability density function for the normal distribution is 0.17603.
 //- section
 	hgroup
 		h1 Theory of propability
@@ -448,5 +307,174 @@ dl
 	p A #[a(href='https://www.cuemath.com/data/random-variable/') random variable] in probability theory can be defined as a variable that is used to model the probabilities of all possible outcomes of an event. A random variable can be either continuous or discrete.
 	h5 What are the Applications of Probability Theory?
 	p Probability theory has applications in almost all industrial fields. It is used to gauge and analyze the risk associated with an event and helps to make robust decisions.
-
+section
+	hgroup 
+		h4 Распределение случайных величин
+		+source(links=['https://www.matburo.ru/tv_spr_sub.php?p=3','https://www.scribbr.com/statistics/poisson-distribution/'])
+	h5 Распределение дискретных случайных величин
+	dl 
+		dt: dfn Биномиальное распределение
+		dd
+			p Пусть дискретная случайная величина #[+m X] - количество "успехов" в последовательности из #[+m n] независимых случайных экспериментов, таких что вероятность "успеха" в каждом из них равна #[+m p] ("неуспеха" - #[+m q=1-p]).
+			+m.block.
+				X = \quad
+				\begin{array}{c|c}
+				x_k & 0 & 1 & … & k & … & n \\ \hline
+				p_k & q^n & np q^{n-1} & … & C_n^k p^k q^{n-k} & … & p^n
+				\end{array}
+			p Здесь вероятности находятся по формуле Бернулли: #[+m P(X=k) = C_n^k p^k (1-p)^{n-k} = C_n^k p^k q^{n-k}, k=0,1,2,...,n] 
+			p Числовые характеристики биномиального распределения: #[+m M(X)=np, \quad D(X)=npq, \sigma(X)=\sqrt{npq}] 
+			figure.example
+				img(src='https://www.matburo.ru/tv/tvformul/image153.jpg')
+				figcaption многоугольники распределения для #[+m n=5] и различных вероятностей
+		dt(lang="en"): dfn Poisson distribution
+		dt: dfn Пуассоновское распределение
+		dd 
+			+m({'k': 'the number of times an event occurs', '\\lambda': 'the average number of times an event occurs within given period of time or space or mean'}).block P(X=k) = \frac {e^{-\lambda}\lambda^k}{k!} \\ \mu = \operatorname{Var} = \lambda
+			p моделирует случайную величину, представляющую собой число событий, произошедших за фиксированное время, при условии, что данные события происходят с некоторой фиксированной средней интенсивностью и независимо друг от друга.
+			p.note При условии #[+m p\to 0], #[+m n \to \infty], #[+m np \to \lambda = const] закон распределения Пуассона является предельным случаем биномиального закона. Так как при этом вероятность #[+m p] события #[+m A] в каждом испытании мала, то закон распределения Пуассона называют часто законом редких явлений.
+			figure
+				+m.block.
+					X = \quad
+					\begin{array}{c|c}
+					x_k & 0 & 1 & ... & k & ... \\ \hline
+					p_k & e^{-\lambda} & \lambda e^{-\lambda} & ... & \frac{\lambda^k}{k!}\cdot e^{-\lambda} & ...
+					\end{array}
+				figcaption Ряд распределения
+			p Gives the probability of an event #[span.example from disease cases to customer purchases to meteor strikes, Text messages per hour, Male grizzly bears per hectare, Machine malfunctions per year, Website visitors per month, Influenza cases per year] happening a certain number of times #[+m k] within a given interval of time or space #[span.example 10 days or 5 square inches]. #[mark Has only one parameter λ #[eg the only thing needed to calculate the probability of an event occurring a certain number of times]].
+			p In general it appropriate for #[dfn count data]. Count data is composed of observations that are non-negative integers (i.e., numbers that are used for counting, such as 0, 1, 2, 3, 4, and so on).
+			ol(title="You can use it if")
+				li Individual events happen at random and independently. That is, the probability of one event doesn’t affect the probability of another event.
+				li You know the constant mean number #[+m \lambda = \const] of events occurring within a given interval of time or space.
+			details
+				summary Horse kick deaths
+				p.history One of the first applications of the Poisson distribution was by statistician Ladislaus Bortkiewicz. In the late 1800s, he investigated accidental deaths by horse kick of soldiers in the Prussian army. He analyzed 20 years of data for 10 army corps, equivalent to 200 years of observations of one corps.
+				figure
+					img(src='https://www.scribbr.nl/wp-content/uploads/2022/08/Poisson-distribution-Ladislaus-Bortkiewicz.webp')
+					figcaption histogram shows simulated data that are similar to what Bortkiewicz observed
+				p He found that a mean of 0.61 soldiers per corps died from horse kicks each year. However, most years, no soldiers died from horse kicks. On the other end of the spectrum, one tragic year there were four soldiers in the same corps who died from horse kicks.
+				ul
+					li event - death by horse kick
+					li time interval - one year
+					li The mean number of events per time interval #[+m \lambda = 0.61]
+					li The number of deaths by horse kick in a specific year is #[em k]
+				p The army corps that Bortkiewicz observed were a sample of the population of all Prussian army corps. Because of the random nature of sampling, samples rarely follow a probability distribution perfectly. The deaths by horse kick in the sample approximately follow a Poisson distribution, so we can reasonably infer that the population follows a Poisson distribution.
+				p An average of 0.61 soldiers died by horse kicks per year in each Prussian army corps. You want to calculate the probability that exactly two soldiers died in the VII Army Corps in 1898, assuming that the number of horse kick deaths per year follows a Poisson distribution.
+				p The specific army corps (VII Army Corps) and year (1898) don’t matter because the probability is constant.
+				+m.block.
+					\begin{aligned}
+					k = 2 \text{ deaths by horse kick}\\ \lambda = 0.61 \text{ deaths by horse kick per year}
+					\end{aligned}:
+					P(X=2) = \frac {e^{-0.61}0.61^2}{2!} = 0.101
+				p The probability that exactly two soldiers died in the VII Army Corps in 1898 is 0.101.
+			details.example
+				summary Graph visualisation and special cases
+				figure
+					img(src='https://www.scribbr.nl/wp-content/uploads/2022/08/Poisson-distribution-graph.webp')
+					figcaption The graph of Poisson distributions with different values of λ.
+				figure
+					img(src='https://www.scribbr.nl/wp-content/uploads/2022/08/Poisson-distribution-right-skewed.webp')
+					figcaption When λ is low, the distribution is much longer on the right side of its peak than its left (i.e., it is strongly right-skewed).
+				figure
+					img(src='https://www.scribbr.nl/wp-content/uploads/2022/08/Poisson-distribution-normal.webp')
+					figcaption As λ increases, the distribution looks more and more similar to a normal distribution. In fact, when λ is 10 or greater, a normal distribution is a good approximation of the Poisson distribution.
+				p When the mean of a Poisson distribution is large (>10), it can be approximated by a normal distribution.
+				figure
+					img(src='https://www.matburo.ru/tv/tvformul/image174.jpg')
+					figcaption Разные многоугольники распределения при #[+m \lambda = 1; 4; 10].
+		dt: dfn Геометрическое распределение
+		dd
+			p Пусть происходит серия независимых испытаний, в каждом из которых событие может появится с одной и той же вероятностью #[+m p], а вероятность не возникновение этого события #[+m q=1-p]. А #[+m X] случайная величина  - количество испытаний до #[strong первого] появления события. То эта случайная величина имеет геометрическое распределение вероятностей.
+			p Формула для вероятностей: #[+m P(X=k) = q^k \cdot p, k=0,1,2,...,n,...] 
+			p Ряд распределения геометрического закона:
+			+m.block.
+				X = \quad
+				\begin{array}{c|c}
+				x_k & 0 & 1 & 2 & ... & k & ... \\ \hline
+				p_k & p & q\cdot p & q^2 \cdot p & ... & q^k \cdot p & ...
+				\end{array}
+			p Числовые характеристики: #[+m M(X)=\frac{q}{p}, \quad D(X)=\frac{q}{p^2}] 
+		dt: dfn Гипергеометрическое распределение
+		dd
+			p Из урны, в которой находятся #[+m N] шаров (#[+m K] белых и #[+m N-K] чёрных шаров), наудачу и без возвращения вынимают #[+m n] шаров (#[+m n \le N]). Найти закон распределения случайной величины #[+m X] - равной числу белых шаров среди выбранных.
+			p Случайная величина #[+m X] может принимать целые значения от #[+m 0] до #[+m K] (если #[+m n \lt K], то до #[+m n]). Вероятности вычисляются по формуле: #[+m P(X=k)=\frac{C_K^k \cdot C_{N-K}^{n-k}}{C_N^n}, \quad 0\le k \le K].
+			p Числовые характеристики: #[+m M(X)=\frac{K}{N}\cdot n, \quad D(X)=\frac{K}{N}\cdot n \cdot \frac{N-n}{N} \cdot \frac{N-K}{N-1}] 
+	h4 Непрерывные случайные величины
+	dl
+		dt: dfn Экспоненциальное распределение
+		dt: dfn Показательное распределение
+		dd
+			+m.block \lambda > 0: f(x) = \begin{cases} 0, x \lt 0 \\ \lambda e^{-\lambda x},x\ge 0 \end{cases}
+			p абсолютно непрерывное распределение, моделирующее время между двумя последовательными свершениями одного и того же события.
+			p Функция распределения величины #[+m X]: #[+m F(x)= \begin{cases} 0,x \lt 0\\ 1- e^{-\lambda x},x\ge 0 \end{cases}]
+			p Числовые характеристики можно найти по формулам: #[+m M(X)=\frac{1}{\lambda}, \quad D(X)=\frac{1}{\lambda^2}, \quad \sigma= \frac{1}{\lambda}].
+			figure
+				img(src='https://www.matburo.ru/tv/tvformul/image186.jpg')
+				figcaption Плотность распределения при различных значениях #[+m \lambda \gt 0]:
+		dt: dfn Равномерное распределение
+		dd
+			p Равномерный закон распределения используется при анализе ошибок округления при проведении числовых расчётов (например, ошибка округления числа до целого распределена равномерно на отрезке), в ряде задач массового обслуживания, при статистическом моделировании наблюдений, подчинённых заданному распределению.
+			p Плотность распределения на отрезке #[+m() (a;b)]: #[+m f(x)= \begin{cases} 0,x \le a\\ \frac {1}{b-a},a \lt x \le b, \\ 0,x \gt b, \\ \end{cases}]. 
+			p Функция распределения: #[+m F(x)=\begin{cases} 0,x \le a\\ \frac {x-a}{b-a},a \lt x \le b, \\ 1,x \gt b, \\ \end{cases}]. 
+			p Числовые характеристики равномерно распределенной случайной величины: #[+m M(X)=\frac{a+b}{2}, \quad D(X)=\frac{(b-a)^2}{12}, \quad \sigma=\frac{b-a}{2\sqrt 3}]. 
+			figure
+				img(src='https://www.matburo.ru/tv/tvformul/image196.jpg')
+				figcaption График плотности вероятностей
+		dt(lang="en"): dfn Bell curve
+		dt(lang="en"): dfn Gaussian distribution
+		dt(lang="en"): dfn Normal Distribution 
+		dt: dfn распределение Гаусса
+		dt: dfn Нормальное распределение
+		dd
+			+m({"\\mu": "Mean", "\\sigma": "Standard deviation", "x": "Normal random variable"}).block f(x)= \frac 1{\sigma \sqrt{2\pi}}\exp \left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
+			p.intro играет важнейшую роль во многих областях знаний, особенно в физике. Физическая величина подчиняется нормальному распределению, когда она подвержена влиянию огромного числа случайных помех. Ясно, что такая ситуация крайне распространена, поэтому можно сказать, что из всех распределений в природе чаще всего встречается именно нормальное распределение — отсюда и произошло одно из его названий.
+			figure
+				img(src='https://www.matburo.ru/tv/tvformul/image206.jpg')
+				figcaption Пример графика плотности распределения для различных значений среднего и СКО
+			p Нормальный закон распределения случайной величины с параметрами #[+m \mu=0, \sigma=1: f(x)= \frac 1{\sqrt{2\pi}}\exp \left(-\frac{x^2}2\right)] называется стандартным или нормированным, а соответствующая нормальная кривая - стандартной или нормированной.
+			p Функция Лапласа определяется как: #[+m \Phi(x)= \frac{1}{\sqrt{2\pi}}\int_0^x e^{-t^2/2} dt] 
+			p Вероятность попадания нормально распределенной случайной величины #[+m X] в заданный интервал #[+m() (\alpha, \beta)]: #[+m P(\alpha \lt X \lt \beta) = \Phi\left( \frac{\beta-\mu}{\sigma} \right) - \Phi\left( \frac{\alpha-\mu}{\sigma} \right)]. 
+			p Вероятность отклонения нормально распределенной случайной величины #[+m X] на величину #[+m \delta] от математического ожидания (по модулю). #[+m P(|X -\mu|\lt \delta) = 2 \Phi\left( \frac{\delta}{\sigma} \right)]. 
+			p Defined as the probability density function f(x) for the continuous random variable, say x, in the system. One of the most important continuous probability distributions. Is a very important statistical data distribution pattern occurring in many natural phenomena, such as height, blood pressure, lengths of objects produced by machines, etc. Here, we are going to discuss the normal distribution formula and examples in detail.
+			p(title="two characteristics") The two characteristics of the normal distribution are: The mean, median, and mode are equal. The normal distribution is unimodal and symmetric.
+			p The distribution is said to be a #[dfn standard normal distribution] if the mean is equal to zero and the standard deviation is equal to 1.
+			details.example
+				summary Find the probability density function for the normal distribution where #[+m \mu = 4, \sigma = 2, x = 3]
+				+m.block.
+					\begin{aligned}
+					f(3)= \frac{1}{\sqrt{2\pi (2)^{2}}}e^{\frac{-(3-4 )^{2}}{2(2)^{2}}} = \\
+						\frac{1}{2\sqrt{2\pi }}e^{\frac{-1}{8}} = \\
+						0.19947 \times e^{-0.125} = \\
+						0.19947 \times 0.882496 = \\
+						0.17603 \\
+					\end{aligned}
+				p Therefore, the probability density function for the normal distribution is 0.17603.
+	figure
+		table
+			thead: tr
+				th Characteristic
+				th Normal
+				th Poisson
+			tbody
+				tr
+					td Continuous or discrete
+					td Continuous
+					td Discrete
+				tr
+					td Parameter
+					td Mean (µ) and standard deviation (σ)
+					td Lambda (λ)
+				tr
+					td Shape
+					td Bell-shaped
+					td Depends on λ
+				tr
+					td Symmetry
+					td Symmetrical
+					td Asymmetrical (right-skewed). As λ increases, the asymmetry decreases.
+				tr
+					td Range
+					td −∞ to ∞
+					td 0 to ∞
+		figcaption the most important differences between normal distributions and Poisson distributions:
 </template>

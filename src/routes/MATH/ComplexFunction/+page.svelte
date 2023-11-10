@@ -165,6 +165,36 @@ dl.example
 	dd
 		ol 
 			li: +m z = [(1-\sqrt 3)i][-2e^{\frac \pi3 i}] = 
+	dt: +m z_1=i,z_2=1+i\sqrt 3, z=\frac {\overline z_1}{z_2}: |\overline z|, \arg \overline z - ? \\
+	dd: +m.block.
+		\begin{aligned}
+		z_1=i \\ z_2=1+i\sqrt 3 \\ z=\frac {\overline z_1}{z_2}
+		\end{aligned}
+		:
+		\begin{cases}
+		z=\frac {\overline z_1}{z_2} = \frac {\overline i}{1+i\sqrt 3} = \frac {-i}{1+i\sqrt 3} =  \frac {-i(1-i\sqrt 3)}{(1+i\sqrt 3)(1-i\sqrt 3)} = \frac {-\sqrt 3-i}{4} \\
+		\overline z= \overline {\frac {-\sqrt 3-i}{4}} = \frac {-\sqrt 3+i}{4} \\
+		\quad \Large\Downarrow \\
+		|\overline z| = \sqrt{(-\sqrt 3)^2+1^2} = 2 \\
+		\arg \overline z = \tan^{-1}\left(\frac {1/4}{-\sqrt 3 / 4}\right) = \tan^{-1}\left(\frac 1{-\sqrt 3}\right) = -\frac 16 \pi
+		\end{cases}
+	dt Найти все корни #[+m z^7 + 1 - i = 0]
+	dd: +m.block.
+		z^7 + 1 - i = 0: z = \sqrt[7]{-1+i} \Rightarrow 
+		\begin{cases}
+		\arg (-1+i) = \pi - \tan^{-1}(-1) = -\frac 34 \pi \\
+		|-1+i| = \sqrt{(-1)^2+ 1^2} = \sqrt 2
+		\end{cases} \\ \Downarrow \\
+		\begin{cases}
+		-1+i = \sqrt 2\left(\cos -\frac 34 \pi + i\sin -\frac 34 \pi\right) = \sqrt 2\left(\cos \frac 34 \pi - i\sin \frac 34 \pi\right) \\
+		\begin{split}
+		z = \sqrt[7]{\sqrt 2\left(\cos \frac 34 \pi - i\sin \frac 34 \pi\right)} 
+		&= \sqrt[14] 2\left(\cos \frac {\frac 34 \pi + 2k\pi}7 - i\sin \frac{\frac 34 \pi + 2k\pi}7\right) = \\ 
+		&= \sqrt[14] 2\left[\cos \left(\frac 3{28} \pi + \frac 27k\pi\right) - i\sin \left(\frac 3{28} \pi + \frac 27k\pi\right)\right] \\
+		\end{split} 
+		\end{cases} \\
+		z = \sqrt[14] 2\left[\cos \left(\frac 3{28} \pi + \frac 27k\pi\right) - i\sin \left(\frac 3{28} \pi + \frac 27k\pi\right)\right], k = \overline{0,7}
+
 //- include temp
 
 </template>
