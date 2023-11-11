@@ -2,12 +2,12 @@
 	import {Math} from 'docs-lib';</script>
 
 <template lang="pug">
-
+article: include temp_1
 h2 Complex numbers
 +m() (a+bi)^2=a^2+2abi-b^2 \\ (a+bi)(a-bi)=a^2+abi-abi+b^2=a^2+b^2 \\ (a+bi)^3=(a^2+2abi-b^2)(a+bi)=a^3+2a^2bi-ab^2+a^2bi-2ab^2-b^3i=a^3+3a^2bi-3ab^2-b^3i
 hgroup
 	h4 Imaginary Numbers
-	+source(links=['http://www.milefoot.com/math/complex/imagnumbers.htm','http://www.milefoot.com/math/complex/squarerootofi.htm', 'http://www.milefoot.com/math/complex/sqrootsimag.htm','http://www.milefoot.com/math/complex/imagandtrig.htm'])
+	+source(links=['http://www.milefoot.com/math/complex/imagnumbers.htm','http://www.milefoot.com/math/complex/squarerootofi.htm', 'http://www.milefoot.com/math/complex/sqrootsimag.htm','http://www.milefoot.com/math/complex/imagandtrig.htm', 'http://www.milefoot.com/math/complex/functionsofi.htm'])
 
 p.intro What is #[+m \sqrt{-1}] ? A symbol thrust upon earthlings by an alien culture? Well, not quite... (unless you view mathematics as representative of an alien culture... but we won't go there). The "usual" numbers "normal" people work with are called #[em real numbers]. They include whole numbers, fractions, decimals, negative numbers, square roots of positive numbers, and numbers like #[+m \pi]. 
 dl
@@ -113,7 +113,11 @@ p Using the connection between hyperbolic functions and trigonometric functions,
 | #[+m \cosh(a+bi) = \cosh a \cos b + i\sinh a \sin b] #[+m \sinh(a+bi) = \sinh a \cos b + i\cosh a \sin b] 
 p As an example, consider the hyperbolic cosine of #[+m i]. We get #[+m \cosh i = \cosh 0 \cos 1 + i\sinh 0 \sin 1 = \cos 1 \approx 0.5403 ].
 h5 Inverse Trigonometric Functions
-p Since #[+m \cos \theta = \frac{e^{i\theta}+e^{-i\theta}}2], we can find the inverse by replacing the function with the variable #[+m y], swapping #[+m \theta] and #[+m y], then solving for #[+m y]. After the variable swap, we have #[+m \theta = \frac{e^{iy}+e^{-iy}}2]. Multiplying both sides by #[+m 2e^{iy}] gives the equation #[+m 0 = e^{2iy} - 2xe^{iy} + 1]. This can be solved using the quadratic formula, to get #[+m e^{iy} = \frac{2x \pm \sqrt{4x^2-4}}2]. After simplifying, we can take the natural logarithm of both sides and divide by #[+m i]. Then, the result is #[+m= String.raw`\cos^{-1} \theta = -i\ln\left[\theta\pm i\sqrt{1-\theta^2}\right]`]
+ol
+	li Since #[+m \cos \theta = \frac{e^{i\theta}+e^{-i\theta}}2], we can find the inverse by replacing the function with the variable #[+m y], swapping #[+m \theta] and #[+m y], then solving for #[+m y]. After the variable swap, we have #[+m \theta = \frac{e^{iy}+e^{-iy}}2].
+	li Multiplying both sides by #[+m 2e^{iy}] gives the equation #[+m 2e^{iy}\theta = e^{iy}(e^{iy}+e^{-iy}) \Rightarrow 0 = e^{2iy} - 2\theta e^{iy} + 1].
+	li This can be solved using the quadratic formula, to get #[+m e^{iy} = \frac{2\theta \pm \sqrt{4\theta^2-4}}2 = \theta \pm \sqrt{\theta^2-1}].
+	li After simplifying, we can take the natural logarithm of both sides and divide by #[+m i]. Then, the result is #[+m= String.raw`\ln e^{iy} = \ln \left[\theta \pm \sqrt{\theta^2-1}\right] \Rightarrow \cos^{-1} \theta = -i\ln\left[\theta\pm i\sqrt{1-\theta^2}\right]`]
 p (A factor of #[+m i] typically appears as the coefficient of the square root so that the similarities between the inverse cosine and inverse sine formulas are more apparent.)
 p By similar arguments, the inverse sine formula is found to be #[+m= String.raw`\sin^{-1} \theta = -i\ln\left[i\theta\pm \sqrt{1-\theta^2}\right]`] and the inverse tangent formula is #[+m \tan^{-1} \theta = \frac i2 \ln\frac{i+\theta}{i-\theta}] 
 p As an example, consider the inverse cosine of #[+m i]. We shall find only one of its many values, by using the plus sign in the formula. We get: #[+m= String.raw`\cos^{-1} i = -i\ln\left[i+i\sqrt{1-i^2}\right] = -i\ln\left[(1+\sqrt2)i\right]`]. Then we use the logarithm formula to continue: #[+m= String.raw`-i\ln\left[(1+\sqrt2)i\right] = -i\ln\left[(1+\sqrt2)e^{\frac{i\pi}2}\right] = -i\left[\ln(1+\sqrt2) +\frac \pi 2i \right]`]. This can be simplified, and we get #[+m= String.raw`-i\left[\ln(1+\sqrt2) +\frac \pi 2i \right] = \frac \pi 2 -i\ln(1+\sqrt2) \approx 1.57-0.88i`].
@@ -194,7 +198,8 @@ dl.example
 		\end{split} 
 		\end{cases} \\
 		z = \sqrt[14] 2\left[\cos \left(\frac 3{28} \pi + \frac 27k\pi\right) - i\sin \left(\frac 3{28} \pi + \frac 27k\pi\right)\right], k = \overline{0,7}
-
-//- include temp
+	dt Найти #[+m z = \begin{cases}\cos(1-i) \\ \sinh 2i \end{cases} : \Re z, \Im z]
+	dd: +m.block.
+		z = \cos(1-i) = \frac{e^{i(1-i)} + e^{-i(1-i)}}2 = \frac{e^{i+1} + e^{-i-1}}2 = 
 
 </template>

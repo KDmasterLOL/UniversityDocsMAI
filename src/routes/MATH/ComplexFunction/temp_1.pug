@@ -1,0 +1,39 @@
+ol
+	li: p We have: #[+m.block \sin(z)=x, z=\arcsin(x) \\ e^{iz}=\cos(z)+i\sin(z) \\ e^{-iz} =\cos(-z)+i\sin(-z)=\cos(z)-i\sin(z)]
+		| #[br]And we are trying to solve for an unknown z, given x.
+	li subtract the last two equations to get the following: #[+m e^{iz}-e^{-iz}=2i\sin(z) \\ \sin(z)=\frac{e^{iz}-e^{-iz}}{2i}]
+	li Recall from the very top that #[+m \sin(z)=x: x=\frac{e^{iz}-e^{-iz}}{2i}=\frac1{2i}e^{iz}-\frac1{2i}e^{-iz}]
+	li Multiply both sides by #[+m e^{iz}] to get a solvable quadratic #[+m xe^{iz}=\frac1{2i}e^{2iz}-\frac1{2i}\to0=\frac1{2i}e^{2iz}-xe^{iz}-\frac1{2i}]
+	li We can now use quadratic formula to solve for #[+m e^{iz}]. If you are confused, try substituting #[+m e^{iz}=y].#[+m e^{iz}=\frac{x\pm\sqrt{x^2-1}}{\frac1i}=i(x\pm\sqrt{x^2-1})]
+	li Now, solve for z #[+m= String.raw`iz=\ln[i(x\pm\sqrt{x^2-1})]=\ln(i)+\ln[(x\pm\sqrt{x^2-1})]=\pi(\frac12+2in)+\ln[x\pm\sqrt{x^2-1}],n=\pm(0,1,2,3,4,\ldots)`]
+p We get a grand and wondrous solution: #[+m= String.raw`z=\frac{\pi(\frac12+2in)+\ln[x\pm\sqrt{x^2-1}]}i,n=\pm(0,1,2,3,4,\ldots)`]So for #[+m x=2], we can find #[+m z=\arcsin(2)].#[+m= String.raw`\arcsin(2)=\frac{\pi(\frac12+2in)+\ln[2\pm\sqrt{2^2-1}]} i,n=\pm(0,1,2,3,4,\ldots)`]
+p Lastly, take note that #[+m \arcsin(x)=\arccos(x)-\frac{\pi}2\pm2\pi m, m=0,1,2,3,4,\ldots] so that we have: #[+m= String.raw`\arccos(x)=\frac{\pi(\frac12+2in)+\ln[x\pm\sqrt{x^2-1}]}i+\frac{\pi}2\pm2\pi m, m=0,1,2,3,4,\ldots,n=\pm(0,1,2,3,4,\ldots)`]
+
+h4 Trigonometry and Complex Exponentials
+p.intro Amazingly, trig functions can also be expressed back in terms of the complex exponential. Then #[em everything] involving trig functions can be transformed into something involving the exponential function. This is very surprising. 
+ol 
+	li In order to easily obtain trig identities like #[+m  \cos(x)^2 + \sin(x)^2 = 1], let's write #[+m  \cos(x)] and #[+m  \sin(x)] as complex exponentials. From the definitions we have #[+m e^{ix} = \cos(x) + i\sin(x), ] so #[+m e^{-ix} = \cos(-x) + i\sin(-x) = \cos(x) - i\sin(x)]. 
+	li Adding these two equations and dividing by 2 yields a formula for #[+m  \cos(x)], and subtracting and dividing by #[+m  2i] gives a formula for #[+m  \sin(x)]:
+		+m.block.
+			\cos(x) = \frac{e^{ix} + e^{-ix}}2 = \frac{\cos(x) + i\sin(x) + \cos(x) - i\sin(x)}2\\
+			\sin(x) = \frac{e^{ix} - e^{-ix}}{2i} = \frac{\cos(x) + i\sin(x) - \cos(x) + i\sin(x)}2i
+p We can now derive trig identities. For example,
++m.block.
+	\begin{split}\sin(2x) &= \frac{e^{i2x} - e^{-i2x}}{2i}
+		\\ &= \frac{(e^{ix} - e^{-ix}) (e^{ix} + e^{-ix})}{2i}
+		\\ &= 2 \frac{e^{ix} - e^{-ix}}{2i} \frac{e^{ix} + e^{-ix}}{2} = 2 \sin(x) \cos(x)	\end{split}
+p I'm unimpressed, given that you can get this much more directly using #[+m() (\cos(2x) + i\sin(2x)) = (\cos(x) + i\sin(x))^2 = \cos^2(x) - \sin^2(x) + i2\cos(x)\sin(x)],  and equating imaginary parts. But there are more interesting examples. 
+p Next we verify that #[+m  \cos(x)^2 + \sin(x)^2 = 1]. We have #[+m 4(\cos(x)^2 + \sin(x)^2) = \left(e^{ix} + e^{-ix}\right)^2 + \left(\frac{e^{ix} - e^{-ix}}{i}\right)^2 = e^{2ix} + 2 + e^{-2ix} - (e^{2ix} - 2 + e^{-2ix}) = 4]. The equality just appears as a follow-your-nose algebraic calculation. 
+details.example
+	summary Compute #[+m  \sin(x)^3] as a sum of sines and cosines with no powers. 
+	+m.block.
+		\begin{split}
+		\sin(x)^3 &= \left( \frac{e^{ix} - e^{-ix}}{2i} \right)^3
+		&= \left( \frac{1}{2i}\right)^3 (e^{ix} - e^{-ix})^3
+		&= \left( \frac{1}{2i}\right)^3 (e^{ix} - e^{-ix}) (e^{ix} - e^{-ix})(e^{ix} - e^{-ix})
+		&= \left( \frac{1}{2i}\right)^3 (e^{ix} - e^{-ix})(e^{2ix} - 2 + e^{-2ix})
+		&= \left( \frac{1}{2i}\right)^3 (e^{3ix} - 2e^{ix} + e^{-ix} - e^{ix} +2e^{-ix} - e^{-3ix})
+		&= \left( \frac{1}{2i}\right)^3 ((e^{3ix} - e^{-3ix}) - 3(e^{ix}-e^{-ix} ))
+		&=-\left(\frac{1}{4}\right) \left[ \frac{e^{3ix} - e^{-3ix}}{2i} - 3\cdot \frac{e^{ix} -e^{-ix}}{2i}\right]
+		&= \frac{3\sin(x) - \sin(3x)}{4}
+		\end{split}
